@@ -1,0 +1,1118 @@
+[
+  {
+    "id": 280,
+    "expression": "絶対",
+    "reading": "ぜったい",
+    "meaning_en": "definitely, without fail, absoluteness",
+    "meaning_ko": "절대, 반드시",
+    "example": {
+      "ja": "この約束は絶対に守る。",
+      "reading": "このやくそくはぜったいにまもる。",
+      "ko": "이 약속은 반드시 지킨다."
+    }
+  },
+  {
+    "id": 281,
+    "expression": "セット",
+    "reading": "セット",
+    "meaning_en": "set",
+    "meaning_ko": "세트",
+    "example": {
+      "ja": "コーヒーとケーキのセットを注文した。",
+      "reading": "コーヒーとケーキのセットをちゅうもんした。",
+      "ko": "커피와 케이크 세트를 주문했다."
+    }
+  },
+  {
+    "id": 282,
+    "expression": "愛",
+    "reading": "あい",
+    "meaning_en": "love",
+    "meaning_ko": "사랑",
+    "example": {
+      "ja": "愛は言葉だけでなく行動で示すものだ。",
+      "reading": "あいはことばだけでなくこうどうでしめすものだ。",
+      "ko": "사랑은 말뿐만 아니라 행동으로 보여주는 것이다."
+    }
+  },
+  {
+    "id": 283,
+    "expression": "愛情",
+    "reading": "あいじょう",
+    "meaning_en": "love, affection",
+    "meaning_ko": "애정",
+    "example": {
+      "ja": "親の愛情を受けて子供は育つ。",
+      "reading": "おやのあいじょうをうけてこどもはそだつ。",
+      "ko": "부모의 애정을 받으며 아이는 성장한다."
+    }
+  },
+  {
+    "id": 284,
+    "expression": "合図",
+    "reading": "あいず",
+    "meaning_en": "sign, signal",
+    "meaning_ko": "신호",
+    "example": {
+      "ja": "先生が合図をしたら始めてください。",
+      "reading": "せんせいがあいずをしたらはじめてください。",
+      "ko": "선생님이 신호를 하면 시작하세요."
+    }
+  },
+  {
+    "id": 285,
+    "expression": "アイスクリーム",
+    "reading": "アイスクリーム",
+    "meaning_en": "ice cream",
+    "meaning_ko": "아이스크림",
+    "example": {
+      "ja": "暑い日にはアイスクリームが食べたくなる。",
+      "reading": "あついひにはアイスクリームがたべたくなる。",
+      "ko": "더운 날에는 아이스크림이 먹고 싶어진다."
+    }
+  },
+  {
+    "id": 286,
+    "expression": "愛する",
+    "reading": "あいする",
+    "meaning_en": "to love",
+    "meaning_ko": "사랑하다",
+    "example": {
+      "ja": "家族を深く愛している。",
+      "reading": "かぞくをふかくあいしている。",
+      "ko": "가족을 깊이 사랑하고 있다."
+    }
+  },
+  {
+    "id": 287,
+    "expression": "相手",
+    "reading": "あいて",
+    "meaning_en": "partner; addressee; the person you are talking to",
+    "meaning_ko": "상대방",
+    "example": {
+      "ja": "話す相手によって言葉を選ぶ。",
+      "reading": "はなすあいてによってことばをえらぶ。",
+      "ko": "말하는 상대방에 따라 말을 선택한다."
+    }
+  },
+  {
+    "id": 288,
+    "expression": "あいにく",
+    "reading": "あいにく",
+    "meaning_en": "unfortunately",
+    "meaning_ko": "공교롭게도, 아쉽게도",
+    "example": {
+      "ja": "あいにく、今日は雨が降っている。",
+      "reading": "あいにく、きょうはあめがふっている。",
+      "ko": "공교롭게도 오늘은 비가 내리고 있다."
+    }
+  },
+  {
+    "id": 289,
+    "expression": "遭う",
+    "reading": "あう",
+    "meaning_en": "to meet, to encounter (undesirable nuance)",
+    "meaning_ko": "당하다, 만나다",
+    "example": {
+      "ja": "帰り道に交通事故に遭った。",
+      "reading": "かえりみちにこうつうじこにあった。",
+      "ko": "귀갓길에 교통사고를 당했다."
+    }
+  },
+  {
+    "id": 290,
+    "expression": "アウト",
+    "reading": "アウト",
+    "meaning_en": "out",
+    "meaning_ko": "아웃",
+    "example": {
+      "ja": "ボールがラインを越えてアウトになった。",
+      "reading": "ボールがラインをこえてアウトになった。",
+      "ko": "공이 라인을 넘어서 아웃이 됐다."
+    }
+  },
+  {
+    "id": 291,
+    "expression": "明かり",
+    "reading": "あかり",
+    "meaning_en": "lamplight, light (in general)",
+    "meaning_ko": "불빛, 빛",
+    "example": {
+      "ja": "夜道を明かりが照らしていた。",
+      "reading": "よみちをあかりがてらしていた。",
+      "ko": "밤길을 불빛이 비추고 있었다."
+    }
+  },
+  {
+    "id": 292,
+    "expression": "空き",
+    "reading": "あき",
+    "meaning_en": "vacancy, opening, space",
+    "meaning_ko": "빈 자리, 공석",
+    "example": {
+      "ja": "電車に空きがなくて座れなかった。",
+      "reading": "でんしゃにあきがなくてすわれなかった。",
+      "ko": "전철에 빈 자리가 없어서 앉지 못했다."
+    }
+  },
+  {
+    "id": 293,
+    "expression": "明らか",
+    "reading": "あきらか",
+    "meaning_en": "obvious, clear",
+    "meaning_ko": "명백한, 분명한",
+    "example": {
+      "ja": "その事実は誰の目にも明らかだった。",
+      "reading": "そのじじつはだれのめにもあきらかだった。",
+      "ko": "그 사실은 누구의 눈에도 명백했다."
+    }
+  },
+  {
+    "id": 294,
+    "expression": "諦める",
+    "reading": "あきらめる",
+    "meaning_en": "to give up, to abandon",
+    "meaning_ko": "포기하다",
+    "example": {
+      "ja": "困難でも夢を諦めてはいけない。",
+      "reading": "こんなんでもゆめをあきらめてはいけない。",
+      "ko": "힘들어도 꿈을 포기해서는 안 된다."
+    }
+  },
+  {
+    "id": 295,
+    "expression": "飽きる",
+    "reading": "あきる",
+    "meaning_en": "to get tired of, to lose interest in",
+    "meaning_ko": "질리다, 싫증나다",
+    "example": {
+      "ja": "毎日同じメニューだと飽きてしまう。",
+      "reading": "まいにちおなじメニューだとあきてしまう。",
+      "ko": "매일 같은 메뉴라면 질려버린다."
+    }
+  },
+  {
+    "id": 296,
+    "expression": "握手",
+    "reading": "あくしゅ",
+    "meaning_en": "handshake",
+    "meaning_ko": "악수",
+    "example": {
+      "ja": "初対面の人と握手をして挨拶した。",
+      "reading": "しょたいめんのひととあくしゅをしてあいさつした。",
+      "ko": "처음 만난 사람과 악수를 하며 인사했다."
+    }
+  },
+  {
+    "id": 297,
+    "expression": "悪魔",
+    "reading": "あくま",
+    "meaning_en": "devil, demon, evil spirit",
+    "meaning_ko": "악마",
+    "example": {
+      "ja": "昔話では悪魔が村人を苦しめた。",
+      "reading": "むかしばなしではあくまがむらびとをくるしめた。",
+      "ko": "옛날이야기에서는 악마가 마을 사람들을 괴롭혔다."
+    }
+  },
+  {
+    "id": 298,
+    "expression": "明ける",
+    "reading": "あける",
+    "meaning_en": "to dawn, to become daylight",
+    "meaning_ko": "날이 밝다, 밝아오다",
+    "example": {
+      "ja": "夜が明けると鳥のさえずりが聞こえた。",
+      "reading": "よがあけるととりのさえずりがきこえた。",
+      "ko": "날이 밝자 새의 지저귐이 들렸다."
+    }
+  },
+  {
+    "id": 299,
+    "expression": "揚げる",
+    "reading": "あげる",
+    "meaning_en": "to lift, to fry",
+    "meaning_ko": "튀기다, 올리다",
+    "example": {
+      "ja": "鶏肉を油で揚げてから食べた。",
+      "reading": "とりにくをあぶらであげてからたべた。",
+      "ko": "닭고기를 기름에 튀긴 후 먹었다."
+    }
+  },
+  {
+    "id": 300,
+    "expression": "挙げる",
+    "reading": "あげる",
+    "meaning_en": "to raise; to list, to cite",
+    "meaning_ko": "들다, 거론하다",
+    "example": {
+      "ja": "例を三つ挙げて説明した。",
+      "reading": "れいをみっつあげてせつめいした。",
+      "ko": "예를 세 가지 들어 설명했다."
+    }
+  },
+  {
+    "id": 301,
+    "expression": "預ける",
+    "reading": "あずける",
+    "meaning_en": "to give into custody, to deposit",
+    "meaning_ko": "맡기다, 예치하다",
+    "example": {
+      "ja": "銀行にお金を預けた。",
+      "reading": "ぎんこうにおかねをあずけた。",
+      "ko": "은행에 돈을 맡겼다."
+    }
+  },
+  {
+    "id": 302,
+    "expression": "汗",
+    "reading": "あせ",
+    "meaning_en": "sweat, perspiration",
+    "meaning_ko": "땀",
+    "example": {
+      "ja": "運動して汗をたくさんかいた。",
+      "reading": "うんどうしてあせをたくさんかいた。",
+      "ko": "운동을 해서 땀을 많이 흘렸다."
+    }
+  },
+  {
+    "id": 303,
+    "expression": "与える",
+    "reading": "あたえる",
+    "meaning_en": "to give",
+    "meaning_ko": "주다, 부여하다",
+    "example": {
+      "ja": "子供に良い教育環境を与えたい。",
+      "reading": "こどもによいきょういくかんきょうをあたえたい。",
+      "ko": "아이에게 좋은 교육 환경을 주고 싶다."
+    }
+  },
+  {
+    "id": 304,
+    "expression": "温かい",
+    "reading": "あたたかい",
+    "meaning_en": "warm",
+    "meaning_ko": "따뜻한",
+    "example": {
+      "ja": "温かいスープを飲んで体が温まった。",
+      "reading": "あたたかいスープをのんでからだがあたたまった。",
+      "ko": "따뜻한 수프를 마시고 몸이 따뜻해졌다."
+    }
+  },
+  {
+    "id": 305,
+    "expression": "暖まる",
+    "reading": "あたたまる",
+    "meaning_en": "to warm up",
+    "meaning_ko": "따뜻해지다",
+    "example": {
+      "ja": "ストーブをつけると部屋が暖まった。",
+      "reading": "ストーブをつけるとへやがあたたまった。",
+      "ko": "난로를 켜자 방이 따뜻해졌다."
+    }
+  },
+  {
+    "id": 306,
+    "expression": "暖める",
+    "reading": "あたためる",
+    "meaning_en": "to warm (up to someone/something), to heat (up to someone/something)",
+    "meaning_ko": "따뜻하게 하다",
+    "example": {
+      "ja": "冷えたスープを暖めて飲んだ。",
+      "reading": "ひえたスープをあたためてのんだ。",
+      "ko": "식은 수프를 데워서 마셨다."
+    }
+  },
+  {
+    "id": 307,
+    "expression": "温める",
+    "reading": "あたためる",
+    "meaning_en": "to warm, to heat",
+    "meaning_ko": "데우다, 따뜻하게 하다",
+    "example": {
+      "ja": "電子レンジで食事を温めた。",
+      "reading": "でんしレンジでしょくじをあたためた。",
+      "ko": "전자레인지로 식사를 데웠다."
+    }
+  },
+  {
+    "id": 308,
+    "expression": "辺り",
+    "reading": "あたり",
+    "meaning_en": "vicinity, nearby",
+    "meaning_ko": "주변, 근처",
+    "example": {
+      "ja": "この辺りには静かなカフェが多い。",
+      "reading": "このあたりにはしずかなカフェがおおい。",
+      "ko": "이 근처에는 조용한 카페가 많다."
+    }
+  },
+  {
+    "id": 309,
+    "expression": "当たる",
+    "reading": "あたる",
+    "meaning_en": "to be hit, to be successful",
+    "meaning_ko": "맞다, 해당하다",
+    "example": {
+      "ja": "くじで一等賞が当たった。",
+      "reading": "くじでいっとうしょうがあたった。",
+      "ko": "복권에서 1등이 당첨됐다."
+    }
+  },
+  {
+    "id": 310,
+    "expression": "あちこち",
+    "reading": "あちこち",
+    "meaning_en": "here and there",
+    "meaning_ko": "여기저기",
+    "example": {
+      "ja": "旅行であちこちの観光地を回った。",
+      "reading": "りょこうであちこちのかんこうちをまわった。",
+      "ko": "여행에서 여기저기 관광지를 돌아다녔다."
+    }
+  },
+  {
+    "id": 311,
+    "expression": "扱う",
+    "reading": "あつかう",
+    "meaning_en": "to treat, to handle, to deal with",
+    "meaning_ko": "다루다, 취급하다",
+    "example": {
+      "ja": "精密機器は慎重に扱う必要がある。",
+      "reading": "せいみつききはしんちょうにあつかうひつようがある。",
+      "ko": "정밀 기기는 신중하게 다룰 필요가 있다."
+    }
+  },
+  {
+    "id": 312,
+    "expression": "集まり",
+    "reading": "あつまり",
+    "meaning_en": "gathering, meeting, collection",
+    "meaning_ko": "모임",
+    "example": {
+      "ja": "同窓会の集まりに参加した。",
+      "reading": "どうそうかいのあつまりにさんかした。",
+      "ko": "동창회 모임에 참가했다."
+    }
+  },
+  {
+    "id": 313,
+    "expression": "当てる",
+    "reading": "あてる",
+    "meaning_en": "to hit; to apply to",
+    "meaning_ko": "맞히다, 대다",
+    "example": {
+      "ja": "太陽の光を植物に当てた。",
+      "reading": "たいようのひかりをしょくぶつにあてた。",
+      "ko": "태양 빛을 식물에 쬐었다."
+    }
+  },
+  {
+    "id": 314,
+    "expression": "跡",
+    "reading": "あと",
+    "meaning_en": "trace; remains; scar",
+    "meaning_ko": "흔적, 자취",
+    "example": {
+      "ja": "雪の上に足跡の跡が残っていた。",
+      "reading": "ゆきのうえにあしあとのあとがのこっていた。",
+      "ko": "눈 위에 발자국 흔적이 남아 있었다."
+    }
+  },
+  {
+    "id": 315,
+    "expression": "穴",
+    "reading": "あな",
+    "meaning_en": "hole",
+    "meaning_ko": "구멍",
+    "example": {
+      "ja": "靴下に穴が開いてしまった。",
+      "reading": "くつしたにあながあいてしまった。",
+      "ko": "양말에 구멍이 생겨버렸다."
+    }
+  },
+  {
+    "id": 316,
+    "expression": "油",
+    "reading": "あぶら",
+    "meaning_en": "oil",
+    "meaning_ko": "기름",
+    "example": {
+      "ja": "フライパンに油を引いて野菜を炒めた。",
+      "reading": "フライパンにあぶらをひいてやさいをいためた。",
+      "ko": "프라이팬에 기름을 두르고 채소를 볶았다."
+    }
+  },
+  {
+    "id": 317,
+    "expression": "誤り",
+    "reading": "あやまり",
+    "meaning_en": "error",
+    "meaning_ko": "실수, 오류",
+    "example": {
+      "ja": "書類に誤りがあったので訂正した。",
+      "reading": "しょるいにあやまりがあったのでていせいした。",
+      "ko": "서류에 오류가 있어서 정정했다."
+    }
+  },
+  {
+    "id": 318,
+    "expression": "粗",
+    "reading": "あら",
+    "meaning_en": "defect, flaw, fault",
+    "meaning_ko": "결점, 흠",
+    "example": {
+      "ja": "人の粗を探すより長所を見るべきだ。",
+      "reading": "ひとのあらをさがすよりちょうしょをみるべきだ。",
+      "ko": "남의 결점을 찾기보다 장점을 봐야 한다."
+    }
+  },
+  {
+    "id": 319,
+    "expression": "嵐",
+    "reading": "あらし",
+    "meaning_en": "storm",
+    "meaning_ko": "폭풍",
+    "example": {
+      "ja": "夜中に嵐が来て窓がガタガタと揺れた。",
+      "reading": "よなかにあらしがきてまどがガタガタとゆれた。",
+      "ko": "한밤중에 폭풍이 몰아쳐서 창문이 덜컹덜컹 흔들렸다."
+    }
+  },
+  {
+    "id": 320,
+    "expression": "新た",
+    "reading": "あらた",
+    "meaning_en": "new, fresh",
+    "meaning_ko": "새로운, 새로운",
+    "example": {
+      "ja": "新たな目標を立てて挑戦した。",
+      "reading": "あらたなもくひょうをたててちょうせんした。",
+      "ko": "새로운 목표를 세우고 도전했다."
+    }
+  },
+  {
+    "id": 321,
+    "expression": "あらゆる",
+    "reading": "あらゆる",
+    "meaning_en": "all, every",
+    "meaning_ko": "모든, 온갖",
+    "example": {
+      "ja": "あらゆる手段を試してみた。",
+      "reading": "あらゆるしゅだんをためしてみた。",
+      "ko": "모든 수단을 시도해 보았다."
+    }
+  },
+  {
+    "id": 322,
+    "expression": "表す",
+    "reading": "あらわす",
+    "meaning_en": "to express, to show",
+    "meaning_ko": "나타내다, 표현하다",
+    "example": {
+      "ja": "言葉で気持ちを表すのは難しい。",
+      "reading": "ことばできもちをあらわすのはむずかしい。",
+      "ko": "말로 감정을 표현하기는 어렵다."
+    }
+  },
+  {
+    "id": 323,
+    "expression": "現す",
+    "reading": "あらわす",
+    "meaning_en": "to show, to appear, to reveal",
+    "meaning_ko": "드러내다, 나타내다",
+    "example": {
+      "ja": "霧が晴れて山が姿を現した。",
+      "reading": "きりがはれてやまがすがたをあらわした。",
+      "ko": "안개가 걷히자 산이 모습을 드러냈다."
+    }
+  },
+  {
+    "id": 324,
+    "expression": "著す",
+    "reading": "あらわす",
+    "meaning_en": "to write, to publish",
+    "meaning_ko": "저술하다, 쓰다",
+    "example": {
+      "ja": "その学者は多くの本を著した。",
+      "reading": "そのがくしゃはおおくのほんをあらわした。",
+      "ko": "그 학자는 많은 책을 저술했다."
+    }
+  },
+  {
+    "id": 325,
+    "expression": "現れ",
+    "reading": "あらわれ",
+    "meaning_en": "expression, indication, sign",
+    "meaning_ko": "나타남, 표현",
+    "example": {
+      "ja": "この結果は努力の現れだ。",
+      "reading": "このけっかはどりょくのあらわれだ。",
+      "ko": "이 결과는 노력의 표현이다."
+    }
+  },
+  {
+    "id": 326,
+    "expression": "現れる",
+    "reading": "あらわれる",
+    "meaning_en": "to appear (v.i.), to become visible; to express",
+    "meaning_ko": "나타나다",
+    "example": {
+      "ja": "長い冬が終わり、春が現れた。",
+      "reading": "ながいふゆがおわり、はるがあらわれた。",
+      "ko": "긴 겨울이 끝나고 봄이 나타났다."
+    }
+  },
+  {
+    "id": 327,
+    "expression": "ありがとう",
+    "reading": "ありがとう",
+    "meaning_en": "Thank you",
+    "meaning_ko": "감사합니다",
+    "example": {
+      "ja": "助けてくれてありがとう。",
+      "reading": "たすけてくれてありがとう。",
+      "ko": "도와줘서 고마워."
+    }
+  },
+  {
+    "id": 328,
+    "expression": "在る; 有る",
+    "reading": "ある",
+    "meaning_en": "to live, to be, to exist",
+    "meaning_ko": "있다, 존재하다",
+    "example": {
+      "ja": "駅の近くにコンビニがある。",
+      "reading": "えきのちかくにコンビニがある。",
+      "ko": "역 근처에 편의점이 있다."
+    }
+  },
+  {
+    "id": 329,
+    "expression": "或",
+    "reading": "ある",
+    "meaning_en": "a certain..., some...",
+    "meaning_ko": "어떤, 어느",
+    "example": {
+      "ja": "或日、不思議な出来事が起きた。",
+      "reading": "あるひ、ふしぎなできごとがおきた。",
+      "ko": "어느 날, 신기한 일이 일어났다."
+    }
+  },
+  {
+    "id": 330,
+    "expression": "あるいは",
+    "reading": "あるいは",
+    "meaning_en": "or, perhaps",
+    "meaning_ko": "또는, 혹은",
+    "example": {
+      "ja": "バスあるいは電車で来てください。",
+      "reading": "バスあるいはでんしゃできてください。",
+      "ko": "버스 또는 전철로 와 주세요."
+    }
+  },
+  {
+    "id": 331,
+    "expression": "アルバム",
+    "reading": "アルバム",
+    "meaning_en": "album",
+    "meaning_ko": "앨범",
+    "example": {
+      "ja": "家族の写真アルバムを久しぶりに見た。",
+      "reading": "かぞくのしゃしんアルバムをひさしぶりにみた。",
+      "ko": "가족 사진 앨범을 오랜만에 봤다."
+    }
+  },
+  {
+    "id": 332,
+    "expression": "泡",
+    "reading": "あわ",
+    "meaning_en": "bubble, foam",
+    "meaning_ko": "거품",
+    "example": {
+      "ja": "川の流れに白い泡が立った。",
+      "reading": "かわのながれにしろいあわがたった。",
+      "ko": "강의 흐름에 흰 거품이 일었다."
+    }
+  },
+  {
+    "id": 333,
+    "expression": "合わせる",
+    "reading": "あわせる",
+    "meaning_en": "to combine",
+    "meaning_ko": "맞추다, 합치다",
+    "example": {
+      "ja": "二つのチームを合わせると20人になる。",
+      "reading": "ふたつのチームをあわせると20にんになる。",
+      "ko": "두 팀을 합치면 20명이 된다."
+    }
+  },
+  {
+    "id": 334,
+    "expression": "哀れ",
+    "reading": "あわれ",
+    "meaning_en": "helpless, pity, pathetic",
+    "meaning_ko": "불쌍한, 가련한",
+    "example": {
+      "ja": "雨の中で震えている子犬が哀れに見えた。",
+      "reading": "あめのなかでふるえているこいぬがあわれにみえた。",
+      "ko": "비 속에서 떨고 있는 강아지가 불쌍해 보였다."
+    }
+  },
+  {
+    "id": 335,
+    "expression": "案",
+    "reading": "あん",
+    "meaning_en": "plan, scheme, proposal",
+    "meaning_ko": "안, 제안",
+    "example": {
+      "ja": "会議でいい案が出た。",
+      "reading": "かいぎでいいあんがでた。",
+      "ko": "회의에서 좋은 안이 나왔다."
+    }
+  },
+  {
+    "id": 336,
+    "expression": "暗記",
+    "reading": "あんき",
+    "meaning_en": "memorization, learning by heart",
+    "meaning_ko": "암기",
+    "example": {
+      "ja": "単語を暗記するのに時間がかかった。",
+      "reading": "たんごをあんきするのにじかんがかかった。",
+      "ko": "단어를 암기하는 데 시간이 걸렸다."
+    }
+  },
+  {
+    "id": 337,
+    "expression": "安定",
+    "reading": "あんてい",
+    "meaning_en": "stability, equilibrium",
+    "meaning_ko": "안정",
+    "example": {
+      "ja": "生活が安定してから結婚を考えた。",
+      "reading": "せいかつがあんていしてからけっこんをかんがえた。",
+      "ko": "생활이 안정되고 나서 결혼을 생각했다."
+    }
+  },
+  {
+    "id": 338,
+    "expression": "あんなに",
+    "reading": "あんなに",
+    "meaning_en": "to that extent, to that degree",
+    "meaning_ko": "저렇게, 그렇게나",
+    "example": {
+      "ja": "あんなに練習したのに失敗してしまった。",
+      "reading": "あんなにれんしゅうしたのにしっぱいしてしまった。",
+      "ko": "그렇게나 연습했는데 실패해버렸다."
+    }
+  },
+  {
+    "id": 339,
+    "expression": "あんまり",
+    "reading": "あんまり",
+    "meaning_en": "not very, not much",
+    "meaning_ko": "별로, 그다지",
+    "example": {
+      "ja": "この映画はあんまり面白くなかった。",
+      "reading": "このえいがはあんまりおもしろくなかった。",
+      "ko": "이 영화는 별로 재미없었다."
+    }
+  },
+  {
+    "id": 340,
+    "expression": "胃",
+    "reading": "い",
+    "meaning_en": "stomach",
+    "meaning_ko": "위, 위장",
+    "example": {
+      "ja": "食べ過ぎて胃が痛くなった。",
+      "reading": "たべすぎていがいたくなった。",
+      "ko": "너무 많이 먹어서 위가 아팠다."
+    }
+  },
+  {
+    "id": 341,
+    "expression": "委員",
+    "reading": "いいん",
+    "meaning_en": "committee member",
+    "meaning_ko": "위원",
+    "example": {
+      "ja": "学級委員に選ばれた。",
+      "reading": "がっきゅういいんにえらばれた。",
+      "ko": "학급 위원으로 선출됐다."
+    }
+  },
+  {
+    "id": 342,
+    "expression": "意外",
+    "reading": "いがい",
+    "meaning_en": "unexpected, surprising",
+    "meaning_ko": "의외, 뜻밖의",
+    "example": {
+      "ja": "試験の結果が意外によかった。",
+      "reading": "しけんのけっかがいがいによかった。",
+      "ko": "시험 결과가 의외로 좋았다."
+    }
+  },
+  {
+    "id": 343,
+    "expression": "行き",
+    "reading": "いき",
+    "meaning_en": "going",
+    "meaning_ko": "가는 길, 출발",
+    "example": {
+      "ja": "行きの電車では席に座れた。",
+      "reading": "いきのでんしゃではせきにすわれた。",
+      "ko": "가는 전철에서는 자리에 앉을 수 있었다."
+    }
+  },
+  {
+    "id": 344,
+    "expression": "行き",
+    "reading": "ゆき",
+    "meaning_en": "going",
+    "meaning_ko": "행, 가는",
+    "example": {
+      "ja": "東京行きの新幹線に乗った。",
+      "reading": "とうきょうゆきのしんかんせんにのった。",
+      "ko": "도쿄행 신칸센에 탔다."
+    }
+  },
+  {
+    "id": 345,
+    "expression": "息",
+    "reading": "いき",
+    "meaning_en": "breath",
+    "meaning_ko": "숨, 호흡",
+    "example": {
+      "ja": "山を登って息が切れた。",
+      "reading": "やまをのぼっていきがきれた。",
+      "ko": "산을 오르며 숨이 찼다."
+    }
+  },
+  {
+    "id": 346,
+    "expression": "勢い",
+    "reading": "いきおい",
+    "meaning_en": "force, vigor, momentum",
+    "meaning_ko": "기세, 기운",
+    "example": {
+      "ja": "チームは勢いに乗って連勝した。",
+      "reading": "チームはいきおいにのってれんしょうした。",
+      "ko": "팀은 기세를 타서 연승했다."
+    }
+  },
+  {
+    "id": 347,
+    "expression": "生き物",
+    "reading": "いきもの",
+    "meaning_en": "living thing, creature",
+    "meaning_ko": "생물, 생명체",
+    "example": {
+      "ja": "森にはさまざまな生き物が住んでいる。",
+      "reading": "もりにはさまざまないきものがすんでいる。",
+      "ko": "숲에는 다양한 생물이 살고 있다."
+    }
+  },
+  {
+    "id": 348,
+    "expression": "いけない",
+    "reading": "いけない",
+    "meaning_en": "must not do, bad, wrong",
+    "meaning_ko": "안 된다, 나쁘다",
+    "example": {
+      "ja": "嘘をついてはいけない。",
+      "reading": "うそをついてはいけない。",
+      "ko": "거짓말을 해서는 안 된다."
+    }
+  },
+  {
+    "id": 349,
+    "expression": "医師",
+    "reading": "いし",
+    "meaning_en": "doctor, physician",
+    "meaning_ko": "의사",
+    "example": {
+      "ja": "医師に診てもらうために病院へ行った。",
+      "reading": "いしにみてもらうためにびょういんへいった。",
+      "ko": "의사에게 진찰을 받으러 병원에 갔다."
+    }
+  },
+  {
+    "id": 350,
+    "expression": "意思",
+    "reading": "いし",
+    "meaning_en": "intention, purpose",
+    "meaning_ko": "의사, 의향",
+    "example": {
+      "ja": "参加する意思があるかどうか確認した。",
+      "reading": "さんかするいしがあるかどうかかくにんした。",
+      "ko": "참가할 의향이 있는지 확인했다."
+    }
+  },
+  {
+    "id": 351,
+    "expression": "意志",
+    "reading": "いし",
+    "meaning_en": "will, volition",
+    "meaning_ko": "의지",
+    "example": {
+      "ja": "強い意志があれば目標を達成できる。",
+      "reading": "つよいいしがあればもくひょうをたっせいできる。",
+      "ko": "강한 의지가 있으면 목표를 달성할 수 있다."
+    }
+  },
+  {
+    "id": 352,
+    "expression": "維持",
+    "reading": "いじ",
+    "meaning_en": "maintenance, preservation",
+    "meaning_ko": "유지",
+    "example": {
+      "ja": "健康を維持するために毎日運動している。",
+      "reading": "けんこうをいじするためにまいにちうんどうしている。",
+      "ko": "건강을 유지하기 위해 매일 운동하고 있다."
+    }
+  },
+  {
+    "id": 353,
+    "expression": "意識",
+    "reading": "いしき",
+    "meaning_en": "consciousness, senses",
+    "meaning_ko": "의식",
+    "example": {
+      "ja": "事故の後しばらく意識を失っていた。",
+      "reading": "じこのあとしばらくいしきをうしなっていた。",
+      "ko": "사고 후 잠시 의식을 잃고 있었다."
+    }
+  },
+  {
+    "id": 354,
+    "expression": "異常",
+    "reading": "いじょう",
+    "meaning_en": "strangeness, abnormality, disorder",
+    "meaning_ko": "이상, 비정상",
+    "example": {
+      "ja": "機械に異常が発生して工場が止まった。",
+      "reading": "きかいにいじょうがはっせいしてこうじょうがとまった。",
+      "ko": "기계에 이상이 발생해서 공장이 멈췄다."
+    }
+  },
+  {
+    "id": 355,
+    "expression": "意地悪",
+    "reading": "いじわる",
+    "meaning_en": "malicious, mean, unkind",
+    "meaning_ko": "심술궂은, 못된",
+    "example": {
+      "ja": "意地悪なことを言うのはよくない。",
+      "reading": "いじわるなことをいうのはよくない。",
+      "ko": "심술궂은 말을 하는 것은 좋지 않다."
+    }
+  },
+  {
+    "id": 356,
+    "expression": "泉",
+    "reading": "いずみ",
+    "meaning_en": "spring, fountain",
+    "meaning_ko": "샘, 샘물",
+    "example": {
+      "ja": "山の中に澄んだ泉があった。",
+      "reading": "やまのなかにすんだいずみがあった。",
+      "ko": "산속에 맑은 샘이 있었다."
+    }
+  },
+  {
+    "id": 357,
+    "expression": "いずれ",
+    "reading": "いずれ",
+    "meaning_en": "where, which, who",
+    "meaning_ko": "언젠가, 어느 쪽",
+    "example": {
+      "ja": "いずれ自分の店を持ちたいと思っている。",
+      "reading": "いずれじぶんのみせをもちたいとおもっている。",
+      "ko": "언젠가 자신의 가게를 갖고 싶다고 생각하고 있다."
+    }
+  },
+  {
+    "id": 358,
+    "expression": "以前",
+    "reading": "いぜん",
+    "meaning_en": "in the past; before",
+    "meaning_ko": "이전, 예전",
+    "example": {
+      "ja": "以前はここに川があったそうだ。",
+      "reading": "いぜんはここにかわがあったそうだ。",
+      "ko": "예전에는 여기에 강이 있었다고 한다."
+    }
+  },
+  {
+    "id": 359,
+    "expression": "板",
+    "reading": "いた",
+    "meaning_en": "board, plank",
+    "meaning_ko": "판자, 널빤지",
+    "example": {
+      "ja": "木の板で棚を作った。",
+      "reading": "きのいたでたなをつくった。",
+      "ko": "나무 판자로 선반을 만들었다."
+    }
+  },
+  {
+    "id": 360,
+    "expression": "偉大",
+    "reading": "いだい",
+    "meaning_en": "greatness",
+    "meaning_ko": "위대한",
+    "example": {
+      "ja": "彼は偉大な科学者として歴史に名を残した。",
+      "reading": "かれはいだいなかがくしゃとしてれきしになをのこした。",
+      "ko": "그는 위대한 과학자로서 역사에 이름을 남겼다."
+    }
+  },
+  {
+    "id": 361,
+    "expression": "抱く",
+    "reading": "いだく",
+    "meaning_en": "to hold (v.t.) (written expression), to embrace, to harbor",
+    "meaning_ko": "안다, 품다",
+    "example": {
+      "ja": "夢を抱いて新しい生活を始めた。",
+      "reading": "ゆめをいだいてあたらしいせいかつをはじめた。",
+      "ko": "꿈을 품고 새로운 생활을 시작했다."
+    }
+  },
+  {
+    "id": 362,
+    "expression": "いたずら",
+    "reading": "いたずら",
+    "meaning_en": "trick, practical joke",
+    "meaning_ko": "장난",
+    "example": {
+      "ja": "子供がいたずらをして親に叱られた。",
+      "reading": "こどもがいたずらをしておやにしかられた。",
+      "ko": "아이가 장난을 쳐서 부모에게 혼났다."
+    }
+  },
+  {
+    "id": 363,
+    "expression": "いただきます",
+    "reading": "いただきます",
+    "meaning_en": "expression of gratitude before meals",
+    "meaning_ko": "잘 먹겠습니다",
+    "example": {
+      "ja": "食事の前に「いただきます」と言う。",
+      "reading": "しょくじのまえに「いただきます」という。",
+      "ko": "식사 전에 '잘 먹겠습니다'라고 말한다."
+    }
+  },
+  {
+    "id": 364,
+    "expression": "痛み",
+    "reading": "いたみ",
+    "meaning_en": "pain, ache, sore",
+    "meaning_ko": "통증, 아픔",
+    "example": {
+      "ja": "足の痛みがひどくて歩けなかった。",
+      "reading": "あしのいたみがひどくてあるけなかった。",
+      "ko": "발의 통증이 심해서 걸을 수 없었다."
+    }
+  },
+  {
+    "id": 365,
+    "expression": "至る",
+    "reading": "いたる",
+    "meaning_en": "to come, to arrive",
+    "meaning_ko": "이르다, 도달하다",
+    "example": {
+      "ja": "長い議論の末、合意に至った。",
+      "reading": "ながいぎろんのすえ、ごういにいたった。",
+      "ko": "긴 논의 끝에 합의에 이르렀다."
+    }
+  },
+  {
+    "id": 366,
+    "expression": "市",
+    "reading": "いち",
+    "meaning_en": "market, fair",
+    "meaning_ko": "시장",
+    "example": {
+      "ja": "週末に骨董品の市が開かれる。",
+      "reading": "しゅうまつにこっとうひんのいちがひらかれる。",
+      "ko": "주말에 골동품 시장이 열린다."
+    }
+  },
+  {
+    "id": 367,
+    "expression": "位置",
+    "reading": "いち",
+    "meaning_en": "place, position",
+    "meaning_ko": "위치",
+    "example": {
+      "ja": "地図でホテルの位置を確認した。",
+      "reading": "ちずでホテルのいちをかくにんした。",
+      "ko": "지도에서 호텔의 위치를 확인했다."
+    }
+  },
+  {
+    "id": 368,
+    "expression": "一時",
+    "reading": "いちじ",
+    "meaning_en": "for a time, temporarily",
+    "meaning_ko": "한때, 일시적으로",
+    "example": {
+      "ja": "工事のため、一時的に道が閉鎖された。",
+      "reading": "こうじのため、いちじてきにみちがへいさされた。",
+      "ko": "공사로 인해 일시적으로 도로가 폐쇄됐다."
+    }
+  },
+  {
+    "id": 369,
+    "expression": "一度に",
+    "reading": "いちどに",
+    "meaning_en": "all at once",
+    "meaning_ko": "한꺼번에",
+    "example": {
+      "ja": "荷物を一度に運ぼうとして転んだ。",
+      "reading": "にもつをいちどにはこぼうとしてころんだ。",
+      "ko": "짐을 한꺼번에 옮기려다가 넘어졌다."
+    }
+  },
+  {
+    "id": 370,
+    "expression": "市場",
+    "reading": "いちば",
+    "meaning_en": "market, bazaar",
+    "meaning_ko": "시장",
+    "example": {
+      "ja": "朝早く市場に行って新鮮な魚を買った。",
+      "reading": "あさはやくいちばにいってしんせんなさかなをかった。",
+      "ko": "아침 일찍 시장에 가서 신선한 생선을 샀다."
+    }
+  },
+  {
+    "id": 371,
+    "expression": "いつか",
+    "reading": "いつか",
+    "meaning_en": "sometime, one day",
+    "meaning_ko": "언젠가",
+    "example": {
+      "ja": "いつか世界中を旅行したいと思っている。",
+      "reading": "いつかせかいじゅうをりょこうしたいとおもっている。",
+      "ko": "언젠가 전 세계를 여행하고 싶다고 생각하고 있다."
+    }
+  },
+  {
+    "id": 372,
+    "expression": "一家",
+    "reading": "いっか",
+    "meaning_en": "family, clan",
+    "meaning_ko": "한 집안, 가족",
+    "example": {
+      "ja": "田中一家は毎年夏に旅行に行く。",
+      "reading": "たなかいっかはまいとしなつにりょこうにいく。",
+      "ko": "다나카 가족은 매년 여름에 여행을 간다."
+    }
+  }
+]
