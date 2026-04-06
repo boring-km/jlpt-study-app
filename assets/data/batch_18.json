@@ -1,0 +1,1202 @@
+[
+  {
+    "id": 1701,
+    "expression": "見上げる",
+    "reading": "みあげる",
+    "meaning_en": "to look up at, to admire",
+    "meaning_ko": "올려다보다",
+    "example": {
+      "ja": "夜空を見上げて星を数えた。",
+      "reading": "よぞらをみあげてほしをかぞえた。",
+      "ko": "밤하늘을 올려다보며 별을 세었다."
+    }
+  },
+  {
+    "id": 1702,
+    "expression": "見送る",
+    "reading": "みおくる",
+    "meaning_en": "to see off; to escort; to let pass",
+    "meaning_ko": "배웅하다",
+    "example": {
+      "ja": "空港まで友達を見送った。",
+      "reading": "くうこうまでともだちをみおくった。",
+      "ko": "공항까지 친구를 배웅했다."
+    }
+  },
+  {
+    "id": 1703,
+    "expression": "見下ろす",
+    "reading": "みおろす",
+    "meaning_en": "to overlook, to look down on something",
+    "meaning_ko": "내려다보다",
+    "example": {
+      "ja": "展望台から街を見下ろした。",
+      "reading": "てんぼうだいからまちをみおろした。",
+      "ko": "전망대에서 거리를 내려다보았다."
+    }
+  },
+  {
+    "id": 1704,
+    "expression": "見掛け",
+    "reading": "みかけ",
+    "meaning_en": "outward appearance",
+    "meaning_ko": "겉보기, 외관",
+    "example": {
+      "ja": "見掛けだけで人を判断してはいけない。",
+      "reading": "みかけだけでひとをはんだんしてはいけない。",
+      "ko": "겉보기만으로 사람을 판단해서는 안 된다."
+    }
+  },
+  {
+    "id": 1705,
+    "expression": "三日月",
+    "reading": "みかづき",
+    "meaning_en": "crescent moon",
+    "meaning_ko": "초승달",
+    "example": {
+      "ja": "空に三日月が輝いていた。",
+      "reading": "そらにみかづきがかがやいていた。",
+      "ko": "하늘에 초승달이 빛나고 있었다."
+    }
+  },
+  {
+    "id": 1706,
+    "expression": "岬",
+    "reading": "みさき",
+    "meaning_en": "cape (on coast)",
+    "meaning_ko": "곶, 갑",
+    "example": {
+      "ja": "岬に立つ灯台が見えた。",
+      "reading": "みさきにたつとうだいがみえた。",
+      "ko": "곶에 서 있는 등대가 보였다."
+    }
+  },
+  {
+    "id": 1707,
+    "expression": "みじめ",
+    "reading": "みじめ",
+    "meaning_en": "sad, pitiful, wretched",
+    "meaning_ko": "비참한, 처참한",
+    "example": {
+      "ja": "みじめな思いをしたくない。",
+      "reading": "みじめなおもいをしたくない。",
+      "ko": "비참한 생각을 하고 싶지 않다."
+    }
+  },
+  {
+    "id": 1708,
+    "expression": "惨めな",
+    "reading": "みじめな",
+    "meaning_en": "miserable, wretched, unhappy, sad, pitiable",
+    "meaning_ko": "비참한, 불쌍한",
+    "example": {
+      "ja": "惨めな結果に終わってしまった。",
+      "reading": "みじめなけっかにおわってしまった。",
+      "ko": "비참한 결과로 끝나 버렸다."
+    }
+  },
+  {
+    "id": 1709,
+    "expression": "ミシン",
+    "reading": "ミシン",
+    "meaning_en": "sewing machine",
+    "meaning_ko": "재봉틀",
+    "example": {
+      "ja": "ミシンでカーテンを縫った。",
+      "reading": "みしんでかーてんをぬった。",
+      "ko": "재봉틀로 커튼을 꿰매었다."
+    }
+  },
+  {
+    "id": 1710,
+    "expression": "自ら",
+    "reading": "みずから",
+    "meaning_en": "for one's self, personally",
+    "meaning_ko": "스스로, 직접",
+    "example": {
+      "ja": "自ら進んでボランティアに参加した。",
+      "reading": "みずからすすんでぼらんてぃあにさんかした。",
+      "ko": "스스로 나서서 봉사 활동에 참가했다."
+    }
+  },
+  {
+    "id": 1711,
+    "expression": "水着",
+    "reading": "みずぎ",
+    "meaning_en": "bathing suit (woman's)",
+    "meaning_ko": "수영복",
+    "example": {
+      "ja": "プールに行くために水着を買った。",
+      "reading": "ぷーるにいくためにみずぎをかった。",
+      "ko": "수영장에 가기 위해 수영복을 샀다."
+    }
+  },
+  {
+    "id": 1712,
+    "expression": "店屋",
+    "reading": "みせや",
+    "meaning_en": "store, shop",
+    "meaning_ko": "가게",
+    "example": {
+      "ja": "近くの店屋でパンを買った。",
+      "reading": "ちかくのみせやでぱんをかった。",
+      "ko": "가까운 가게에서 빵을 샀다."
+    }
+  },
+  {
+    "id": 1713,
+    "expression": "見出し",
+    "reading": "みだし",
+    "meaning_en": "heading, index",
+    "meaning_ko": "표제, 제목",
+    "example": {
+      "ja": "新聞の見出しをざっと読んだ。",
+      "reading": "しんぶんのみだしをざっとよんだ。",
+      "ko": "신문의 제목을 대충 읽었다."
+    }
+  },
+  {
+    "id": 1714,
+    "expression": "道順",
+    "reading": "みちじゅん",
+    "meaning_en": "itinerary, route",
+    "meaning_ko": "길 순서, 경로",
+    "example": {
+      "ja": "道順を教えていただけますか。",
+      "reading": "みちじゅんをおしえていただけますか。",
+      "ko": "길 순서를 알려 주실 수 있나요?"
+    }
+  },
+  {
+    "id": 1715,
+    "expression": "みっともない",
+    "reading": "みっともない",
+    "meaning_en": "shameful, indecent",
+    "meaning_ko": "보기 흉한, 꼴사나운",
+    "example": {
+      "ja": "そんなみっともない行動はやめなさい。",
+      "reading": "そんなみっともないこうどうはやめなさい。",
+      "ko": "그런 보기 흉한 행동은 그만둬라."
+    }
+  },
+  {
+    "id": 1716,
+    "expression": "見詰める",
+    "reading": "みつめる",
+    "meaning_en": "to stare at, to gaze at",
+    "meaning_ko": "응시하다",
+    "example": {
+      "ja": "彼女は遠くの景色を見詰めていた。",
+      "reading": "かのじょはとおくのけしきをみつめていた。",
+      "ko": "그녀는 먼 경치를 응시하고 있었다."
+    }
+  },
+  {
+    "id": 1717,
+    "expression": "見直す",
+    "reading": "みなおす",
+    "meaning_en": "to look over again, to review",
+    "meaning_ko": "다시 보다, 재검토",
+    "example": {
+      "ja": "答えを見直してから提出した。",
+      "reading": "こたえをみなおしてからていしゅつした。",
+      "ko": "답을 다시 보고 나서 제출했다."
+    }
+  },
+  {
+    "id": 1718,
+    "expression": "見慣れる",
+    "reading": "みなれる",
+    "meaning_en": "to become used to seeing, to be familiar with",
+    "meaning_ko": "보는 데 익숙해지다",
+    "example": {
+      "ja": "この景色は見慣れているので新鮮味がない。",
+      "reading": "このけしきはみなれているのでしんせんみがない。",
+      "ko": "이 경치는 익숙해져서 신선함이 없다."
+    }
+  },
+  {
+    "id": 1719,
+    "expression": "醜い",
+    "reading": "みにくい",
+    "meaning_en": "ugly",
+    "meaning_ko": "못생긴, 추한",
+    "example": {
+      "ja": "醜いうわさを信じてはいけない。",
+      "reading": "みにくいうわさをしんじてはいけない。",
+      "ko": "추한 소문을 믿어서는 안 된다."
+    }
+  },
+  {
+    "id": 1720,
+    "expression": "実る",
+    "reading": "みのる",
+    "meaning_en": "to bear fruit, to ripen",
+    "meaning_ko": "열매 맺다, 익다",
+    "example": {
+      "ja": "庭のりんごの木が実った。",
+      "reading": "にわのりんごのきがみのった。",
+      "ko": "마당의 사과나무에 열매가 열렸다."
+    }
+  },
+  {
+    "id": 1721,
+    "expression": "身分",
+    "reading": "みぶん",
+    "meaning_en": "position, status",
+    "meaning_ko": "신분, 지위",
+    "example": {
+      "ja": "身分証明書を持っていますか。",
+      "reading": "みぶんしょうめいしょをもっていますか。",
+      "ko": "신분증을 가지고 있습니까?"
+    }
+  },
+  {
+    "id": 1722,
+    "expression": "見本",
+    "reading": "みほん",
+    "meaning_en": "sample",
+    "meaning_ko": "견본, 샘플",
+    "example": {
+      "ja": "商品の見本を取り寄せた。",
+      "reading": "しょうひんのみほんをとりよせた。",
+      "ko": "상품의 견본을 주문했다."
+    }
+  },
+  {
+    "id": 1723,
+    "expression": "見舞う",
+    "reading": "みまう",
+    "meaning_en": "to ask after (health), to visit",
+    "meaning_ko": "문병하다, 방문하다",
+    "example": {
+      "ja": "入院中の友人を見舞った。",
+      "reading": "にゅういんちゅうのゆうじんをみまった。",
+      "ko": "입원 중인 친구를 문병했다."
+    }
+  },
+  {
+    "id": 1724,
+    "expression": "未満",
+    "reading": "みまん",
+    "meaning_en": "less than, insufficient",
+    "meaning_ko": "미만",
+    "example": {
+      "ja": "十八歳未満は入場できない。",
+      "reading": "じゅうはっさいみまんはにゅうじょうできない。",
+      "ko": "18세 미만은 입장할 수 없다."
+    }
+  },
+  {
+    "id": 1725,
+    "expression": "名字",
+    "reading": "みょうじ",
+    "meaning_en": "surname, family name",
+    "meaning_ko": "성, 이름",
+    "example": {
+      "ja": "日本では名字を先に言う。",
+      "reading": "にほんではみょうじをさきにいう。",
+      "ko": "일본에서는 성을 먼저 말한다."
+    }
+  },
+  {
+    "id": 1726,
+    "expression": "ミリ (メートル)",
+    "reading": "ミリ (メートル)",
+    "meaning_en": "milli-",
+    "meaning_ko": "밀리(미터)",
+    "example": {
+      "ja": "この虫の大きさは三ミリほどだ。",
+      "reading": "このむしのおおきさはさんみりほどだ。",
+      "ko": "이 벌레의 크기는 3밀리 정도이다."
+    }
+  },
+  {
+    "id": 1727,
+    "expression": "診る",
+    "reading": "みる",
+    "meaning_en": "to examine (medically)",
+    "meaning_ko": "진찰하다",
+    "example": {
+      "ja": "医者に喉を診てもらった。",
+      "reading": "いしゃにのどをみてもらった。",
+      "ko": "의사에게 목을 진찰받았다."
+    }
+  },
+  {
+    "id": 1728,
+    "expression": "民間",
+    "reading": "みんかん",
+    "meaning_en": "private, civilian",
+    "meaning_ko": "민간",
+    "example": {
+      "ja": "民間企業で働いている。",
+      "reading": "みんかんきぎょうではたらいている。",
+      "ko": "민간 기업에서 일하고 있다."
+    }
+  },
+  {
+    "id": 1729,
+    "expression": "民主～",
+    "reading": "みんしゅ～",
+    "meaning_en": "democratic",
+    "meaning_ko": "민주~",
+    "example": {
+      "ja": "民主的な方法で決定した。",
+      "reading": "みんしゅてきなほうほうでけっていした。",
+      "ko": "민주적인 방법으로 결정했다."
+    }
+  },
+  {
+    "id": 1730,
+    "expression": "民謡",
+    "reading": "みんよう",
+    "meaning_en": "folk song, popular song",
+    "meaning_ko": "민요",
+    "example": {
+      "ja": "地元の民謡を歌った。",
+      "reading": "じもとのみんようをうたった。",
+      "ko": "지역의 민요를 불렀다."
+    }
+  },
+  {
+    "id": 1731,
+    "expression": "無限",
+    "reading": "むげん",
+    "meaning_en": "infinite",
+    "meaning_ko": "무한",
+    "example": {
+      "ja": "宇宙は無限に広がっている。",
+      "reading": "うちゅうはむげんにひろがっている。",
+      "ko": "우주는 무한히 펼쳐져 있다."
+    }
+  },
+  {
+    "id": 1732,
+    "expression": "無地",
+    "reading": "むじ",
+    "meaning_en": "plain",
+    "meaning_ko": "무지, 민무늬",
+    "example": {
+      "ja": "無地のシャツを選んだ。",
+      "reading": "むじのしゃつをえらんだ。",
+      "ko": "민무늬 셔츠를 골랐다."
+    }
+  },
+  {
+    "id": 1733,
+    "expression": "蒸し暑い",
+    "reading": "むしあつい",
+    "meaning_en": "humid, sultry",
+    "meaning_ko": "무덥다, 습하다",
+    "example": {
+      "ja": "今日は蒸し暑くて大変だ。",
+      "reading": "きょうはむしあつくてたいへんだ。",
+      "ko": "오늘은 무더워서 힘들다."
+    }
+  },
+  {
+    "id": 1734,
+    "expression": "矛盾",
+    "reading": "むじゅん",
+    "meaning_en": "contradiction, inconsistency",
+    "meaning_ko": "모순",
+    "example": {
+      "ja": "彼の話には矛盾がある。",
+      "reading": "かれのはなしにはむじゅんがある。",
+      "ko": "그의 이야기에는 모순이 있다."
+    }
+  },
+  {
+    "id": 1735,
+    "expression": "無数",
+    "reading": "むすう",
+    "meaning_en": "countless number, infinite number",
+    "meaning_ko": "무수한",
+    "example": {
+      "ja": "空には無数の星が輝いている。",
+      "reading": "そらにはむすうのほしがかがやいている。",
+      "ko": "하늘에는 무수한 별이 빛나고 있다."
+    }
+  },
+  {
+    "id": 1736,
+    "expression": "紫",
+    "reading": "むらさき",
+    "meaning_en": "purple color, violet",
+    "meaning_ko": "보라색",
+    "example": {
+      "ja": "紫の花が庭に咲いている。",
+      "reading": "むらさきのはながにわにさいている。",
+      "ko": "보라색 꽃이 정원에 피어 있다."
+    }
+  },
+  {
+    "id": 1737,
+    "expression": "群れ",
+    "reading": "むれ",
+    "meaning_en": "crowd, flock, herd",
+    "meaning_ko": "무리, 떼",
+    "example": {
+      "ja": "羊の群れが草を食べている。",
+      "reading": "ひつじのむれがくさをたべている。",
+      "ko": "양 떼가 풀을 먹고 있다."
+    }
+  },
+  {
+    "id": 1738,
+    "expression": "姪",
+    "reading": "めい",
+    "meaning_en": "niece",
+    "meaning_ko": "조카딸",
+    "example": {
+      "ja": "姪が今年小学校に入学した。",
+      "reading": "めいがことししょうがっこうににゅうがくした。",
+      "ko": "조카딸이 올해 초등학교에 입학했다."
+    }
+  },
+  {
+    "id": 1739,
+    "expression": "名～",
+    "reading": "めい～",
+    "meaning_en": "famous ~",
+    "meaning_ko": "명~",
+    "example": {
+      "ja": "名医に診てもらった。",
+      "reading": "めいいにみてもらった。",
+      "ko": "명의에게 진찰을 받았다."
+    }
+  },
+  {
+    "id": 1740,
+    "expression": "名作",
+    "reading": "めいさく",
+    "meaning_en": "masterpiece",
+    "meaning_ko": "명작",
+    "example": {
+      "ja": "この映画は世界的な名作だ。",
+      "reading": "このえいがはせかいてきなめいさくだ。",
+      "ko": "이 영화는 세계적인 명작이다."
+    }
+  },
+  {
+    "id": 1741,
+    "expression": "名詞",
+    "reading": "めいし",
+    "meaning_en": "noun",
+    "meaning_ko": "명사 (품사)",
+    "example": {
+      "ja": "日本語の名詞には性別がない。",
+      "reading": "にほんごのめいしにはせいべつがない。",
+      "ko": "일본어 명사에는 성별이 없다."
+    }
+  },
+  {
+    "id": 1742,
+    "expression": "名刺",
+    "reading": "めいし",
+    "meaning_en": "business card",
+    "meaning_ko": "명함",
+    "example": {
+      "ja": "初対面で名刺を交換した。",
+      "reading": "しょたいめんでめいしをこうかんした。",
+      "ko": "처음 만나서 명함을 교환했다."
+    }
+  },
+  {
+    "id": 1743,
+    "expression": "名所",
+    "reading": "めいしょ",
+    "meaning_en": "famous place",
+    "meaning_ko": "명소",
+    "example": {
+      "ja": "京都には有名な名所が多い。",
+      "reading": "きょうとにはゆうめいなめいしょがおおい。",
+      "ko": "교토에는 유명한 명소가 많다."
+    }
+  },
+  {
+    "id": 1744,
+    "expression": "迷信",
+    "reading": "めいしん",
+    "meaning_en": "superstition",
+    "meaning_ko": "미신",
+    "example": {
+      "ja": "迷信を信じる人はまだ多い。",
+      "reading": "めいしんをしんじるひとはまだおおい。",
+      "ko": "미신을 믿는 사람은 아직 많다."
+    }
+  },
+  {
+    "id": 1745,
+    "expression": "命ずる",
+    "reading": "めいずる",
+    "meaning_en": "to command, to appoint",
+    "meaning_ko": "명하다, 임명하다",
+    "example": {
+      "ja": "社長が彼に新しい仕事を命じた。",
+      "reading": "しゃちょうがかれにあたらしいしごとをめいじた。",
+      "ko": "사장이 그에게 새 업무를 명했다."
+    }
+  },
+  {
+    "id": 1746,
+    "expression": "名物",
+    "reading": "めいぶつ",
+    "meaning_en": "famous product, special product, speciality",
+    "meaning_ko": "명물, 특산품",
+    "example": {
+      "ja": "この地域の名物はうどんだ。",
+      "reading": "このちいきのめいぶつはうどんだ。",
+      "ko": "이 지역의 명물은 우동이다."
+    }
+  },
+  {
+    "id": 1747,
+    "expression": "銘々",
+    "reading": "めいめい",
+    "meaning_en": "each, individual",
+    "meaning_ko": "각자, 개개인",
+    "example": {
+      "ja": "銘々好きな飲み物を注文した。",
+      "reading": "めいめいすきなのみものをちゅうもんした。",
+      "ko": "각자 좋아하는 음료를 주문했다."
+    }
+  },
+  {
+    "id": 1748,
+    "expression": "恵まれる",
+    "reading": "めぐまれる",
+    "meaning_en": "to be blessed with, to be rich in",
+    "meaning_ko": "축복받다",
+    "example": {
+      "ja": "彼は才能に恵まれている。",
+      "reading": "かれはさいのうにめぐまれている。",
+      "ko": "그는 재능을 타고났다."
+    }
+  },
+  {
+    "id": 1749,
+    "expression": "巡る",
+    "reading": "めぐる",
+    "meaning_en": "to go around",
+    "meaning_ko": "돌아다니다, 순회하다",
+    "example": {
+      "ja": "お寺を巡る旅をした。",
+      "reading": "おてらをめぐるたびをした。",
+      "ko": "절을 돌아다니는 여행을 했다."
+    }
+  },
+  {
+    "id": 1750,
+    "expression": "目指す",
+    "reading": "めざす",
+    "meaning_en": "to aim at, to have an eye on",
+    "meaning_ko": "목표로 하다",
+    "example": {
+      "ja": "医者を目指して勉強している。",
+      "reading": "いしゃをめざしてべんきょうしている。",
+      "ko": "의사를 목표로 공부하고 있다."
+    }
+  },
+  {
+    "id": 1751,
+    "expression": "目覚し",
+    "reading": "めざまし",
+    "meaning_en": "alarm-clock",
+    "meaning_ko": "자명종, 알람시계",
+    "example": {
+      "ja": "毎朝目覚ましで起きている。",
+      "reading": "まいあさめざましでおきている。",
+      "ko": "매일 아침 알람으로 일어나고 있다."
+    }
+  },
+  {
+    "id": 1752,
+    "expression": "目下",
+    "reading": "めした",
+    "meaning_en": "at present, now",
+    "meaning_ko": "현재, 지금",
+    "example": {
+      "ja": "目下のところ問題はない。",
+      "reading": "めしたのところもんだいはない。",
+      "ko": "현재로서는 문제가 없다."
+    }
+  },
+  {
+    "id": 1753,
+    "expression": "目印",
+    "reading": "めじるし",
+    "meaning_en": "mark, sign, landmark",
+    "meaning_ko": "표지, 표시",
+    "example": {
+      "ja": "目印をつけておいたので迷わなかった。",
+      "reading": "めじるしをつけておいたのでまよわなかった。",
+      "ko": "표시를 해 두었기 때문에 헤매지 않았다."
+    }
+  },
+  {
+    "id": 1754,
+    "expression": "目立つ",
+    "reading": "めだつ",
+    "meaning_en": "to be conspicuous, to stand out",
+    "meaning_ko": "눈에 띄다",
+    "example": {
+      "ja": "彼女は背が高くて目立つ。",
+      "reading": "かのじょはせがたかくてめだつ。",
+      "ko": "그녀는 키가 커서 눈에 띈다."
+    }
+  },
+  {
+    "id": 1755,
+    "expression": "めちゃくちゃ",
+    "reading": "めちゃくちゃ",
+    "meaning_en": "absurd, messed up, wrecked",
+    "meaning_ko": "엉망인, 엉터리인",
+    "example": {
+      "ja": "台風で部屋がめちゃくちゃになった。",
+      "reading": "たいふうでへやがめちゃくちゃになった。",
+      "ko": "태풍으로 방이 엉망이 되었다."
+    }
+  },
+  {
+    "id": 1756,
+    "expression": "めっきり",
+    "reading": "めっきり",
+    "meaning_en": "remarkably",
+    "meaning_ko": "현저히, 눈에 띄게",
+    "example": {
+      "ja": "めっきり寒くなってきた。",
+      "reading": "めっきりさむくなってきた。",
+      "ko": "눈에 띄게 추워졌다."
+    }
+  },
+  {
+    "id": 1757,
+    "expression": "めでたい",
+    "reading": "めでたい",
+    "meaning_en": "happy, propitious, joyous",
+    "meaning_ko": "경사스러운",
+    "example": {
+      "ja": "結婚はめでたいことだ。",
+      "reading": "けっこんはめでたいことだ。",
+      "ko": "결혼은 경사스러운 일이다."
+    }
+  },
+  {
+    "id": 1758,
+    "expression": "メニュー",
+    "reading": "メニュー",
+    "meaning_en": "menu",
+    "meaning_ko": "메뉴",
+    "example": {
+      "ja": "メニューを見てから注文した。",
+      "reading": "めにゅーをみてからちゅうもんした。",
+      "ko": "메뉴를 보고 나서 주문했다."
+    }
+  },
+  {
+    "id": 1759,
+    "expression": "めまい",
+    "reading": "めまい",
+    "meaning_en": "dizziness, giddiness",
+    "meaning_ko": "어지러움, 현기증",
+    "example": {
+      "ja": "急に立ち上がってめまいがした。",
+      "reading": "きゅうにたちあがってめまいがした。",
+      "ko": "갑자기 일어나서 어지러움을 느꼈다."
+    }
+  },
+  {
+    "id": 1760,
+    "expression": "目安",
+    "reading": "めやす",
+    "meaning_en": "criterion, aim",
+    "meaning_ko": "기준, 목표",
+    "example": {
+      "ja": "合格の目安は八十点以上だ。",
+      "reading": "ごうかくのめやすははちじゅってんいじょうだ。",
+      "ko": "합격의 기준은 80점 이상이다."
+    }
+  },
+  {
+    "id": 1761,
+    "expression": "免税",
+    "reading": "めんぜい",
+    "meaning_en": "tax exemption",
+    "meaning_ko": "면세",
+    "example": {
+      "ja": "空港の免税店で買い物をした。",
+      "reading": "くうこうのめんぜいてんでかいものをした。",
+      "ko": "공항의 면세점에서 쇼핑을 했다."
+    }
+  },
+  {
+    "id": 1762,
+    "expression": "面積",
+    "reading": "めんせき",
+    "meaning_en": "area",
+    "meaning_ko": "면적",
+    "example": {
+      "ja": "この部屋の面積は二十平方メートルだ。",
+      "reading": "このへやのめんせきはにじゅうへいほうめーとるだ。",
+      "ko": "이 방의 면적은 20제곱미터이다."
+    }
+  },
+  {
+    "id": 1763,
+    "expression": "面接",
+    "reading": "めんせつ",
+    "meaning_en": "interview",
+    "meaning_ko": "면접",
+    "example": {
+      "ja": "来週の月曜日に面接がある。",
+      "reading": "らいしゅうのげつようびにめんせつがある。",
+      "ko": "다음 주 월요일에 면접이 있다."
+    }
+  },
+  {
+    "id": 1764,
+    "expression": "面倒臭い",
+    "reading": "めんどうくさい",
+    "meaning_en": "bother to do, tiresome",
+    "meaning_ko": "귀찮은",
+    "example": {
+      "ja": "掃除が面倒臭くて後回しにした。",
+      "reading": "そうじがめんどうくさくてあとまわしにした。",
+      "ko": "청소가 귀찮아서 나중으로 미뤘다."
+    }
+  },
+  {
+    "id": 1765,
+    "expression": "モーター",
+    "reading": "モーター",
+    "meaning_en": "motor",
+    "meaning_ko": "모터",
+    "example": {
+      "ja": "モーターが故障して動かなくなった。",
+      "reading": "もーたーがこしょうしてうごかなくなった。",
+      "ko": "모터가 고장 나서 움직이지 않게 되었다."
+    }
+  },
+  {
+    "id": 1766,
+    "expression": "儲かる",
+    "reading": "もうかる",
+    "meaning_en": "to be profitable, to yield a profit",
+    "meaning_ko": "이익이 나다",
+    "example": {
+      "ja": "この商売はよく儲かる。",
+      "reading": "このしょうばいはよくもうかる。",
+      "ko": "이 장사는 잘 벌린다."
+    }
+  },
+  {
+    "id": 1767,
+    "expression": "儲ける",
+    "reading": "もうける",
+    "meaning_en": "to earn, to have (bear, beget) a child",
+    "meaning_ko": "벌다, 이익을 얻다",
+    "example": {
+      "ja": "アルバイトでお金を儲けた。",
+      "reading": "あるばいとでおかねをもうけた。",
+      "ko": "아르바이트로 돈을 벌었다."
+    }
+  },
+  {
+    "id": 1768,
+    "expression": "申し訳ない",
+    "reading": "もうしわけない",
+    "meaning_en": "inexcusable, I am sorry",
+    "meaning_ko": "죄송한, 변명할 수 없는",
+    "example": {
+      "ja": "遅れてしまい申し訳ない。",
+      "reading": "おくれてしまいもうしわけない。",
+      "ko": "늦어 버려서 죄송합니다."
+    }
+  },
+  {
+    "id": 1769,
+    "expression": "木材",
+    "reading": "もくざい",
+    "meaning_en": "lumber, timber, wood",
+    "meaning_ko": "목재",
+    "example": {
+      "ja": "木材を使って棚を作った。",
+      "reading": "もくざいをつかってたなをつくった。",
+      "ko": "목재를 사용하여 선반을 만들었다."
+    }
+  },
+  {
+    "id": 1770,
+    "expression": "目次",
+    "reading": "もくじ",
+    "meaning_en": "table of contents",
+    "meaning_ko": "목차",
+    "example": {
+      "ja": "本の目次を見て内容を確認した。",
+      "reading": "ほんのもくじをみてないようをかくにんした。",
+      "ko": "책의 목차를 보고 내용을 확인했다."
+    }
+  },
+  {
+    "id": 1771,
+    "expression": "潜る",
+    "reading": "もぐる",
+    "meaning_en": "to dive, to pass through; to evade, to hide",
+    "meaning_ko": "잠수하다, 빠져나가다",
+    "example": {
+      "ja": "海に潜ってきれいな魚を見た。",
+      "reading": "うみにもぐってきれいなさかなをみた。",
+      "ko": "바다에 잠수하여 예쁜 물고기를 보았다."
+    }
+  },
+  {
+    "id": 1772,
+    "expression": "もしかしたら",
+    "reading": "もしかしたら",
+    "meaning_en": "perhaps, maybe, by some chance",
+    "meaning_ko": "혹시, 어쩌면",
+    "example": {
+      "ja": "もしかしたら彼は来ないかもしれない。",
+      "reading": "もしかしたらかれはこないかもしれない。",
+      "ko": "어쩌면 그는 오지 않을지도 모른다."
+    }
+  },
+  {
+    "id": 1773,
+    "expression": "もたれる",
+    "reading": "もたれる",
+    "meaning_en": "to lean against, to lean on",
+    "meaning_ko": "기대다",
+    "example": {
+      "ja": "壁にもたれて休んだ。",
+      "reading": "かべにもたれてやすんだ。",
+      "ko": "벽에 기대어 쉬었다."
+    }
+  },
+  {
+    "id": 1774,
+    "expression": "凭れる",
+    "reading": "もたれる",
+    "meaning_en": "to lean against, to lean on, to recline on",
+    "meaning_ko": "기대다",
+    "example": {
+      "ja": "ソファに凭れてテレビを見た。",
+      "reading": "そふぁにもたれててれびをみた。",
+      "ko": "소파에 기대어 텔레비전을 보았다."
+    }
+  },
+  {
+    "id": 1775,
+    "expression": "モダン",
+    "reading": "モダン",
+    "meaning_en": "modern",
+    "meaning_ko": "모던, 현대적인",
+    "example": {
+      "ja": "モダンなデザインの家に住みたい。",
+      "reading": "もだんなでざいんのいえにすみたい。",
+      "ko": "현대적인 디자인의 집에 살고 싶다."
+    }
+  },
+  {
+    "id": 1776,
+    "expression": "餅",
+    "reading": "もち",
+    "meaning_en": "sticky rice cake",
+    "meaning_ko": "떡",
+    "example": {
+      "ja": "お正月に餅を食べる習慣がある。",
+      "reading": "おしょうがつにもちをたべるしゅうかんがある。",
+      "ko": "설날에 떡을 먹는 습관이 있다."
+    }
+  },
+  {
+    "id": 1777,
+    "expression": "モデル",
+    "reading": "モデル",
+    "meaning_en": "a fashion model",
+    "meaning_ko": "모델",
+    "example": {
+      "ja": "彼女はファッションモデルとして活躍している。",
+      "reading": "かのじょはふぁっしょんもでるとしてかつやくしている。",
+      "ko": "그녀는 패션 모델로서 활약하고 있다."
+    }
+  },
+  {
+    "id": 1778,
+    "expression": "元々",
+    "reading": "もともと",
+    "meaning_en": "originally, by nature, from the start",
+    "meaning_ko": "원래, 본래",
+    "example": {
+      "ja": "元々ここには何もなかった。",
+      "reading": "もともとここにはなにもなかった。",
+      "ko": "원래 여기에는 아무것도 없었다."
+    }
+  },
+  {
+    "id": 1779,
+    "expression": "物置",
+    "reading": "ものおき",
+    "meaning_en": "storage room",
+    "meaning_ko": "창고, 물건 보관실",
+    "example": {
+      "ja": "物置に古い道具をしまった。",
+      "reading": "ものおきにふるいどうぐをしまった。",
+      "ko": "창고에 오래된 도구를 넣었다."
+    }
+  },
+  {
+    "id": 1780,
+    "expression": "物語る",
+    "reading": "ものがたる",
+    "meaning_en": "to tell, to indicate",
+    "meaning_ko": "이야기하다, 나타내다",
+    "example": {
+      "ja": "この写真が当時の様子を物語っている。",
+      "reading": "このしゃしんがとうじのようすをものがたっている。",
+      "ko": "이 사진이 당시의 모습을 말해 주고 있다."
+    }
+  },
+  {
+    "id": 1781,
+    "expression": "物差し",
+    "reading": "ものさし",
+    "meaning_en": "ruler, measure",
+    "meaning_ko": "자, 척도",
+    "example": {
+      "ja": "物差しで長さを測った。",
+      "reading": "ものさしでながさをはかった。",
+      "ko": "자로 길이를 재었다."
+    }
+  },
+  {
+    "id": 1782,
+    "expression": "物凄い",
+    "reading": "ものすごい",
+    "meaning_en": "earth-shattering, staggering, to a very great extent",
+    "meaning_ko": "엄청난, 굉장한",
+    "example": {
+      "ja": "物凄い音がして目が覚めた。",
+      "reading": "ものすごいおとがしてめがさめた。",
+      "ko": "엄청난 소리가 나서 잠이 깼다."
+    }
+  },
+  {
+    "id": 1783,
+    "expression": "モノレール",
+    "reading": "モノレール",
+    "meaning_en": "monorail",
+    "meaning_ko": "모노레일",
+    "example": {
+      "ja": "空港までモノレールで行った。",
+      "reading": "くうこうまでものれーるでいった。",
+      "ko": "공항까지 모노레일로 갔다."
+    }
+  },
+  {
+    "id": 1784,
+    "expression": "紅葉",
+    "reading": "もみじ",
+    "meaning_en": "(Japanese) maple",
+    "meaning_ko": "단풍",
+    "example": {
+      "ja": "秋になると紅葉がきれいだ。",
+      "reading": "あきになるともみじがきれいだ。",
+      "ko": "가을이 되면 단풍이 아름답다."
+    }
+  },
+  {
+    "id": 1785,
+    "expression": "揉む",
+    "reading": "もむ",
+    "meaning_en": "to rub, to crumple (up), to wrinkle",
+    "meaning_ko": "주무르다, 비비다",
+    "example": {
+      "ja": "肩を揉んでもらった。",
+      "reading": "かたをもんでもらった。",
+      "ko": "어깨를 주물러 받았다."
+    }
+  },
+  {
+    "id": 1786,
+    "expression": "もやす",
+    "reading": "もやす",
+    "meaning_en": "to burn",
+    "meaning_ko": "태우다",
+    "example": {
+      "ja": "落ち葉をもやして暖を取った。",
+      "reading": "おちばをもやしてだんをとった。",
+      "ko": "낙엽을 태워 몸을 녹였다."
+    }
+  },
+  {
+    "id": 1787,
+    "expression": "催し",
+    "reading": "もよおし",
+    "meaning_en": "event, festivities, function",
+    "meaning_ko": "행사, 이벤트",
+    "example": {
+      "ja": "地域の催しに参加した。",
+      "reading": "ちいきのもよおしにさんかした。",
+      "ko": "지역 행사에 참가했다."
+    }
+  },
+  {
+    "id": 1788,
+    "expression": "盛る",
+    "reading": "もる",
+    "meaning_en": "to serve (food); to fill up; to prescribe",
+    "meaning_ko": "담다, 차리다",
+    "example": {
+      "ja": "ご飯をお茶碗に盛った。",
+      "reading": "ごはんをおちゃわんにもった。",
+      "ko": "밥을 그릇에 담았다."
+    }
+  },
+  {
+    "id": 1789,
+    "expression": "問答",
+    "reading": "もんどう",
+    "meaning_en": "questions and answers, dialogue",
+    "meaning_ko": "문답",
+    "example": {
+      "ja": "先生と生徒の問答が続いた。",
+      "reading": "せんせいとせいとのもんどうがつづいた。",
+      "ko": "선생님과 학생의 문답이 계속되었다."
+    }
+  },
+  {
+    "id": 1790,
+    "expression": "やかましい",
+    "reading": "やかましい",
+    "meaning_en": "to be fussy, to be overly critical",
+    "meaning_ko": "시끄러운, 까다로운",
+    "example": {
+      "ja": "隣の部屋がやかましくて眠れない。",
+      "reading": "となりのへやがやかましくてねむれない。",
+      "ko": "옆방이 시끄러워서 잠을 잘 수 없다."
+    }
+  },
+  {
+    "id": 1791,
+    "expression": "喧しい",
+    "reading": "やかましい",
+    "meaning_en": "noisy, loud, clamorous, boisterous",
+    "meaning_ko": "시끄러운, 소란스러운",
+    "example": {
+      "ja": "工事の音が喧しい。",
+      "reading": "こうじのおとがやかましい。",
+      "ko": "공사 소리가 시끄럽다."
+    }
+  },
+  {
+    "id": 1792,
+    "expression": "夜間",
+    "reading": "やかん",
+    "meaning_en": "at night, nighttime",
+    "meaning_ko": "야간, 밤",
+    "example": {
+      "ja": "夜間は静かにしてください。",
+      "reading": "やかんはしずかにしてください。",
+      "ko": "야간에는 조용히 해 주세요."
+    }
+  },
+  {
+    "id": 1793,
+    "expression": "やかん",
+    "reading": "やかん",
+    "meaning_en": "kettle",
+    "meaning_ko": "주전자",
+    "example": {
+      "ja": "やかんでお湯を沸かした。",
+      "reading": "やかんでおゆをわかした。",
+      "ko": "주전자로 물을 끓였다."
+    }
+  },
+  {
+    "id": 1794,
+    "expression": "やかん",
+    "reading": "やかん",
+    "meaning_en": "kettle",
+    "meaning_ko": "주전자",
+    "example": {
+      "ja": "新しいやかんを買った。",
+      "reading": "あたらしいやかんをかった。",
+      "ko": "새 주전자를 샀다."
+    }
+  },
+  {
+    "id": 1795,
+    "expression": "役者",
+    "reading": "やくしゃ",
+    "meaning_en": "actor",
+    "meaning_ko": "배우",
+    "example": {
+      "ja": "有名な役者が舞台に立った。",
+      "reading": "ゆうめいなやくしゃがぶたいにたった。",
+      "ko": "유명한 배우가 무대에 섰다."
+    }
+  },
+  {
+    "id": 1796,
+    "expression": "役所",
+    "reading": "やくしょ",
+    "meaning_en": "government office, public office",
+    "meaning_ko": "관청, 역소",
+    "example": {
+      "ja": "住民票を役所で発行してもらった。",
+      "reading": "じゅうみんひょうをやくしょではっこうしてもらった。",
+      "ko": "주민표를 관청에서 발급받았다."
+    }
+  },
+  {
+    "id": 1797,
+    "expression": "役人",
+    "reading": "やくにん",
+    "meaning_en": "government official",
+    "meaning_ko": "관리, 공무원",
+    "example": {
+      "ja": "役人として長年働いてきた。",
+      "reading": "やくにんとしてながねんはたらいてきた。",
+      "ko": "공무원으로서 오랫동안 일해 왔다."
+    }
+  },
+  {
+    "id": 1798,
+    "expression": "薬品",
+    "reading": "やくひん",
+    "meaning_en": "medicine(s), chemical(s)",
+    "meaning_ko": "약품",
+    "example": {
+      "ja": "危険な薬品は注意して扱う。",
+      "reading": "きけんなやくひんはちゅういしてあつかう。",
+      "ko": "위험한 약품은 주의하여 다룬다."
+    }
+  },
+  {
+    "id": 1799,
+    "expression": "役目",
+    "reading": "やくめ",
+    "meaning_en": "duty, business",
+    "meaning_ko": "역할, 임무",
+    "example": {
+      "ja": "チームでの役目を果たした。",
+      "reading": "ちーむでのやくめをはたした。",
+      "ko": "팀에서의 역할을 다했다."
+    }
+  },
+  {
+    "id": 1800,
+    "expression": "火傷",
+    "reading": "やけど",
+    "meaning_en": "burn, scald",
+    "meaning_ko": "화상",
+    "example": {
+      "ja": "熱い鍋に触れて火傷をした。",
+      "reading": "あついなべにふれてやけどをした。",
+      "ko": "뜨거운 냄비에 닿아서 화상을 입었다."
+    }
+  }
+]

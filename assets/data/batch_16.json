@@ -1,0 +1,1202 @@
+[
+  {
+    "id": 1501,
+    "expression": "引っ越し",
+    "reading": "ひっこし",
+    "meaning_en": "moving (dwelling, office, etc.), changing residence",
+    "meaning_ko": "이사",
+    "example": {
+      "ja": "来月、新しいアパートに引っ越しする予定だ。",
+      "reading": "らいげつ、あたらしいあぱーとにひっこしするよていだ。",
+      "ko": "다음 달에 새 아파트로 이사할 예정이다."
+    }
+  },
+  {
+    "id": 1502,
+    "expression": "引っ込む",
+    "reading": "ひっこむ",
+    "meaning_en": "to draw back, to sink, to cave in",
+    "meaning_ko": "뒤로 물러서다",
+    "example": {
+      "ja": "彼は恥ずかしくて部屋に引っ込んだ。",
+      "reading": "かれははずかしくてへやにひっこんだ。",
+      "ko": "그는 부끄러워서 방으로 들어가 버렸다."
+    }
+  },
+  {
+    "id": 1503,
+    "expression": "筆者",
+    "reading": "ひっしゃ",
+    "meaning_en": "writer, author",
+    "meaning_ko": "필자, 저자",
+    "example": {
+      "ja": "この記事の筆者は有名な学者だ。",
+      "reading": "このきじのひっしゃはゆうめいながくしゃだ。",
+      "ko": "이 기사의 필자는 유명한 학자이다."
+    }
+  },
+  {
+    "id": 1504,
+    "expression": "必需品",
+    "reading": "ひつじゅひん",
+    "meaning_en": "necessities, essential",
+    "meaning_ko": "필수품",
+    "example": {
+      "ja": "水は生活の必需品である。",
+      "reading": "みずはせいかつのひつじゅひんである。",
+      "ko": "물은 생활의 필수품이다."
+    }
+  },
+  {
+    "id": 1505,
+    "expression": "一～",
+    "reading": "ひと～",
+    "meaning_en": "one ~",
+    "meaning_ko": "하나의~",
+    "example": {
+      "ja": "一言も話さずに帰った。",
+      "reading": "ひとこともはなさずにかえった。",
+      "ko": "한마디도 하지 않고 돌아갔다."
+    }
+  },
+  {
+    "id": 1506,
+    "expression": "人差指",
+    "reading": "ひとさしゆび",
+    "meaning_en": "index finger",
+    "meaning_ko": "검지, 집게손가락",
+    "example": {
+      "ja": "人差指で画面をタッチした。",
+      "reading": "ひとさしゆびでがめんをたっちした。",
+      "ko": "검지로 화면을 터치했다."
+    }
+  },
+  {
+    "id": 1507,
+    "expression": "一通り",
+    "reading": "ひととおり",
+    "meaning_en": "general, briefly",
+    "meaning_ko": "대략, 대체로",
+    "example": {
+      "ja": "説明書を一通り読んでから始めた。",
+      "reading": "せつめいしょをひととおりよんでからはじめた。",
+      "ko": "설명서를 대략 읽고 나서 시작했다."
+    }
+  },
+  {
+    "id": 1508,
+    "expression": "人通り",
+    "reading": "ひとどおり",
+    "meaning_en": "pedestrian traffic",
+    "meaning_ko": "사람의 왕래",
+    "example": {
+      "ja": "夜になると人通りが少なくなる。",
+      "reading": "よるになるとひとどおりがすくなくなる。",
+      "ko": "밤이 되면 사람의 왕래가 줄어든다."
+    }
+  },
+  {
+    "id": 1509,
+    "expression": "ひとまず",
+    "reading": "ひとまず",
+    "meaning_en": "for the present, once, for the time being",
+    "meaning_ko": "우선, 일단",
+    "example": {
+      "ja": "ひとまず休憩してから続けよう。",
+      "reading": "ひとまずきゅうけいしてからつづけよう。",
+      "ko": "우선 휴식하고 나서 계속하자."
+    }
+  },
+  {
+    "id": 1510,
+    "expression": "瞳",
+    "reading": "ひとみ",
+    "meaning_en": "pupil (of eye)",
+    "meaning_ko": "눈동자",
+    "example": {
+      "ja": "彼女の瞳は星のように輝いていた。",
+      "reading": "かのじょのひとみはほしのようにかがやいていた。",
+      "ko": "그녀의 눈동자는 별처럼 빛나고 있었다."
+    }
+  },
+  {
+    "id": 1511,
+    "expression": "一休み",
+    "reading": "ひとやすみ",
+    "meaning_en": "a rest",
+    "meaning_ko": "한숨 쉬기, 잠깐 휴식",
+    "example": {
+      "ja": "散歩の途中で一休みした。",
+      "reading": "さんぽのとちゅうでひとやすみした。",
+      "ko": "산책 도중에 잠깐 쉬었다."
+    }
+  },
+  {
+    "id": 1512,
+    "expression": "独り言",
+    "reading": "ひとりごと",
+    "meaning_en": "a soliloquy, a monologue, speaking to oneself",
+    "meaning_ko": "혼잣말",
+    "example": {
+      "ja": "彼は独り言をつぶやいていた。",
+      "reading": "かれはひとりごとをつぶやいていた。",
+      "ko": "그는 혼잣말을 중얼거리고 있었다."
+    }
+  },
+  {
+    "id": 1513,
+    "expression": "ひとりでに",
+    "reading": "ひとりでに",
+    "meaning_en": "by itself, automatically, naturally",
+    "meaning_ko": "저절로",
+    "example": {
+      "ja": "ドアがひとりでに閉まった。",
+      "reading": "どあがひとりでにしまった。",
+      "ko": "문이 저절로 닫혔다."
+    }
+  },
+  {
+    "id": 1514,
+    "expression": "ビニール",
+    "reading": "ビニール",
+    "meaning_en": "vinyl",
+    "meaning_ko": "비닐",
+    "example": {
+      "ja": "ビニール袋の使用を減らすべきだ。",
+      "reading": "びにーるぶくろのしようをへらすべきだ。",
+      "ko": "비닐봉지의 사용을 줄여야 한다."
+    }
+  },
+  {
+    "id": 1515,
+    "expression": "皮肉",
+    "reading": "ひにく",
+    "meaning_en": "cynicism, sarcasm",
+    "meaning_ko": "비꼼, 풍자",
+    "example": {
+      "ja": "彼の皮肉な言い方が気になった。",
+      "reading": "かれのひにくないいかたがきになった。",
+      "ko": "그의 비꼬는 말투가 신경 쓰였다."
+    }
+  },
+  {
+    "id": 1516,
+    "expression": "日日",
+    "reading": "ひにち",
+    "meaning_en": "date",
+    "meaning_ko": "날짜",
+    "example": {
+      "ja": "会議の日日はまだ決まっていない。",
+      "reading": "かいぎのひにちはまだきまっていない。",
+      "ko": "회의 날짜는 아직 정해지지 않았다."
+    }
+  },
+  {
+    "id": 1517,
+    "expression": "日にち",
+    "reading": "ひにち",
+    "meaning_en": "date (of a planned event, act, etc.), day",
+    "meaning_ko": "날짜, 일수",
+    "example": {
+      "ja": "旅行の日にちを早めに決めよう。",
+      "reading": "りょこうのひにちをはやめにきめよう。",
+      "ko": "여행 날짜를 일찍 정하자."
+    }
+  },
+  {
+    "id": 1518,
+    "expression": "捻る",
+    "reading": "ひねる",
+    "meaning_en": "to twist, to turn",
+    "meaning_ko": "비틀다, 돌리다",
+    "example": {
+      "ja": "蛇口を捻って水を出した。",
+      "reading": "じゃぐちをひねってみずをだした。",
+      "ko": "수도꼭지를 돌려서 물을 틀었다."
+    }
+  },
+  {
+    "id": 1519,
+    "expression": "日の入り",
+    "reading": "ひのいり",
+    "meaning_en": "sunset",
+    "meaning_ko": "일몰, 해넘이",
+    "example": {
+      "ja": "海辺で美しい日の入りを見た。",
+      "reading": "うみべでうつくしいひのいりをみた。",
+      "ko": "해변에서 아름다운 일몰을 보았다."
+    }
+  },
+  {
+    "id": 1520,
+    "expression": "日の出",
+    "reading": "ひので",
+    "meaning_en": "sunrise",
+    "meaning_ko": "일출, 해돋이",
+    "example": {
+      "ja": "山の上から日の出を見た。",
+      "reading": "やまのうえからひのでをみた。",
+      "ko": "산 위에서 일출을 보았다."
+    }
+  },
+  {
+    "id": 1521,
+    "expression": "響き",
+    "reading": "ひびき",
+    "meaning_en": "echo, sound",
+    "meaning_ko": "울림, 소리",
+    "example": {
+      "ja": "鐘の響きが山に広がった。",
+      "reading": "かねのひびきがやまにひろがった。",
+      "ko": "종소리의 울림이 산에 퍼졌다."
+    }
+  },
+  {
+    "id": 1522,
+    "expression": "響く",
+    "reading": "ひびく",
+    "meaning_en": "to resound; to affect",
+    "meaning_ko": "울리다, 영향을 미치다",
+    "example": {
+      "ja": "彼の言葉が心に響いた。",
+      "reading": "かれのことばがこころにひびいた。",
+      "ko": "그의 말이 마음에 울렸다."
+    }
+  },
+  {
+    "id": 1523,
+    "expression": "皮膚",
+    "reading": "ひふ",
+    "meaning_en": "skin",
+    "meaning_ko": "피부",
+    "example": {
+      "ja": "冬は皮膚が乾燥しやすい。",
+      "reading": "ふゆはひふがかんそうしやすい。",
+      "ko": "겨울에는 피부가 건조해지기 쉽다."
+    }
+  },
+  {
+    "id": 1524,
+    "expression": "冷やす",
+    "reading": "ひやす",
+    "meaning_en": "to cool (from room temperature), to chill, to refrigerate",
+    "meaning_ko": "식히다, 차게 하다",
+    "example": {
+      "ja": "ビールを冷蔵庫で冷やした。",
+      "reading": "びーるをれいぞうこでひやした。",
+      "ko": "맥주를 냉장고에서 차게 했다."
+    }
+  },
+  {
+    "id": 1525,
+    "expression": "ひゃっかじてん",
+    "reading": "ひゃっかじてん",
+    "meaning_en": "encyclopedia",
+    "meaning_ko": "백과사전",
+    "example": {
+      "ja": "ひゃっかじてんで調べてみた。",
+      "reading": "ひゃっかじてんでしらべてみた。",
+      "ko": "백과사전으로 조사해 보았다."
+    }
+  },
+  {
+    "id": 1526,
+    "expression": "百科事典",
+    "reading": "ひゃっかじてん",
+    "meaning_en": "encyclopedia",
+    "meaning_ko": "백과사전",
+    "example": {
+      "ja": "百科事典にはあらゆる知識が載っている。",
+      "reading": "ひゃっかじてんにはあらゆるちしきがのっている。",
+      "ko": "백과사전에는 모든 지식이 실려 있다."
+    }
+  },
+  {
+    "id": 1527,
+    "expression": "美容",
+    "reading": "びよう",
+    "meaning_en": "beauty of figure or form",
+    "meaning_ko": "미용",
+    "example": {
+      "ja": "姉は美容に関心が高い。",
+      "reading": "あねはびようにかんしんがたかい。",
+      "ko": "언니는 미용에 관심이 높다."
+    }
+  },
+  {
+    "id": 1528,
+    "expression": "表紙",
+    "reading": "ひょうし",
+    "meaning_en": "front cover, binding",
+    "meaning_ko": "표지",
+    "example": {
+      "ja": "この本の表紙のデザインが素敵だ。",
+      "reading": "このほんのひょうしのでざいんがすてきだ。",
+      "ko": "이 책의 표지 디자인이 멋지다."
+    }
+  },
+  {
+    "id": 1529,
+    "expression": "標識",
+    "reading": "ひょうしき",
+    "meaning_en": "sign, mark",
+    "meaning_ko": "표지, 표식",
+    "example": {
+      "ja": "道路の標識に従って運転した。",
+      "reading": "どうろのひょうしきにしたがってうんてんした。",
+      "ko": "도로 표지판에 따라 운전했다."
+    }
+  },
+  {
+    "id": 1530,
+    "expression": "標準",
+    "reading": "ひょうじゅん",
+    "meaning_en": "standard, level",
+    "meaning_ko": "표준, 기준",
+    "example": {
+      "ja": "標準語と方言は異なることがある。",
+      "reading": "ひょうじゅんごとほうげんはことなることがある。",
+      "ko": "표준어와 방언은 다를 수 있다."
+    }
+  },
+  {
+    "id": 1531,
+    "expression": "標本",
+    "reading": "ひょうほん",
+    "meaning_en": "example, specimen",
+    "meaning_ko": "표본, 견본",
+    "example": {
+      "ja": "理科の授業で昆虫の標本を観察した。",
+      "reading": "りかのじゅぎょうでこんちゅうのひょうほんをかんさつした。",
+      "ko": "과학 수업에서 곤충의 표본을 관찰했다."
+    }
+  },
+  {
+    "id": 1532,
+    "expression": "評論",
+    "reading": "ひょうろん",
+    "meaning_en": "criticism, critique",
+    "meaning_ko": "평론, 비평",
+    "example": {
+      "ja": "彼は映画の評論を書いている。",
+      "reading": "かれはえいがのひょうろんをかいている。",
+      "ko": "그는 영화 평론을 쓰고 있다."
+    }
+  },
+  {
+    "id": 1533,
+    "expression": "ビルディング",
+    "reading": "ビルディング",
+    "meaning_en": "building",
+    "meaning_ko": "빌딩",
+    "example": {
+      "ja": "駅前に新しいビルディングが建った。",
+      "reading": "えきまえにあたらしいびるでぃんぐがたった。",
+      "ko": "역 앞에 새로운 빌딩이 세워졌다."
+    }
+  },
+  {
+    "id": 1534,
+    "expression": "昼寝",
+    "reading": "ひるね",
+    "meaning_en": "nap (at home), siesta",
+    "meaning_ko": "낮잠",
+    "example": {
+      "ja": "日曜日は昼寝をするのが好きだ。",
+      "reading": "にちようびはひるねをするのがすきだ。",
+      "ko": "일요일에는 낮잠을 자는 것을 좋아한다."
+    }
+  },
+  {
+    "id": 1535,
+    "expression": "広げる",
+    "reading": "ひろげる",
+    "meaning_en": "to spread, to extend, to expand, to enlarge, to widen, to broaden",
+    "meaning_ko": "펼치다, 넓히다",
+    "example": {
+      "ja": "地図を広げて場所を確認した。",
+      "reading": "ちずをひろげてばしょをかくにんした。",
+      "ko": "지도를 펼쳐서 장소를 확인했다."
+    }
+  },
+  {
+    "id": 1536,
+    "expression": "広さ",
+    "reading": "ひろさ",
+    "meaning_en": "extent",
+    "meaning_ko": "넓이, 면적",
+    "example": {
+      "ja": "この部屋の広さは十分だ。",
+      "reading": "このへやのひろさはじゅうぶんだ。",
+      "ko": "이 방의 넓이는 충분하다."
+    }
+  },
+  {
+    "id": 1537,
+    "expression": "広場",
+    "reading": "ひろば",
+    "meaning_en": "plaza",
+    "meaning_ko": "광장",
+    "example": {
+      "ja": "広場で子供たちが遊んでいる。",
+      "reading": "ひろばでこどもたちがあそんでいる。",
+      "ko": "광장에서 아이들이 놀고 있다."
+    }
+  },
+  {
+    "id": 1538,
+    "expression": "広々",
+    "reading": "ひろびろ",
+    "meaning_en": "extensive, spacious",
+    "meaning_ko": "넓고 탁 트인",
+    "example": {
+      "ja": "広々とした草原が目の前に広がった。",
+      "reading": "ひろびろとしたそうげんがめのまえにひろがった。",
+      "ko": "넓고 탁 트인 초원이 눈앞에 펼쳐졌다."
+    }
+  },
+  {
+    "id": 1539,
+    "expression": "ピンク",
+    "reading": "ピンク",
+    "meaning_en": "pink",
+    "meaning_ko": "핑크",
+    "example": {
+      "ja": "ピンクの花が庭に咲いている。",
+      "reading": "ぴんくのはながにわにさいている。",
+      "ko": "핑크색 꽃이 정원에 피어 있다."
+    }
+  },
+  {
+    "id": 1540,
+    "expression": "便箋",
+    "reading": "びんせん",
+    "meaning_en": "writing paper, stationery",
+    "meaning_ko": "편지지",
+    "example": {
+      "ja": "きれいな便箋に手紙を書いた。",
+      "reading": "きれいなびんせんにてがみをかいた。",
+      "ko": "예쁜 편지지에 편지를 썼다."
+    }
+  },
+  {
+    "id": 1541,
+    "expression": "瓶詰",
+    "reading": "びんづめ",
+    "meaning_en": "bottling, bottled",
+    "meaning_ko": "병에 담기",
+    "example": {
+      "ja": "瓶詰のジャムを棚に並べた。",
+      "reading": "びんづめのじゃむをたなにならべた。",
+      "ko": "병에 담긴 잼을 선반에 진열했다."
+    }
+  },
+  {
+    "id": 1542,
+    "expression": "ファスナー",
+    "reading": "ファスナー",
+    "meaning_en": "fastener, zipper",
+    "meaning_ko": "지퍼",
+    "example": {
+      "ja": "ジャケットのファスナーが壊れた。",
+      "reading": "じゃけっとのふぁすなーがこわれた。",
+      "ko": "재킷의 지퍼가 고장 났다."
+    }
+  },
+  {
+    "id": 1543,
+    "expression": "風船",
+    "reading": "ふうせん",
+    "meaning_en": "balloon",
+    "meaning_ko": "풍선",
+    "example": {
+      "ja": "子供たちが風船を飛ばして遊んだ。",
+      "reading": "こどもたちがふうせんをとばしてあそんだ。",
+      "ko": "아이들이 풍선을 날리며 놀았다."
+    }
+  },
+  {
+    "id": 1544,
+    "expression": "不運",
+    "reading": "ふうん",
+    "meaning_en": "unlucky, misfortune, bad luck",
+    "meaning_ko": "불운, 불행",
+    "example": {
+      "ja": "不運にも試験の日に体調を崩した。",
+      "reading": "ふうんにもしけんのひにたいちょうをくずした。",
+      "ko": "불운하게도 시험 날에 컨디션이 나빠졌다."
+    }
+  },
+  {
+    "id": 1545,
+    "expression": "深まる",
+    "reading": "ふかまる",
+    "meaning_en": "to deepen, to heighten, to intensify",
+    "meaning_ko": "깊어지다",
+    "example": {
+      "ja": "秋が深まると紅葉が美しくなる。",
+      "reading": "あきがふかまるともみじがうつくしくなる。",
+      "ko": "가을이 깊어지면 단풍이 아름다워진다."
+    }
+  },
+  {
+    "id": 1546,
+    "expression": "不規則",
+    "reading": "ふきそく",
+    "meaning_en": "irregularity, unsteadiness",
+    "meaning_ko": "불규칙",
+    "example": {
+      "ja": "不規則な生活は体によくない。",
+      "reading": "ふきそくなせいかつはからだによくない。",
+      "ko": "불규칙한 생활은 몸에 좋지 않다."
+    }
+  },
+  {
+    "id": 1547,
+    "expression": "普及",
+    "reading": "ふきゅう",
+    "meaning_en": "diffusion, spread",
+    "meaning_ko": "보급, 확산",
+    "example": {
+      "ja": "スマートフォンが世界中に普及した。",
+      "reading": "すまーとふぉんがせかいじゅうにふきゅうした。",
+      "ko": "스마트폰이 전 세계에 보급되었다."
+    }
+  },
+  {
+    "id": 1548,
+    "expression": "付近",
+    "reading": "ふきん",
+    "meaning_en": "neighborhood, vicinity",
+    "meaning_ko": "부근, 근처",
+    "example": {
+      "ja": "駅の付近にコンビニがある。",
+      "reading": "えきのふきんにこんびにがある。",
+      "ko": "역 부근에 편의점이 있다."
+    }
+  },
+  {
+    "id": 1549,
+    "expression": "副～",
+    "reading": "ふく～",
+    "meaning_en": "vice ~",
+    "meaning_ko": "부~",
+    "example": {
+      "ja": "副社長が会議に出席した。",
+      "reading": "ふくしゃちょうがかいぎにしゅっせきした。",
+      "ko": "부사장이 회의에 출석했다."
+    }
+  },
+  {
+    "id": 1550,
+    "expression": "副詞",
+    "reading": "ふくし",
+    "meaning_en": "adverb",
+    "meaning_ko": "부사",
+    "example": {
+      "ja": "日本語の副詞は文の意味を豊かにする。",
+      "reading": "にほんごのふくしはぶんのいみをゆたかにする。",
+      "ko": "일본어 부사는 문장의 의미를 풍부하게 한다."
+    }
+  },
+  {
+    "id": 1551,
+    "expression": "複写",
+    "reading": "ふくしゃ",
+    "meaning_en": "copy, duplicate",
+    "meaning_ko": "복사, 복제",
+    "example": {
+      "ja": "書類を複写して保管した。",
+      "reading": "しょるいをふくしゃしてほかんした。",
+      "ko": "서류를 복사하여 보관했다."
+    }
+  },
+  {
+    "id": 1552,
+    "expression": "複数",
+    "reading": "ふくすう",
+    "meaning_en": "plural, multiple",
+    "meaning_ko": "복수, 여러 개",
+    "example": {
+      "ja": "複数の候補者から選んだ。",
+      "reading": "ふくすうのこうほしゃからえらんだ。",
+      "ko": "복수의 후보자 중에서 선택했다."
+    }
+  },
+  {
+    "id": 1553,
+    "expression": "ふくめる",
+    "reading": "ふくめる",
+    "meaning_en": "to include, to instruct, to make one understand",
+    "meaning_ko": "포함하다",
+    "example": {
+      "ja": "税金をふくめると五千円になる。",
+      "reading": "ぜいきんをふくめるとごせんえんになる。",
+      "ko": "세금을 포함하면 5천 엔이 된다."
+    }
+  },
+  {
+    "id": 1554,
+    "expression": "膨らます",
+    "reading": "ふくらます",
+    "meaning_en": "to swell, to expand, to inflate",
+    "meaning_ko": "부풀리다",
+    "example": {
+      "ja": "風船を口で膨らました。",
+      "reading": "ふうせんをくちでふくらました。",
+      "ko": "풍선을 입으로 부풀렸다."
+    }
+  },
+  {
+    "id": 1555,
+    "expression": "膨らむ",
+    "reading": "ふくらむ",
+    "meaning_en": "to expand, to swell (out), to become inflated",
+    "meaning_ko": "부풀다, 팽창하다",
+    "example": {
+      "ja": "パンの生地が膨らんできた。",
+      "reading": "ぱんのきじがふくらんできた。",
+      "ko": "빵 반죽이 부풀어 올랐다."
+    }
+  },
+  {
+    "id": 1556,
+    "expression": "不潔",
+    "reading": "ふけつ",
+    "meaning_en": "unclean, dirty",
+    "meaning_ko": "불결한, 더러운",
+    "example": {
+      "ja": "不潔な環境は病気の原因になる。",
+      "reading": "ふけつなかんきょうはびょうきのげんいんになる。",
+      "ko": "불결한 환경은 병의 원인이 된다."
+    }
+  },
+  {
+    "id": 1557,
+    "expression": "更ける",
+    "reading": "ふける",
+    "meaning_en": "to get late, to wear on",
+    "meaning_ko": "깊어지다 (밤이)",
+    "example": {
+      "ja": "夜が更けると静かになった。",
+      "reading": "よるがふけるとしずかになった。",
+      "ko": "밤이 깊어지자 조용해졌다."
+    }
+  },
+  {
+    "id": 1558,
+    "expression": "符号",
+    "reading": "ふごう",
+    "meaning_en": "sign, mark, symbol",
+    "meaning_ko": "부호, 기호",
+    "example": {
+      "ja": "数学の符号を正しく使いなさい。",
+      "reading": "すうがくのふごうをただしくつかいなさい。",
+      "ko": "수학 부호를 올바르게 사용하세요."
+    }
+  },
+  {
+    "id": 1559,
+    "expression": "夫妻",
+    "reading": "ふさい",
+    "meaning_en": "man and wife, married couple",
+    "meaning_ko": "부부, 부처",
+    "example": {
+      "ja": "田中夫妻は結婚三十年になる。",
+      "reading": "たなかふさいはけっこんさんじゅうねんになる。",
+      "ko": "다나카 부부는 결혼 30년이 된다."
+    }
+  },
+  {
+    "id": 1560,
+    "expression": "塞がる",
+    "reading": "ふさがる",
+    "meaning_en": "to be plugged up, to be shut up",
+    "meaning_ko": "막히다",
+    "example": {
+      "ja": "排水口が塞がって水が流れない。",
+      "reading": "はいすいこうがふさがってみずがながれない。",
+      "ko": "배수구가 막혀서 물이 흐르지 않는다."
+    }
+  },
+  {
+    "id": 1561,
+    "expression": "塞ぐ",
+    "reading": "ふさぐ",
+    "meaning_en": "to stuff, to close up, to block (up)",
+    "meaning_ko": "막다, 메우다",
+    "example": {
+      "ja": "耳を塞いで大きな音を遮断した。",
+      "reading": "みみをふさいでおおきなおとをしゃだんした。",
+      "ko": "귀를 막아서 큰 소리를 차단했다."
+    }
+  },
+  {
+    "id": 1562,
+    "expression": "ふざける",
+    "reading": "ふざける",
+    "meaning_en": "to romp, to gambol, to frolic",
+    "meaning_ko": "장난치다",
+    "example": {
+      "ja": "授業中にふざけてはいけない。",
+      "reading": "じゅぎょうちゅうにふざけてはいけない。",
+      "ko": "수업 중에 장난쳐서는 안 된다."
+    }
+  },
+  {
+    "id": 1563,
+    "expression": "無沙汰",
+    "reading": "ぶさた",
+    "meaning_en": "neglecting to stay in contact",
+    "meaning_ko": "소식을 전하지 않음",
+    "example": {
+      "ja": "長い間無沙汰してすみません。",
+      "reading": "ながいあいだぶさたしてすみません。",
+      "ko": "오랫동안 연락 드리지 못해 죄송합니다."
+    }
+  },
+  {
+    "id": 1564,
+    "expression": "武士",
+    "reading": "ぶし",
+    "meaning_en": "warrior, samurai",
+    "meaning_ko": "무사, 사무라이",
+    "example": {
+      "ja": "武士は刀を腰に差していた。",
+      "reading": "ぶしはかたなをこしにさしていた。",
+      "ko": "무사는 칼을 허리에 차고 있었다."
+    }
+  },
+  {
+    "id": 1565,
+    "expression": "部首",
+    "reading": "ぶしゅ",
+    "meaning_en": "radical (of a kanji character)",
+    "meaning_ko": "부수 (한자)",
+    "example": {
+      "ja": "漢字の部首を覚えると学習が楽になる。",
+      "reading": "かんじのぶしゅをおぼえるとがくしゅうがらくになる。",
+      "ko": "한자의 부수를 외우면 학습이 편해진다."
+    }
+  },
+  {
+    "id": 1566,
+    "expression": "蒸す",
+    "reading": "ふす",
+    "meaning_en": "to steam (food, towel, etc.) to be hot and humid, to be sultry",
+    "meaning_ko": "찌다, 무덥다",
+    "example": {
+      "ja": "野菜を蒸して食べると健康にいい。",
+      "reading": "やさいをふしてたべるとけんこうにいい。",
+      "ko": "채소를 쪄서 먹으면 건강에 좋다."
+    }
+  },
+  {
+    "id": 1567,
+    "expression": "襖",
+    "reading": "ふすま",
+    "meaning_en": "sliding screen",
+    "meaning_ko": "미닫이 (장지문)",
+    "example": {
+      "ja": "和室の襖を開けて風を通した。",
+      "reading": "わしつのふすまをあけてかぜをとおした。",
+      "ko": "일본식 방의 미닫이를 열어 바람을 통하게 했다."
+    }
+  },
+  {
+    "id": 1568,
+    "expression": "附属",
+    "reading": "ふぞく",
+    "meaning_en": "attached, belonging, affiliated",
+    "meaning_ko": "부속, 소속",
+    "example": {
+      "ja": "この病院は大学に附属している。",
+      "reading": "このびょういんはだいがくにふぞくしている。",
+      "ko": "이 병원은 대학에 부속되어 있다."
+    }
+  },
+  {
+    "id": 1569,
+    "expression": "付属",
+    "reading": "ふぞく",
+    "meaning_en": "being attached (to), being affiliated (to), belonging (to), going with",
+    "meaning_ko": "부속, 소속",
+    "example": {
+      "ja": "このソフトには説明書が付属している。",
+      "reading": "このそふとにはせつめいしょがふぞくしている。",
+      "ko": "이 소프트웨어에는 설명서가 부속되어 있다."
+    }
+  },
+  {
+    "id": 1570,
+    "expression": "蓋",
+    "reading": "ふた",
+    "meaning_en": "cover, lid, cap",
+    "meaning_ko": "뚜껑, 덮개",
+    "example": {
+      "ja": "鍋の蓋を取ってかき混ぜた。",
+      "reading": "なべのふたをとってかきまぜた。",
+      "ko": "냄비 뚜껑을 열고 저었다."
+    }
+  },
+  {
+    "id": 1571,
+    "expression": "不通",
+    "reading": "ふつう",
+    "meaning_en": "suspension, interruption, stoppage, tie-up, cessation",
+    "meaning_ko": "불통, 두절",
+    "example": {
+      "ja": "台風で電車が不通になった。",
+      "reading": "たいふうででんしゃがふつうになった。",
+      "ko": "태풍으로 전철이 불통이 되었다."
+    }
+  },
+  {
+    "id": 1572,
+    "expression": "物騒",
+    "reading": "ぶっそう",
+    "meaning_en": "dangerous, disturbed, insecure",
+    "meaning_ko": "험악한, 위험한",
+    "example": {
+      "ja": "最近この辺りは物騒な事件が多い。",
+      "reading": "さいきんこのあたりはぶっそうなじけんがおおい。",
+      "ko": "최근 이 근처는 험악한 사건이 많다."
+    }
+  },
+  {
+    "id": 1573,
+    "expression": "ぶつぶつ",
+    "reading": "ぶつぶつ",
+    "meaning_en": "grumbling, complaining in a small voice",
+    "meaning_ko": "투덜투덜",
+    "example": {
+      "ja": "彼はぶつぶつ文句を言っていた。",
+      "reading": "かれはぶつぶつもんくをいっていた。",
+      "ko": "그는 투덜투덜 불평을 하고 있었다."
+    }
+  },
+  {
+    "id": 1574,
+    "expression": "船便",
+    "reading": "ふなびん",
+    "meaning_en": "surface mail (ship)",
+    "meaning_ko": "선편 (배편)",
+    "example": {
+      "ja": "荷物を船便で送ると安い。",
+      "reading": "にもつをふなびんでおくるとやすい。",
+      "ko": "짐을 선편으로 보내면 싸다."
+    }
+  },
+  {
+    "id": 1575,
+    "expression": "部品",
+    "reading": "ぶひん",
+    "meaning_en": "parts, accessories",
+    "meaning_ko": "부품",
+    "example": {
+      "ja": "機械の部品を交換する必要がある。",
+      "reading": "きかいのぶひんをこうかんするひつようがある。",
+      "ko": "기계의 부품을 교환할 필요가 있다."
+    }
+  },
+  {
+    "id": 1576,
+    "expression": "吹雪",
+    "reading": "ふぶき",
+    "meaning_en": "snow storm",
+    "meaning_ko": "눈보라",
+    "example": {
+      "ja": "激しい吹雪で前が見えなかった。",
+      "reading": "はげしいふぶきでまえがみえなかった。",
+      "ko": "심한 눈보라로 앞이 보이지 않았다."
+    }
+  },
+  {
+    "id": 1577,
+    "expression": "父母",
+    "reading": "ふぼ",
+    "meaning_en": "father and mother, parents",
+    "meaning_ko": "부모",
+    "example": {
+      "ja": "父母の健康を祈っている。",
+      "reading": "ふぼのけんこうをいのっている。",
+      "ko": "부모님의 건강을 기원하고 있다."
+    }
+  },
+  {
+    "id": 1578,
+    "expression": "踏切",
+    "reading": "ふみきり",
+    "meaning_en": "railway crossing, level crossing, starting line, scratch, crossover",
+    "meaning_ko": "건널목",
+    "example": {
+      "ja": "踏切の前で電車が通るのを待った。",
+      "reading": "ふみきりのまえでてんしゃがとおるのをまった。",
+      "ko": "건널목 앞에서 전철이 지나가는 것을 기다렸다."
+    }
+  },
+  {
+    "id": 1579,
+    "expression": "麓",
+    "reading": "ふもと",
+    "meaning_en": "the foot, the bottom, the base (of a mountain)",
+    "meaning_ko": "산기슭",
+    "example": {
+      "ja": "山の麓に小さな村がある。",
+      "reading": "やまのふもとにちいさなむらがある。",
+      "ko": "산기슭에 작은 마을이 있다."
+    }
+  },
+  {
+    "id": 1580,
+    "expression": "フライパン",
+    "reading": "フライパン",
+    "meaning_en": "fry pan, frying pan",
+    "meaning_ko": "프라이팬",
+    "example": {
+      "ja": "フライパンで野菜を炒めた。",
+      "reading": "ふらいぱんでやさいをいためた。",
+      "ko": "프라이팬으로 채소를 볶았다."
+    }
+  },
+  {
+    "id": 1581,
+    "expression": "ブラウス",
+    "reading": "ブラウス",
+    "meaning_en": "blouse",
+    "meaning_ko": "블라우스",
+    "example": {
+      "ja": "白いブラウスにスカートを合わせた。",
+      "reading": "しろいぶらうすにすかーとをあわせた。",
+      "ko": "흰 블라우스에 스커트를 맞춰 입었다."
+    }
+  },
+  {
+    "id": 1582,
+    "expression": "ぶらさげる",
+    "reading": "ぶらさげる",
+    "meaning_en": "to hang, to suspend, to swing",
+    "meaning_ko": "매달다, 늘어뜨리다",
+    "example": {
+      "ja": "鍵をカバンにぶらさげている。",
+      "reading": "かぎをかばんにぶらさげている。",
+      "ko": "열쇠를 가방에 매달고 있다."
+    }
+  },
+  {
+    "id": 1583,
+    "expression": "ブラシ",
+    "reading": "ブラシ",
+    "meaning_en": "brush",
+    "meaning_ko": "브러시, 솔",
+    "example": {
+      "ja": "ブラシで靴の汚れを落とした。",
+      "reading": "ぶらしでくつのよごれをおとした。",
+      "ko": "솔로 신발의 더러움을 닦았다."
+    }
+  },
+  {
+    "id": 1584,
+    "expression": "プラットホーム",
+    "reading": "プラットホーム",
+    "meaning_en": "platform",
+    "meaning_ko": "플랫폼, 승강장",
+    "example": {
+      "ja": "プラットホームで電車を待った。",
+      "reading": "ぷらっとほーむででんしゃをまった。",
+      "ko": "플랫폼에서 전철을 기다렸다."
+    }
+  },
+  {
+    "id": 1585,
+    "expression": "フリー",
+    "reading": "フリー",
+    "meaning_en": "free",
+    "meaning_ko": "자유, 무료",
+    "example": {
+      "ja": "今日はフリーの時間が多い。",
+      "reading": "きょうはふりーのじかんがおおい。",
+      "ko": "오늘은 자유 시간이 많다."
+    }
+  },
+  {
+    "id": 1586,
+    "expression": "振り仮名",
+    "reading": "ふりがな",
+    "meaning_en": "pronunciation key",
+    "meaning_ko": "후리가나 (읽기 표기)",
+    "example": {
+      "ja": "難しい漢字には振り仮名が付いている。",
+      "reading": "むずかしいかんじにはふりがながついている。",
+      "ko": "어려운 한자에는 후리가나가 붙어 있다."
+    }
+  },
+  {
+    "id": 1587,
+    "expression": "振り向く",
+    "reading": "ふりむく",
+    "meaning_en": "to turn one's face, to turn around",
+    "meaning_ko": "뒤돌아보다",
+    "example": {
+      "ja": "名前を呼ばれて振り向いた。",
+      "reading": "なまえをよばれてふりむいた。",
+      "ko": "이름을 불려서 뒤돌아보았다."
+    }
+  },
+  {
+    "id": 1588,
+    "expression": "プリント",
+    "reading": "プリント",
+    "meaning_en": "print, handout",
+    "meaning_ko": "프린트, 유인물",
+    "example": {
+      "ja": "先生がプリントを配った。",
+      "reading": "せんせいがぷりんとをくばった。",
+      "ko": "선생님이 유인물을 나눠 주었다."
+    }
+  },
+  {
+    "id": 1589,
+    "expression": "古～",
+    "reading": "ふる～",
+    "meaning_en": "old ~",
+    "meaning_ko": "옛~, 오래된~",
+    "example": {
+      "ja": "古新聞をリサイクルに出した。",
+      "reading": "ふるしんぶんをりさいくるにだした。",
+      "ko": "헌 신문을 재활용에 내놓았다."
+    }
+  },
+  {
+    "id": 1590,
+    "expression": "故郷",
+    "reading": "ふるさと",
+    "meaning_en": "home town, birthplace",
+    "meaning_ko": "고향",
+    "example": {
+      "ja": "故郷の風景が懐かしい。",
+      "reading": "ふるさとのふうけいがなつかしい。",
+      "ko": "고향의 풍경이 그립다."
+    }
+  },
+  {
+    "id": 1591,
+    "expression": "古里",
+    "reading": "ふるさと",
+    "meaning_en": "home town, birthplace",
+    "meaning_ko": "고향",
+    "example": {
+      "ja": "古里の友達に手紙を書いた。",
+      "reading": "ふるさとのともだちにてがみをかいた。",
+      "ko": "고향 친구에게 편지를 썼다."
+    }
+  },
+  {
+    "id": 1592,
+    "expression": "振舞う",
+    "reading": "ふるまう",
+    "meaning_en": "to behave, to conduct",
+    "meaning_ko": "행동하다, 처신하다",
+    "example": {
+      "ja": "大人として振舞うべきだ。",
+      "reading": "おとなとしてふるまうべきだ。",
+      "ko": "어른으로서 행동해야 한다."
+    }
+  },
+  {
+    "id": 1593,
+    "expression": "ブローチ",
+    "reading": "ブローチ",
+    "meaning_en": "brooch",
+    "meaning_ko": "브로치",
+    "example": {
+      "ja": "母にブローチをプレゼントした。",
+      "reading": "ははにぶろーちをぷれぜんとした。",
+      "ko": "어머니에게 브로치를 선물했다."
+    }
+  },
+  {
+    "id": 1594,
+    "expression": "プログラム",
+    "reading": "プログラム",
+    "meaning_en": "program",
+    "meaning_ko": "프로그램",
+    "example": {
+      "ja": "コンサートのプログラムを確認した。",
+      "reading": "こんさーとのぷろぐらむをかくにんした。",
+      "ko": "콘서트의 프로그램을 확인했다."
+    }
+  },
+  {
+    "id": 1595,
+    "expression": "風呂敷",
+    "reading": "ふろしき",
+    "meaning_en": "wrapping cloth, cloth wrapper",
+    "meaning_ko": "보자기",
+    "example": {
+      "ja": "風呂敷でお弁当を包んだ。",
+      "reading": "ふろしきでおべんとうをつつんだ。",
+      "ko": "보자기로 도시락을 쌌다."
+    }
+  },
+  {
+    "id": 1596,
+    "expression": "ふわふわ",
+    "reading": "ふわふわ",
+    "meaning_en": "light, soft",
+    "meaning_ko": "가볍고 부드러운",
+    "example": {
+      "ja": "ふわふわのパンケーキを食べた。",
+      "reading": "ふわふわのぱんけーきをたべた。",
+      "ko": "폭신폭신한 팬케이크를 먹었다."
+    }
+  },
+  {
+    "id": 1597,
+    "expression": "噴火",
+    "reading": "ふんか",
+    "meaning_en": "eruption",
+    "meaning_ko": "분화",
+    "example": {
+      "ja": "火山が噴火して住民が避難した。",
+      "reading": "かざんがふんかしてじゅうみんがひなんした。",
+      "ko": "화산이 분화하여 주민들이 대피했다."
+    }
+  },
+  {
+    "id": 1598,
+    "expression": "分解",
+    "reading": "ぶんかい",
+    "meaning_en": "analysis, disassembly",
+    "meaning_ko": "분해",
+    "example": {
+      "ja": "時計を分解して修理した。",
+      "reading": "とけいをぶんかいしてしゅうりした。",
+      "ko": "시계를 분해하여 수리했다."
+    }
+  },
+  {
+    "id": 1599,
+    "expression": "文芸",
+    "reading": "ぶんげい",
+    "meaning_en": "literature, art and literature",
+    "meaning_ko": "문예, 문학",
+    "example": {
+      "ja": "文芸作品を読むのが趣味だ。",
+      "reading": "ぶんげいさくひんをよむのがしゅみだ。",
+      "ko": "문예 작품을 읽는 것이 취미이다."
+    }
+  },
+  {
+    "id": 1600,
+    "expression": "文献",
+    "reading": "ぶんけん",
+    "meaning_en": "literature, books (reference)",
+    "meaning_ko": "문헌, 참고서",
+    "example": {
+      "ja": "論文のために文献を調べた。",
+      "reading": "ろんぶんのためにぶんけんをしらべた。",
+      "ko": "논문을 위해 문헌을 조사했다."
+    }
+  }
+]

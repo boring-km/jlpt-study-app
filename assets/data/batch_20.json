@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1901,
+    "expression": "和服",
+    "reading": "わふく",
+    "meaning_en": "Japanese clothes",
+    "meaning_ko": "일본 옷, 화복",
+    "example": {
+      "ja": "和服を着て茶道のお稽古に行った。",
+      "reading": "わふくをきてさどうのおけいこにいった。",
+      "ko": "일본 옷을 입고 다도 연습에 갔다."
+    }
+  },
+  {
+    "id": 1902,
+    "expression": "割合に",
+    "reading": "わりあいに",
+    "meaning_en": "relatively, comparatively",
+    "meaning_ko": "비교적, 상대적으로",
+    "example": {
+      "ja": "今日は割合に暖かい。",
+      "reading": "きょうはわりあいにあたたかい。",
+      "ko": "오늘은 비교적 따뜻하다."
+    }
+  },
+  {
+    "id": 1903,
+    "expression": "割算",
+    "reading": "わりざん",
+    "meaning_en": "division (math)",
+    "meaning_ko": "나눗셈",
+    "example": {
+      "ja": "割算を暗算でやった。",
+      "reading": "わりざんをあんざんでやった。",
+      "ko": "나눗셈을 암산으로 했다."
+    }
+  },
+  {
+    "id": 1904,
+    "expression": "割と",
+    "reading": "わりと",
+    "meaning_en": "relatively, comparatively",
+    "meaning_ko": "비교적",
+    "example": {
+      "ja": "この問題は割と簡単だった。",
+      "reading": "このもんだいはわりとかんたんだった。",
+      "ko": "이 문제는 비교적 쉬웠다."
+    }
+  },
+  {
+    "id": 1905,
+    "expression": "割引",
+    "reading": "わりびき",
+    "meaning_en": "discount",
+    "meaning_ko": "할인",
+    "example": {
+      "ja": "学生割引で映画を見た。",
+      "reading": "がくせいわりびきでえいがをみた。",
+      "ko": "학생 할인으로 영화를 보았다."
+    }
+  },
+  {
+    "id": 1906,
+    "expression": "ワンピース",
+    "reading": "ワンピース",
+    "meaning_en": "one-piece dress",
+    "meaning_ko": "원피스",
+    "example": {
+      "ja": "花柄のワンピースを買った。",
+      "reading": "はながらのわんぴーすをかった。",
+      "ko": "꽃무늬 원피스를 샀다."
+    }
+  }
+]
