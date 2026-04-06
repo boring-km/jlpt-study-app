@@ -1,17 +1,25 @@
-# jlpt
+# JLPT N2 한자 읽기 암기 앱
 
-A new Flutter project.
+JLPT N2 단어의 한자 읽기(히라가나)를 암기하기 위한 iOS 앱입니다.
 
-## Getting Started
+## 주요 기능 (예정)
+- 플래시카드 — 한자를 보고 히라가나 읽기 학습
+- 퀴즈 — 한자 보고 히라가나 4지선다
+- 단어장 — 전체 N2 단어 리스트 검색/필터
+- 예문 학습 — 예문 속 한자 읽기 연습
 
-This project is a starting point for a Flutter application.
+## 데이터
+- **출처:** [open-anki-jlpt-decks](https://github.com/jamsinclair/open-anki-jlpt-decks) (MIT License)
+- **단어 수:** 1,906개 (N2 레벨)
+- **구성:** 한자, 히라가나 읽기, 한국어 뜻, 예문(일본어 + 한국어 해석)
 
-A few resources to get you started if this is your first Flutter project:
+## 기술 스택
+- Flutter (iOS only)
+- Dart
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+## 시작하기
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```bash
+flutter pub get
+flutter run
+```
