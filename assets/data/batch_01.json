@@ -1,0 +1,1202 @@
+[
+  {
+    "id": 1,
+    "expression": "〜 (まる) ごと",
+    "reading": "〜 (まる) ごと",
+    "meaning_en": "whole ~, all of ~",
+    "meaning_ko": "~통째로, ~전부",
+    "example": {
+      "ja": "りんごを丸ごと食べた。",
+      "reading": "りんごをまるごとたべた。",
+      "ko": "사과를 통째로 먹었다."
+    }
+  },
+  {
+    "id": 2,
+    "expression": "(かさを～) さす",
+    "reading": "(かさを～) さす",
+    "meaning_en": "to open; hold (an umbrella)",
+    "meaning_ko": "우산을 쓰다, 우산을 펴다",
+    "example": {
+      "ja": "雨が降ってきたので傘をさした。",
+      "reading": "あめがふってきたのでかさをさした。",
+      "ko": "비가 내리기 시작해서 우산을 썼다."
+    }
+  },
+  {
+    "id": 3,
+    "expression": "〜(日本) 式",
+    "reading": "～(にほん) しき",
+    "meaning_en": "custom, style",
+    "meaning_ko": "~식, ~방식",
+    "example": {
+      "ja": "日本式の挨拶はお辞儀です。",
+      "reading": "にほんしきのあいさつはおじぎです。",
+      "ko": "일본식 인사는 절입니다."
+    }
+  },
+  {
+    "id": 4,
+    "expression": "～位",
+    "reading": "～い",
+    "meaning_en": "~th place",
+    "meaning_ko": "~위",
+    "example": {
+      "ja": "マラソンで三位になった。",
+      "reading": "まらそんでさんいになった。",
+      "ko": "마라톤에서 3위가 되었다."
+    }
+  },
+  {
+    "id": 5,
+    "expression": "～いち (にほんいち)",
+    "reading": "～いち (にほんいち)",
+    "meaning_en": "No. 1 ~ (in)",
+    "meaning_ko": "~에서 제일, ~최고",
+    "example": {
+      "ja": "富士山は日本一高い山です。",
+      "reading": "ふじさんはにほんいちたかいやまです。",
+      "ko": "후지산은 일본에서 가장 높은 산입니다."
+    }
+  },
+  {
+    "id": 6,
+    "expression": "～園",
+    "reading": "～えん",
+    "meaning_en": "~ garden (especially man made)",
+    "meaning_ko": "~원, ~정원",
+    "example": {
+      "ja": "子供たちは動物園が大好きです。",
+      "reading": "こどもたちはどうぶつえんがだいすきです。",
+      "ko": "아이들은 동물원을 매우 좋아합니다."
+    }
+  },
+  {
+    "id": 7,
+    "expression": "～おしまい (おわり)",
+    "reading": "～おしまい (おわり)",
+    "meaning_en": "end up ~",
+    "meaning_ko": "~끝, ~마무리",
+    "example": {
+      "ja": "今日の授業はこれでおしまいです。",
+      "reading": "きょうのじゅぎょうはこれでおしまいです。",
+      "ko": "오늘 수업은 이것으로 끝입니다."
+    }
+  },
+  {
+    "id": 8,
+    "expression": "～日",
+    "reading": "～か",
+    "meaning_en": "counter for days",
+    "meaning_ko": "~일 (날수 세는 단위)",
+    "example": {
+      "ja": "旅行は五日間の予定です。",
+      "reading": "りょこうはいつかかんのよていです。",
+      "ko": "여행은 5일간 예정입니다."
+    }
+  },
+  {
+    "id": 9,
+    "expression": "～下",
+    "reading": "～か",
+    "meaning_en": "under ~",
+    "meaning_ko": "~하, ~아래",
+    "example": {
+      "ja": "零下十度まで気温が下がった。",
+      "reading": "れいかじゅうどまできおんがさがった。",
+      "ko": "영하 10도까지 기온이 내려갔다."
+    }
+  },
+  {
+    "id": 10,
+    "expression": "～化",
+    "reading": "～か",
+    "meaning_en": "action of making something",
+    "meaning_ko": "~화 (변화시키는 것)",
+    "example": {
+      "ja": "社会のデジタル化が進んでいる。",
+      "reading": "しゃかいのでじたるかがすすんでいる。",
+      "ko": "사회의 디지털화가 진행되고 있다."
+    }
+  },
+  {
+    "id": 11,
+    "expression": "～科",
+    "reading": "～か",
+    "meaning_en": "family, group, course",
+    "meaning_ko": "~과",
+    "example": {
+      "ja": "大学で経済学科に入った。",
+      "reading": "だいがくでけいざいがっかにはいった。",
+      "ko": "대학에서 경제학과에 들어갔다."
+    }
+  },
+  {
+    "id": 12,
+    "expression": "～歌",
+    "reading": "～か",
+    "meaning_en": "song of ~",
+    "meaning_ko": "~노래, ~가",
+    "example": {
+      "ja": "卒業式で校歌を歌った。",
+      "reading": "そつぎょうしきでこうかをうたった。",
+      "ko": "졸업식에서 교가를 불렀다."
+    }
+  },
+  {
+    "id": 13,
+    "expression": "～画",
+    "reading": "～が",
+    "meaning_en": "picture, painting",
+    "meaning_ko": "~화, 그림",
+    "example": {
+      "ja": "この映画は全十二画で構成されている。",
+      "reading": "このえいがはぜんじゅうにがでこうせいされている。",
+      "ko": "이 영화는 총 12화로 구성되어 있다."
+    }
+  },
+  {
+    "id": 14,
+    "expression": "～外",
+    "reading": "～がい",
+    "meaning_en": "out of ~",
+    "meaning_ko": "~외, ~밖",
+    "example": {
+      "ja": "それは予想外の結果だった。",
+      "reading": "それはよそうがいのけっかだった。",
+      "ko": "그것은 예상 밖의 결과였다."
+    }
+  },
+  {
+    "id": 15,
+    "expression": "～難い",
+    "reading": "～がたい",
+    "meaning_en": "hard (difficult) to do ~",
+    "meaning_ko": "~하기 어렵다",
+    "example": {
+      "ja": "彼の行動は理解し難い。",
+      "reading": "かれのこうどうはりかいしがたい。",
+      "ko": "그의 행동은 이해하기 어렵다."
+    }
+  },
+  {
+    "id": 16,
+    "expression": "～がち",
+    "reading": "～がち",
+    "meaning_en": "tend to do ~",
+    "meaning_ko": "~하기 쉽다, ~하는 경향이 있다",
+    "example": {
+      "ja": "冬は風邪をひきがちだ。",
+      "reading": "ふゆはかぜをひきがちだ。",
+      "ko": "겨울에는 감기에 걸리기 쉽다."
+    }
+  },
+  {
+    "id": 17,
+    "expression": "～刊",
+    "reading": "～かん",
+    "meaning_en": "~ issued (magazine, newspaper)",
+    "meaning_ko": "~간 (발행 주기)",
+    "example": {
+      "ja": "この雑誌は月刊で発行されている。",
+      "reading": "このざっしはげっかんではっこうされている。",
+      "ko": "이 잡지는 월간으로 발행되고 있다."
+    }
+  },
+  {
+    "id": 18,
+    "expression": "～間",
+    "reading": "～かん",
+    "meaning_en": "between, during",
+    "meaning_ko": "~간, ~사이",
+    "example": {
+      "ja": "東京と大阪の間は新幹線で二時間半だ。",
+      "reading": "とうきょうとおおさかのあいだはしんかんせんでにじかんはんだ。",
+      "ko": "도쿄와 오사카 사이는 신칸센으로 2시간 반이다."
+    }
+  },
+  {
+    "id": 19,
+    "expression": "～巻",
+    "reading": "～かん",
+    "meaning_en": "volume",
+    "meaning_ko": "~권 (책 세는 단위)",
+    "example": {
+      "ja": "この漫画は全二十巻ある。",
+      "reading": "このまんがはぜんにじゅっかんある。",
+      "ko": "이 만화는 총 20권이 있다."
+    }
+  },
+  {
+    "id": 20,
+    "expression": "～館",
+    "reading": "～かん",
+    "meaning_en": "~ hall, ~ building",
+    "meaning_ko": "~관 (건물)",
+    "example": {
+      "ja": "新しい図書館が駅の近くにできた。",
+      "reading": "あたらしいとしょかんがえきのちかくにできた。",
+      "ko": "새 도서관이 역 근처에 생겼다."
+    }
+  },
+  {
+    "id": 21,
+    "expression": "～感",
+    "reading": "～かん",
+    "meaning_en": "feeling, sense, impression",
+    "meaning_ko": "~감 (느낌)",
+    "example": {
+      "ja": "この映画には緊張感がある。",
+      "reading": "このえいがにはきんちょうかんがある。",
+      "ko": "이 영화에는 긴장감이 있다."
+    }
+  },
+  {
+    "id": 22,
+    "expression": "～期",
+    "reading": "～き",
+    "meaning_en": "~age, ~period",
+    "meaning_ko": "~기 (시기)",
+    "example": {
+      "ja": "成長期の子供には栄養が大切だ。",
+      "reading": "せいちょうきのこどもにはえいようがたいせつだ。",
+      "ko": "성장기 아이에게는 영양이 중요하다."
+    }
+  },
+  {
+    "id": 23,
+    "expression": "～器",
+    "reading": "～き",
+    "meaning_en": "device, equipment",
+    "meaning_ko": "~기 (기구, 장치)",
+    "example": {
+      "ja": "消火器の場所を確認してください。",
+      "reading": "しょうかきのばしょをかくにんしてください。",
+      "ko": "소화기의 위치를 확인해 주세요."
+    }
+  },
+  {
+    "id": 24,
+    "expression": "～機",
+    "reading": "～き",
+    "meaning_en": "machine",
+    "meaning_ko": "~기 (기계)",
+    "example": {
+      "ja": "洗濯機が壊れてしまった。",
+      "reading": "せんたくきがこわれてしまった。",
+      "ko": "세탁기가 고장나 버렸다."
+    }
+  },
+  {
+    "id": 25,
+    "expression": "～気味",
+    "reading": "～ぎみ",
+    "meaning_en": "slightly ~",
+    "meaning_ko": "~기미, 약간 ~한",
+    "example": {
+      "ja": "最近、風邪気味で体がだるい。",
+      "reading": "さいきん、かぜぎみでからだがだるい。",
+      "ko": "최근 감기 기미가 있어서 몸이 나른하다."
+    }
+  },
+  {
+    "id": 26,
+    "expression": "～教",
+    "reading": "～きょう",
+    "meaning_en": "religion",
+    "meaning_ko": "~교 (종교)",
+    "example": {
+      "ja": "仏教は日本に深く根付いている。",
+      "reading": "ぶっきょうはにほんにふかくねづいている。",
+      "ko": "불교는 일본에 깊이 뿌리내리고 있다."
+    }
+  },
+  {
+    "id": 27,
+    "expression": "～行",
+    "reading": "～ぎょう",
+    "meaning_en": "line, row",
+    "meaning_ko": "~행 (줄)",
+    "example": {
+      "ja": "三行目から読んでください。",
+      "reading": "さんぎょうめからよんでください。",
+      "ko": "3번째 줄부터 읽어 주세요."
+    }
+  },
+  {
+    "id": 28,
+    "expression": "～業",
+    "reading": "～ぎょう",
+    "meaning_en": "type of business",
+    "meaning_ko": "~업 (사업 종류)",
+    "example": {
+      "ja": "製造業で働いている。",
+      "reading": "せいぞうぎょうではたらいている。",
+      "ko": "제조업에서 일하고 있다."
+    }
+  },
+  {
+    "id": 29,
+    "expression": "～きる",
+    "reading": "～きる",
+    "meaning_en": "nevertheless, to carry through",
+    "meaning_ko": "완전히 ~하다, ~해내다",
+    "example": {
+      "ja": "マラソンを最後まで走りきった。",
+      "reading": "まらそんをさいごまではしりきった。",
+      "ko": "마라톤을 끝까지 달려냈다."
+    }
+  },
+  {
+    "id": 30,
+    "expression": "～切れ",
+    "reading": "～きれ",
+    "meaning_en": "out of ~",
+    "meaning_ko": "~이 다 떨어진, ~품절",
+    "example": {
+      "ja": "電池切れでリモコンが動かない。",
+      "reading": "でんちぎれでりもこんがうごかない。",
+      "ko": "배터리가 다 떨어져서 리모컨이 작동하지 않는다."
+    }
+  },
+  {
+    "id": 31,
+    "expression": "～口",
+    "reading": "～くち",
+    "meaning_en": "~ opening; ~ entrance, ~ exit",
+    "meaning_ko": "~구 (입구, 출구)",
+    "example": {
+      "ja": "非常口はあちらです。",
+      "reading": "ひじょうぐちはあちらです。",
+      "ko": "비상구는 저쪽입니다."
+    }
+  },
+  {
+    "id": 32,
+    "expression": "～家",
+    "reading": "～け",
+    "meaning_en": "~'s family, the house of ~",
+    "meaning_ko": "~가, ~집안",
+    "example": {
+      "ja": "田中家は代々医者の家系だ。",
+      "reading": "たなかけはだいだいいしゃのかけいだ。",
+      "ko": "다나카 집안은 대대로 의사 가문이다."
+    }
+  },
+  {
+    "id": 33,
+    "expression": "～形",
+    "reading": "～けい",
+    "meaning_en": "shape of ~",
+    "meaning_ko": "~형 (모양)",
+    "example": {
+      "ja": "この建物は三角形の形をしている。",
+      "reading": "このたてものはさんかくけいのかたちをしている。",
+      "ko": "이 건물은 삼각형 모양을 하고 있다."
+    }
+  },
+  {
+    "id": 34,
+    "expression": "～系",
+    "reading": "～けい",
+    "meaning_en": "~ system, ~ lineage, ~ group",
+    "meaning_ko": "~계 (계통, 계열)",
+    "example": {
+      "ja": "彼は理系の学生です。",
+      "reading": "かれはりけいのがくせいです。",
+      "ko": "그는 이공계 학생입니다."
+    }
+  },
+  {
+    "id": 35,
+    "expression": "～圏",
+    "reading": "～けん",
+    "meaning_en": "bloc, sphere, area",
+    "meaning_ko": "~권 (범위, 영역)",
+    "example": {
+      "ja": "首都圏の人口は増え続けている。",
+      "reading": "しゅとけんのじんこうはふえつづけている。",
+      "ko": "수도권의 인구는 계속 늘어나고 있다."
+    }
+  },
+  {
+    "id": 36,
+    "expression": "～校",
+    "reading": "～こう",
+    "meaning_en": "counter for school",
+    "meaning_ko": "~교 (학교 세는 단위)",
+    "example": {
+      "ja": "この地域には小学校が三校ある。",
+      "reading": "このちいきにはしょうがっこうがさんこうある。",
+      "ko": "이 지역에는 초등학교가 3곳 있다."
+    }
+  },
+  {
+    "id": 37,
+    "expression": "～港",
+    "reading": "～こう",
+    "meaning_en": "~ port",
+    "meaning_ko": "~항 (항구)",
+    "example": {
+      "ja": "横浜港は日本有数の貿易港だ。",
+      "reading": "よこはまこうはにほんゆうすうのぼうえきこうだ。",
+      "ko": "요코하마항은 일본 유수의 무역항이다."
+    }
+  },
+  {
+    "id": 38,
+    "expression": "～号",
+    "reading": "～ごう",
+    "meaning_en": "counter for magazine; the name of ship",
+    "meaning_ko": "~호 (번호, 호수)",
+    "example": {
+      "ja": "台風十号が接近している。",
+      "reading": "たいふうじゅうごうがせっきんしている。",
+      "ko": "태풍 10호가 접근하고 있다."
+    }
+  },
+  {
+    "id": 39,
+    "expression": "～国",
+    "reading": "～こく",
+    "meaning_en": "nation of ~",
+    "meaning_ko": "~국 (나라)",
+    "example": {
+      "ja": "先進国の経済は安定している。",
+      "reading": "せんしんこくのけいざいはあんていしている。",
+      "ko": "선진국의 경제는 안정되어 있다."
+    }
+  },
+  {
+    "id": 40,
+    "expression": "～毎",
+    "reading": "～ごと",
+    "meaning_en": "every ~, each ~",
+    "meaning_ko": "~마다",
+    "example": {
+      "ja": "一時間毎にバスが来る。",
+      "reading": "いちじかんごとにばすがくる。",
+      "ko": "1시간마다 버스가 온다."
+    }
+  },
+  {
+    "id": 41,
+    "expression": "～山",
+    "reading": "～さん",
+    "meaning_en": "the name of mountain",
+    "meaning_ko": "~산 (산 이름)",
+    "example": {
+      "ja": "富士山に登ったことがありますか。",
+      "reading": "ふじさんにのぼったことがありますか。",
+      "ko": "후지산에 올라간 적이 있습니까?"
+    }
+  },
+  {
+    "id": 42,
+    "expression": "～産",
+    "reading": "～さん",
+    "meaning_en": "made in ~",
+    "meaning_ko": "~산 (생산지)",
+    "example": {
+      "ja": "この果物は北海道産です。",
+      "reading": "このくだものはほっかいどうさんです。",
+      "ko": "이 과일은 홋카이도산입니다."
+    }
+  },
+  {
+    "id": 43,
+    "expression": "～史",
+    "reading": "～し",
+    "meaning_en": "history of ~",
+    "meaning_ko": "~사 (역사)",
+    "example": {
+      "ja": "日本史の試験が来週ある。",
+      "reading": "にほんしのしけんがらいしゅうある。",
+      "ko": "일본사 시험이 다음 주에 있다."
+    }
+  },
+  {
+    "id": 44,
+    "expression": "～紙",
+    "reading": "～し",
+    "meaning_en": "newspaper, type of paper",
+    "meaning_ko": "~지 (신문, 종이)",
+    "example": {
+      "ja": "朝日新聞は日本の主要な朝刊紙だ。",
+      "reading": "あさひしんぶんはにほんのしゅようなちょうかんしだ。",
+      "ko": "아사히신문은 일본의 주요 조간지이다."
+    }
+  },
+  {
+    "id": 45,
+    "expression": "～寺",
+    "reading": "～じ",
+    "meaning_en": "the name of temple",
+    "meaning_ko": "~사, ~절 (절 이름)",
+    "example": {
+      "ja": "金閣寺は京都で一番人気がある。",
+      "reading": "きんかくじはきょうとでいちばんにんきがある。",
+      "ko": "금각사는 교토에서 가장 인기가 있다."
+    }
+  },
+  {
+    "id": 46,
+    "expression": "～時間目",
+    "reading": "～じかんめ",
+    "meaning_en": "~th hour, ~th period",
+    "meaning_ko": "~교시",
+    "example": {
+      "ja": "三時間目の授業は数学です。",
+      "reading": "さんじかんめのじゅぎょうはすうがくです。",
+      "ko": "3교시 수업은 수학입니다."
+    }
+  },
+  {
+    "id": 47,
+    "expression": "～室",
+    "reading": "～しつ",
+    "meaning_en": "counter for room",
+    "meaning_ko": "~실 (방)",
+    "example": {
+      "ja": "会議室は三階にあります。",
+      "reading": "かいぎしつはさんがいにあります。",
+      "ko": "회의실은 3층에 있습니다."
+    }
+  },
+  {
+    "id": 48,
+    "expression": "～日",
+    "reading": "～じつ",
+    "meaning_en": "day",
+    "meaning_ko": "~일 (날)",
+    "example": {
+      "ja": "休日は家でゆっくり過ごす。",
+      "reading": "きゅうじつはいえでゆっくりすごす。",
+      "ko": "휴일에는 집에서 느긋하게 보낸다."
+    }
+  },
+  {
+    "id": 49,
+    "expression": "～車",
+    "reading": "～しゃ",
+    "meaning_en": "~ car",
+    "meaning_ko": "~차 (자동차)",
+    "example": {
+      "ja": "救急車がサイレンを鳴らして走っていった。",
+      "reading": "きゅうきゅうしゃがさいれんをならしてはしっていった。",
+      "ko": "구급차가 사이렌을 울리며 달려갔다."
+    }
+  },
+  {
+    "id": 50,
+    "expression": "～者",
+    "reading": "～しゃ",
+    "meaning_en": "person",
+    "meaning_ko": "~자 (사람)",
+    "example": {
+      "ja": "研究者として大学で働いている。",
+      "reading": "けんきゅうしゃとしてだいがくではたらいている。",
+      "ko": "연구자로서 대학에서 일하고 있다."
+    }
+  },
+  {
+    "id": 51,
+    "expression": "～社",
+    "reading": "～しゃ",
+    "meaning_en": "counter for company",
+    "meaning_ko": "~사 (회사 세는 단위)",
+    "example": {
+      "ja": "三社に履歴書を送った。",
+      "reading": "さんしゃにりれきしょをおくった。",
+      "ko": "3곳의 회사에 이력서를 보냈다."
+    }
+  },
+  {
+    "id": 52,
+    "expression": "～手",
+    "reading": "～しゅ",
+    "meaning_en": "~ player, person who does ~",
+    "meaning_ko": "~수 (선수, ~하는 사람)",
+    "example": {
+      "ja": "彼はプロ野球の投手です。",
+      "reading": "かれはぷろやきゅうのとうしゅです。",
+      "ko": "그는 프로야구 투수입니다."
+    }
+  },
+  {
+    "id": 53,
+    "expression": "～酒",
+    "reading": "～しゅ",
+    "meaning_en": "kind of alcohol",
+    "meaning_ko": "~주 (술 종류)",
+    "example": {
+      "ja": "日本酒は米から作られる。",
+      "reading": "にほんしゅはこめからつくられる。",
+      "ko": "일본주는 쌀로 만들어진다."
+    }
+  },
+  {
+    "id": 54,
+    "expression": "～集",
+    "reading": "～しゅう",
+    "meaning_en": "collection of ~",
+    "meaning_ko": "~집 (모음)",
+    "example": {
+      "ja": "彼女の詩集が出版された。",
+      "reading": "かのじょのししゅうがしゅっぱんされた。",
+      "ko": "그녀의 시집이 출판되었다."
+    }
+  },
+  {
+    "id": 55,
+    "expression": "～所",
+    "reading": "～しょ",
+    "meaning_en": "place",
+    "meaning_ko": "~소 (장소)",
+    "example": {
+      "ja": "研究所で新しい実験を始めた。",
+      "reading": "けんきゅうしょであたらしいじっけんをはじめた。",
+      "ko": "연구소에서 새로운 실험을 시작했다."
+    }
+  },
+  {
+    "id": 56,
+    "expression": "～所",
+    "reading": "～じょ",
+    "meaning_en": "place",
+    "meaning_ko": "~소, ~장 (장소)",
+    "example": {
+      "ja": "駐車場の入口は左側です。",
+      "reading": "ちゅうしゃじょうのいりぐちはひだりがわです。",
+      "ko": "주차장 입구는 왼쪽입니다."
+    }
+  },
+  {
+    "id": 57,
+    "expression": "～女",
+    "reading": "～じょ",
+    "meaning_en": "count for sisters",
+    "meaning_ko": "~녀 (딸 순서)",
+    "example": {
+      "ja": "彼女は三人姉妹の長女です。",
+      "reading": "かのじょはさんにんしまいのちょうじょです。",
+      "ko": "그녀는 세 자매의 장녀입니다."
+    }
+  },
+  {
+    "id": 58,
+    "expression": "～省",
+    "reading": "～しょう",
+    "meaning_en": "kind of ministry",
+    "meaning_ko": "~성 (정부 부처)",
+    "example": {
+      "ja": "外務省は外交を担当している。",
+      "reading": "がいむしょうはがいこうをたんとうしている。",
+      "ko": "외무성은 외교를 담당하고 있다."
+    }
+  },
+  {
+    "id": 59,
+    "expression": "～商",
+    "reading": "～しょう",
+    "meaning_en": "merchant, business",
+    "meaning_ko": "~상 (상인, 장사)",
+    "example": {
+      "ja": "この街には古くからの薬商がいる。",
+      "reading": "このまちにはふるくからのくすりしょうがいる。",
+      "ko": "이 거리에는 오래전부터 약상이 있다."
+    }
+  },
+  {
+    "id": 60,
+    "expression": "～勝",
+    "reading": "～しょう",
+    "meaning_en": "count for victory",
+    "meaning_ko": "~승 (승리 세는 단위)",
+    "example": {
+      "ja": "今シーズンは十勝五敗の成績だ。",
+      "reading": "こんしーずんはじゅっしょうごはいのせいせきだ。",
+      "ko": "이번 시즌은 10승 5패의 성적이다."
+    }
+  },
+  {
+    "id": 61,
+    "expression": "～条",
+    "reading": "～じょう",
+    "meaning_en": "counter for article",
+    "meaning_ko": "~조 (법률 조항)",
+    "example": {
+      "ja": "憲法第九条は平和について述べている。",
+      "reading": "けんぽうだいきゅうじょうはへいわについてのべている。",
+      "ko": "헌법 제9조는 평화에 대해 서술하고 있다."
+    }
+  },
+  {
+    "id": 62,
+    "expression": "～場",
+    "reading": "～じょう",
+    "meaning_en": "kind of field, ground",
+    "meaning_ko": "~장 (장소, 경기장)",
+    "example": {
+      "ja": "野球場でプロの試合を見た。",
+      "reading": "やきゅうじょうでぷろのしあいをみた。",
+      "ko": "야구장에서 프로 경기를 봤다."
+    }
+  },
+  {
+    "id": 63,
+    "expression": "～畳",
+    "reading": "～じょう",
+    "meaning_en": "count for tatami, mat",
+    "meaning_ko": "~장 (다다미 세는 단위)",
+    "example": {
+      "ja": "この部屋は六畳の和室です。",
+      "reading": "このへやはろくじょうのわしつです。",
+      "ko": "이 방은 6장 크기의 일본식 방입니다."
+    }
+  },
+  {
+    "id": 64,
+    "expression": "～色",
+    "reading": "～しょく",
+    "meaning_en": "kind of color",
+    "meaning_ko": "~색 (색깔)",
+    "example": {
+      "ja": "信号は三色に変わる。",
+      "reading": "しんごうはさんしょくにかわる。",
+      "ko": "신호등은 3색으로 바뀐다."
+    }
+  },
+  {
+    "id": 65,
+    "expression": "～過ぎる",
+    "reading": "～すぎる",
+    "meaning_en": "too much ~",
+    "meaning_ko": "너무 ~하다, 지나치게 ~하다",
+    "example": {
+      "ja": "食べ過ぎてお腹が痛い。",
+      "reading": "たべすぎておなかがいたい。",
+      "ko": "너무 많이 먹어서 배가 아프다."
+    }
+  },
+  {
+    "id": 66,
+    "expression": "～済",
+    "reading": "～ずみ",
+    "meaning_en": "finished",
+    "meaning_ko": "~완료, ~끝난",
+    "example": {
+      "ja": "この書類は確認済みです。",
+      "reading": "このしょるいはかくにんずみです。",
+      "ko": "이 서류는 확인 완료입니다."
+    }
+  },
+  {
+    "id": 67,
+    "expression": "～席",
+    "reading": "～せき",
+    "meaning_en": "counter for seats",
+    "meaning_ko": "~석 (좌석 세는 단위)",
+    "example": {
+      "ja": "このレストランは五十席ある。",
+      "reading": "このれすとらんはごじゅっせきある。",
+      "ko": "이 레스토랑은 50석이 있다."
+    }
+  },
+  {
+    "id": 68,
+    "expression": "～船",
+    "reading": "～せん",
+    "meaning_en": "counter for ships",
+    "meaning_ko": "~선 (배 이름)",
+    "example": {
+      "ja": "漁船が港に戻ってきた。",
+      "reading": "ぎょせんがみなとにもどってきた。",
+      "ko": "어선이 항구로 돌아왔다."
+    }
+  },
+  {
+    "id": 69,
+    "expression": "～戦",
+    "reading": "～せん",
+    "meaning_en": "counter for games, matches",
+    "meaning_ko": "~전 (경기 세는 단위)",
+    "example": {
+      "ja": "決勝戦は来週の日曜日だ。",
+      "reading": "けっしょうせんはらいしゅうのにちようびだ。",
+      "ko": "결승전은 다음 주 일요일이다."
+    }
+  },
+  {
+    "id": 70,
+    "expression": "～前",
+    "reading": "～ぜん",
+    "meaning_en": "before ~",
+    "meaning_ko": "~전 (이전)",
+    "example": {
+      "ja": "食前にこの薬を飲んでください。",
+      "reading": "しょくぜんにこのくすりをのんでください。",
+      "ko": "식전에 이 약을 드세요."
+    }
+  },
+  {
+    "id": 71,
+    "expression": "～沿い",
+    "reading": "～そい",
+    "meaning_en": "along",
+    "meaning_ko": "~을 따라",
+    "example": {
+      "ja": "川沿いの道を散歩した。",
+      "reading": "かわぞいのみちをさんぽした。",
+      "ko": "강을 따라 길을 산책했다."
+    }
+  },
+  {
+    "id": 72,
+    "expression": "～艘",
+    "reading": "～そう",
+    "meaning_en": "counter for ships",
+    "meaning_ko": "~척 (배 세는 단위)",
+    "example": {
+      "ja": "港に大きな船が三艘停まっている。",
+      "reading": "みなとにおおきなふねがさんそうとまっている。",
+      "ko": "항구에 큰 배가 3척 정박해 있다."
+    }
+  },
+  {
+    "id": 73,
+    "expression": "～足",
+    "reading": "～そく",
+    "meaning_en": "counter for shoes",
+    "meaning_ko": "~켤레 (신발 세는 단위)",
+    "example": {
+      "ja": "新しい靴を二足買った。",
+      "reading": "あたらしいくつをにそくかった。",
+      "ko": "새 신발을 두 켤레 샀다."
+    }
+  },
+  {
+    "id": 74,
+    "expression": "～だらけ",
+    "reading": "～だらけ",
+    "meaning_en": "be full of ~, be filled with ~",
+    "meaning_ko": "~투성이, ~으로 가득한",
+    "example": {
+      "ja": "子供は泥だらけで帰ってきた。",
+      "reading": "こどもはどろだらけでかえってきた。",
+      "ko": "아이는 진흙투성이로 돌아왔다."
+    }
+  },
+  {
+    "id": 75,
+    "expression": "～団",
+    "reading": "～だん",
+    "meaning_en": "group, corps, party",
+    "meaning_ko": "~단 (단체)",
+    "example": {
+      "ja": "消防団が火事の現場に駆けつけた。",
+      "reading": "しょうぼうだんがかじのげんばにかけつけた。",
+      "ko": "소방단이 화재 현장에 달려갔다."
+    }
+  },
+  {
+    "id": 76,
+    "expression": "～着",
+    "reading": "～ちゃく",
+    "meaning_en": "counter for clothes; finishing place",
+    "meaning_ko": "~착 (옷 세는 단위; 도착 순서)",
+    "example": {
+      "ja": "スーツを二着持っている。",
+      "reading": "すーつをにちゃくもっている。",
+      "ko": "정장을 두 벌 가지고 있다."
+    }
+  },
+  {
+    "id": 77,
+    "expression": "～庁",
+    "reading": "～ちょう",
+    "meaning_en": "office, agency",
+    "meaning_ko": "~청 (관청)",
+    "example": {
+      "ja": "気象庁が台風の情報を発表した。",
+      "reading": "きしょうちょうがたいふうのじょうほうをはっぴょうした。",
+      "ko": "기상청이 태풍 정보를 발표했다."
+    }
+  },
+  {
+    "id": 78,
+    "expression": "～兆",
+    "reading": "～ちょう",
+    "meaning_en": "trillion",
+    "meaning_ko": "~조 (숫자 단위)",
+    "example": {
+      "ja": "国の借金は一千兆円を超えた。",
+      "reading": "くにのしゃっきんはいっせんちょうえんをこえた。",
+      "ko": "국가 빚이 1,000조 엔을 넘었다."
+    }
+  },
+  {
+    "id": 79,
+    "expression": "～長",
+    "reading": "～ちょう",
+    "meaning_en": "leader, head",
+    "meaning_ko": "~장 (리더, 우두머리)",
+    "example": {
+      "ja": "部長に昇進した。",
+      "reading": "ぶちょうにしょうしんした。",
+      "ko": "부장으로 승진했다."
+    }
+  },
+  {
+    "id": 80,
+    "expression": "～帳",
+    "reading": "～ちょう",
+    "meaning_en": "~ book, notebook",
+    "meaning_ko": "~장 (수첩, 장부)",
+    "example": {
+      "ja": "電話帳で番号を調べた。",
+      "reading": "でんわちょうでばんごうをしらべた。",
+      "ko": "전화번호부에서 번호를 찾았다."
+    }
+  },
+  {
+    "id": 81,
+    "expression": "～丁目",
+    "reading": "～ちょうめ",
+    "meaning_en": "~ district (of a town; city, block)",
+    "meaning_ko": "~초메 (주소 구획 단위)",
+    "example": {
+      "ja": "この店は三丁目にあります。",
+      "reading": "このみせはさんちょうめにあります。",
+      "ko": "이 가게는 3초메에 있습니다."
+    }
+  },
+  {
+    "id": 82,
+    "expression": "～通",
+    "reading": "～つう",
+    "meaning_en": "counter for letters",
+    "meaning_ko": "~통 (편지 세는 단위)",
+    "example": {
+      "ja": "手紙を三通出した。",
+      "reading": "てがみをさんつうだした。",
+      "ko": "편지를 3통 보냈다."
+    }
+  },
+  {
+    "id": 83,
+    "expression": "～遣い",
+    "reading": "～づかい",
+    "meaning_en": "use of ~",
+    "meaning_ko": "~쓰기, ~사용법",
+    "example": {
+      "ja": "言葉遣いに気をつけてください。",
+      "reading": "ことばづかいにきをつけてください。",
+      "ko": "말씨에 주의해 주세요."
+    }
+  },
+  {
+    "id": 84,
+    "expression": "～付",
+    "reading": "～つき",
+    "meaning_en": "with ~",
+    "meaning_ko": "~포함, ~달린",
+    "example": {
+      "ja": "朝食付きのホテルを予約した。",
+      "reading": "ちょうしょくつきのほてるをよやくした。",
+      "ko": "조식 포함 호텔을 예약했다."
+    }
+  },
+  {
+    "id": 85,
+    "expression": "～続く",
+    "reading": "～つづく",
+    "meaning_en": "follow, continue, go on",
+    "meaning_ko": "계속 ~하다",
+    "example": {
+      "ja": "雨が三日間降り続いた。",
+      "reading": "あめがみっかかんふりつづいた。",
+      "ko": "비가 3일간 계속 내렸다."
+    }
+  },
+  {
+    "id": 86,
+    "expression": "～辛い",
+    "reading": "～づらい",
+    "meaning_en": "hard to do ~",
+    "meaning_ko": "~하기 힘들다, ~하기 거북하다",
+    "example": {
+      "ja": "この話は言いづらい。",
+      "reading": "このはなしはいいづらい。",
+      "ko": "이 이야기는 말하기 힘들다."
+    }
+  },
+  {
+    "id": 87,
+    "expression": "～滴",
+    "reading": "～てき",
+    "meaning_en": "drop",
+    "meaning_ko": "~방울 (액체 세는 단위)",
+    "example": {
+      "ja": "目薬を一滴さした。",
+      "reading": "めぐすりをいってきさした。",
+      "ko": "안약을 한 방울 넣었다."
+    }
+  },
+  {
+    "id": 88,
+    "expression": "～点",
+    "reading": "～てん",
+    "meaning_en": "counter for scores",
+    "meaning_ko": "~점 (점수)",
+    "example": {
+      "ja": "テストで九十点を取った。",
+      "reading": "てすとできゅうじゅってんをとった。",
+      "ko": "시험에서 90점을 받았다."
+    }
+  },
+  {
+    "id": 89,
+    "expression": "～頭",
+    "reading": "～とう",
+    "meaning_en": "counter for animals",
+    "meaning_ko": "~두 (큰 동물 세는 단위)",
+    "example": {
+      "ja": "牧場に牛が五十頭いる。",
+      "reading": "ぼくじょうにうしがごじゅっとういる。",
+      "ko": "목장에 소가 50두 있다."
+    }
+  },
+  {
+    "id": 90,
+    "expression": "～等",
+    "reading": "～とう",
+    "meaning_en": "level, place",
+    "meaning_ko": "~등 (등급)",
+    "example": {
+      "ja": "一等賞を受賞した。",
+      "reading": "いっとうしょうをじゅしょうした。",
+      "ko": "1등상을 수상했다."
+    }
+  },
+  {
+    "id": 91,
+    "expression": "～島",
+    "reading": "～とう",
+    "meaning_en": "kind of islands",
+    "meaning_ko": "~도 (섬 이름)",
+    "example": {
+      "ja": "沖縄本島は日本の南にある。",
+      "reading": "おきなわほんとうはにほんのみなみにある。",
+      "ko": "오키나와 본섬은 일본 남쪽에 있다."
+    }
+  },
+  {
+    "id": 92,
+    "expression": "～道",
+    "reading": "～どう",
+    "meaning_en": "kind of path, road",
+    "meaning_ko": "~도 (길, 도)",
+    "example": {
+      "ja": "柔道は日本の武道の一つです。",
+      "reading": "じゅうどうはにほんのぶどうのひとつです。",
+      "ko": "유도는 일본 무도 중 하나입니다."
+    }
+  },
+  {
+    "id": 93,
+    "expression": "～通り",
+    "reading": "～とおり",
+    "meaning_en": "in accordance with ~; following ~; ~ street, ~ avenue",
+    "meaning_ko": "~대로; ~거리",
+    "example": {
+      "ja": "予定通りに進めてください。",
+      "reading": "よていどおりにすすめてください。",
+      "ko": "예정대로 진행해 주세요."
+    }
+  },
+  {
+    "id": 94,
+    "expression": "～ところ",
+    "reading": "～ところ",
+    "meaning_en": "about to do ~",
+    "meaning_ko": "막 ~하려는 참이다",
+    "example": {
+      "ja": "今から出かけるところです。",
+      "reading": "いまからでかけるところです。",
+      "ko": "지금 막 외출하려는 참입니다."
+    }
+  },
+  {
+    "id": 95,
+    "expression": "～内",
+    "reading": "～ない",
+    "meaning_en": "inside ~",
+    "meaning_ko": "~내, ~안",
+    "example": {
+      "ja": "校内では走らないでください。",
+      "reading": "こうないでははしらないでください。",
+      "ko": "교내에서는 뛰지 마세요."
+    }
+  },
+  {
+    "id": 96,
+    "expression": "～年生",
+    "reading": "～ねんせい",
+    "meaning_en": "counter for school year",
+    "meaning_ko": "~학년",
+    "example": {
+      "ja": "娘は小学三年生です。",
+      "reading": "むすめはしょうがくさんねんせいです。",
+      "ko": "딸은 초등학교 3학년입니다."
+    }
+  },
+  {
+    "id": 97,
+    "expression": "～泊",
+    "reading": "～はく",
+    "meaning_en": "counter for staying (e.g., 2 nights)",
+    "meaning_ko": "~박 (숙박 세는 단위)",
+    "example": {
+      "ja": "二泊三日の旅行に行く。",
+      "reading": "にはくみっかのりょこうにいく。",
+      "ko": "2박 3일 여행을 간다."
+    }
+  },
+  {
+    "id": 98,
+    "expression": "～発",
+    "reading": "～はつ",
+    "meaning_en": "counter for bullets",
+    "meaning_ko": "~발 (총알·발사 세는 단위)",
+    "example": {
+      "ja": "花火を三発打ち上げた。",
+      "reading": "はなびをさんぱつうちあげた。",
+      "ko": "불꽃을 3발 쏘아 올렸다."
+    }
+  },
+  {
+    "id": 99,
+    "expression": "～番目",
+    "reading": "～ばんめ",
+    "meaning_en": "~th",
+    "meaning_ko": "~번째",
+    "example": {
+      "ja": "三番目の角を右に曲がってください。",
+      "reading": "さんばんめのかどをみぎにまがってください。",
+      "ko": "세 번째 모퉁이에서 오른쪽으로 꺾어 주세요."
+    }
+  },
+  {
+    "id": 100,
+    "expression": "～費",
+    "reading": "～ひ",
+    "meaning_en": "cost of ~",
+    "meaning_ko": "~비 (비용)",
+    "example": {
+      "ja": "交通費は会社が負担してくれる。",
+      "reading": "こうつうひはかいしゃがふたんしてくれる。",
+      "ko": "교통비는 회사가 부담해 준다."
+    }
+  }
+]
