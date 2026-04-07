@@ -103,6 +103,38 @@ class TodayStudySet {
 
   int get completedCount => items.where((item) => item.isFullyCompleted).length;
 
+  factory TodayStudySet.fromDbMap(
+    Map<String, dynamic> map,
+    List<TodayStudyItem> items,
+  ) {
+    final statusStr = map['status'] as String;
+    final startedAtStr = map['started_at'] as String?;
+    final completedAtStr = map['completed_at'] as String?;
+
+    return TodayStudySet(
+      studyDate: map['study_date'] as String,
+      jlptLevel: (map['jlpt_level'] as String) == 'N3' ? JlptLevel.n3 : JlptLevel.n2,
+      targetCount: map['target_count'] as int,
+      status: _studyStageFromString(statusStr),
+      items: items,
+      startedAt: startedAtStr != null ? DateTime.parse(startedAtStr) : null,
+      completedAt: completedAtStr != null ? DateTime.parse(completedAtStr) : null,
+      createdAt: DateTime.parse(map['created_at'] as String),
+      updatedAt: DateTime.parse(map['updated_at'] as String),
+    );
+  }
+
+  Map<String, dynamic> toDbMap() => {
+        'study_date': studyDate,
+        'jlpt_level': jlptLevel == JlptLevel.n3 ? 'N3' : 'N2',
+        'target_count': targetCount,
+        'status': _studyStageToString(status),
+        'started_at': startedAt?.toIso8601String(),
+        'completed_at': completedAt?.toIso8601String(),
+        'created_at': createdAt.toIso8601String(),
+        'updated_at': updatedAt.toIso8601String(),
+      };
+
   TodayStudySet copyWith({
     String? studyDate,
     JlptLevel? jlptLevel,
@@ -125,6 +157,34 @@ class TodayStudySet {
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
     );
+  }
+}
+
+StudyStage _studyStageFromString(String value) {
+  switch (value) {
+    case 'flashcard':
+      return StudyStage.flashcard;
+    case 'quiz_reading':
+      return StudyStage.quizReading;
+    case 'quiz_meaning':
+      return StudyStage.quizMeaning;
+    case 'completed':
+      return StudyStage.completed;
+    default:
+      return StudyStage.flashcard;
+  }
+}
+
+String _studyStageToString(StudyStage stage) {
+  switch (stage) {
+    case StudyStage.flashcard:
+      return 'flashcard';
+    case StudyStage.quizReading:
+      return 'quiz_reading';
+    case StudyStage.quizMeaning:
+      return 'quiz_meaning';
+    case StudyStage.completed:
+      return 'completed';
   }
 }
 
