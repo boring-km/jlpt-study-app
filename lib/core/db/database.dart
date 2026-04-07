@@ -9,10 +9,11 @@ class AppDatabase {
     return _db!;
   }
 
-  /// 테스트 전용: 인메모리 DB 반환
-  static Future<Database> openForTest() async {
+  /// 테스트 전용: 고유 이름의 인메모리 DB 반환 (테스트 간 격리 보장)
+  static Future<Database> openForTest({String? name}) async {
+    final dbName = name ?? 'test_${DateTime.now().microsecondsSinceEpoch}';
     return openDatabase(
-      inMemoryDatabasePath,
+      ':memory:$dbName',
       version: 1,
       onCreate: _onCreate,
     );
