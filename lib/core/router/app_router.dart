@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../../features/splash/splash_screen.dart';
 
 // 플레이스홀더 - 이후 화면 구현 시 교체
 class PlaceholderScreen extends StatelessWidget {
@@ -36,7 +37,7 @@ final appRouter = GoRouter(
   routes: [
     GoRoute(
       path: '/splash',
-      builder: (context, state) => const PlaceholderScreen('스플래시'),
+      builder: (context, state) => const SplashScreen(),
     ),
     StatefulShellRoute.indexedStack(
       builder: (context, state, shell) =>
