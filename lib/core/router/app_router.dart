@@ -8,6 +8,8 @@ import '../../features/study/quiz_meaning/quiz_meaning_screen.dart';
 import '../../features/study/wrong_answers/wrong_answers_screen.dart';
 import '../../features/study/complete/complete_screen.dart';
 import '../../features/review/review_screen.dart';
+import '../../features/explore/explore_screen.dart';
+import '../../features/explore/word_list_screen.dart';
 
 // 플레이스홀더 - 이후 화면 구현 시 교체
 class PlaceholderScreen extends StatelessWidget {
@@ -93,7 +95,18 @@ final appRouter = GoRouter(
         StatefulShellBranch(routes: [
           GoRoute(
             path: '/explore',
-            builder: (context, state) => const PlaceholderScreen('탐색'),
+            builder: (context, state) => const ExploreScreen(),
+            routes: [
+              GoRoute(
+                path: 'list',
+                builder: (context, state) => const WordListScreen(),
+              ),
+              GoRoute(
+                path: 'flashcard',
+                builder: (context, state) =>
+                    const PlaceholderScreen('탐색 플래시카드'),
+              ),
+            ],
           ),
         ]),
         StatefulShellBranch(routes: [
