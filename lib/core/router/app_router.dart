@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../features/home/home_screen.dart';
 import '../../features/splash/splash_screen.dart';
+import '../../features/study/flashcard/flashcard_screen.dart';
 
 // 플레이스홀더 - 이후 화면 구현 시 교체
 class PlaceholderScreen extends StatelessWidget {
@@ -51,7 +52,7 @@ final appRouter = GoRouter(
             routes: [
               GoRoute(
                 path: 'study/flashcard',
-                builder: (context, state) => const PlaceholderScreen('플래시카드'),
+                builder: (context, state) => const FlashcardScreen(),
               ),
               GoRoute(
                 path: 'study/quiz-reading',
