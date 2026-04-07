@@ -12,6 +12,8 @@ import '../../features/explore/explore_screen.dart';
 import '../../features/explore/word_list_screen.dart';
 import '../../features/explore/explore_flashcard_screen.dart';
 import '../../features/stats/stats_screen.dart';
+import '../../features/kana/kana_screen.dart';
+import '../../features/settings/settings_screen.dart';
 
 // 플레이스홀더 - 이후 화면 구현 시 교체
 class PlaceholderScreen extends StatelessWidget {
@@ -89,7 +91,7 @@ final appRouter = GoRouter(
               ),
               GoRoute(
                 path: 'kana',
-                builder: (context, state) => const PlaceholderScreen('가나표'),
+                builder: (context, state) => const KanaScreen(),
               ),
             ],
           ),
@@ -120,7 +122,7 @@ final appRouter = GoRouter(
         StatefulShellBranch(routes: [
           GoRoute(
             path: '/settings',
-            builder: (context, state) => const PlaceholderScreen('설정'),
+            builder: (context, state) => const SettingsScreen(),
           ),
         ]),
       ],
