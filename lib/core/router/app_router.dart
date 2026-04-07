@@ -11,6 +11,7 @@ import '../../features/review/review_screen.dart';
 import '../../features/explore/explore_screen.dart';
 import '../../features/explore/word_list_screen.dart';
 import '../../features/explore/explore_flashcard_screen.dart';
+import '../../features/stats/stats_screen.dart';
 
 // 플레이스홀더 - 이후 화면 구현 시 교체
 class PlaceholderScreen extends StatelessWidget {
@@ -113,7 +114,7 @@ final appRouter = GoRouter(
         StatefulShellBranch(routes: [
           GoRoute(
             path: '/stats',
-            builder: (context, state) => const PlaceholderScreen('통계'),
+            builder: (context, state) => const StatsScreen(),
           ),
         ]),
         StatefulShellBranch(routes: [
