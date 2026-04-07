@@ -7,6 +7,7 @@ import '../../features/study/quiz_reading/quiz_reading_screen.dart';
 import '../../features/study/quiz_meaning/quiz_meaning_screen.dart';
 import '../../features/study/wrong_answers/wrong_answers_screen.dart';
 import '../../features/study/complete/complete_screen.dart';
+import '../../features/review/review_screen.dart';
 
 // 플레이스홀더 - 이후 화면 구현 시 교체
 class PlaceholderScreen extends StatelessWidget {
@@ -80,7 +81,7 @@ final appRouter = GoRouter(
               ),
               GoRoute(
                 path: 'review',
-                builder: (context, state) => const PlaceholderScreen('복습 퀴즈'),
+                builder: (context, state) => const ReviewScreen(),
               ),
               GoRoute(
                 path: 'kana',
