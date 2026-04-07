@@ -3,6 +3,8 @@ import 'package:go_router/go_router.dart';
 import '../../features/home/home_screen.dart';
 import '../../features/splash/splash_screen.dart';
 import '../../features/study/flashcard/flashcard_screen.dart';
+import '../../features/study/quiz_reading/quiz_reading_screen.dart';
+import '../../features/study/quiz_meaning/quiz_meaning_screen.dart';
 
 // 플레이스홀더 - 이후 화면 구현 시 교체
 class PlaceholderScreen extends StatelessWidget {
@@ -56,11 +58,11 @@ final appRouter = GoRouter(
               ),
               GoRoute(
                 path: 'study/quiz-reading',
-                builder: (context, state) => const PlaceholderScreen('1단계 퀴즈'),
+                builder: (context, state) => const QuizReadingScreen(),
               ),
               GoRoute(
                 path: 'study/quiz-meaning',
-                builder: (context, state) => const PlaceholderScreen('2단계 퀴즈'),
+                builder: (context, state) => const QuizMeaningScreen(),
               ),
               GoRoute(
                 path: 'study/wrong-answers',
