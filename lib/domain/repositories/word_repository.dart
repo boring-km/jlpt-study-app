@@ -80,4 +80,20 @@ class WordRepository {
     );
     return rows.map(Word.fromDbMap).toList();
   }
+
+  Future<List<Word>> getRandomByLevel(
+    JlptLevel level,
+    int limit,
+    List<String> excludeIds,
+  ) async {
+    final levelStr = level == JlptLevel.n3 ? 'N3' : 'N2';
+    final excludePlaceholders = excludeIds.isEmpty
+        ? ''
+        : 'AND id NOT IN (${List.filled(excludeIds.length, '?').join(',')})';
+    final rows = await _db.rawQuery(
+      'SELECT * FROM words WHERE jlpt_level = ? $excludePlaceholders ORDER BY RANDOM() LIMIT ?',
+      [levelStr, ...excludeIds, limit],
+    );
+    return rows.map(Word.fromDbMap).toList();
+  }
 }

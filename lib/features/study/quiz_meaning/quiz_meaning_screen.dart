@@ -17,7 +17,8 @@ class QuizMeaningScreen extends ConsumerStatefulWidget {
 class _QuizMeaningScreenState extends ConsumerState<QuizMeaningScreen> {
   List<String> _queue = [];
   int _queueIndex = 0;
-  bool _revealed = false;
+  bool _assessed = false;
+  bool _knew = false;
   bool _initialized = false;
 
   void _maybeInitQueue(List<String> wordIds) {
@@ -28,12 +29,11 @@ class _QuizMeaningScreenState extends ConsumerState<QuizMeaningScreen> {
       setState(() {
         _queue = wordIds;
         _queueIndex = 0;
-        _revealed = false;
+        _assessed = false;
+        _knew = false;
       });
     });
   }
-
-  void _onReveal() => setState(() => _revealed = true);
 
   void _onAssess(bool knows) {
     final wordId = _queue[_queueIndex];
@@ -43,6 +43,13 @@ class _QuizMeaningScreenState extends ConsumerState<QuizMeaningScreen> {
           isReadingStage: false,
         );
     if (!knows) _queue.add(wordId);
+    setState(() {
+      _assessed = true;
+      _knew = knows;
+    });
+  }
+
+  void _onNext() {
     final nextIndex = _queueIndex + 1;
     if (nextIndex >= _queue.length) {
       _finish();
@@ -50,7 +57,8 @@ class _QuizMeaningScreenState extends ConsumerState<QuizMeaningScreen> {
     }
     setState(() {
       _queueIndex = nextIndex;
-      _revealed = false;
+      _assessed = false;
+      _knew = false;
     });
   }
 
@@ -114,58 +122,7 @@ class _QuizMeaningScreenState extends ConsumerState<QuizMeaningScreen> {
             ),
           ),
           const SizedBox(height: 48),
-          if (!_revealed)
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Theme.of(context).colorScheme.primary,
-                foregroundColor: Theme.of(context).colorScheme.onPrimary,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(14),
-                ),
-                padding: const EdgeInsets.symmetric(vertical: 16),
-              ),
-              onPressed: _onReveal,
-              child: const Text('뜻 확인', style: TextStyle(fontSize: 18)),
-            ),
-          if (_revealed) ...[
-            Container(
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: Theme.of(context).cardColor,
-                borderRadius: BorderRadius.circular(14),
-                border: Border.all(color: Theme.of(context).dividerColor, width: 1.5),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    word.reading,
-                    style: TextStyle(
-                      fontSize: 22,
-                      color: Theme.of(context).colorScheme.primary,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(word.meaningKo, style: const TextStyle(fontSize: 18)),
-                  if (word.example != null) ...[
-                    const SizedBox(height: 16),
-                    const Divider(),
-                    const SizedBox(height: 8),
-                    Text(word.example!.ja, style: const TextStyle(fontSize: 13)),
-                    const SizedBox(height: 4),
-                    Text(
-                      word.example!.ko,
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Theme.of(context).colorScheme.onSurfaceVariant,
-                      ),
-                    ),
-                  ],
-                ],
-              ),
-            ),
-            const SizedBox(height: 24),
+          if (!_assessed) ...[
             Row(
               children: [
                 Expanded(
@@ -187,7 +144,7 @@ class _QuizMeaningScreenState extends ConsumerState<QuizMeaningScreen> {
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.success,
-                      foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                      foregroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(14),
                       ),
@@ -198,6 +155,71 @@ class _QuizMeaningScreenState extends ConsumerState<QuizMeaningScreen> {
                   ),
                 ),
               ],
+            ),
+          ],
+          if (_assessed) ...[
+            Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: Theme.of(context).cardColor,
+                borderRadius: BorderRadius.circular(14),
+                border: Border.all(
+                  color: _knew ? AppColors.success : AppColors.error,
+                  width: 2.0,
+                ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(
+                        _knew ? Icons.check_circle : Icons.cancel,
+                        color: _knew ? AppColors.success : AppColors.error,
+                        size: 20,
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        word.reading,
+                        style: TextStyle(
+                          fontSize: 22,
+                          color: Theme.of(context).colorScheme.primary,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  Text(word.meaningKo, style: const TextStyle(fontSize: 18)),
+                  if (word.example != null) ...[
+                    const SizedBox(height: 16),
+                    const Divider(),
+                    const SizedBox(height: 8),
+                    Text(word.example!.ja, style: const TextStyle(fontSize: 13)),
+                    const SizedBox(height: 4),
+                    Text(
+                      word.example!.ko,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                      ),
+                    ),
+                  ],
+                ],
+              ),
+            ),
+            const SizedBox(height: 24),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Theme.of(context).colorScheme.primary,
+                foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(14),
+                ),
+                padding: const EdgeInsets.symmetric(vertical: 16),
+              ),
+              onPressed: _onNext,
+              child: const Text('다음', style: TextStyle(fontSize: 18)),
             ),
           ],
         ],

@@ -49,6 +49,39 @@ final appRouter = GoRouter(
       path: '/splash',
       builder: (context, state) => const SplashScreen(),
     ),
+    // 바텀 네비게이션 없는 전체화면 라우트
+    GoRoute(
+      path: '/study/flashcard',
+      builder: (context, state) => const FlashcardScreen(),
+    ),
+    GoRoute(
+      path: '/study/quiz-reading',
+      builder: (context, state) => const QuizReadingScreen(),
+    ),
+    GoRoute(
+      path: '/study/quiz-meaning',
+      builder: (context, state) => const QuizMeaningScreen(),
+    ),
+    GoRoute(
+      path: '/study/wrong-answers',
+      builder: (context, state) {
+        final extra = state.extra as Map<String, dynamic>? ?? {};
+        final stage = extra['stage'] as String? ?? 'reading';
+        return WrongAnswersScreen(stage: stage);
+      },
+    ),
+    GoRoute(
+      path: '/study/complete',
+      builder: (context, state) => const CompleteScreen(),
+    ),
+    GoRoute(
+      path: '/review',
+      builder: (context, state) => const ReviewScreen(),
+    ),
+    GoRoute(
+      path: '/kana',
+      builder: (context, state) => const KanaScreen(),
+    ),
     StatefulShellRoute.indexedStack(
       builder: (context, state, shell) =>
           ScaffoldWithNavBar(navigationShell: shell),
@@ -57,40 +90,6 @@ final appRouter = GoRouter(
           GoRoute(
             path: '/',
             builder: (context, state) => const HomeScreen(),
-            routes: [
-              GoRoute(
-                path: 'study/flashcard',
-                builder: (context, state) => const FlashcardScreen(),
-              ),
-              GoRoute(
-                path: 'study/quiz-reading',
-                builder: (context, state) => const QuizReadingScreen(),
-              ),
-              GoRoute(
-                path: 'study/quiz-meaning',
-                builder: (context, state) => const QuizMeaningScreen(),
-              ),
-              GoRoute(
-                path: 'study/wrong-answers',
-                builder: (context, state) {
-                  final extra = state.extra as Map<String, dynamic>? ?? {};
-                  final stage = extra['stage'] as String? ?? 'reading';
-                  return WrongAnswersScreen(stage: stage);
-                },
-              ),
-              GoRoute(
-                path: 'study/complete',
-                builder: (context, state) => const CompleteScreen(),
-              ),
-              GoRoute(
-                path: 'review',
-                builder: (context, state) => const ReviewScreen(),
-              ),
-              GoRoute(
-                path: 'kana',
-                builder: (context, state) => const KanaScreen(),
-              ),
-            ],
           ),
         ]),
         StatefulShellBranch(routes: [
@@ -100,8 +99,7 @@ final appRouter = GoRouter(
             routes: [
               GoRoute(
                 path: 'flashcard',
-                builder: (context, state) =>
-                    const ExploreFlashcardScreen(),
+                builder: (context, state) => const ExploreFlashcardScreen(),
               ),
             ],
           ),
