@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../../features/home/home_screen.dart';
 import '../../features/splash/splash_screen.dart';
 
 // 플레이스홀더 - 이후 화면 구현 시 교체
@@ -46,7 +47,7 @@ final appRouter = GoRouter(
         StatefulShellBranch(routes: [
           GoRoute(
             path: '/',
-            builder: (context, state) => const PlaceholderScreen('홈'),
+            builder: (context, state) => const HomeScreen(),
             routes: [
               GoRoute(
                 path: 'study/flashcard',
