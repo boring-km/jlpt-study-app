@@ -26,6 +26,7 @@ class JlptApp extends ConsumerWidget {
         AppThemeMode.dark => ThemeMode.dark,
         AppThemeMode.system => ThemeMode.system,
       },
+      debugShowCheckedModeBanner: false,
       routerConfig: appRouter,
     );
   }

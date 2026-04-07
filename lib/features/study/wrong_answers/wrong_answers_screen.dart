@@ -80,8 +80,8 @@ class WrongAnswersScreen extends ConsumerWidget {
                 if (!allPassed)
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.primary,
-                      foregroundColor: Colors.white,
+                      backgroundColor: Theme.of(context).colorScheme.primary,
+                      foregroundColor: Theme.of(context).colorScheme.onPrimary,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(14),
                       ),
@@ -99,8 +99,8 @@ class WrongAnswersScreen extends ConsumerWidget {
                 if (allPassed && isReading)
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.primary,
-                      foregroundColor: Colors.white,
+                      backgroundColor: Theme.of(context).colorScheme.primary,
+                      foregroundColor: Theme.of(context).colorScheme.onPrimary,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(14),
                       ),
@@ -117,8 +117,8 @@ class WrongAnswersScreen extends ConsumerWidget {
                 if (allPassed && !isReading)
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.primary,
-                      foregroundColor: Colors.white,
+                      backgroundColor: Theme.of(context).colorScheme.primary,
+                      foregroundColor: Theme.of(context).colorScheme.onPrimary,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(14),
                       ),
@@ -170,7 +170,7 @@ class _WrongWordTileState extends State<_WrongWordTile> {
         decoration: BoxDecoration(
           color: Theme.of(context).cardColor,
           borderRadius: BorderRadius.circular(14),
-          border: Border.all(color: AppColors.borderLight),
+          border: Border.all(color: Theme.of(context).dividerColor, width: 1.5),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -188,7 +188,7 @@ class _WrongWordTileState extends State<_WrongWordTile> {
                 Text(
                   widget.word.reading,
                   style: TextStyle(
-                      fontSize: 14, color: AppColors.textSecondaryLight),
+                      fontSize: 14, color: Theme.of(context).colorScheme.onSurfaceVariant),
                 ),
                 const Spacer(),
                 WordBadge(level: widget.level),
@@ -198,7 +198,7 @@ class _WrongWordTileState extends State<_WrongWordTile> {
             Text(
               widget.word.meaningKo,
               style: TextStyle(
-                  fontSize: 14, color: AppColors.textSecondaryLight),
+                  fontSize: 14, color: Theme.of(context).colorScheme.onSurfaceVariant),
             ),
             if (_expanded && widget.word.example != null) ...[
               const SizedBox(height: 12),
@@ -210,7 +210,7 @@ class _WrongWordTileState extends State<_WrongWordTile> {
               Text(
                 widget.word.example!.ko,
                 style: TextStyle(
-                    fontSize: 12, color: AppColors.textSecondaryLight),
+                    fontSize: 12, color: Theme.of(context).colorScheme.onSurfaceVariant),
               ),
             ],
           ],

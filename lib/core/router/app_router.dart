@@ -8,12 +8,10 @@ import '../../features/study/quiz_meaning/quiz_meaning_screen.dart';
 import '../../features/study/wrong_answers/wrong_answers_screen.dart';
 import '../../features/study/complete/complete_screen.dart';
 import '../../features/review/review_screen.dart';
-import '../../features/explore/explore_screen.dart';
 import '../../features/explore/word_list_screen.dart';
 import '../../features/explore/explore_flashcard_screen.dart';
 import '../../features/stats/stats_screen.dart';
 import '../../features/kana/kana_screen.dart';
-import '../../features/settings/settings_screen.dart';
 
 // 플레이스홀더 - 이후 화면 구현 시 교체
 class PlaceholderScreen extends StatelessWidget {
@@ -39,7 +37,6 @@ class ScaffoldWithNavBar extends StatelessWidget {
             BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: '홈'),
             BottomNavigationBarItem(icon: Icon(Icons.search_outlined), label: '탐색'),
             BottomNavigationBarItem(icon: Icon(Icons.bar_chart_outlined), label: '통계'),
-            BottomNavigationBarItem(icon: Icon(Icons.settings_outlined), label: '설정'),
           ],
         ),
       );
@@ -99,12 +96,8 @@ final appRouter = GoRouter(
         StatefulShellBranch(routes: [
           GoRoute(
             path: '/explore',
-            builder: (context, state) => const ExploreScreen(),
+            builder: (context, state) => const WordListScreen(),
             routes: [
-              GoRoute(
-                path: 'list',
-                builder: (context, state) => const WordListScreen(),
-              ),
               GoRoute(
                 path: 'flashcard',
                 builder: (context, state) =>
@@ -117,12 +110,6 @@ final appRouter = GoRouter(
           GoRoute(
             path: '/stats',
             builder: (context, state) => const StatsScreen(),
-          ),
-        ]),
-        StatefulShellBranch(routes: [
-          GoRoute(
-            path: '/settings',
-            builder: (context, state) => const SettingsScreen(),
           ),
         ]),
       ],

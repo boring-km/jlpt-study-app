@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../../core/theme/app_theme.dart';
 
 class ExploreScreen extends StatelessWidget {
   const ExploreScreen({super.key});
@@ -56,11 +55,11 @@ class _ModeCard extends StatelessWidget {
           decoration: BoxDecoration(
             color: Theme.of(context).cardColor,
             borderRadius: BorderRadius.circular(14),
-            border: Border.all(color: AppColors.borderLight),
+            border: Border.all(color: Theme.of(context).dividerColor, width: 1.5),
           ),
           child: Row(
             children: [
-              Icon(icon, size: 32, color: AppColors.primary),
+              Icon(icon, size: 32, color: Theme.of(context).colorScheme.primary),
               const SizedBox(width: 16),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -72,12 +71,12 @@ class _ModeCard extends StatelessWidget {
                   Text(subtitle,
                       style: TextStyle(
                           fontSize: 14,
-                          color: AppColors.textSecondaryLight)),
+                          color: Theme.of(context).colorScheme.onSurfaceVariant)),
                 ],
               ),
               const Spacer(),
-              const Icon(Icons.chevron_right,
-                  color: AppColors.textSecondaryLight),
+              Icon(Icons.chevron_right,
+                  color: Theme.of(context).colorScheme.onSurfaceVariant),
             ],
           ),
         ),

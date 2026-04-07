@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../application/providers/settings_provider.dart';
+import '../../domain/models/app_settings.dart';
 
-class SettingsScreen extends ConsumerStatefulWidget {
+class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
 
-  @override
-  ConsumerState<SettingsScreen> createState() => _SettingsScreenState();
-}
-
-class _SettingsScreenState extends ConsumerState<SettingsScreen> {
-  int _dailyWordCount = 10;
-
-  Future<void> _showResetDialog() async {
+  Future<void> _showResetDialog(BuildContext context) async {
     await showDialog<void>(
       context: context,
       builder: (ctx) => AlertDialog(
@@ -32,40 +27,30 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final settings = ref.watch(settingsProvider);
+    final isDark = settings.valueOrNull?.themeMode == AppThemeMode.dark;
+
     return Scaffold(
       appBar: AppBar(title: const Text('설정')),
       body: ListView(
         children: [
           SwitchListTile(
             title: const Text('다크 모드'),
-            subtitle: const Text('시스템 설정을 따릅니다'),
-            value: false,
-            onChanged: null,
-          ),
-          ListTile(
-            title: const Text('오늘 학습 단어 수'),
-            trailing: DropdownButton<int>(
-              value: _dailyWordCount,
-              items: const [
-                DropdownMenuItem(value: 5, child: Text('5개')),
-                DropdownMenuItem(value: 10, child: Text('10개')),
-                DropdownMenuItem(value: 20, child: Text('20개')),
-              ],
-              onChanged: (value) {
-                if (value != null) {
-                  setState(() => _dailyWordCount = value);
-                }
-              },
-            ),
+            value: isDark,
+            onChanged: (value) {
+              ref.read(settingsProvider.notifier).updateThemeMode(
+                    value ? AppThemeMode.dark : AppThemeMode.system,
+                  );
+            },
           ),
           const Divider(),
           ListTile(
             title: TextButton(
-              onPressed: _showResetDialog,
-              child: const Text(
+              onPressed: () => _showResetDialog(context),
+              child: Text(
                 '데이터 초기화',
-                style: TextStyle(color: Colors.red),
+                style: TextStyle(color: Theme.of(context).colorScheme.error),
               ),
             ),
           ),

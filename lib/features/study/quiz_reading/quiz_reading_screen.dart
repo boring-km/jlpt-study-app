@@ -191,6 +191,7 @@ class _QuizReadingScreenState extends ConsumerState<QuizReadingScreen> {
                     color: _showFeedback && choice.reading == correctReading
                         ? AppColors.success
                         : AppColors.borderLight,
+                    width: 2.0,
                   ),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(14),

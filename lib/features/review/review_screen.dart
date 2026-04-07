@@ -201,12 +201,13 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
                   backgroundColor: bgColor ?? Theme.of(context).cardColor,
                   foregroundColor: isCorrect && _showFeedback
                       ? AppColors.success
-                      : AppColors.textPrimaryLight,
+                      : Theme.of(context).colorScheme.onSurface,
                   elevation: 0,
                   side: BorderSide(
                     color: _showFeedback && isCorrect
                         ? AppColors.success
-                        : AppColors.borderLight,
+                        : Theme.of(context).dividerColor,
+                    width: 2.0,
                   ),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(14),
@@ -253,8 +254,8 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
           if (!_meaningRevealed)
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.primary,
-                foregroundColor: Colors.white,
+                backgroundColor: Theme.of(context).colorScheme.primary,
+                foregroundColor: Theme.of(context).colorScheme.onPrimary,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(14),
                 ),
@@ -269,16 +270,16 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
               decoration: BoxDecoration(
                 color: Theme.of(context).cardColor,
                 borderRadius: BorderRadius.circular(14),
-                border: Border.all(color: AppColors.borderLight),
+                border: Border.all(color: Theme.of(context).dividerColor, width: 1.5),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     word.reading,
-                    style: const TextStyle(
+                    style: TextStyle(
                         fontSize: 22,
-                        color: AppColors.primary,
+                        color: Theme.of(context).colorScheme.primary,
                         fontWeight: FontWeight.w600),
                   ),
                   const SizedBox(height: 8),
@@ -294,7 +295,7 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
                   child: OutlinedButton(
                     style: OutlinedButton.styleFrom(
                       foregroundColor: AppColors.error,
-                      side: const BorderSide(color: AppColors.error),
+                      side: const BorderSide(color: AppColors.error, width: 2.0),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(14),
                       ),
@@ -310,7 +311,7 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.success,
-                      foregroundColor: Colors.white,
+                      foregroundColor: Theme.of(context).colorScheme.onPrimary,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(14),
                       ),
@@ -359,8 +360,8 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
           const SizedBox(height: 48),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.primary,
-              foregroundColor: Colors.white,
+              backgroundColor: Theme.of(context).colorScheme.primary,
+              foregroundColor: Theme.of(context).colorScheme.onPrimary,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(14),
               ),
@@ -389,10 +390,10 @@ class _StatRow extends StatelessWidget {
             Text(label, style: Theme.of(context).textTheme.bodyLarge),
             Text(
               value,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w700,
-                color: AppColors.primary,
+                color: Theme.of(context).colorScheme.primary,
               ),
             ),
           ],

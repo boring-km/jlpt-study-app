@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../core/theme/app_theme.dart';
 import 'stats_provider.dart';
 
 class StatsScreen extends ConsumerWidget {
@@ -55,17 +54,17 @@ class _StatsBody extends StatelessWidget {
           LinearProgressIndicator(
             value: stats.overallPercent,
             minHeight: 12,
-            backgroundColor: AppColors.borderLight,
+            backgroundColor: Theme.of(context).dividerColor,
             valueColor:
-                const AlwaysStoppedAnimation<Color>(AppColors.primary),
+                AlwaysStoppedAnimation<Color>(Theme.of(context).colorScheme.primary),
           ),
           const SizedBox(height: 8),
           Text(
             '${(stats.overallPercent * 100).toStringAsFixed(1)}%',
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w600,
-              color: AppColors.primary,
+              color: Theme.of(context).colorScheme.primary,
             ),
             textAlign: TextAlign.end,
           ),
@@ -95,7 +94,7 @@ class _LevelProgressCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: AppColors.borderLight),
+        border: Border.all(color: Theme.of(context).dividerColor, width: 1.5),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -105,10 +104,10 @@ class _LevelProgressCard extends StatelessWidget {
             children: [
               Text(
                 label,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w700,
-                  color: AppColors.primary,
+                  color: Theme.of(context).colorScheme.primary,
                 ),
               ),
               Text(
@@ -124,16 +123,16 @@ class _LevelProgressCard extends StatelessWidget {
           LinearProgressIndicator(
             value: percent,
             minHeight: 8,
-            backgroundColor: AppColors.borderLight,
+            backgroundColor: Theme.of(context).dividerColor,
             valueColor:
-                const AlwaysStoppedAnimation<Color>(AppColors.primary),
+                AlwaysStoppedAnimation<Color>(Theme.of(context).colorScheme.primary),
           ),
           const SizedBox(height: 6),
           Text(
             '${(percent * 100).toStringAsFixed(1)}%',
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 14,
-              color: AppColors.textSecondaryLight,
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
             ),
           ),
         ],

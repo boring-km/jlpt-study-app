@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import '../../core/theme/app_theme.dart';
 import '../../domain/models/word.dart';
 import '../../domain/models/enums.dart';
@@ -15,6 +16,7 @@ class WordListScreen extends ConsumerStatefulWidget {
 
 class _WordListScreenState extends ConsumerState<WordListScreen> {
   final _searchController = TextEditingController();
+  int? _expandedIndex;
 
   @override
   void dispose() {
@@ -49,7 +51,16 @@ class _WordListScreenState extends ConsumerState<WordListScreen> {
     final exploreAsync = ref.watch(exploreProvider);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('단어 리스트')),
+      appBar: AppBar(
+        title: const Text('단어 리스트'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.style_outlined),
+            tooltip: '플래시카드로 보기',
+            onPressed: () => context.go('/explore/flashcard'),
+          ),
+        ],
+      ),
       body: Column(
         children: [
           Padding(
@@ -62,7 +73,7 @@ class _WordListScreenState extends ConsumerState<WordListScreen> {
                 prefixIcon: const Icon(Icons.search),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(14),
-                  borderSide: const BorderSide(color: AppColors.borderLight),
+                  borderSide: BorderSide(color: Theme.of(context).dividerColor, width: 1.5),
                 ),
                 filled: true,
                 contentPadding:
@@ -128,6 +139,11 @@ class _WordListScreenState extends ConsumerState<WordListScreen> {
                         return _WordTile(
                           word: word,
                           isCompleted: isCompleted,
+                          isExpanded: _expandedIndex == index,
+                          onTap: () => setState(() {
+                            _expandedIndex =
+                                _expandedIndex == index ? null : index;
+                          }),
                         );
                       },
                     ),
@@ -158,17 +174,18 @@ class _FilterChip extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
           decoration: BoxDecoration(
-            color: selected ? AppColors.primary : Colors.transparent,
+            color: selected ? Theme.of(context).colorScheme.primary : Colors.transparent,
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
-              color: selected ? AppColors.primary : AppColors.borderLight,
+              color: selected ? Theme.of(context).colorScheme.primary : Theme.of(context).dividerColor,
+              width: 1.5,
             ),
           ),
           child: Text(
             label,
             style: TextStyle(
               fontSize: 13,
-              color: selected ? Colors.white : AppColors.textPrimaryLight,
+              color: selected ? Theme.of(context).colorScheme.onPrimary : Theme.of(context).colorScheme.onSurface,
               fontWeight: selected ? FontWeight.w600 : FontWeight.w400,
             ),
           ),
@@ -176,30 +193,32 @@ class _FilterChip extends StatelessWidget {
       );
 }
 
-class _WordTile extends StatefulWidget {
+class _WordTile extends StatelessWidget {
   final Word word;
   final bool isCompleted;
+  final bool isExpanded;
+  final VoidCallback onTap;
 
-  const _WordTile({required this.word, required this.isCompleted});
-
-  @override
-  State<_WordTile> createState() => _WordTileState();
-}
-
-class _WordTileState extends State<_WordTile> {
-  bool _expanded = false;
+  const _WordTile({
+    required this.word,
+    required this.isCompleted,
+    required this.isExpanded,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => setState(() => _expanded = !_expanded),
-      child: Container(
+      onTap: onTap,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 250),
+        curve: Curves.easeInOut,
         margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: Theme.of(context).cardColor,
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: AppColors.borderLight),
+          border: Border.all(color: Theme.of(context).dividerColor, width: 1.5),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -207,21 +226,22 @@ class _WordTileState extends State<_WordTile> {
             Row(
               children: [
                 Text(
-                  (widget.word.expression?.isNotEmpty ?? false)
-                      ? widget.word.expression!
-                      : widget.word.reading,
+                  (word.expression?.isNotEmpty ?? false)
+                      ? word.expression!
+                      : word.reading,
                   style: const TextStyle(
                       fontSize: 18, fontWeight: FontWeight.w600),
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  widget.word.reading,
+                  word.reading,
                   style: TextStyle(
-                      fontSize: 13, color: AppColors.textSecondaryLight),
+                      fontSize: 13,
+                      color: Theme.of(context).colorScheme.onSurfaceVariant),
                 ),
                 const Spacer(),
-                WordBadge(level: widget.word.jlptLevel),
-                if (widget.isCompleted) ...[
+                WordBadge(level: word.jlptLevel),
+                if (isCompleted) ...[
                   const SizedBox(width: 6),
                   const Icon(Icons.check_circle,
                       size: 16, color: AppColors.success),
@@ -229,24 +249,40 @@ class _WordTileState extends State<_WordTile> {
               ],
             ),
             const SizedBox(height: 4),
-            Text(widget.word.meaningKo,
+            Text(word.meaningKo,
                 style: TextStyle(
-                    fontSize: 14, color: AppColors.textSecondaryLight)),
-            if (_expanded && widget.word.example != null) ...[
-              const SizedBox(height: 12),
-              const Divider(),
-              const SizedBox(height: 8),
-              Text(widget.word.example!.ja,
-                  style: const TextStyle(fontSize: 13)),
-              const SizedBox(height: 4),
-              Text(widget.word.example!.reading,
-                  style: TextStyle(
-                      fontSize: 12, color: AppColors.textSecondaryLight)),
-              const SizedBox(height: 2),
-              Text(widget.word.example!.ko,
-                  style: TextStyle(
-                      fontSize: 12, color: AppColors.textSecondaryLight)),
-            ],
+                    fontSize: 14,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant)),
+            AnimatedSize(
+              duration: const Duration(milliseconds: 250),
+              curve: Curves.easeInOut,
+              child: isExpanded && word.example != null
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(height: 12),
+                        const Divider(),
+                        const SizedBox(height: 8),
+                        Text(word.example!.ja,
+                            style: const TextStyle(fontSize: 23)),
+                        const SizedBox(height: 6),
+                        Text(word.example!.reading,
+                            style: TextStyle(
+                                fontSize: 22,
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onSurfaceVariant)),
+                        const SizedBox(height: 4),
+                        Text(word.example!.ko,
+                            style: TextStyle(
+                                fontSize: 22,
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onSurfaceVariant)),
+                      ],
+                    )
+                  : const SizedBox.shrink(),
+            ),
           ],
         ),
       ),

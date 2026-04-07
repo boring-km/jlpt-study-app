@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const primary = Color(0xFF1D4ED8);
-  static const accent = Color(0xFFF59E0B);
+  // Light mode — red keypoint
+  static const primary = Color(0xFFE50914);
+  static const primaryDark = Color(0xFFFAE100);
+  static const accent = Color(0xFFFF6B6B);
   static const success = Color(0xFF16A34A);
-  static const error = Color(0xFFDC2626);
+  static const error = Color(0xFFB91C1C);
 
-  static const backgroundLight = Color(0xFFF8FAFC);
+  static const backgroundLight = Color(0xFFFFF5F5);
   static const surfaceLight = Color(0xFFFFFFFF);
-  static const textPrimaryLight = Color(0xFF0F172A);
-  static const textSecondaryLight = Color(0xFF475569);
-  static const borderLight = Color(0xFFE2E8F0);
+  static const textPrimaryLight = Color(0xFF1A0A0A);
+  static const textSecondaryLight = Color(0xFF6B3A3A);
+  static const borderLight = Color(0xFFF5C6C6);
 
   static const backgroundDark = Color(0xFF0B1220);
-  static const surfaceDark = Color(0xFF111827);
+  static const surfaceDark = Color(0xFF1C2333);
   static const textPrimaryDark = Color(0xFFE5E7EB);
   static const textSecondaryDark = Color(0xFF94A3B8);
-  static const borderDark = Color(0xFF1F2937);
+  static const borderDark = Color(0xFFFAE100);
 }
 
 class AppTheme {
@@ -31,6 +33,7 @@ class AppTheme {
         scaffoldBackgroundColor: AppColors.backgroundLight,
         cardColor: AppColors.surfaceLight,
         dividerColor: AppColors.borderLight,
+        shadowColor: Colors.black,
         textTheme: _textTheme(AppColors.textPrimaryLight, AppColors.textSecondaryLight),
         appBarTheme: const AppBarTheme(
           backgroundColor: AppColors.backgroundLight,
@@ -49,7 +52,7 @@ class AppTheme {
   static ThemeData dark() => ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.dark(
-          primary: AppColors.primary,
+          primary: AppColors.primaryDark,
           secondary: AppColors.accent,
           error: AppColors.error,
           surface: AppColors.surfaceDark,
@@ -57,6 +60,7 @@ class AppTheme {
         scaffoldBackgroundColor: AppColors.backgroundDark,
         cardColor: AppColors.surfaceDark,
         dividerColor: AppColors.borderDark,
+        shadowColor: Colors.white,
         textTheme: _textTheme(AppColors.textPrimaryDark, AppColors.textSecondaryDark),
         appBarTheme: const AppBarTheme(
           backgroundColor: AppColors.backgroundDark,
@@ -66,7 +70,7 @@ class AppTheme {
         ),
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           backgroundColor: AppColors.surfaceDark,
-          selectedItemColor: AppColors.primary,
+          selectedItemColor: AppColors.primaryDark,
           unselectedItemColor: AppColors.textSecondaryDark,
           type: BottomNavigationBarType.fixed,
         ),

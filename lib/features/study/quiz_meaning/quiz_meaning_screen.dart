@@ -117,8 +117,8 @@ class _QuizMeaningScreenState extends ConsumerState<QuizMeaningScreen> {
           if (!_revealed)
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.primary,
-                foregroundColor: Colors.white,
+                backgroundColor: Theme.of(context).colorScheme.primary,
+                foregroundColor: Theme.of(context).colorScheme.onPrimary,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(14),
                 ),
@@ -133,16 +133,16 @@ class _QuizMeaningScreenState extends ConsumerState<QuizMeaningScreen> {
               decoration: BoxDecoration(
                 color: Theme.of(context).cardColor,
                 borderRadius: BorderRadius.circular(14),
-                border: Border.all(color: AppColors.borderLight),
+                border: Border.all(color: Theme.of(context).dividerColor, width: 1.5),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     word.reading,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 22,
-                      color: AppColors.primary,
+                      color: Theme.of(context).colorScheme.primary,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -158,7 +158,7 @@ class _QuizMeaningScreenState extends ConsumerState<QuizMeaningScreen> {
                       word.example!.ko,
                       style: TextStyle(
                         fontSize: 12,
-                        color: AppColors.textSecondaryLight,
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
                       ),
                     ),
                   ],
@@ -172,7 +172,7 @@ class _QuizMeaningScreenState extends ConsumerState<QuizMeaningScreen> {
                   child: OutlinedButton(
                     style: OutlinedButton.styleFrom(
                       foregroundColor: AppColors.error,
-                      side: const BorderSide(color: AppColors.error),
+                      side: const BorderSide(color: AppColors.error, width: 2.0),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(14),
                       ),
@@ -187,7 +187,7 @@ class _QuizMeaningScreenState extends ConsumerState<QuizMeaningScreen> {
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.success,
-                      foregroundColor: Colors.white,
+                      foregroundColor: Theme.of(context).colorScheme.onPrimary,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(14),
                       ),

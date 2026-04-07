@@ -123,7 +123,7 @@ class _KanaGrid extends StatelessWidget {
           }
           return Container(
             decoration: BoxDecoration(
-              border: Border.all(color: Colors.grey.shade300),
+              border: Border.all(color: Theme.of(context).dividerColor, width: 1.5),
               borderRadius: BorderRadius.circular(4),
             ),
             child: Column(
@@ -137,7 +137,7 @@ class _KanaGrid extends StatelessWidget {
                   roman,
                   style: TextStyle(
                     fontSize: 11,
-                    color: Colors.grey.shade600,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                   ),
                 ),
               ],

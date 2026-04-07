@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../application/providers/progress_summary_provider.dart';
+import '../../application/providers/settings_provider.dart';
 import '../../application/providers/today_study_set_provider.dart';
-import '../../core/theme/app_theme.dart';
+import '../../domain/models/app_settings.dart';
 import '../../domain/models/enums.dart';
 import '../../domain/models/today_study_set.dart';
 import '../../widgets/word_badge.dart';
@@ -40,6 +41,8 @@ class _HomeBody extends ConsumerWidget {
     final todayCompleted = set?.completedCount ?? 0;
     final todayTarget = set?.targetCount ?? summary.dailyTarget;
     final isSetCompleted = set?.status == StudyStage.completed;
+    final settings = ref.watch(settingsProvider);
+    final isDark = settings.valueOrNull?.themeMode == AppThemeMode.dark;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
@@ -55,7 +58,19 @@ class _HomeBody extends ConsumerWidget {
                     : 'D+${summary.daysUntilExam.abs()}',
                 style: Theme.of(context).textTheme.displayLarge,
               ),
-              WordBadge(level: summary.currentLevel),
+              Row(
+                children: [
+                  IconButton(
+                    icon: Icon(isDark ? Icons.light_mode_outlined : Icons.dark_mode_outlined),
+                    onPressed: () {
+                      ref.read(settingsProvider.notifier).updateThemeMode(
+                            isDark ? AppThemeMode.system : AppThemeMode.dark,
+                          );
+                    },
+                  ),
+                  WordBadge(level: summary.currentLevel),
+                ],
+              ),
             ],
           ),
           const SizedBox(height: 8),
@@ -69,8 +84,8 @@ class _HomeBody extends ConsumerWidget {
             child: LinearProgressIndicator(
               value: todayTarget > 0 ? todayCompleted / todayTarget : 0,
               minHeight: 6,
-              backgroundColor: AppColors.borderLight,
-              valueColor: const AlwaysStoppedAnimation(AppColors.primary),
+              backgroundColor: Theme.of(context).dividerColor,
+              valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).colorScheme.primary),
             ),
           ),
           const SizedBox(height: 8),
@@ -86,8 +101,8 @@ class _HomeBody extends ConsumerWidget {
               height: 56,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primary,
-                  foregroundColor: Colors.white,
+                  backgroundColor: Theme.of(context).colorScheme.primary,
+                  foregroundColor: Theme.of(context).colorScheme.onPrimary,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(14),
                   ),
@@ -114,8 +129,8 @@ class _HomeBody extends ConsumerWidget {
               height: 56,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primary,
-                  foregroundColor: Colors.white,
+                  backgroundColor: Theme.of(context).colorScheme.primary,
+                  foregroundColor: Theme.of(context).colorScheme.onPrimary,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(14),
                   ),
@@ -202,8 +217,9 @@ class _SmallCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(14),
           border: Border.all(
             color: enabled
-                ? AppColors.borderLight
-                : AppColors.borderLight.withValues(alpha: 0.4),
+                ? Theme.of(context).dividerColor
+                : Theme.of(context).dividerColor.withValues(alpha: 0.4),
+            width: 1.5,
           ),
         ),
         child: Column(
@@ -211,8 +227,9 @@ class _SmallCard extends StatelessWidget {
           children: [
             Icon(
               icon,
-              color:
-                  enabled ? AppColors.primary : AppColors.textSecondaryLight,
+              color: enabled
+                  ? Theme.of(context).colorScheme.primary
+                  : Theme.of(context).colorScheme.onSurfaceVariant,
             ),
             const SizedBox(height: 4),
             Text(
@@ -220,8 +237,8 @@ class _SmallCard extends StatelessWidget {
               style: TextStyle(
                 fontSize: 12,
                 color: enabled
-                    ? AppColors.textPrimaryLight
-                    : AppColors.textSecondaryLight,
+                    ? Theme.of(context).colorScheme.onSurface
+                    : Theme.of(context).colorScheme.onSurfaceVariant,
               ),
               textAlign: TextAlign.center,
             ),
