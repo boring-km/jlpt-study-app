@@ -10,6 +10,7 @@ import '../../features/study/complete/complete_screen.dart';
 import '../../features/review/review_screen.dart';
 import '../../features/explore/explore_screen.dart';
 import '../../features/explore/word_list_screen.dart';
+import '../../features/explore/explore_flashcard_screen.dart';
 
 // 플레이스홀더 - 이후 화면 구현 시 교체
 class PlaceholderScreen extends StatelessWidget {
@@ -104,7 +105,7 @@ final appRouter = GoRouter(
               GoRoute(
                 path: 'flashcard',
                 builder: (context, state) =>
-                    const PlaceholderScreen('탐색 플래시카드'),
+                    const ExploreFlashcardScreen(),
               ),
             ],
           ),
