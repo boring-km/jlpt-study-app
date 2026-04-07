@@ -6,7 +6,6 @@ import '../../../application/providers/word_catalog_provider.dart';
 import '../../../application/providers/database_provider.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../domain/models/word.dart';
-import '../../../domain/models/enums.dart';
 import '../../../domain/repositories/word_repository.dart';
 import '../../../widgets/word_badge.dart';
 
@@ -124,7 +123,7 @@ class _QuizReadingScreenState extends ConsumerState<QuizReadingScreen> {
               ? Text('${_queueIndex + 1} / ${_queue.length}')
               : const SizedBox.shrink(),
           loading: () => const SizedBox.shrink(),
-          error: (_, __) => const SizedBox.shrink(),
+          error: (e, s) => const SizedBox.shrink(),
         ),
         actions: [
           setAsync.when(
@@ -135,7 +134,7 @@ class _QuizReadingScreenState extends ConsumerState<QuizReadingScreen> {
                   )
                 : const SizedBox.shrink(),
             loading: () => const SizedBox.shrink(),
-            error: (_, __) => const SizedBox.shrink(),
+            error: (e, s) => const SizedBox.shrink(),
           ),
         ],
       ),
@@ -174,9 +173,9 @@ class _QuizReadingScreenState extends ConsumerState<QuizReadingScreen> {
             Color? bgColor;
             if (_showFeedback) {
               if (choice.reading == correctReading) {
-                bgColor = AppColors.success.withOpacity(0.15);
+                bgColor = AppColors.success.withValues(alpha: 0.15);
               } else if (_selectedChoice == choice.reading) {
-                bgColor = AppColors.error.withOpacity(0.15);
+                bgColor = AppColors.error.withValues(alpha: 0.15);
               }
             }
             return Padding(

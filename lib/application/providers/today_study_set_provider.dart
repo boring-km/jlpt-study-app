@@ -92,7 +92,6 @@ class TodayStudySetNotifier extends AsyncNotifier<TodayStudySet?> {
     required bool isReadingStage,
   }) async {
     final db = await ref.read(databaseProvider.future);
-    final today = _todayStr();
     final repo = StudySetRepository(db);
     final current = state.valueOrNull;
     if (current == null) return;

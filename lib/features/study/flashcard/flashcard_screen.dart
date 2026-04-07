@@ -37,7 +37,7 @@ class _FlashcardScreenState extends ConsumerState<FlashcardScreen> {
               ? Text('${_currentIndex + 1} / ${set.items.length}')
               : const SizedBox.shrink(),
           loading: () => const SizedBox.shrink(),
-          error: (_, __) => const SizedBox.shrink(),
+          error: (e, s) => const SizedBox.shrink(),
         ),
         actions: [
           setAsync.when(
@@ -48,7 +48,7 @@ class _FlashcardScreenState extends ConsumerState<FlashcardScreen> {
                   )
                 : const SizedBox.shrink(),
             loading: () => const SizedBox.shrink(),
-            error: (_, __) => const SizedBox.shrink(),
+            error: (e, s) => const SizedBox.shrink(),
           ),
         ],
       ),
@@ -247,7 +247,7 @@ class _CardFace extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.08),
+              color: Colors.black.withValues(alpha: 0.08),
               blurRadius: 16,
               offset: const Offset(0, 4),
             ),

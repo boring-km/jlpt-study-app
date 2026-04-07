@@ -203,7 +203,7 @@ class _SmallCard extends StatelessWidget {
           border: Border.all(
             color: enabled
                 ? AppColors.borderLight
-                : AppColors.borderLight.withOpacity(0.4),
+                : AppColors.borderLight.withValues(alpha: 0.4),
           ),
         ),
         child: Column(

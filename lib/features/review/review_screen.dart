@@ -189,9 +189,9 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
             Color? bgColor;
             if (_showFeedback) {
               if (isCorrect) {
-                bgColor = AppColors.success.withOpacity(0.15);
+                bgColor = AppColors.success.withValues(alpha: 0.15);
               } else if (_selectedChoice == choice.reading) {
-                bgColor = AppColors.error.withOpacity(0.15);
+                bgColor = AppColors.error.withValues(alpha: 0.15);
               }
             }
             return Padding(

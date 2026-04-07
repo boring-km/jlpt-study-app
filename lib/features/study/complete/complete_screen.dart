@@ -78,7 +78,7 @@ class _CompleteScreenState extends ConsumerState<CompleteScreen>
 
                   return Column(
                     children: [
-                      _StatRow(label: '총 시도', value: '${totalAttempts}회'),
+                      _StatRow(label: '총 시도', value: '$totalAttempts회'),
                       _StatRow(
                         label: '최종 정답률',
                         value: '${accuracy.toStringAsFixed(0)}%',
