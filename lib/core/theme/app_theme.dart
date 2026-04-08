@@ -8,11 +8,11 @@ class AppColors {
   static const success = Color(0xFF16A34A);
   static const error = Color(0xFFB91C1C);
 
-  static const backgroundLight = Color(0xFFFFF5F5);
+  static const backgroundLight = Color(0xFFFFFFFF);
   static const surfaceLight = Color(0xFFFFFFFF);
   static const textPrimaryLight = Color(0xFF1A0A0A);
   static const textSecondaryLight = Color(0xFF6B3A3A);
-  static const borderLight = Color(0xFFF5C6C6);
+  static const borderLight = Color(0xFF2C2C2C);
 
   static const backgroundDark = Color(0xFF0B1220);
   static const surfaceDark = Color(0xFF1C2333);
@@ -24,6 +24,7 @@ class AppColors {
 class AppTheme {
   static ThemeData light() => ThemeData(
         useMaterial3: true,
+        fontFamily: 'Pretendard',
         colorScheme: ColorScheme.light(
           primary: AppColors.primary,
           secondary: AppColors.accent,
@@ -51,6 +52,7 @@ class AppTheme {
 
   static ThemeData dark() => ThemeData(
         useMaterial3: true,
+        fontFamily: 'Pretendard',
         colorScheme: ColorScheme.dark(
           primary: AppColors.primaryDark,
           secondary: AppColors.accent,

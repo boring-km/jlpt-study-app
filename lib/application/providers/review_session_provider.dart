@@ -15,16 +15,22 @@ class ReviewSessionNotifier extends AsyncNotifier<ReviewSession?> {
   @override
   Future<ReviewSession?> build() async => null;
 
-  Future<ReviewSession> startNewSession() async {
+  /// [wordIds]가 주어지면 해당 단어만 복습, 없으면 전체 완료 단어에서 랜덤 20개
+  Future<ReviewSession> startNewSession({List<String>? wordIds}) async {
     final db = await ref.read(databaseProvider.future);
     final summary = await ref.read(progressSummaryProvider.future);
     final progressRepo = ProgressRepository(db);
     final reviewRepo = ReviewRepository(db);
 
-    final completedIds =
-        await progressRepo.getCompletedWordIds(summary.currentLevel);
-    completedIds.shuffle();
-    final selected = completedIds.take(20).toList();
+    final List<String> selected;
+    if (wordIds != null && wordIds.isNotEmpty) {
+      selected = wordIds;
+    } else {
+      final completedIds =
+          await progressRepo.getCompletedWordIds(summary.currentLevel);
+      completedIds.shuffle();
+      selected = completedIds.take(20).toList();
+    }
 
     final now = DateTime.now();
     final today =

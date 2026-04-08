@@ -49,6 +49,17 @@ class _QuizMeaningScreenState extends ConsumerState<QuizMeaningScreen> {
     });
   }
 
+  void _onCorrectToWrong() {
+    final wordId = _queue[_queueIndex];
+    ref.read(todayStudySetProvider.notifier).updateItemResult(
+          wordId,
+          passed: false,
+          isReadingStage: false,
+        );
+    _queue.add(wordId);
+    _onNext();
+  }
+
   void _onNext() {
     final nextIndex = _queueIndex + 1;
     if (nextIndex >= _queue.length) {
@@ -183,7 +194,7 @@ class _QuizMeaningScreenState extends ConsumerState<QuizMeaningScreen> {
                         word.reading,
                         style: TextStyle(
                           fontSize: 22,
-                          color: Theme.of(context).colorScheme.primary,
+                          color: _knew ? AppColors.success : AppColors.error,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -209,17 +220,39 @@ class _QuizMeaningScreenState extends ConsumerState<QuizMeaningScreen> {
               ),
             ),
             const SizedBox(height: 24),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Theme.of(context).colorScheme.primary,
-                foregroundColor: Theme.of(context).colorScheme.onPrimary,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(14),
+            Row(
+              children: [
+                if (_knew)
+                  Expanded(
+                    child: OutlinedButton(
+                      style: OutlinedButton.styleFrom(
+                        foregroundColor: AppColors.error,
+                        side: const BorderSide(color: AppColors.error, width: 2.0),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(14),
+                        ),
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                      ),
+                      onPressed: _onCorrectToWrong,
+                      child: const Text('몰랐어', style: TextStyle(fontSize: 18)),
+                    ),
+                  ),
+                if (_knew) const SizedBox(width: 12),
+                Expanded(
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.success,
+                      foregroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(14),
+                      ),
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                    ),
+                    onPressed: _onNext,
+                    child: const Text('다음', style: TextStyle(fontSize: 18)),
+                  ),
                 ),
-                padding: const EdgeInsets.symmetric(vertical: 16),
-              ),
-              onPressed: _onNext,
-              child: const Text('다음', style: TextStyle(fontSize: 18)),
+              ],
             ),
           ],
         ],

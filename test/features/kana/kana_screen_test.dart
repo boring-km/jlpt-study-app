@@ -25,8 +25,8 @@ void main() {
       const ProviderScope(child: MaterialApp(home: KanaScreen())),
     );
     await tester.pump();
-    expect(find.text('히라가나'), findsOneWidget);
-    expect(find.text('가타카나'), findsOneWidget);
+    expect(find.text('ひらがな'), findsOneWidget);
+    expect(find.text('カタカナ'), findsOneWidget);
   });
 
   testWidgets('shows あ in hiragana tab', (tester) async {

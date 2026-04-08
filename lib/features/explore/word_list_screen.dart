@@ -268,14 +268,14 @@ class _WordTile extends StatelessWidget {
                         const SizedBox(height: 6),
                         Text(word.example!.reading,
                             style: TextStyle(
-                                fontSize: 22,
+                                fontSize: 19,
                                 color: Theme.of(context)
                                     .colorScheme
                                     .onSurfaceVariant)),
                         const SizedBox(height: 4),
                         Text(word.example!.ko,
                             style: TextStyle(
-                                fontSize: 22,
+                                fontSize: 16,
                                 color: Theme.of(context)
                                     .colorScheme
                                     .onSurfaceVariant)),

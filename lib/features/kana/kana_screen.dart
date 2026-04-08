@@ -80,9 +80,9 @@ class _KanaScreenState extends State<KanaScreen>
         title: const Text('가나 표'),
         bottom: TabBar(
           controller: _tabController,
-          tabs: const [
-            Tab(text: '히라가나'),
-            Tab(text: '가타카나'),
+          tabs: [
+            Tab(child: Text('ひらがな', style: TextStyle(fontFamily: 'NotoSansJP'))),
+            Tab(child: Text('カタカナ', style: TextStyle(fontFamily: 'NotoSansJP'))),
           ],
         ),
       ),
@@ -131,12 +131,12 @@ class _KanaGrid extends StatelessWidget {
               children: [
                 Text(
                   kana,
-                  style: const TextStyle(fontSize: 20),
+                  style: const TextStyle(fontSize: 28),
                 ),
                 Text(
                   roman,
                   style: TextStyle(
-                    fontSize: 11,
+                    fontSize: 12,
                     color: Theme.of(context).colorScheme.onSurfaceVariant,
                   ),
                 ),

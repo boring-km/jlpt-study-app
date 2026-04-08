@@ -79,6 +79,13 @@ final appRouter = GoRouter(
       builder: (context, state) => const ReviewScreen(),
     ),
     GoRoute(
+      path: '/review/today',
+      builder: (context, state) {
+        final wordIds = state.extra as List<String>? ?? [];
+        return ReviewScreen(todayWordIds: wordIds);
+      },
+    ),
+    GoRoute(
       path: '/kana',
       builder: (context, state) => const KanaScreen(),
     ),

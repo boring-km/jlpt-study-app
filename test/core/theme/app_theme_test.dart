@@ -5,11 +5,11 @@ import 'package:jlpt/core/theme/app_theme.dart';
 void main() {
   group('AppColors', () {
     test('primary color is correct', () {
-      expect(AppColors.primary, const Color(0xFF1D4ED8));
+      expect(AppColors.primary, const Color(0xFFE50914));
     });
 
     test('accent color is correct', () {
-      expect(AppColors.accent, const Color(0xFFF59E0B));
+      expect(AppColors.accent, const Color(0xFFFF6B6B));
     });
 
     test('success color is correct', () {
@@ -17,11 +17,11 @@ void main() {
     });
 
     test('error color is correct', () {
-      expect(AppColors.error, const Color(0xFFDC2626));
+      expect(AppColors.error, const Color(0xFFB91C1C));
     });
 
     test('light background color is correct', () {
-      expect(AppColors.backgroundLight, const Color(0xFFF8FAFC));
+      expect(AppColors.backgroundLight, const Color(0xFFFFFFFF));
     });
 
     test('dark background color is correct', () {
@@ -47,7 +47,7 @@ void main() {
 
     test('dark theme primary color matches AppColors', () {
       final theme = AppTheme.dark();
-      expect(theme.colorScheme.primary, AppColors.primary);
+      expect(theme.colorScheme.primary, AppColors.primaryDark);
     });
 
     test('light theme scaffold background is correct', () {
@@ -80,6 +80,16 @@ void main() {
       final theme = AppTheme.dark();
       expect(theme.textTheme.displayLarge, isNotNull);
       expect(theme.textTheme.displayLarge?.fontSize, 32);
+    });
+
+    test('light theme uses Pretendard font', () {
+      final theme = AppTheme.light();
+      expect(theme.textTheme.bodyLarge?.fontFamily, 'Pretendard');
+    });
+
+    test('dark theme uses Pretendard font', () {
+      final theme = AppTheme.dark();
+      expect(theme.textTheme.bodyLarge?.fontFamily, 'Pretendard');
     });
   });
 }

@@ -67,25 +67,25 @@ void main() {
     expect(find.text('学校'), findsOneWidget);
   });
 
-  testWidgets('shows 뜻 확인 button initially', (tester) async {
+  testWidgets('shows 알아/몰라 buttons initially', (tester) async {
     await tester.pumpWidget(buildWidget());
     await tester.pump();
     await tester.pump();
-    expect(find.text('뜻 확인'), findsOneWidget);
+    expect(find.text('알아'), findsOneWidget);
+    expect(find.text('몰라'), findsOneWidget);
   });
 
-  testWidgets('tapping 뜻 확인 reveals meaning and 알아/몰라 buttons',
-      (tester) async {
+  testWidgets('tapping 알아 reveals meaning and 다음 button', (tester) async {
     await tester.pumpWidget(buildWidget());
     await tester.pump();
-    await tester.pump(); // second pump for didChangeDependencies + setState
+    await tester.pump();
 
-    await tester.tap(find.text('뜻 확인'));
+    await tester.tap(find.text('알아'));
     await tester.pump();
 
     expect(find.text('학교'), findsOneWidget);
-    expect(find.text('알아'), findsOneWidget);
-    expect(find.text('몰라'), findsOneWidget);
+    expect(find.text('がっこう'), findsOneWidget);
+    expect(find.text('다음'), findsOneWidget);
   });
 }
 

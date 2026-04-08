@@ -68,6 +68,15 @@ class TodayStudySetNotifier extends AsyncNotifier<TodayStudySet?> {
     return set;
   }
 
+  /// 완료된 세트를 삭제하고 새 단어 세트로 학습 시작
+  Future<TodayStudySet> createNextSet() async {
+    final db = await ref.read(databaseProvider.future);
+    final repo = StudySetRepository(db);
+    final today = _todayStr();
+    await repo.deleteSet(today);
+    return createTodaySet();
+  }
+
   /// 현재 단계 완료 후 다음 단계로 진행
   Future<void> advanceStage(StudyStage nextStage) async {
     final db = await ref.read(databaseProvider.future);

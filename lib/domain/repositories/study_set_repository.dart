@@ -57,6 +57,11 @@ class StudySetRepository {
     );
   }
 
+  Future<void> deleteSet(String date) async {
+    await _db.delete('daily_study_set_items', where: 'study_date = ?', whereArgs: [date]);
+    await _db.delete('daily_study_sets', where: 'study_date = ?', whereArgs: [date]);
+  }
+
   Future<List<String>> getCompletedDates() async {
     final rows = await _db.query(
       'daily_study_sets',

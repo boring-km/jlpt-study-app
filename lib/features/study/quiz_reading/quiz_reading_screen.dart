@@ -17,35 +17,13 @@ class QuizReadingScreen extends ConsumerStatefulWidget {
   ConsumerState<QuizReadingScreen> createState() => _QuizReadingScreenState();
 }
 
-class _QuizReadingScreenState extends ConsumerState<QuizReadingScreen>
-    with TickerProviderStateMixin {
+class _QuizReadingScreenState extends ConsumerState<QuizReadingScreen> {
   List<String> _queue = [];
   int _queueIndex = 0;
   List<Word> _choices = [];
   String? _selectedMeaning;
   bool _showFeedback = false;
   bool _initialized = false;
-
-  late AnimationController _feedbackController;
-  late Animation<double> _scaleAnimation;
-
-  @override
-  void initState() {
-    super.initState();
-    _feedbackController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 300),
-    );
-    _scaleAnimation = Tween<double>(begin: 1.0, end: 1.04).animate(
-      CurvedAnimation(parent: _feedbackController, curve: Curves.elasticOut),
-    );
-  }
-
-  @override
-  void dispose() {
-    _feedbackController.dispose();
-    super.dispose();
-  }
 
   @override
   void didChangeDependencies() {
@@ -98,8 +76,6 @@ class _QuizReadingScreenState extends ConsumerState<QuizReadingScreen>
       _selectedMeaning = meaning;
       _showFeedback = true;
     });
-
-    _feedbackController.forward().then((_) => _feedbackController.reverse());
 
     final wordId = _queue[_queueIndex];
     ref.read(todayStudySetProvider.notifier).updateItemResult(
@@ -219,75 +195,55 @@ class _QuizReadingScreenState extends ConsumerState<QuizReadingScreen>
             final isSelected = _selectedMeaning == choice.meaningKo;
 
             Color bgColor = Theme.of(context).cardColor;
-            Color borderColor = AppColors.borderLight;
+            Color borderColor = Theme.of(context).dividerColor;
             Color fgColor = Theme.of(context).colorScheme.onSurface;
-            double elevation = 0;
 
             if (_showFeedback) {
               if (isCorrectChoice) {
                 bgColor = AppColors.success;
                 borderColor = AppColors.success;
                 fgColor = Colors.white;
-                elevation = 4;
               } else if (isSelected) {
                 bgColor = AppColors.error;
                 borderColor = AppColors.error;
                 fgColor = Colors.white;
-                elevation = 4;
               }
             }
 
-            Widget button = AnimatedContainer(
-              duration: const Duration(milliseconds: 250),
-              curve: Curves.easeOut,
-              decoration: BoxDecoration(
-                color: bgColor,
-                borderRadius: BorderRadius.circular(14),
-                border: Border.all(color: borderColor, width: 2.0),
-                boxShadow: elevation > 0
-                    ? [
-                        BoxShadow(
-                          color: bgColor.withValues(alpha: 0.45),
-                          blurRadius: 10,
-                          offset: const Offset(0, 4),
-                        )
-                      ]
-                    : [],
-              ),
-              child: Material(
-                color: Colors.transparent,
-                child: InkWell(
-                  borderRadius: BorderRadius.circular(12),
-                  onTap: _showFeedback
-                      ? null
-                      : () => _onSelect(choice.meaningKo, isCorrectChoice),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
-                    child: Center(
-                      child: AnimatedDefaultTextStyle(
-                        duration: const Duration(milliseconds: 200),
-                        style: TextStyle(
-                          fontSize: 17,
-                          fontWeight: _showFeedback && (isCorrectChoice || isSelected)
-                              ? FontWeight.w700
-                              : FontWeight.w400,
-                          color: fgColor,
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 12),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: bgColor,
+                  borderRadius: BorderRadius.circular(14),
+                  border: Border.all(color: borderColor, width: 2.0),
+                ),
+                child: Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(12),
+                    onTap: _showFeedback
+                        ? null
+                        : () => _onSelect(choice.meaningKo, isCorrectChoice),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
+                      child: Center(
+                        child: Text(
+                          choice.meaningKo,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 17,
+                            fontWeight: _showFeedback && (isCorrectChoice || isSelected)
+                                ? FontWeight.w700
+                                : FontWeight.w400,
+                            color: fgColor,
+                          ),
                         ),
-                        child: Text(choice.meaningKo, textAlign: TextAlign.center),
                       ),
                     ),
                   ),
                 ),
               ),
-            );
-
-            if (_showFeedback && (isCorrectChoice || isSelected)) {
-              button = ScaleTransition(scale: _scaleAnimation, child: button);
-            }
-
-            return Padding(
-              padding: const EdgeInsets.only(bottom: 12),
-              child: button,
             );
           }),
           const Spacer(),

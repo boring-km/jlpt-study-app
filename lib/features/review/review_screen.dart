@@ -13,7 +13,10 @@ import '../../domain/repositories/word_repository.dart';
 enum _ReviewPhase { loading, reading, meaning, done }
 
 class ReviewScreen extends ConsumerStatefulWidget {
-  const ReviewScreen({super.key});
+  /// 오늘 학습 완료 단어 ID 목록. null이면 전체 복습.
+  final List<String>? todayWordIds;
+
+  const ReviewScreen({super.key, this.todayWordIds});
 
   @override
   ConsumerState<ReviewScreen> createState() => _ReviewScreenState();
@@ -36,8 +39,9 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
   }
 
   Future<void> _init() async {
-    final session =
-        await ref.read(reviewSessionProvider.notifier).startNewSession();
+    final session = await ref
+        .read(reviewSessionProvider.notifier)
+        .startNewSession(wordIds: widget.todayWordIds);
     if (!mounted) return;
     setState(() {
       _readingQueue = session.items.map((i) => i.wordId).toList();

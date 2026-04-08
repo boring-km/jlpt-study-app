@@ -4,9 +4,8 @@ import 'package:go_router/go_router.dart';
 import '../../../application/providers/today_study_set_provider.dart';
 import '../../../application/providers/word_catalog_provider.dart';
 import '../../../domain/models/word.dart';
-import '../../../domain/models/today_study_set.dart';
 import '../../../domain/models/enums.dart';
-import '../../../widgets/flip_card.dart';
+import '../../../widgets/flashcard_page_view.dart';
 import '../../../widgets/word_badge.dart';
 
 class FlashcardScreen extends ConsumerStatefulWidget {
@@ -57,19 +56,45 @@ class _FlashcardScreenState extends ConsumerState<FlashcardScreen> {
           return catalogAsync.when(
             data: (catalog) {
               final wordMap = {for (final w in catalog) w.id: w};
-              return _FlashcardBody(
-                set: set,
-                wordMap: wordMap,
+              final words = set.items
+                  .map((item) => wordMap[item.wordId])
+                  .whereType<Word>()
+                  .toList();
+              if (words.isEmpty) {
+                return const Center(child: Text('단어 없음'));
+              }
+              final isLastCard = _currentIndex == words.length - 1;
+              return FlashcardPageView(
+                words: words,
                 currentIndex: _currentIndex,
                 isFlipped: _isFlipped,
+                onPageChanged: (index) => setState(() {
+                  _currentIndex = index;
+                  _isFlipped = false;
+                }),
                 onFlip: () => setState(() => _isFlipped = !_isFlipped),
-                onPrev: _currentIndex > 0
-                    ? () => setState(() {
-                          _currentIndex--;
-                          _isFlipped = false;
-                        })
+                bottomWidget: isLastCard && _isFlipped
+                    ? ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              Theme.of(context).colorScheme.primary,
+                          foregroundColor:
+                              Theme.of(context).colorScheme.onPrimary,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(14),
+                          ),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 32, vertical: 14),
+                        ),
+                        onPressed: () {
+                          ref
+                              .read(todayStudySetProvider.notifier)
+                              .advanceStage(StudyStage.quizReading);
+                          context.go('/study/quiz-reading');
+                        },
+                        child: const Text('1단계 퀴즈 시작'),
+                      )
                     : null,
-                onNext: () => _onNext(context, ref, set),
               );
             },
             loading: () => const Center(child: CircularProgressIndicator()),
@@ -81,177 +106,4 @@ class _FlashcardScreenState extends ConsumerState<FlashcardScreen> {
       ),
     );
   }
-
-  void _onNext(BuildContext context, WidgetRef ref, TodayStudySet set) {
-    if (_currentIndex < set.items.length - 1) {
-      setState(() {
-        _currentIndex++;
-        _isFlipped = false;
-      });
-    } else {
-      ref
-          .read(todayStudySetProvider.notifier)
-          .advanceStage(StudyStage.quizReading);
-      context.go('/study/quiz-reading');
-    }
-  }
-}
-
-class _FlashcardBody extends StatelessWidget {
-  final TodayStudySet set;
-  final Map<String, Word> wordMap;
-  final int currentIndex;
-  final bool isFlipped;
-  final VoidCallback onFlip;
-  final VoidCallback? onPrev;
-  final VoidCallback onNext;
-
-  const _FlashcardBody({
-    required this.set,
-    required this.wordMap,
-    required this.currentIndex,
-    required this.isFlipped,
-    required this.onFlip,
-    required this.onPrev,
-    required this.onNext,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final item = set.items[currentIndex];
-    final word = wordMap[item.wordId];
-    if (word == null) return const Center(child: Text('단어 없음'));
-
-    final isLastCard = currentIndex == set.items.length - 1;
-
-    return Padding(
-      padding: const EdgeInsets.all(24),
-      child: Column(
-        children: [
-          Expanded(
-            child: FlipCard(
-              isFlipped: isFlipped,
-              onTap: onFlip,
-              front: _CardFace(
-                child: Center(
-                  child: Text(
-                    word.expression ?? word.reading,
-                    style: const TextStyle(
-                      fontSize: 48,
-                      fontWeight: FontWeight.w700,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
-              back: _CardFace(
-                child: SingleChildScrollView(
-                  padding: const EdgeInsets.all(24),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        word.reading,
-                        style: TextStyle(
-                          fontSize: 32,
-                          fontWeight: FontWeight.w600,
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
-                      ),
-                      const SizedBox(height: 12),
-                      Text(
-                        word.meaningKo,
-                        style: const TextStyle(fontSize: 20),
-                        textAlign: TextAlign.center,
-                      ),
-                      if (word.example != null) ...[
-                        const SizedBox(height: 24),
-                        const Divider(),
-                        const SizedBox(height: 12),
-                        Text(
-                          word.example!.ja,
-                          style: const TextStyle(fontSize: 22),
-                          textAlign: TextAlign.center,
-                        ),
-                        const SizedBox(height: 6),
-                        Text(
-                          word.example!.reading,
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Theme.of(context).colorScheme.onSurfaceVariant,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                        const SizedBox(height: 6),
-                        Text(
-                          word.example!.ko,
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Theme.of(context).colorScheme.onSurfaceVariant,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(height: 24),
-          Row(
-            children: [
-              if (onPrev != null)
-                IconButton(
-                  onPressed: onPrev,
-                  icon: const Icon(Icons.arrow_back_ios),
-                ),
-              const Spacer(),
-              if (isLastCard && isFlipped)
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Theme.of(context).colorScheme.primary,
-                    foregroundColor: Theme.of(context).colorScheme.onPrimary,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(14),
-                    ),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 32, vertical: 14),
-                  ),
-                  onPressed: onNext,
-                  child: const Text('1단계 퀴즈 시작'),
-                )
-              else
-                IconButton(
-                  onPressed: onNext,
-                  icon: const Icon(Icons.arrow_forward_ios),
-                ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _CardFace extends StatelessWidget {
-  final Widget child;
-  const _CardFace({required this.child});
-
-  @override
-  Widget build(BuildContext context) => Container(
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: Theme.of(context).cardColor,
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: [
-            BoxShadow(
-              color: Theme.of(context).shadowColor.withValues(alpha: 0.12),
-              blurRadius: 16,
-              offset: const Offset(0, 4),
-            ),
-          ],
-        ),
-        child: child,
-      );
 }

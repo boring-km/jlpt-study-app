@@ -5,6 +5,7 @@ import 'package:jlpt/features/explore/explore_flashcard_screen.dart';
 import 'package:jlpt/features/explore/explore_provider.dart';
 import 'package:jlpt/domain/models/word.dart';
 import 'package:jlpt/domain/models/enums.dart';
+import 'package:jlpt/widgets/flashcard_page_view.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 // 테스트 단어 목록
@@ -45,12 +46,41 @@ void main() {
     expect(find.text('食べる'), findsAtLeastNWidgets(1));
   });
 
-  testWidgets('tapping next advances to second card', (tester) async {
+  testWidgets('swiping left advances to second card', (tester) async {
     await tester.pumpWidget(buildWidget());
     await tester.pump();
-    await tester.tap(find.byIcon(Icons.arrow_forward_ios));
-    await tester.pump();
+
+    await tester.fling(
+      find.byType(FlashcardPageView),
+      const Offset(-300, 0),
+      1000,
+    );
+    await tester.pumpAndSettle();
+
     expect(find.text('2 / 2'), findsOneWidget);
+  });
+
+  testWidgets('swiping right goes back to first card', (tester) async {
+    await tester.pumpWidget(buildWidget());
+    await tester.pump();
+
+    // Go to second card
+    await tester.fling(
+      find.byType(FlashcardPageView),
+      const Offset(-300, 0),
+      1000,
+    );
+    await tester.pumpAndSettle();
+    expect(find.text('2 / 2'), findsOneWidget);
+
+    // Swipe right to go back
+    await tester.fling(
+      find.byType(FlashcardPageView),
+      const Offset(300, 0),
+      1000,
+    );
+    await tester.pumpAndSettle();
+    expect(find.text('1 / 2'), findsOneWidget);
   });
 }
 

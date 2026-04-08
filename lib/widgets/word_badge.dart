@@ -10,19 +10,20 @@ class WordBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final label = level == JlptLevel.n3 ? 'N3' : 'N2';
+    final badgeColor = Theme.of(context).colorScheme.primary;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
       decoration: BoxDecoration(
-        color: AppColors.primary.withValues(alpha: 0.1),
+        color: badgeColor.withValues(alpha: 0.12),
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: AppColors.primary.withValues(alpha: 0.3)),
+        border: Border.all(color: badgeColor.withValues(alpha: 0.35)),
       ),
       child: Text(
         label,
-        style: const TextStyle(
+        style: TextStyle(
           fontSize: 12,
           fontWeight: FontWeight.w600,
-          color: AppColors.primary,
+          color: badgeColor,
         ),
       ),
     );

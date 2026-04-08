@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import '../../domain/models/word.dart';
-import '../../widgets/flip_card.dart';
+import '../../widgets/flashcard_page_view.dart';
 import 'explore_provider.dart';
 
 class ExploreFlashcardScreen extends ConsumerStatefulWidget {
@@ -45,25 +44,15 @@ class _ExploreFlashcardScreenState
           ),
           body: words.isEmpty
               ? const Center(child: Text('단어 없음'))
-              : _FlashcardBody(
+              : FlashcardPageView(
                   words: words,
                   currentIndex: _currentIndex,
                   isFlipped: _isFlipped,
-                  onFlip: () => setState(() => _isFlipped = !_isFlipped),
-                  onPrev: _currentIndex > 0
-                      ? () => setState(() {
-                            _currentIndex--;
-                            _isFlipped = false;
-                          })
-                      : null,
-                  onNext: () => setState(() {
-                    if (_currentIndex < words.length - 1) {
-                      _currentIndex++;
-                    } else {
-                      _currentIndex = 0;
-                    }
+                  onPageChanged: (index) => setState(() {
+                    _currentIndex = index;
                     _isFlipped = false;
                   }),
+                  onFlip: () => setState(() => _isFlipped = !_isFlipped),
                 ),
         );
       },
@@ -75,142 +64,4 @@ class _ExploreFlashcardScreenState
       ),
     );
   }
-}
-
-class _FlashcardBody extends StatelessWidget {
-  final List<Word> words;
-  final int currentIndex;
-  final bool isFlipped;
-  final VoidCallback onFlip;
-  final VoidCallback? onPrev;
-  final VoidCallback onNext;
-
-  const _FlashcardBody({
-    required this.words,
-    required this.currentIndex,
-    required this.isFlipped,
-    required this.onFlip,
-    required this.onPrev,
-    required this.onNext,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final word = words[currentIndex];
-
-    return Padding(
-      padding: const EdgeInsets.all(24),
-      child: Column(
-        children: [
-          Expanded(
-            child: FlipCard(
-              isFlipped: isFlipped,
-              onTap: onFlip,
-              front: _CardFace(
-                child: Center(
-                  child: Text(
-                    word.expression ?? word.reading,
-                    style: const TextStyle(
-                      fontSize: 48,
-                      fontWeight: FontWeight.w700,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
-              back: _CardFace(
-                child: SingleChildScrollView(
-                  padding: const EdgeInsets.all(24),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        word.reading,
-                        style: TextStyle(
-                          fontSize: 32,
-                          fontWeight: FontWeight.w600,
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
-                      ),
-                      const SizedBox(height: 12),
-                      Text(
-                        word.meaningKo,
-                        style: const TextStyle(fontSize: 20),
-                        textAlign: TextAlign.center,
-                      ),
-                      if (word.example != null) ...[
-                        const SizedBox(height: 24),
-                        const Divider(),
-                        const SizedBox(height: 12),
-                        Text(
-                          word.example!.ja,
-                          style: const TextStyle(fontSize: 22),
-                          textAlign: TextAlign.center,
-                        ),
-                        const SizedBox(height: 6),
-                        Text(
-                          word.example!.reading,
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Theme.of(context).colorScheme.onSurfaceVariant,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                        const SizedBox(height: 6),
-                        Text(
-                          word.example!.ko,
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Theme.of(context).colorScheme.onSurfaceVariant,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(height: 24),
-          Row(
-            children: [
-              if (onPrev != null)
-                IconButton(
-                  onPressed: onPrev,
-                  icon: const Icon(Icons.arrow_back_ios),
-                ),
-              const Spacer(),
-              IconButton(
-                onPressed: onNext,
-                icon: const Icon(Icons.arrow_forward_ios),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _CardFace extends StatelessWidget {
-  final Widget child;
-  const _CardFace({required this.child});
-
-  @override
-  Widget build(BuildContext context) => Container(
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: Theme.of(context).cardColor,
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: [
-            BoxShadow(
-              color: Theme.of(context).shadowColor.withValues(alpha: 0.12),
-              blurRadius: 16,
-              offset: const Offset(0, 4),
-            ),
-          ],
-        ),
-        child: child,
-      );
 }

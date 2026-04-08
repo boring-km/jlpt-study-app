@@ -61,6 +61,11 @@ class _HomeBody extends ConsumerWidget {
               Row(
                 children: [
                   IconButton(
+                    icon: const Icon(Icons.grid_view_outlined),
+                    tooltip: 'ひらがな·カタカナ 표',
+                    onPressed: () => context.push('/kana'),
+                  ),
+                  IconButton(
                     icon: Icon(switch (themeMode) {
                       AppThemeMode.light => Icons.light_mode_outlined,
                       AppThemeMode.dark => Icons.dark_mode_outlined,
@@ -106,7 +111,7 @@ class _HomeBody extends ConsumerWidget {
             style: Theme.of(context).textTheme.bodyMedium,
           ),
           const SizedBox(height: 32),
-          if (!summary.isReviewOnlyMode)
+          if (!summary.isReviewOnlyMode) ...[
             SizedBox(
               width: double.infinity,
               height: 56,
@@ -134,6 +139,35 @@ class _HomeBody extends ConsumerWidget {
                 ),
               ),
             ),
+            if (isSetCompleted)
+              Padding(
+                padding: const EdgeInsets.only(top: 12),
+                child: SizedBox(
+                  width: double.infinity,
+                  height: 56,
+                  child: OutlinedButton(
+                    style: OutlinedButton.styleFrom(
+                      foregroundColor: Theme.of(context).colorScheme.primary,
+                      side: BorderSide(
+                        color: Theme.of(context).colorScheme.primary,
+                        width: 2.0,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(14),
+                      ),
+                    ),
+                    onPressed: () => _startNextStudy(context, ref),
+                    child: const Text(
+                      '다음 학습 시작',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+          ],
           if (summary.isReviewOnlyMode)
             SizedBox(
               width: double.infinity,
@@ -158,19 +192,26 @@ class _HomeBody extends ConsumerWidget {
             children: [
               Expanded(
                 child: _SmallCard(
-                  label: '복습',
+                  label: '오늘 복습',
                   icon: Icons.replay_outlined,
-                  enabled: summary.completedCount > 0,
-                  onTap: () => context.push('/review'),
+                  enabled: isSetCompleted,
+                  onTap: () {
+                    final wordIds = set?.items
+                            .where((i) => i.isFullyCompleted)
+                            .map((i) => i.wordId)
+                            .toList() ??
+                        [];
+                    context.push('/review/today', extra: wordIds);
+                  },
                 ),
               ),
               const SizedBox(width: 12),
               Expanded(
                 child: _SmallCard(
-                  label: '히라가나·가타카나 표',
-                  icon: Icons.grid_view_outlined,
-                  enabled: true,
-                  onTap: () => context.push('/kana'),
+                  label: '전체 복습',
+                  icon: Icons.history_outlined,
+                  enabled: summary.completedCount > 0,
+                  onTap: () => context.push('/review'),
                 ),
               ),
             ],
@@ -178,6 +219,13 @@ class _HomeBody extends ConsumerWidget {
         ],
       ),
     );
+  }
+
+  Future<void> _startNextStudy(BuildContext context, WidgetRef ref) async {
+    await ref.read(todayStudySetProvider.notifier).createNextSet();
+    final set = ref.read(todayStudySetProvider).valueOrNull;
+    if (set == null || !context.mounted) return;
+    context.push('/study/flashcard');
   }
 
   Future<void> _startStudy(
@@ -246,7 +294,7 @@ class _SmallCard extends StatelessWidget {
             Text(
               label,
               style: TextStyle(
-                fontSize: 12,
+                fontSize: 14,
                 color: enabled
                     ? Theme.of(context).colorScheme.onSurface
                     : Theme.of(context).colorScheme.onSurfaceVariant,
