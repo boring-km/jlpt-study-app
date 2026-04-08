@@ -15,7 +15,8 @@ class JlptApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final settingsAsync = ref.watch(settingsProvider);
-    final themeMode = settingsAsync.valueOrNull?.themeMode ?? AppThemeMode.system;
+    final themeMode =
+        settingsAsync.valueOrNull?.themeMode ?? AppThemeMode.light;
 
     return MaterialApp.router(
       title: 'JLPT',
@@ -24,7 +25,6 @@ class JlptApp extends ConsumerWidget {
       themeMode: switch (themeMode) {
         AppThemeMode.light => ThemeMode.light,
         AppThemeMode.dark => ThemeMode.dark,
-        AppThemeMode.system => ThemeMode.system,
       },
       debugShowCheckedModeBanner: false,
       routerConfig: appRouter,

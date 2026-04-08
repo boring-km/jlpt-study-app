@@ -15,28 +15,26 @@ void main() {
   test('settingsProvider returns defaults on fresh DB', () async {
     final db = await AppDatabase.openForTest();
     final container = ProviderContainer(
-      overrides: [
-        databaseProvider.overrideWith((ref) async => db),
-      ],
+      overrides: [databaseProvider.overrideWith((ref) async => db)],
     );
     addTearDown(container.dispose);
 
     final settings = await container.read(settingsProvider.future);
     expect(settings.examDate, DateTime(2026, 7, 5));
-    expect(settings.themeMode, AppThemeMode.system);
+    expect(settings.themeMode, AppThemeMode.light);
   });
 
   test('updateExamDate persists via SettingsNotifier', () async {
     final db = await AppDatabase.openForTest();
     final container = ProviderContainer(
-      overrides: [
-        databaseProvider.overrideWith((ref) async => db),
-      ],
+      overrides: [databaseProvider.overrideWith((ref) async => db)],
     );
     addTearDown(container.dispose);
 
     await container.read(settingsProvider.future); // initialize
-    await container.read(settingsProvider.notifier).updateExamDate(DateTime(2027, 1, 1));
+    await container
+        .read(settingsProvider.notifier)
+        .updateExamDate(DateTime(2027, 1, 1));
 
     final updated = await container.read(settingsProvider.future);
     expect(updated.examDate.year, 2027);

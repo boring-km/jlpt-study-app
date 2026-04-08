@@ -34,6 +34,16 @@ void main() {
     expect(find.text('데이터 초기화'), findsOneWidget);
   });
 
+  testWidgets('shows only light and dark theme options', (tester) async {
+    await tester.pumpWidget(
+      const ProviderScope(child: MaterialApp(home: SettingsScreen())),
+    );
+    await tester.pump();
+    expect(find.text('라이트'), findsOneWidget);
+    expect(find.text('다크'), findsOneWidget);
+    expect(find.text('시스템'), findsNothing);
+  });
+
   testWidgets('shows confirmation dialog when reset tapped', (tester) async {
     await tester.pumpWidget(
       const ProviderScope(child: MaterialApp(home: SettingsScreen())),

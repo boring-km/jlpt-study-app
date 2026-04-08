@@ -1,4 +1,4 @@
-enum AppThemeMode { system, light, dark }
+enum AppThemeMode { light, dark }
 
 class AppSettings {
   final DateTime examDate;
@@ -12,9 +12,9 @@ class AppSettings {
   });
 
   static AppSettings get defaults => AppSettings(
-        examDate: DateTime(2026, 7, 5),
-        themeMode: AppThemeMode.system,
-      );
+    examDate: DateTime(2026, 7, 5),
+    themeMode: AppThemeMode.light,
+  );
 
   int daysUntilExam(DateTime now) {
     final today = DateTime(now.year, now.month, now.day);

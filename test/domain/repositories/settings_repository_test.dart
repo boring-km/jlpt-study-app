@@ -11,16 +11,17 @@ void main() {
   });
 
   late SettingsRepository repo;
+  late Database db;
 
   setUp(() async {
-    final db = await AppDatabase.openForTest();
+    db = await AppDatabase.openForTest();
     repo = SettingsRepository(db);
   });
 
   test('load returns defaults when no settings stored', () async {
     final settings = await repo.load();
     expect(settings.examDate, DateTime(2026, 7, 5));
-    expect(settings.themeMode, AppThemeMode.system);
+    expect(settings.themeMode, AppThemeMode.light);
   });
 
   test('saveExamDate persists and load returns it', () async {
@@ -34,6 +35,17 @@ void main() {
     await repo.saveThemeMode(AppThemeMode.dark);
     final settings = await repo.load();
     expect(settings.themeMode, AppThemeMode.dark);
+  });
+
+  test('legacy system theme is loaded as light mode', () async {
+    await db.insert('app_settings', {
+      'key': 'theme_mode',
+      'value': 'system',
+      'updated_at': DateTime.now().toIso8601String(),
+    }, conflictAlgorithm: ConflictAlgorithm.replace);
+
+    final settings = await repo.load();
+    expect(settings.themeMode, AppThemeMode.light);
   });
 
   test('isSeeded returns false initially', () async {

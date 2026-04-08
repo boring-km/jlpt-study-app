@@ -42,7 +42,7 @@ class _HomeBody extends ConsumerWidget {
     final todayTarget = set?.targetCount ?? summary.dailyTarget;
     final isSetCompleted = set?.status == StudyStage.completed;
     final settings = ref.watch(settingsProvider);
-    final themeMode = settings.valueOrNull?.themeMode ?? AppThemeMode.system;
+    final themeMode = settings.valueOrNull?.themeMode ?? AppThemeMode.light;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
@@ -64,18 +64,15 @@ class _HomeBody extends ConsumerWidget {
                     icon: Icon(switch (themeMode) {
                       AppThemeMode.light => Icons.light_mode_outlined,
                       AppThemeMode.dark => Icons.dark_mode_outlined,
-                      AppThemeMode.system => Icons.brightness_auto_outlined,
                     }),
                     tooltip: switch (themeMode) {
                       AppThemeMode.light => '라이트 모드',
                       AppThemeMode.dark => '다크 모드',
-                      AppThemeMode.system => '시스템 설정',
                     },
                     onPressed: () {
                       final next = switch (themeMode) {
-                        AppThemeMode.system => AppThemeMode.light,
                         AppThemeMode.light => AppThemeMode.dark,
-                        AppThemeMode.dark => AppThemeMode.system,
+                        AppThemeMode.dark => AppThemeMode.light,
                       };
                       ref.read(settingsProvider.notifier).updateThemeMode(next);
                     },
@@ -97,7 +94,9 @@ class _HomeBody extends ConsumerWidget {
               value: todayTarget > 0 ? todayCompleted / todayTarget : 0,
               minHeight: 6,
               backgroundColor: Theme.of(context).dividerColor,
-              valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).colorScheme.primary),
+              valueColor: AlwaysStoppedAnimation<Color>(
+                Theme.of(context).colorScheme.primary,
+              ),
             ),
           ),
           const SizedBox(height: 8),
@@ -126,8 +125,8 @@ class _HomeBody extends ConsumerWidget {
                   set == null
                       ? '오늘 학습 시작'
                       : isSetCompleted
-                          ? '오늘 학습 완료 ✓'
-                          : '이어하기',
+                      ? '오늘 학습 완료 ✓'
+                      : '이어하기',
                   style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,

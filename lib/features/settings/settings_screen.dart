@@ -29,7 +29,7 @@ class SettingsScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final settings = ref.watch(settingsProvider);
-    final themeMode = settings.valueOrNull?.themeMode ?? AppThemeMode.system;
+    final themeMode = settings.valueOrNull?.themeMode ?? AppThemeMode.light;
 
     return Scaffold(
       appBar: AppBar(title: const Text('설정')),
@@ -45,11 +45,6 @@ class SettingsScreen extends ConsumerWidget {
                 SegmentedButton<AppThemeMode>(
                   segments: const [
                     ButtonSegment(
-                      value: AppThemeMode.system,
-                      label: Text('시스템'),
-                      icon: Icon(Icons.brightness_auto_outlined),
-                    ),
-                    ButtonSegment(
                       value: AppThemeMode.light,
                       label: Text('라이트'),
                       icon: Icon(Icons.light_mode_outlined),
@@ -62,7 +57,9 @@ class SettingsScreen extends ConsumerWidget {
                   ],
                   selected: {themeMode},
                   onSelectionChanged: (value) {
-                    ref.read(settingsProvider.notifier).updateThemeMode(value.first);
+                    ref
+                        .read(settingsProvider.notifier)
+                        .updateThemeMode(value.first);
                   },
                 ),
               ],
