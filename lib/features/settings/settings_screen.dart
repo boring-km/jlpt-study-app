@@ -29,20 +29,44 @@ class SettingsScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final settings = ref.watch(settingsProvider);
-    final isDark = settings.valueOrNull?.themeMode == AppThemeMode.dark;
+    final themeMode = settings.valueOrNull?.themeMode ?? AppThemeMode.system;
 
     return Scaffold(
       appBar: AppBar(title: const Text('설정')),
       body: ListView(
         children: [
-          SwitchListTile(
-            title: const Text('다크 모드'),
-            value: isDark,
-            onChanged: (value) {
-              ref.read(settingsProvider.notifier).updateThemeMode(
-                    value ? AppThemeMode.dark : AppThemeMode.system,
-                  );
-            },
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('테마', style: Theme.of(context).textTheme.titleSmall),
+                const SizedBox(height: 8),
+                SegmentedButton<AppThemeMode>(
+                  segments: const [
+                    ButtonSegment(
+                      value: AppThemeMode.system,
+                      label: Text('시스템'),
+                      icon: Icon(Icons.brightness_auto_outlined),
+                    ),
+                    ButtonSegment(
+                      value: AppThemeMode.light,
+                      label: Text('라이트'),
+                      icon: Icon(Icons.light_mode_outlined),
+                    ),
+                    ButtonSegment(
+                      value: AppThemeMode.dark,
+                      label: Text('다크'),
+                      icon: Icon(Icons.dark_mode_outlined),
+                    ),
+                  ],
+                  selected: {themeMode},
+                  onSelectionChanged: (value) {
+                    ref.read(settingsProvider.notifier).updateThemeMode(value.first);
+                  },
+                ),
+              ],
+            ),
           ),
           const Divider(),
           ListTile(

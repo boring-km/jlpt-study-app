@@ -16,7 +16,7 @@
     "expression": "引っ込む",
     "reading": "ひっこむ",
     "meaning_en": "to draw back, to sink, to cave in",
-    "meaning_ko": "뒤로 물러서다",
+    "meaning_ko": "안으로 들어가다, 물러나다",
     "example": {
       "ja": "彼は恥ずかしくて部屋に引っ込んだ。",
       "reading": "かれははずかしくてへやにひっこんだ。",
@@ -782,12 +782,12 @@
   {
     "id": 1566,
     "expression": "蒸す",
-    "reading": "ふす",
+    "reading": "むす",
     "meaning_en": "to steam (food, towel, etc.) to be hot and humid, to be sultry",
     "meaning_ko": "찌다, 무덥다",
     "example": {
       "ja": "野菜を蒸して食べると健康にいい。",
-      "reading": "やさいをふしてたべるとけんこうにいい。",
+      "reading": "やさいをむしてたべるとけんこうにいい。",
       "ko": "채소를 쪄서 먹으면 건강에 좋다."
     }
   },
@@ -931,7 +931,7 @@
     "meaning_ko": "건널목",
     "example": {
       "ja": "踏切の前で電車が通るのを待った。",
-      "reading": "ふみきりのまえでてんしゃがとおるのをまった。",
+      "reading": "ふみきりのまえででんしゃがとおるのをまった。",
       "ko": "건널목 앞에서 전철이 지나가는 것을 기다렸다."
     }
   },

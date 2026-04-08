@@ -613,7 +613,7 @@
   },
   {
     "id": 238,
-    "expression": "清む",
+    "expression": "澄む",
     "reading": "すむ",
     "meaning_en": "to clear (e.g., weather), to become transparent",
     "meaning_ko": "맑아지다",
@@ -637,12 +637,12 @@
   },
   {
     "id": 240,
-    "expression": "為る",
+    "expression": "する",
     "reading": "する",
     "meaning_en": "to do, to attempt",
     "meaning_ko": "하다",
     "example": {
-      "ja": "毎朝ジョギングを為ることにしている。",
+      "ja": "毎朝ジョギングをすることにしている。",
       "reading": "まいあさジョギングをすることにしている。",
       "ko": "매일 아침 조깅을 하기로 하고 있다."
     }

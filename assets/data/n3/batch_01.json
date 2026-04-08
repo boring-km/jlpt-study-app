@@ -71,12 +71,12 @@
   {"id": 70, "expression": "死亡", "reading": "しぼう", "meaning_en": "death", "meaning_ko": "사망", "example": {"ja": "その事故で三人が死亡した。", "reading": "そのじこでさんにんがしぼうした。", "ko": "그 사고로 세 명이 사망했다."}},
   {"id": 71, "expression": "資本", "reading": "しほん", "meaning_en": "funds, capital", "meaning_ko": "자본", "example": {"ja": "会社を設立するには資本が必要だ。", "reading": "かいしゃをせつりつするにはしほんがひつようだ。", "ko": "회사를 설립하려면 자본이 필요하다."}},
   {"id": 72, "expression": "姉妹", "reading": "しまい", "meaning_en": "sisters", "meaning_ko": "자매", "example": {"ja": "私には姉妹が二人いる。", "reading": "わたしにはしまいがふたりいる。", "ko": "나에게는 자매가 두 명 있다."}},
-  {"id": 73, "expression": "しまった (かん)", "reading": "しまった (かん)", "meaning_en": "Damn it!", "meaning_ko": "아차!, 이런!", "example": {"ja": "しまった、財布を忘れた！", "reading": "しまった、さいふをわすれた！", "ko": "아차, 지갑을 깜빡했어!"}},
+  {"id": 73, "expression": "しまった", "reading": "しまった", "meaning_en": "Damn it!", "meaning_ko": "아차!, 이런!", "example": {"ja": "しまった、財布を忘れた！", "reading": "しまった、さいふをわすれた！", "ko": "아차, 지갑을 깜빡했어!"}},
   {"id": 74, "expression": "自慢", "reading": "じまん", "meaning_en": "pride, boast", "meaning_ko": "자랑", "example": {"ja": "彼はいつも成績を自慢している。", "reading": "かれはいつもせいせきをじまんしている。", "ko": "그는 항상 성적을 자랑하고 있다."}},
   {"id": 75, "expression": "示す", "reading": "しめす", "meaning_en": "to show, to indicate", "meaning_ko": "나타내다, 보이다", "example": {"ja": "グラフがデータの変化を示している。", "reading": "ぐらふがでーたのへんかをしめしている。", "ko": "그래프가 데이터의 변화를 나타내고 있다."}},
   {"id": 76, "expression": "占める", "reading": "しめる", "meaning_en": "to take up; to account for", "meaning_ko": "차지하다", "example": {"ja": "食費が生活費の大部分を占める。", "reading": "しょくひがせいかつひのだいぶぶんをしめる。", "ko": "식비가 생활비의 대부분을 차지한다."}},
   {"id": 77, "expression": "湿る", "reading": "しめる", "meaning_en": "to be wet, to be damp", "meaning_ko": "축축해지다", "example": {"ja": "雨で服が湿ってしまった。", "reading": "あめでふくがしめってしまった。", "ko": "비에 옷이 축축해져 버렸다."}},
-  {"id": 78, "expression": "下", "reading": "しも", "meaning_en": "under, below, beneath", "meaning_ko": "아래, 하부", "example": {"ja": "下の部屋から音が聞こえてきた。", "reading": "しものへやからおとがきこえてきた。", "ko": "아래층 방에서 소리가 들려왔다."}},
+  {"id": 78, "expression": "下", "reading": "しも", "meaning_en": "under, below, beneath", "meaning_ko": "아래, 하부", "example": {"ja": "川の下流には大きな船が通る。", "reading": "かわのしもながにはおおきなふねがとおる。", "ko": "강 하류에는 큰 배가 다닌다."}},
   {"id": 79, "expression": "霜", "reading": "しも", "meaning_en": "frost", "meaning_ko": "서리", "example": {"ja": "朝、窓に霜が降りていた。", "reading": "あさ、まどにしもがおりていた。", "ko": "아침에 창문에 서리가 내려 있었다."}},
   {"id": 80, "expression": "借金", "reading": "しゃっきん", "meaning_en": "debt, loan, liabilities", "meaning_ko": "빚, 채무", "example": {"ja": "借金を返すために必死に働いた。", "reading": "しゃっきんをかえすためにひっしにはたらいた。", "ko": "빚을 갚기 위해 필사적으로 일했다."}},
   {"id": 81, "expression": "しゃべる", "reading": "しゃべる", "meaning_en": "to talk, to chat, to chatter", "meaning_ko": "수다 떨다, 말하다", "example": {"ja": "友達と電話でしゃべった。", "reading": "ともだちとでんわでしゃべった。", "ko": "친구와 전화로 수다를 떨었다."}},
@@ -90,6 +90,6 @@
   {"id": 89, "expression": "就職", "reading": "しゅうしょく", "meaning_en": "finding employment", "meaning_ko": "취직", "example": {"ja": "卒業後、大きな会社に就職した。", "reading": "そつぎょうご、おおきなかいしゃにしゅうしょくした。", "ko": "졸업 후 큰 회사에 취직했다."}},
   {"id": 90, "expression": "ジュース", "reading": "ジュース", "meaning_en": "juice, soft drink; deuce", "meaning_ko": "주스", "example": {"ja": "朝食にオレンジジュースを飲んだ。", "reading": "ちょうしょくにおれんじじゅーすをのんだ。", "ko": "아침 식사에 오렌지 주스를 마셨다."}},
   {"id": 91, "expression": "修正", "reading": "しゅうせい", "meaning_en": "amendment, correction", "meaning_ko": "수정", "example": {"ja": "レポートを提出前に修正した。", "reading": "れぽーとをていしゅつまえにしゅうせいした。", "ko": "보고서를 제출 전에 수정했다."}},
-  {"id": 92, "expression": "渋滞", "reading": "じゅうたい", "meaning_en": "congestion (e.g., traffic), delay", "meaning_ko": "정체, 막힘", "example": {"ja": "高速道路で渋滞に巻き込まれた。", "reading": "こうそくどうろでじゅうたいにまきこまれた。", "ko": "고속도로에서 정체에 휘말렸다."}},
+  {"id": 92, "expression": "渋滞", "reading": "じゅうたい", "meaning_en": "congestion (e.g., traffic), delay", "meaning_ko": "교통 정체", "example": {"ja": "高速道路で渋滞に巻き込まれた。", "reading": "こうそくどうろでじゅうたいにまきこまれた。", "ko": "고속도로에서 정체에 휘말렸다."}},
   {"id": 93, "expression": "重大", "reading": "じゅうだい", "meaning_en": "serious, important", "meaning_ko": "중대한", "example": {"ja": "これは重大な問題だ。", "reading": "これはじゅうだいなもんだいだ。", "ko": "이것은 중대한 문제다."}}
 ]

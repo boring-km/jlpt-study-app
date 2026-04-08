@@ -42,7 +42,7 @@ class _HomeBody extends ConsumerWidget {
     final todayTarget = set?.targetCount ?? summary.dailyTarget;
     final isSetCompleted = set?.status == StudyStage.completed;
     final settings = ref.watch(settingsProvider);
-    final isDark = settings.valueOrNull?.themeMode == AppThemeMode.dark;
+    final themeMode = settings.valueOrNull?.themeMode ?? AppThemeMode.system;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
@@ -61,11 +61,23 @@ class _HomeBody extends ConsumerWidget {
               Row(
                 children: [
                   IconButton(
-                    icon: Icon(isDark ? Icons.light_mode_outlined : Icons.dark_mode_outlined),
+                    icon: Icon(switch (themeMode) {
+                      AppThemeMode.light => Icons.light_mode_outlined,
+                      AppThemeMode.dark => Icons.dark_mode_outlined,
+                      AppThemeMode.system => Icons.brightness_auto_outlined,
+                    }),
+                    tooltip: switch (themeMode) {
+                      AppThemeMode.light => '라이트 모드',
+                      AppThemeMode.dark => '다크 모드',
+                      AppThemeMode.system => '시스템 설정',
+                    },
                     onPressed: () {
-                      ref.read(settingsProvider.notifier).updateThemeMode(
-                            isDark ? AppThemeMode.system : AppThemeMode.dark,
-                          );
+                      final next = switch (themeMode) {
+                        AppThemeMode.system => AppThemeMode.light,
+                        AppThemeMode.light => AppThemeMode.dark,
+                        AppThemeMode.dark => AppThemeMode.system,
+                      };
+                      ref.read(settingsProvider.notifier).updateThemeMode(next);
                     },
                   ),
                   WordBadge(level: summary.currentLevel),

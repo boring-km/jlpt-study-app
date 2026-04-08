@@ -84,7 +84,7 @@
   {"id":983,"expression":"ずらす","reading":"ずらす","meaning_en":"to put off, to delay","meaning_ko":"미루다, 어긋나게 하다","example":{"ja":"予定を一週間ずらした。","reading":"よていをいっしゅうかんずらした。","ko":"예정을 일주일 미뤘다."}},
   {"id":984,"expression":"ずらり","reading":"ずらり","meaning_en":"in a line, in a row","meaning_ko":"줄줄이, 즐비하게","example":{"ja":"棚に本がずらりと並んでいる。","reading":"たなにほんがずらりとならんでいる。","ko":"선반에 책이 줄줄이 늘어서 있다."}},
   {"id":985,"expression":"スリッパ","reading":"スリッパ","meaning_en":"slippers","meaning_ko":"슬리퍼","example":{"ja":"玄関でスリッパに履き替えた。","reading":"げんかんですりっぱにはきかえた。","ko":"현관에서 슬리퍼로 갈아 신었다."}},
-  {"id":986,"expression":"する","reading":"する","meaning_en":"to print","meaning_ko":"인쇄하다","example":{"ja":"資料を百枚刷った。","reading":"しりょうをひゃくまいすった。","ko":"자료를 100장 인쇄했다."}},
+  {"id":986,"expression":"刷る","reading":"する","meaning_en":"to print, to run off","meaning_ko":"인쇄하다, 찍다","example":{"ja":"資料を百枚刷った。","reading":"しりょうをひゃくまいすった。","ko":"자료를 100장 인쇄했다."}},
   {"id":987,"expression":"狡い","reading":"ずるい","meaning_en":"sly, cunning","meaning_ko":"교활한, 비겁한","example":{"ja":"ずるい手を使って勝った。","reading":"ずるいてをつかってかった。","ko":"비겁한 수를 써서 이겼다."}},
   {"id":988,"expression":"寸法","reading":"すんぽう","meaning_en":"measurement, size, dimension","meaning_ko":"치수, 사이즈","example":{"ja":"家具の寸法を測ってから注文した。","reading":"かぐのすんぽうをはかってからちゅうもんした。","ko":"가구 치수를 재고 나서 주문했다."}},
   {"id":989,"expression":"姓","reading":"せい","meaning_en":"surname, family name","meaning_ko":"성 (성씨)","example":{"ja":"結婚して姓が変わった。","reading":"けっこんしてせいがかわった。","ko":"결혼해서 성이 바뀌었다."}},

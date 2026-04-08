@@ -63,7 +63,7 @@
   {"id":362,"expression":"概論","reading":"がいろん","meaning_en":"introduction, general remark","meaning_ko":"개론","example":{"ja":"経済学概論の授業を受けた。","reading":"けいざいがくがいろんのじゅぎょうをうけた。","ko":"경제학 개론 수업을 들었다."}},
   {"id":363,"expression":"却って","reading":"かえって","meaning_en":"on the contrary, rather","meaning_ko":"오히려, 도리어","example":{"ja":"薬を飲んだら却って気分が悪くなった。","reading":"くすりをのんだらかえってきぶんがわるくなった。","ko":"약을 먹었더니 오히려 기분이 나빠졌다."}},
   {"id":364,"expression":"家屋","reading":"かおく","meaning_en":"house, building","meaning_ko":"가옥, 건물","example":{"ja":"地震で多くの家屋が倒壊した。","reading":"じしんでおおくのかおくがとうかいした。","ko":"지진으로 많은 가옥이 붕괴되었다."}},
-  {"id":365,"expression":"係わる","reading":"かかわる","meaning_en":"to concern oneself in, to be involved in","meaning_ko":"관계하다, 관련되다","example":{"ja":"この事件に係わった人は誰だ。","reading":"このじけんにかかわったひとはだれだ。","ko":"이 사건에 관련된 사람은 누구다."}},
+  {"id":365,"expression":"係わる","reading":"かかわる","meaning_en":"to concern oneself in, to be involved in","meaning_ko":"관계하다, 관련되다","example":{"ja":"この事件に係わった人は誰だろう。","reading":"このじけんにかかわったひとはだれだろう。","ko":"이 사건에 관련된 사람은 누구일까."}},
   {"id":366,"expression":"書留","reading":"かきとめ","meaning_en":"registered mail","meaning_ko":"등기","example":{"ja":"重要書類は書留で送った。","reading":"じゅうようしょるいはかきとめでおくった。","ko":"중요 서류는 등기로 보냈다."}},
   {"id":367,"expression":"書取","reading":"かきとり","meaning_en":"dictation","meaning_ko":"받아쓰기","example":{"ja":"授業で漢字の書取をした。","reading":"じゅぎょうでかんじのかきとりをした。","ko":"수업에서 한자 받아쓰기를 했다."}},
   {"id":368,"expression":"垣根","reading":"かきね","meaning_en":"hedge","meaning_ko":"울타리, 생울타리","example":{"ja":"庭に垣根を作った。","reading":"にわにかきねをつくった。","ko":"정원에 울타리를 만들었다."}},

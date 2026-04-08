@@ -13,7 +13,7 @@
   {"id":412,"expression":"片寄る","reading":"かたよる","meaning_en":"to be one-sided, to incline, to be partial","meaning_ko":"치우치다, 편향되다","example":{"ja":"報道が一方に片寄っている。","reading":"ほうどうがいっぽうにかたよっている。","ko":"보도가 한쪽으로 치우쳐 있다."}},
   {"id":413,"expression":"学科","reading":"がっか","meaning_en":"study subject, course of study","meaning_ko":"학과","example":{"ja":"好きな学科は数学だ。","reading":"すきながっかはすうがくだ。","ko":"좋아하는 학과는 수학이다."}},
   {"id":414,"expression":"学会","reading":"がっかい","meaning_en":"academic conference","meaning_ko":"학회","example":{"ja":"来週、医学の学会に参加する。","reading":"らいしゅう、いがくのがっかいにさんかする。","ko":"다음 주 의학 학회에 참가한다."}},
-  {"id":415,"expression":"楽器","reading":"がっき","meaning_en":"musical instrument","meaning_ko":"악기","example":{"ja":"子供のころからピアノという楽器を習っている。","reading":"こどものころからぴあのというがっきをならっている。","ko":"어릴 때부터 피아노라는 악기를 배우고 있다."}},
+  {"id":415,"expression":"楽器","reading":"がっき","meaning_en":"musical instrument","meaning_ko":"악기","example":{"ja":"子供のころから様々な楽器を習っている。","reading":"こどものころからさまざまながっきをならっている。","ko":"어릴 때부터 다양한 악기를 배우고 있다."}},
   {"id":416,"expression":"学級","reading":"がっきゅう","meaning_en":"class","meaning_ko":"학급, 반","example":{"ja":"私の学級は三十五人だ。","reading":"わたしのがっきゅうはさんじゅうごにんだ。","ko":"우리 학급은 35명이다."}},
   {"id":417,"expression":"担ぐ","reading":"かつぐ","meaning_en":"to shoulder, to carry on shoulder","meaning_ko":"어깨에 메다","example":{"ja":"重い荷物を肩に担いだ。","reading":"おもいにもつをかたにかついだ。","ko":"무거운 짐을 어깨에 멨다."}},
   {"id":418,"expression":"括弧","reading":"かっこ","meaning_en":"parenthesis, brackets","meaning_ko":"괄호","example":{"ja":"括弧の中に答えを書いてください。","reading":"かっこのなかにこたえをかいてください。","ko":"괄호 안에 답을 써 주세요."}},

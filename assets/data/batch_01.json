@@ -150,9 +150,9 @@
     "meaning_en": "picture, painting",
     "meaning_ko": "~화, 그림",
     "example": {
-      "ja": "この映画は全十二画で構成されている。",
-      "reading": "このえいがはぜんじゅうにがでこうせいされている。",
-      "ko": "이 영화는 총 12화로 구성되어 있다."
+      "ja": "彼女は油絵や水彩画など様々な画を描く。",
+      "reading": "かのじょはあぶらえやすいさいがなどさまざまながをかく。",
+      "ko": "그녀는 유화나 수채화 등 다양한 그림을 그린다."
     }
   },
   {
@@ -339,7 +339,7 @@
     "id": 29,
     "expression": "～きる",
     "reading": "～きる",
-    "meaning_en": "nevertheless, to carry through",
+    "meaning_en": "completely, to do to the end",
     "meaning_ko": "완전히 ~하다, ~해내다",
     "example": {
       "ja": "マラソンを最後まで走りきった。",
@@ -748,11 +748,11 @@
     "expression": "～畳",
     "reading": "～じょう",
     "meaning_en": "count for tatami, mat",
-    "meaning_ko": "~장 (다다미 세는 단위)",
+    "meaning_ko": "~조, ~다다미 (다다미 세는 단위)",
     "example": {
       "ja": "この部屋は六畳の和室です。",
       "reading": "このへやはろくじょうのわしつです。",
-      "ko": "이 방은 6장 크기의 일본식 방입니다."
+      "ko": "이 방은 6다다미 크기의 일본식 방입니다."
     }
   },
   {

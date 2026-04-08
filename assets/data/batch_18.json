@@ -614,12 +614,12 @@
   {
     "id": 1752,
     "expression": "目下",
-    "reading": "めした",
+    "reading": "もっか",
     "meaning_en": "at present, now",
     "meaning_ko": "현재, 지금",
     "example": {
       "ja": "目下のところ問題はない。",
-      "reading": "めしたのところもんだいはない。",
+      "reading": "もっかのところもんだいはない。",
       "ko": "현재로서는 문제가 없다."
     }
   },

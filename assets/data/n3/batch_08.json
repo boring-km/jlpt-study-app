@@ -1,95 +1,1118 @@
 [
-  {"id": 652, "expression": "気温", "reading": "きおん", "meaning_en": "temperature (weather)", "meaning_ko": "기온", "example": {"ja": "今日の気温はとても高い。", "reading": "きょうのきおんはとてもたかい。", "ko": "오늘의 기온은 매우 높다."}},
-  {"id": 653, "expression": "機械", "reading": "きかい", "meaning_en": "machine, machinery", "meaning_ko": "기계", "example": {"ja": "工場に最新の機械が導入された。", "reading": "こうじょうにさいしんのきかいがどうにゅうされた。", "ko": "공장에 최신 기계가 도입되었다."}},
-  {"id": 654, "expression": "器械", "reading": "きかい", "meaning_en": "instrument", "meaning_ko": "기구, 기기", "example": {"ja": "医療器械を正しく使う必要がある。", "reading": "いりょうきかいをただしくつかうひつようがある。", "ko": "의료 기기를 올바르게 사용할 필요가 있다."}},
-  {"id": 655, "expression": "議会", "reading": "ぎかい", "meaning_en": "Diet, congress, parliament", "meaning_ko": "의회", "example": {"ja": "議会で新しい法律が可決された。", "reading": "ぎかいであたらしいほうりつがかけつされた。", "ko": "의회에서 새로운 법률이 가결되었다."}},
-  {"id": 656, "expression": "期間", "reading": "きかん", "meaning_en": "period, term", "meaning_ko": "기간", "example": {"ja": "留学の期間は一年だった。", "reading": "りゅうがくのきかんはいちねんだった。", "ko": "유학 기간은 1년이었다."}},
-  {"id": 657, "expression": "機関", "reading": "きかん", "meaning_en": "engine; institution, organization", "meaning_ko": "기관", "example": {"ja": "政府機関から発表があった。", "reading": "せいふきかんからはっぴょうがあった。", "ko": "정부 기관에서 발표가 있었다."}},
-  {"id": 658, "expression": "企業", "reading": "きぎょう", "meaning_en": "industry, business, undertaking", "meaning_ko": "기업", "example": {"ja": "大企業に就職したいと思っている。", "reading": "だいきぎょうにしゅうしょくしたいとおもっている。", "ko": "대기업에 취직하고 싶다고 생각하고 있다."}},
-  {"id": 659, "expression": "効く", "reading": "きく", "meaning_en": "to be effective", "meaning_ko": "효과가 있다, 듣다", "example": {"ja": "この薬はよく効く。", "reading": "このくすりはよくきく。", "ko": "이 약은 잘 듣는다."}},
-  {"id": 660, "expression": "機嫌", "reading": "きげん", "meaning_en": "humor, temper, mood", "meaning_ko": "기분, 기색", "example": {"ja": "今日は機嫌がいい。", "reading": "きょうはきげんがいい。", "ko": "오늘은 기분이 좋다."}},
-  {"id": 661, "expression": "気候", "reading": "きこう", "meaning_en": "climate", "meaning_ko": "기후", "example": {"ja": "日本の気候は地域によって異なる。", "reading": "にほんのきこうはちいきによってことなる。", "ko": "일본의 기후는 지역에 따라 다르다."}},
-  {"id": 662, "expression": "岸", "reading": "きし", "meaning_en": "bank, coast, shore", "meaning_ko": "기슭, 해안", "example": {"ja": "川の岸を散歩した。", "reading": "かわのきしをさんぽした。", "ko": "강가를 산책했다."}},
-  {"id": 663, "expression": "生地", "reading": "きじ", "meaning_en": "fabric; dough", "meaning_ko": "천, 반죽", "example": {"ja": "ケーキの生地を作った。", "reading": "ケーキのきじをつくった。", "ko": "케이크 반죽을 만들었다."}},
-  {"id": 664, "expression": "記事", "reading": "きじ", "meaning_en": "article, news story", "meaning_ko": "기사", "example": {"ja": "新聞の記事を読んだ。", "reading": "しんぶんのきじをよんだ。", "ko": "신문 기사를 읽었다."}},
-  {"id": 665, "expression": "技師", "reading": "ぎし", "meaning_en": "engineer, technician", "meaning_ko": "기사, 기술자", "example": {"ja": "電気技師として働いている。", "reading": "でんきぎしとしてはたらいている。", "ko": "전기 기사로 일하고 있다."}},
-  {"id": 666, "expression": "記者", "reading": "きしゃ", "meaning_en": "reporter", "meaning_ko": "기자", "example": {"ja": "記者が事故を取材した。", "reading": "きしゃがじこをしゅざいした。", "ko": "기자가 사고를 취재했다."}},
-  {"id": 667, "expression": "傷", "reading": "きず", "meaning_en": "wound, injury, hurt", "meaning_ko": "상처", "example": {"ja": "転んで膝に傷ができた。", "reading": "ころんでひざにきずができた。", "ko": "넘어져서 무릎에 상처가 생겼다."}},
-  {"id": 668, "expression": "期待", "reading": "きたい", "meaning_en": "expectation, anticipation, hope", "meaning_ko": "기대", "example": {"ja": "試合の結果に期待している。", "reading": "しあいのけっかにきたいしている。", "ko": "시합 결과에 기대하고 있다."}},
-  {"id": 669, "expression": "気体", "reading": "きたい", "meaning_en": "vapor, gas", "meaning_ko": "기체", "example": {"ja": "水は加熱すると気体になる。", "reading": "みずはかねつするときたいになる。", "ko": "물은 가열하면 기체가 된다."}},
-  {"id": 670, "expression": "帰宅", "reading": "きたく", "meaning_en": "returning home", "meaning_ko": "귀가", "example": {"ja": "残業で帰宅が遅くなった。", "reading": "ざんぎょうできたくがおそくなった。", "ko": "야근으로 귀가가 늦어졌다."}},
-  {"id": 671, "expression": "貴重", "reading": "きちょう", "meaning_en": "precious, valuable", "meaning_ko": "귀중하다, 소중하다", "example": {"ja": "これは貴重な体験だった。", "reading": "これはきちょうなたいけんだった。", "ko": "이것은 귀중한 경험이었다."}},
-  {"id": 672, "expression": "議長", "reading": "ぎちょう", "meaning_en": "chairman", "meaning_ko": "의장", "example": {"ja": "会議の議長を務めた。", "reading": "かいぎのぎちょうをつとめた。", "ko": "회의의 의장을 맡았다."}},
-  {"id": 673, "expression": "きちんと", "reading": "きちんと", "meaning_en": "precisely, accurately", "meaning_ko": "제대로, 정확히", "example": {"ja": "宿題をきちんとやること。", "reading": "しゅくだいをきちんとやること。", "ko": "숙제를 제대로 할 것."}},
-  {"id": 674, "expression": "きつい", "reading": "きつい", "meaning_en": "tight, close, intense", "meaning_ko": "빡빡하다, 힘들다", "example": {"ja": "この靴はきつくて履けない。", "reading": "このくつはきつくてはけない。", "ko": "이 신발은 꽉 껴서 신을 수 없다."}},
-  {"id": 675, "expression": "気付く", "reading": "きづく", "meaning_en": "to notice, to recognize, to become aware of", "meaning_ko": "알아차리다, 깨닫다", "example": {"ja": "ミスに気付いてよかった。", "reading": "ミスにきづいてよかった。", "ko": "실수를 알아차려서 다행이었다."}},
-  {"id": 676, "expression": "気に入る", "reading": "きにいる", "meaning_en": "to like, to be pleased", "meaning_ko": "마음에 들다", "example": {"ja": "このカフェはとても気に入った。", "reading": "このカフェはとてもきにいった。", "ko": "이 카페가 매우 마음에 들었다."}},
-  {"id": 677, "expression": "記入", "reading": "きにゅう", "meaning_en": "entry, filling in of forms", "meaning_ko": "기입, 기재", "example": {"ja": "申込書に必要事項を記入した。", "reading": "もうしこみしょにひつようじこうをきにゅうした。", "ko": "신청서에 필요 사항을 기입했다."}},
-  {"id": 678, "expression": "記念", "reading": "きねん", "meaning_en": "commemoration, memory", "meaning_ko": "기념", "example": {"ja": "卒業記念に写真を撮った。", "reading": "そつぎょうきねんにしゃしんをとった。", "ko": "졸업 기념으로 사진을 찍었다."}},
-  {"id": 679, "expression": "機能", "reading": "きのう", "meaning_en": "function, faculty", "meaning_ko": "기능", "example": {"ja": "このアプリには便利な機能がある。", "reading": "このアプリにはべんりなきのうがある。", "ko": "이 앱에는 편리한 기능이 있다."}},
-  {"id": 680, "expression": "気の毒", "reading": "きのどく", "meaning_en": "pitiful, a pity", "meaning_ko": "안됐다, 딱하다", "example": {"ja": "事故に遭った人が気の毒だ。", "reading": "じこにあったひとがきのどくだ。", "ko": "사고를 당한 사람이 안됐다."}},
-  {"id": 681, "expression": "寄付", "reading": "きふ", "meaning_en": "contribution, donation", "meaning_ko": "기부", "example": {"ja": "慈善団体に寄付をした。", "reading": "じぜんだんたいにきふをした。", "ko": "자선단체에 기부를 했다."}},
-  {"id": 682, "expression": "希望", "reading": "きぼう", "meaning_en": "hope, wish, aspiration", "meaning_ko": "희망", "example": {"ja": "将来への希望を持ち続けたい。", "reading": "しょうらいへのきぼうをもちつづけたい。", "ko": "미래를 향한 희망을 계속 품고 싶다."}},
-  {"id": 683, "expression": "基本", "reading": "きほん", "meaning_en": "basic, basis", "meaning_ko": "기본", "example": {"ja": "基本をしっかり身につけることが大切だ。", "reading": "きほんをしっかりみにつけることがたいせつだ。", "ko": "기본을 확실히 익히는 것이 중요하다."}},
-  {"id": 684, "expression": "決まり", "reading": "きまり", "meaning_en": "settlement, conclusion, rule", "meaning_ko": "규칙, 결정", "example": {"ja": "学校の決まりを守ること。", "reading": "がっこうのきまりをまもること。", "ko": "학교 규칙을 지킬 것."}},
-  {"id": 685, "expression": "気味", "reading": "きみ", "meaning_en": "-like, -looking, -looked", "meaning_ko": "기색, ~스러운", "example": {"ja": "最近、疲れ気味だ。", "reading": "さいきん、つかれぎみだ。", "ko": "최근 피곤한 기색이다."}},
-  {"id": 686, "expression": "奇妙", "reading": "きみょう", "meaning_en": "strange, queer, curious", "meaning_ko": "기묘하다, 이상하다", "example": {"ja": "奇妙な夢を見た。", "reading": "きみょうなゆめをみた。", "ko": "기묘한 꿈을 꾸었다."}},
-  {"id": 687, "expression": "義務", "reading": "ぎむ", "meaning_en": "duty, obligation, responsibility", "meaning_ko": "의무", "example": {"ja": "税金を払うのは国民の義務だ。", "reading": "ぜいきんをはらうのはこくみんのぎむだ。", "ko": "세금을 내는 것은 국민의 의무이다."}},
-  {"id": 688, "expression": "疑問", "reading": "ぎもん", "meaning_en": "question, problem, doubt", "meaning_ko": "의문", "example": {"ja": "疑問があれば質問してください。", "reading": "ぎもんがあればしつもんしてください。", "ko": "의문이 있으면 질문해 주세요."}},
-  {"id": 689, "expression": "逆", "reading": "ぎゃく", "meaning_en": "reverse, opposite", "meaning_ko": "반대, 역", "example": {"ja": "逆の方向に進んでしまった。", "reading": "ぎゃくのほうこうにすすんでしまった。", "ko": "반대 방향으로 나아가 버렸다."}},
-  {"id": 690, "expression": "キャプテン", "reading": "キャプテン", "meaning_en": "captain", "meaning_ko": "주장, 캡틴", "example": {"ja": "彼はサッカーチームのキャプテンだ。", "reading": "かれはサッカーチームのキャプテンだ。", "ko": "그는 축구팀의 주장이다."}},
-  {"id": 691, "expression": "キャンプ", "reading": "キャンプ", "meaning_en": "camp", "meaning_ko": "캠프", "example": {"ja": "夏休みにキャンプに行く予定だ。", "reading": "なつやすみにキャンプにいくよていだ。", "ko": "여름방학에 캠프에 갈 예정이다."}},
-  {"id": 692, "expression": "旧", "reading": "きゅう", "meaning_en": "ex-", "meaning_ko": "구, 예전의", "example": {"ja": "旧友と再会した。", "reading": "きゅうゆうとさいかいした。", "ko": "옛 친구와 재회했다."}},
-  {"id": 693, "expression": "級", "reading": "きゅう", "meaning_en": "class, grade, rank", "meaning_ko": "급, 등급", "example": {"ja": "日本語検定の三級に合格した。", "reading": "にほんごけんていのさんきゅうにごうかくした。", "ko": "일본어 검정 3급에 합격했다."}},
-  {"id": 694, "expression": "球", "reading": "きゅう", "meaning_en": "globe, sphere, ball", "meaning_ko": "공, 구", "example": {"ja": "投手は速い球を投げた。", "reading": "とうしゅははやいきゅうをなげた。", "ko": "투수는 빠른 공을 던졌다."}},
-  {"id": 695, "expression": "休暇", "reading": "きゅうか", "meaning_en": "vacation, holiday, day off", "meaning_ko": "휴가", "example": {"ja": "夏休みに長い休暇をとった。", "reading": "なつやすみにながいきゅうかをとった。", "ko": "여름에 긴 휴가를 보냈다."}},
-  {"id": 696, "expression": "休憩", "reading": "きゅうけい", "meaning_en": "rest, break, intermission", "meaning_ko": "휴식, 휴게", "example": {"ja": "一時間働いたら休憩をとった。", "reading": "いちじかんはたらいたらきゅうけいをとった。", "ko": "한 시간 일하고 나서 휴식을 취했다."}},
-  {"id": 697, "expression": "急激", "reading": "きゅうげき", "meaning_en": "sudden, precipitous, radical", "meaning_ko": "급격하다", "example": {"ja": "気温が急激に下がった。", "reading": "きおんがきゅうげきにさがった。", "ko": "기온이 급격히 내려갔다."}},
-  {"id": 698, "expression": "吸収", "reading": "きゅうしゅう", "meaning_en": "absorption, suction", "meaning_ko": "흡수", "example": {"ja": "スポンジが水を吸収した。", "reading": "スポンジがみずをきゅうしゅうした。", "ko": "스펀지가 물을 흡수했다."}},
-  {"id": 699, "expression": "救助", "reading": "きゅうじょ", "meaning_en": "relief, aid, rescue", "meaning_ko": "구조", "example": {"ja": "救助隊が被災者を助けた。", "reading": "きゅうじょたいがひさいしゃをたすけた。", "ko": "구조대가 피해자를 도왔다."}},
-  {"id": 700, "expression": "急速", "reading": "きゅうそく", "meaning_en": "rapid (e.g., progress)", "meaning_ko": "급속, 빠른", "example": {"ja": "技術は急速に進歩している。", "reading": "ぎじゅつはきゅうそくにしんぽしている。", "ko": "기술은 급속히 발전하고 있다."}},
-  {"id": 701, "expression": "急に", "reading": "きゅうに", "meaning_en": "suddenly", "meaning_ko": "갑자기", "example": {"ja": "急に雨が降り出した。", "reading": "きゅうにあめがふりだした。", "ko": "갑자기 비가 내리기 시작했다."}},
-  {"id": 702, "expression": "給料", "reading": "きゅうりょう", "meaning_en": "salary, wages", "meaning_ko": "급료, 월급", "example": {"ja": "今月の給料が上がった。", "reading": "こんげつのきゅうりょうがあがった。", "ko": "이번 달 월급이 올랐다."}},
-  {"id": 703, "expression": "器用", "reading": "きよう", "meaning_en": "skillful, handy", "meaning_ko": "손재주가 있다, 능숙하다", "example": {"ja": "彼女は器用で何でも作れる。", "reading": "かのじょはきようでなんでもつくれる。", "ko": "그녀는 손재주가 있어서 무엇이든 만들 수 있다."}},
-  {"id": 704, "expression": "教科書", "reading": "きょうかしょ", "meaning_en": "textbook", "meaning_ko": "교과서", "example": {"ja": "教科書を忘れてしまった。", "reading": "きょうかしょをわすれてしまった。", "ko": "교과서를 깜빡하고 두고 왔다."}},
-  {"id": 705, "expression": "競技", "reading": "きょうぎ", "meaning_en": "game, match, contest", "meaning_ko": "경기", "example": {"ja": "オリンピックでいろいろな競技を観た。", "reading": "オリンピックでいろいろなきょうぎをみた。", "ko": "올림픽에서 다양한 경기를 관람했다."}},
-  {"id": 706, "expression": "行儀", "reading": "ぎょうぎ", "meaning_en": "manners", "meaning_ko": "예절, 행동거지", "example": {"ja": "子供に行儀よくするよう教えた。", "reading": "こどもにぎょうぎよくするようおしえた。", "ko": "아이에게 예절 바르게 행동하도록 가르쳤다."}},
-  {"id": 707, "expression": "供給", "reading": "きょうきゅう", "meaning_en": "supply, provision", "meaning_ko": "공급", "example": {"ja": "電力の供給が不足している。", "reading": "でんりょくのきょうきゅうがふそくしている。", "ko": "전력 공급이 부족하다."}},
-  {"id": 708, "expression": "教授", "reading": "きょうじゅ", "meaning_en": "teaching, instruction; professor", "meaning_ko": "교수", "example": {"ja": "大学の教授に相談した。", "reading": "だいがくのきょうじゅにそうだんした。", "ko": "대학 교수에게 상담했다."}},
-  {"id": 709, "expression": "強調", "reading": "きょうちょう", "meaning_en": "emphasis, stress, stressed point", "meaning_ko": "강조", "example": {"ja": "先生は重要な点を強調した。", "reading": "せんせいはじゅうようなてんをきょうちょうした。", "ko": "선생님은 중요한 점을 강조했다."}},
-  {"id": 710, "expression": "共通", "reading": "きょうつう", "meaning_en": "commonness, mutual", "meaning_ko": "공통", "example": {"ja": "二人には共通の趣味がある。", "reading": "ふたりにはきょうつうのしゅみがある。", "ko": "두 사람에게는 공통된 취미가 있다."}},
-  {"id": 711, "expression": "共同", "reading": "きょうどう", "meaning_en": "cooperation, association, collaboration", "meaning_ko": "공동", "example": {"ja": "プロジェクトを共同で進めた。", "reading": "プロジェクトをきょうどうですすめた。", "ko": "프로젝트를 공동으로 진행했다."}},
-  {"id": 712, "expression": "恐怖", "reading": "きょうふ", "meaning_en": "fear, terror", "meaning_ko": "공포", "example": {"ja": "高いところが恐怖だ。", "reading": "たかいところがきょうふだ。", "ko": "높은 곳이 공포스럽다."}},
-  {"id": 713, "expression": "協力", "reading": "きょうりょく", "meaning_en": "cooperation, collaboration", "meaning_ko": "협력", "example": {"ja": "みんなで協力して問題を解決した。", "reading": "みんなできょうりょくしてもんだいをかいけつした。", "ko": "모두 함께 협력해서 문제를 해결했다."}},
-  {"id": 714, "expression": "強力", "reading": "きょうりょく", "meaning_en": "powerful, strong", "meaning_ko": "강력하다", "example": {"ja": "強力なチームが優勝した。", "reading": "きょうりょくなチームがゆうしょうした。", "ko": "강력한 팀이 우승했다."}},
-  {"id": 715, "expression": "許可", "reading": "きょか", "meaning_en": "permission, approval", "meaning_ko": "허가", "example": {"ja": "先生に許可をもらって外出した。", "reading": "せんせいにきょかをもらってがいしゅつした。", "ko": "선생님에게 허가를 받고 외출했다."}},
-  {"id": 716, "expression": "局", "reading": "きょく", "meaning_en": "office, bureau, station (TV, radio)", "meaning_ko": "국, 방송국", "example": {"ja": "テレビ局で番組を収録した。", "reading": "テレビきょくでばんぐみをしゅうろくした。", "ko": "TV 방송국에서 프로그램을 녹화했다."}},
-  {"id": 717, "expression": "巨大", "reading": "きょだい", "meaning_en": "huge, gigantic, enormous", "meaning_ko": "거대하다", "example": {"ja": "巨大な岩が道をふさいでいた。", "reading": "きょだいないわがみちをふさいでいた。", "ko": "거대한 바위가 길을 막고 있었다."}},
-  {"id": 718, "expression": "嫌う", "reading": "きらう", "meaning_en": "to hate, to dislike, to loathe", "meaning_ko": "싫어하다", "example": {"ja": "彼女は嘘をつく人を嫌う。", "reading": "かのじょはうそをつくひとをきらう。", "ko": "그녀는 거짓말하는 사람을 싫어한다."}},
-  {"id": 719, "expression": "霧", "reading": "きり", "meaning_en": "fog, mist", "meaning_ko": "안개", "example": {"ja": "朝、山に霧がかかっていた。", "reading": "あさ、やまにきりがかかっていた。", "ko": "아침에 산에 안개가 끼어 있었다."}},
-  {"id": 720, "expression": "切れ", "reading": "きれ", "meaning_en": "cloth, piece, cut", "meaning_ko": "조각, 한 토막", "example": {"ja": "ケーキを一切れ食べた。", "reading": "ケーキをひときれたべた。", "ko": "케이크를 한 조각 먹었다."}},
-  {"id": 721, "expression": "切れる", "reading": "きれる", "meaning_en": "to cut well, to be sharp; to break (off)", "meaning_ko": "잘 들다, 끊어지다", "example": {"ja": "このナイフはよく切れる。", "reading": "このナイフはよくきれる。", "ko": "이 나이프는 잘 든다."}},
-  {"id": 722, "expression": "記録", "reading": "きろく", "meaning_en": "record, minutes, document", "meaning_ko": "기록", "example": {"ja": "大会で新記録が出た。", "reading": "たいかいでしんきろくがでた。", "ko": "대회에서 신기록이 나왔다."}},
-  {"id": 723, "expression": "議論", "reading": "ぎろん", "meaning_en": "argument, discussion, dispute", "meaning_ko": "논의, 토론", "example": {"ja": "会議で活発な議論が行われた。", "reading": "かいぎでかっぱつなぎろんがおこなわれた。", "ko": "회의에서 활발한 토론이 이루어졌다."}},
-  {"id": 724, "expression": "金", "reading": "きん", "meaning_en": "gold, metal; money", "meaning_ko": "금", "example": {"ja": "金のメダルをもらった。", "reading": "きんのメダルをもらった。", "ko": "금메달을 받았다."}},
-  {"id": 725, "expression": "銀", "reading": "ぎん", "meaning_en": "silver", "meaning_ko": "은", "example": {"ja": "銀のアクセサリーが好きだ。", "reading": "ぎんのアクセサリーがすきだ。", "ko": "은 액세서리를 좋아한다."}},
-  {"id": 726, "expression": "禁煙", "reading": "きんえん", "meaning_en": "No Smoking", "meaning_ko": "금연", "example": {"ja": "この建物内は禁煙です。", "reading": "このたてものないはきんえんです。", "ko": "이 건물 내는 금연입니다."}},
-  {"id": 727, "expression": "金額", "reading": "きんがく", "meaning_en": "amount of money", "meaning_ko": "금액", "example": {"ja": "合計金額を確認してください。", "reading": "ごうけいきんがくをかくにんしてください。", "ko": "합계 금액을 확인해 주세요."}},
-  {"id": 728, "expression": "金庫", "reading": "きんこ", "meaning_en": "safe, vault", "meaning_ko": "금고", "example": {"ja": "大切なものを金庫に入れた。", "reading": "たいせつなものをきんこにいれた。", "ko": "소중한 것을 금고에 넣었다."}},
-  {"id": 729, "expression": "禁止", "reading": "きんし", "meaning_en": "prohibition, ban", "meaning_ko": "금지", "example": {"ja": "ここでの撮影は禁止されている。", "reading": "ここでのさつえいはきんしされている。", "ko": "이곳에서의 촬영은 금지되어 있다."}},
-  {"id": 730, "expression": "金銭", "reading": "きんせん", "meaning_en": "money, cash", "meaning_ko": "금전, 돈", "example": {"ja": "金銭に関するトラブルが起きた。", "reading": "きんせんにかんするトラブルがおきた。", "ko": "금전에 관한 트러블이 생겼다."}},
-  {"id": 731, "expression": "金属", "reading": "きんぞく", "meaning_en": "metal", "meaning_ko": "금속", "example": {"ja": "この製品は金属でできている。", "reading": "このせいひんはきんぞくでできている。", "ko": "이 제품은 금속으로 만들어져 있다."}},
-  {"id": 732, "expression": "近代", "reading": "きんだい", "meaning_en": "modern times", "meaning_ko": "근대", "example": {"ja": "近代の歴史を学んでいる。", "reading": "きんだいのれきしをまなんでいる。", "ko": "근대 역사를 배우고 있다."}},
-  {"id": 733, "expression": "緊張", "reading": "きんちょう", "meaning_en": "tension, mental strain, nervousness", "meaning_ko": "긴장", "example": {"ja": "発表の前は緊張する。", "reading": "はっぴょうのまえはきんちょうする。", "ko": "발표 전에는 긴장된다."}},
-  {"id": 734, "expression": "筋肉", "reading": "きんにく", "meaning_en": "muscle, sinews", "meaning_ko": "근육", "example": {"ja": "運動して筋肉をつけたい。", "reading": "うんどうしてきんにくをつけたい。", "ko": "운동해서 근육을 키우고 싶다."}},
-  {"id": 735, "expression": "金融", "reading": "きんゆう", "meaning_en": "finance, money and banking", "meaning_ko": "금융", "example": {"ja": "金融市場が不安定になっている。", "reading": "きんゆうしじょうがふあんていになっている。", "ko": "금융 시장이 불안정해지고 있다."}},
-  {"id": 736, "expression": "句", "reading": "く", "meaning_en": "phrase", "meaning_ko": "구, 어구", "example": {"ja": "有名な俳句の句を暗記した。", "reading": "ゆうめいなはいくのくをあんきした。", "ko": "유명한 하이쿠의 구를 외웠다."}},
-  {"id": 737, "expression": "食う", "reading": "くう", "meaning_en": "(male) (vulg.) to eat", "meaning_ko": "먹다(남성어)", "example": {"ja": "腹が減ったから何か食おう。", "reading": "はらがへったからなにかくおう。", "ko": "배가 고프니까 뭔가 먹자."}},
-  {"id": 738, "expression": "偶然", "reading": "ぐうぜん", "meaning_en": "(by) chance, unexpectedly", "meaning_ko": "우연히", "example": {"ja": "駅で偶然、旧友に会った。", "reading": "えきでぐうぜん、きゅうゆうにあった。", "ko": "역에서 우연히 옛 친구를 만났다."}},
-  {"id": 739, "expression": "臭い", "reading": "くさい", "meaning_en": "stinky, smelly, bad-smelling", "meaning_ko": "냄새나다, 고약하다", "example": {"ja": "ゴミ箱が臭いので捨てた。", "reading": "ゴミばこがくさいのですてた。", "ko": "쓰레기통이 냄새나서 버렸다."}},
-  {"id": 740, "expression": "鎖", "reading": "くさり", "meaning_en": "chain", "meaning_ko": "쇠사슬, 체인", "example": {"ja": "自転車を鎖で縛った。", "reading": "じてんしゃをくさりでしばった。", "ko": "자전거를 쇠사슬로 묶었다."}},
-  {"id": 741, "expression": "腐る", "reading": "くさる", "meaning_en": "to rot, to go bad", "meaning_ko": "썩다", "example": {"ja": "野菜が腐ってしまった。", "reading": "やさいがくさってしまった。", "ko": "채소가 썩어 버렸다."}},
-  {"id": 742, "expression": "癖", "reading": "くせ", "meaning_en": "a habit (often a bad habit), peculiarity", "meaning_ko": "버릇, 습관", "example": {"ja": "爪を噛む癖がある。", "reading": "つめをかむくせがある。", "ko": "손톱을 깨무는 버릇이 있다."}},
-  {"id": 743, "expression": "管", "reading": "くだ", "meaning_en": "pipe, tube", "meaning_ko": "관, 파이프", "example": {"ja": "水道の管が壊れた。", "reading": "すいどうのくだがこわれた。", "ko": "수도관이 망가졌다."}},
-  {"id": 744, "expression": "具体", "reading": "ぐたい", "meaning_en": "concrete, tangible, material", "meaning_ko": "구체적", "example": {"ja": "具体的な例を挙げてください。", "reading": "ぐたいてきなれいをあげてください。", "ko": "구체적인 예를 들어 주세요."}}
+  {
+    "id": 652,
+    "expression": "気温",
+    "reading": "きおん",
+    "meaning_en": "temperature (weather)",
+    "meaning_ko": "기온",
+    "example": {
+      "ja": "今日の気温はとても高い。",
+      "reading": "きょうのきおんはとてもたかい。",
+      "ko": "오늘의 기온은 매우 높다."
+    }
+  },
+  {
+    "id": 653,
+    "expression": "機械",
+    "reading": "きかい",
+    "meaning_en": "machine, machinery",
+    "meaning_ko": "기계",
+    "example": {
+      "ja": "工場に最新の機械が導入された。",
+      "reading": "こうじょうにさいしんのきかいがどうにゅうされた。",
+      "ko": "공장에 최신 기계가 도입되었다."
+    }
+  },
+  {
+    "id": 654,
+    "expression": "器械",
+    "reading": "きかい",
+    "meaning_en": "instrument",
+    "meaning_ko": "기구, 기기",
+    "example": {
+      "ja": "医療器械を正しく使う必要がある。",
+      "reading": "いりょうきかいをただしくつかうひつようがある。",
+      "ko": "의료 기기를 올바르게 사용할 필요가 있다."
+    }
+  },
+  {
+    "id": 655,
+    "expression": "議会",
+    "reading": "ぎかい",
+    "meaning_en": "Diet, congress, parliament",
+    "meaning_ko": "의회",
+    "example": {
+      "ja": "議会で新しい法律が可決された。",
+      "reading": "ぎかいであたらしいほうりつがかけつされた。",
+      "ko": "의회에서 새로운 법률이 가결되었다."
+    }
+  },
+  {
+    "id": 656,
+    "expression": "期間",
+    "reading": "きかん",
+    "meaning_en": "period, term",
+    "meaning_ko": "기간",
+    "example": {
+      "ja": "留学の期間は一年だった。",
+      "reading": "りゅうがくのきかんはいちねんだった。",
+      "ko": "유학 기간은 1년이었다."
+    }
+  },
+  {
+    "id": 657,
+    "expression": "機関",
+    "reading": "きかん",
+    "meaning_en": "engine; institution, organization",
+    "meaning_ko": "기관",
+    "example": {
+      "ja": "政府機関から発表があった。",
+      "reading": "せいふきかんからはっぴょうがあった。",
+      "ko": "정부 기관에서 발표가 있었다."
+    }
+  },
+  {
+    "id": 658,
+    "expression": "企業",
+    "reading": "きぎょう",
+    "meaning_en": "industry, business, undertaking",
+    "meaning_ko": "기업",
+    "example": {
+      "ja": "大企業に就職したいと思っている。",
+      "reading": "だいきぎょうにしゅうしょくしたいとおもっている。",
+      "ko": "대기업에 취직하고 싶다고 생각하고 있다."
+    }
+  },
+  {
+    "id": 659,
+    "expression": "効く",
+    "reading": "きく",
+    "meaning_en": "to be effective",
+    "meaning_ko": "효과가 있다, 듣다",
+    "example": {
+      "ja": "この薬はよく効く。",
+      "reading": "このくすりはよくきく。",
+      "ko": "이 약은 잘 듣는다."
+    }
+  },
+  {
+    "id": 660,
+    "expression": "機嫌",
+    "reading": "きげん",
+    "meaning_en": "humor, temper, mood",
+    "meaning_ko": "기분, 기색",
+    "example": {
+      "ja": "今日は機嫌がいい。",
+      "reading": "きょうはきげんがいい。",
+      "ko": "오늘은 기분이 좋다."
+    }
+  },
+  {
+    "id": 661,
+    "expression": "気候",
+    "reading": "きこう",
+    "meaning_en": "climate",
+    "meaning_ko": "기후",
+    "example": {
+      "ja": "日本の気候は地域によって異なる。",
+      "reading": "にほんのきこうはちいきによってことなる。",
+      "ko": "일본의 기후는 지역에 따라 다르다."
+    }
+  },
+  {
+    "id": 662,
+    "expression": "岸",
+    "reading": "きし",
+    "meaning_en": "bank, coast, shore",
+    "meaning_ko": "기슭, 해안",
+    "example": {
+      "ja": "川の岸を散歩した。",
+      "reading": "かわのきしをさんぽした。",
+      "ko": "강가를 산책했다."
+    }
+  },
+  {
+    "id": 663,
+    "expression": "生地",
+    "reading": "きじ",
+    "meaning_en": "fabric; dough",
+    "meaning_ko": "천, 반죽",
+    "example": {
+      "ja": "ケーキの生地を作った。",
+      "reading": "ケーキのきじをつくった。",
+      "ko": "케이크 반죽을 만들었다."
+    }
+  },
+  {
+    "id": 664,
+    "expression": "記事",
+    "reading": "きじ",
+    "meaning_en": "article, news story",
+    "meaning_ko": "기사",
+    "example": {
+      "ja": "新聞の記事を読んだ。",
+      "reading": "しんぶんのきじをよんだ。",
+      "ko": "신문 기사를 읽었다."
+    }
+  },
+  {
+    "id": 665,
+    "expression": "技師",
+    "reading": "ぎし",
+    "meaning_en": "engineer, technician",
+    "meaning_ko": "기사, 기술자",
+    "example": {
+      "ja": "電気技師として働いている。",
+      "reading": "でんきぎしとしてはたらいている。",
+      "ko": "전기 기사로 일하고 있다."
+    }
+  },
+  {
+    "id": 666,
+    "expression": "記者",
+    "reading": "きしゃ",
+    "meaning_en": "reporter",
+    "meaning_ko": "기자",
+    "example": {
+      "ja": "記者が事故を取材した。",
+      "reading": "きしゃがじこをしゅざいした。",
+      "ko": "기자가 사고를 취재했다."
+    }
+  },
+  {
+    "id": 667,
+    "expression": "傷",
+    "reading": "きず",
+    "meaning_en": "wound, injury, hurt",
+    "meaning_ko": "상처",
+    "example": {
+      "ja": "転んで膝に傷ができた。",
+      "reading": "ころんでひざにきずができた。",
+      "ko": "넘어져서 무릎에 상처가 생겼다."
+    }
+  },
+  {
+    "id": 668,
+    "expression": "期待",
+    "reading": "きたい",
+    "meaning_en": "expectation, anticipation, hope",
+    "meaning_ko": "기대",
+    "example": {
+      "ja": "試合の結果に期待している。",
+      "reading": "しあいのけっかにきたいしている。",
+      "ko": "시합 결과에 기대하고 있다."
+    }
+  },
+  {
+    "id": 669,
+    "expression": "気体",
+    "reading": "きたい",
+    "meaning_en": "vapor, gas",
+    "meaning_ko": "기체",
+    "example": {
+      "ja": "水は加熱すると気体になる。",
+      "reading": "みずはかねつするときたいになる。",
+      "ko": "물은 가열하면 기체가 된다."
+    }
+  },
+  {
+    "id": 670,
+    "expression": "帰宅",
+    "reading": "きたく",
+    "meaning_en": "returning home",
+    "meaning_ko": "귀가",
+    "example": {
+      "ja": "残業で帰宅が遅くなった。",
+      "reading": "ざんぎょうできたくがおそくなった。",
+      "ko": "야근으로 귀가가 늦어졌다."
+    }
+  },
+  {
+    "id": 671,
+    "expression": "貴重",
+    "reading": "きちょう",
+    "meaning_en": "precious, valuable",
+    "meaning_ko": "귀중하다, 소중하다",
+    "example": {
+      "ja": "これは貴重な体験だった。",
+      "reading": "これはきちょうなたいけんだった。",
+      "ko": "이것은 귀중한 경험이었다."
+    }
+  },
+  {
+    "id": 672,
+    "expression": "議長",
+    "reading": "ぎちょう",
+    "meaning_en": "chairman",
+    "meaning_ko": "의장",
+    "example": {
+      "ja": "会議の議長を務めた。",
+      "reading": "かいぎのぎちょうをつとめた。",
+      "ko": "회의의 의장을 맡았다."
+    }
+  },
+  {
+    "id": 673,
+    "expression": "きちんと",
+    "reading": "きちんと",
+    "meaning_en": "precisely, accurately",
+    "meaning_ko": "제대로, 정확히",
+    "example": {
+      "ja": "宿題をきちんとやること。",
+      "reading": "しゅくだいをきちんとやること。",
+      "ko": "숙제를 제대로 할 것."
+    }
+  },
+  {
+    "id": 674,
+    "expression": "きつい",
+    "reading": "きつい",
+    "meaning_en": "tight, close, intense",
+    "meaning_ko": "빡빡하다, 힘들다",
+    "example": {
+      "ja": "この靴はきつくて履けない。",
+      "reading": "このくつはきつくてはけない。",
+      "ko": "이 신발은 꽉 껴서 신을 수 없다."
+    }
+  },
+  {
+    "id": 675,
+    "expression": "気付く",
+    "reading": "きづく",
+    "meaning_en": "to notice, to recognize, to become aware of",
+    "meaning_ko": "알아차리다, 깨닫다",
+    "example": {
+      "ja": "ミスに気付いてよかった。",
+      "reading": "ミスにきづいてよかった。",
+      "ko": "실수를 알아차려서 다행이었다."
+    }
+  },
+  {
+    "id": 676,
+    "expression": "気に入る",
+    "reading": "きにいる",
+    "meaning_en": "to like, to be pleased",
+    "meaning_ko": "마음에 들다",
+    "example": {
+      "ja": "このカフェはとても気に入った。",
+      "reading": "このカフェはとてもきにいった。",
+      "ko": "이 카페가 매우 마음에 들었다."
+    }
+  },
+  {
+    "id": 677,
+    "expression": "記入",
+    "reading": "きにゅう",
+    "meaning_en": "entry, filling in of forms",
+    "meaning_ko": "기입, 기재",
+    "example": {
+      "ja": "申込書に必要事項を記入した。",
+      "reading": "もうしこみしょにひつようじこうをきにゅうした。",
+      "ko": "신청서에 필요 사항을 기입했다."
+    }
+  },
+  {
+    "id": 678,
+    "expression": "記念",
+    "reading": "きねん",
+    "meaning_en": "commemoration, memory",
+    "meaning_ko": "기념",
+    "example": {
+      "ja": "卒業記念に写真を撮った。",
+      "reading": "そつぎょうきねんにしゃしんをとった。",
+      "ko": "졸업 기념으로 사진을 찍었다."
+    }
+  },
+  {
+    "id": 679,
+    "expression": "機能",
+    "reading": "きのう",
+    "meaning_en": "function, faculty",
+    "meaning_ko": "기능",
+    "example": {
+      "ja": "このアプリには便利な機能がある。",
+      "reading": "このアプリにはべんりなきのうがある。",
+      "ko": "이 앱에는 편리한 기능이 있다."
+    }
+  },
+  {
+    "id": 680,
+    "expression": "気の毒",
+    "reading": "きのどく",
+    "meaning_en": "pitiful, a pity",
+    "meaning_ko": "안됐다, 딱하다",
+    "example": {
+      "ja": "事故に遭った人が気の毒だ。",
+      "reading": "じこにあったひとがきのどくだ。",
+      "ko": "사고를 당한 사람이 안됐다."
+    }
+  },
+  {
+    "id": 681,
+    "expression": "寄付",
+    "reading": "きふ",
+    "meaning_en": "contribution, donation",
+    "meaning_ko": "기부",
+    "example": {
+      "ja": "慈善団体に寄付をした。",
+      "reading": "じぜんだんたいにきふをした。",
+      "ko": "자선단체에 기부를 했다."
+    }
+  },
+  {
+    "id": 682,
+    "expression": "希望",
+    "reading": "きぼう",
+    "meaning_en": "hope, wish, aspiration",
+    "meaning_ko": "희망",
+    "example": {
+      "ja": "将来への希望を持ち続けたい。",
+      "reading": "しょうらいへのきぼうをもちつづけたい。",
+      "ko": "미래를 향한 희망을 계속 품고 싶다."
+    }
+  },
+  {
+    "id": 683,
+    "expression": "基本",
+    "reading": "きほん",
+    "meaning_en": "basic, basis",
+    "meaning_ko": "기본",
+    "example": {
+      "ja": "基本をしっかり身につけることが大切だ。",
+      "reading": "きほんをしっかりみにつけることがたいせつだ。",
+      "ko": "기본을 확실히 익히는 것이 중요하다."
+    }
+  },
+  {
+    "id": 684,
+    "expression": "決まり",
+    "reading": "きまり",
+    "meaning_en": "settlement, conclusion, rule",
+    "meaning_ko": "규칙, 결정",
+    "example": {
+      "ja": "学校の決まりを守ること。",
+      "reading": "がっこうのきまりをまもること。",
+      "ko": "학교 규칙을 지킬 것."
+    }
+  },
+  {
+    "id": 685,
+    "expression": "気味",
+    "reading": "きみ",
+    "meaning_en": "-like, -looking, -looked",
+    "meaning_ko": "기색, ~스러운",
+    "example": {
+      "ja": "最近、疲れ気味だ。",
+      "reading": "さいきん、つかれぎみだ。",
+      "ko": "최근 피곤한 기색이다."
+    }
+  },
+  {
+    "id": 686,
+    "expression": "奇妙",
+    "reading": "きみょう",
+    "meaning_en": "strange, queer, curious",
+    "meaning_ko": "기묘하다, 이상하다",
+    "example": {
+      "ja": "奇妙な夢を見た。",
+      "reading": "きみょうなゆめをみた。",
+      "ko": "기묘한 꿈을 꾸었다."
+    }
+  },
+  {
+    "id": 687,
+    "expression": "義務",
+    "reading": "ぎむ",
+    "meaning_en": "duty, obligation, responsibility",
+    "meaning_ko": "의무",
+    "example": {
+      "ja": "税金を払うのは国民の義務だ。",
+      "reading": "ぜいきんをはらうのはこくみんのぎむだ。",
+      "ko": "세금을 내는 것은 국민의 의무이다."
+    }
+  },
+  {
+    "id": 688,
+    "expression": "疑問",
+    "reading": "ぎもん",
+    "meaning_en": "question, problem, doubt",
+    "meaning_ko": "의문",
+    "example": {
+      "ja": "疑問があれば質問してください。",
+      "reading": "ぎもんがあればしつもんしてください。",
+      "ko": "의문이 있으면 질문해 주세요."
+    }
+  },
+  {
+    "id": 689,
+    "expression": "逆",
+    "reading": "ぎゃく",
+    "meaning_en": "reverse, opposite",
+    "meaning_ko": "반대, 역",
+    "example": {
+      "ja": "逆の方向に進んでしまった。",
+      "reading": "ぎゃくのほうこうにすすんでしまった。",
+      "ko": "반대 방향으로 나아가 버렸다."
+    }
+  },
+  {
+    "id": 690,
+    "expression": "キャプテン",
+    "reading": "キャプテン",
+    "meaning_en": "captain",
+    "meaning_ko": "주장, 캡틴",
+    "example": {
+      "ja": "彼はサッカーチームのキャプテンだ。",
+      "reading": "かれはサッカーチームのキャプテンだ。",
+      "ko": "그는 축구팀의 주장이다."
+    }
+  },
+  {
+    "id": 691,
+    "expression": "キャンプ",
+    "reading": "キャンプ",
+    "meaning_en": "camp",
+    "meaning_ko": "캠프",
+    "example": {
+      "ja": "夏休みにキャンプに行く予定だ。",
+      "reading": "なつやすみにキャンプにいくよていだ。",
+      "ko": "여름방학에 캠프에 갈 예정이다."
+    }
+  },
+  {
+    "id": 692,
+    "expression": "旧",
+    "reading": "きゅう",
+    "meaning_en": "ex-",
+    "meaning_ko": "구, 예전의",
+    "example": {
+      "ja": "旧友と再会した。",
+      "reading": "きゅうゆうとさいかいした。",
+      "ko": "옛 친구와 재회했다."
+    }
+  },
+  {
+    "id": 693,
+    "expression": "級",
+    "reading": "きゅう",
+    "meaning_en": "class, grade, rank",
+    "meaning_ko": "급, 등급",
+    "example": {
+      "ja": "日本語検定の三級に合格した。",
+      "reading": "にほんごけんていのさんきゅうにごうかくした。",
+      "ko": "일본어 검정 3급에 합격했다."
+    }
+  },
+  {
+    "id": 694,
+    "expression": "球",
+    "reading": "きゅう",
+    "meaning_en": "globe, sphere, ball",
+    "meaning_ko": "공, 구",
+    "example": {
+      "ja": "投手は速い球を投げた。",
+      "reading": "とうしゅははやいきゅうをなげた。",
+      "ko": "투수는 빠른 공을 던졌다."
+    }
+  },
+  {
+    "id": 695,
+    "expression": "休暇",
+    "reading": "きゅうか",
+    "meaning_en": "vacation, holiday, day off",
+    "meaning_ko": "휴가",
+    "example": {
+      "ja": "夏休みに長い休暇をとった。",
+      "reading": "なつやすみにながいきゅうかをとった。",
+      "ko": "여름에 긴 휴가를 보냈다."
+    }
+  },
+  {
+    "id": 696,
+    "expression": "休憩",
+    "reading": "きゅうけい",
+    "meaning_en": "rest, break, intermission",
+    "meaning_ko": "휴식, 휴게",
+    "example": {
+      "ja": "一時間働いたら休憩をとった。",
+      "reading": "いちじかんはたらいたらきゅうけいをとった。",
+      "ko": "한 시간 일하고 나서 휴식을 취했다."
+    }
+  },
+  {
+    "id": 697,
+    "expression": "急激",
+    "reading": "きゅうげき",
+    "meaning_en": "sudden, precipitous, radical",
+    "meaning_ko": "급격하다",
+    "example": {
+      "ja": "気温が急激に下がった。",
+      "reading": "きおんがきゅうげきにさがった。",
+      "ko": "기온이 급격히 내려갔다."
+    }
+  },
+  {
+    "id": 698,
+    "expression": "吸収",
+    "reading": "きゅうしゅう",
+    "meaning_en": "absorption, suction",
+    "meaning_ko": "흡수",
+    "example": {
+      "ja": "スポンジが水を吸収した。",
+      "reading": "スポンジがみずをきゅうしゅうした。",
+      "ko": "스펀지가 물을 흡수했다."
+    }
+  },
+  {
+    "id": 699,
+    "expression": "救助",
+    "reading": "きゅうじょ",
+    "meaning_en": "relief, aid, rescue",
+    "meaning_ko": "구조",
+    "example": {
+      "ja": "救助隊が被災者を助けた。",
+      "reading": "きゅうじょたいがひさいしゃをたすけた。",
+      "ko": "구조대가 피해자를 도왔다."
+    }
+  },
+  {
+    "id": 700,
+    "expression": "急速",
+    "reading": "きゅうそく",
+    "meaning_en": "rapid (e.g., progress)",
+    "meaning_ko": "급속, 빠른",
+    "example": {
+      "ja": "技術は急速に進歩している。",
+      "reading": "ぎじゅつはきゅうそくにしんぽしている。",
+      "ko": "기술은 급속히 발전하고 있다."
+    }
+  },
+  {
+    "id": 701,
+    "expression": "急に",
+    "reading": "きゅうに",
+    "meaning_en": "suddenly",
+    "meaning_ko": "갑자기",
+    "example": {
+      "ja": "急に雨が降り出した。",
+      "reading": "きゅうにあめがふりだした。",
+      "ko": "갑자기 비가 내리기 시작했다."
+    }
+  },
+  {
+    "id": 702,
+    "expression": "給料",
+    "reading": "きゅうりょう",
+    "meaning_en": "salary, wages",
+    "meaning_ko": "급료, 월급",
+    "example": {
+      "ja": "今月の給料が上がった。",
+      "reading": "こんげつのきゅうりょうがあがった。",
+      "ko": "이번 달 월급이 올랐다."
+    }
+  },
+  {
+    "id": 703,
+    "expression": "器用",
+    "reading": "きよう",
+    "meaning_en": "skillful, handy",
+    "meaning_ko": "손재주가 있다, 능숙하다",
+    "example": {
+      "ja": "彼女は器用で何でも作れる。",
+      "reading": "かのじょはきようでなんでもつくれる。",
+      "ko": "그녀는 손재주가 있어서 무엇이든 만들 수 있다."
+    }
+  },
+  {
+    "id": 704,
+    "expression": "教科書",
+    "reading": "きょうかしょ",
+    "meaning_en": "textbook",
+    "meaning_ko": "교과서",
+    "example": {
+      "ja": "教科書を忘れてしまった。",
+      "reading": "きょうかしょをわすれてしまった。",
+      "ko": "교과서를 깜빡하고 두고 왔다."
+    }
+  },
+  {
+    "id": 705,
+    "expression": "競技",
+    "reading": "きょうぎ",
+    "meaning_en": "game, match, contest",
+    "meaning_ko": "경기",
+    "example": {
+      "ja": "オリンピックでいろいろな競技を観た。",
+      "reading": "オリンピックでいろいろなきょうぎをみた。",
+      "ko": "올림픽에서 다양한 경기를 관람했다."
+    }
+  },
+  {
+    "id": 706,
+    "expression": "行儀",
+    "reading": "ぎょうぎ",
+    "meaning_en": "manners",
+    "meaning_ko": "예절, 행동거지",
+    "example": {
+      "ja": "子供に行儀よくするよう教えた。",
+      "reading": "こどもにぎょうぎよくするようおしえた。",
+      "ko": "아이에게 예절 바르게 행동하도록 가르쳤다."
+    }
+  },
+  {
+    "id": 707,
+    "expression": "供給",
+    "reading": "きょうきゅう",
+    "meaning_en": "supply, provision",
+    "meaning_ko": "공급",
+    "example": {
+      "ja": "電力の供給が不足している。",
+      "reading": "でんりょくのきょうきゅうがふそくしている。",
+      "ko": "전력 공급이 부족하다."
+    }
+  },
+  {
+    "id": 708,
+    "expression": "教授",
+    "reading": "きょうじゅ",
+    "meaning_en": "teaching, instruction; professor",
+    "meaning_ko": "교수",
+    "example": {
+      "ja": "大学の教授に相談した。",
+      "reading": "だいがくのきょうじゅにそうだんした。",
+      "ko": "대학 교수에게 상담했다."
+    }
+  },
+  {
+    "id": 709,
+    "expression": "強調",
+    "reading": "きょうちょう",
+    "meaning_en": "emphasis, stress, stressed point",
+    "meaning_ko": "강조",
+    "example": {
+      "ja": "先生は重要な点を強調した。",
+      "reading": "せんせいはじゅうようなてんをきょうちょうした。",
+      "ko": "선생님은 중요한 점을 강조했다."
+    }
+  },
+  {
+    "id": 710,
+    "expression": "共通",
+    "reading": "きょうつう",
+    "meaning_en": "commonness, mutual",
+    "meaning_ko": "공통",
+    "example": {
+      "ja": "二人には共通の趣味がある。",
+      "reading": "ふたりにはきょうつうのしゅみがある。",
+      "ko": "두 사람에게는 공통된 취미가 있다."
+    }
+  },
+  {
+    "id": 711,
+    "expression": "共同",
+    "reading": "きょうどう",
+    "meaning_en": "cooperation, association, collaboration",
+    "meaning_ko": "공동",
+    "example": {
+      "ja": "プロジェクトを共同で進めた。",
+      "reading": "プロジェクトをきょうどうですすめた。",
+      "ko": "프로젝트를 공동으로 진행했다."
+    }
+  },
+  {
+    "id": 712,
+    "expression": "恐怖",
+    "reading": "きょうふ",
+    "meaning_en": "fear, terror",
+    "meaning_ko": "공포",
+    "example": {
+      "ja": "高いところが恐怖だ。",
+      "reading": "たかいところがきょうふだ。",
+      "ko": "높은 곳이 공포스럽다."
+    }
+  },
+  {
+    "id": 713,
+    "expression": "協力",
+    "reading": "きょうりょく",
+    "meaning_en": "cooperation, collaboration",
+    "meaning_ko": "협력",
+    "example": {
+      "ja": "みんなで協力して問題を解決した。",
+      "reading": "みんなできょうりょくしてもんだいをかいけつした。",
+      "ko": "모두 함께 협력해서 문제를 해결했다."
+    }
+  },
+  {
+    "id": 714,
+    "expression": "強力",
+    "reading": "きょうりょく",
+    "meaning_en": "powerful, strong",
+    "meaning_ko": "강력하다",
+    "example": {
+      "ja": "強力なチームが優勝した。",
+      "reading": "きょうりょくなチームがゆうしょうした。",
+      "ko": "강력한 팀이 우승했다."
+    }
+  },
+  {
+    "id": 715,
+    "expression": "許可",
+    "reading": "きょか",
+    "meaning_en": "permission, approval",
+    "meaning_ko": "허가",
+    "example": {
+      "ja": "先生に許可をもらって外出した。",
+      "reading": "せんせいにきょかをもらってがいしゅつした。",
+      "ko": "선생님에게 허가를 받고 외출했다."
+    }
+  },
+  {
+    "id": 716,
+    "expression": "局",
+    "reading": "きょく",
+    "meaning_en": "office, bureau, station (TV, radio)",
+    "meaning_ko": "국, 방송국",
+    "example": {
+      "ja": "テレビ局で番組を収録した。",
+      "reading": "テレビきょくでばんぐみをしゅうろくした。",
+      "ko": "TV 방송국에서 프로그램을 녹화했다."
+    }
+  },
+  {
+    "id": 717,
+    "expression": "巨大",
+    "reading": "きょだい",
+    "meaning_en": "huge, gigantic, enormous",
+    "meaning_ko": "거대하다",
+    "example": {
+      "ja": "巨大な岩が道をふさいでいた。",
+      "reading": "きょだいないわがみちをふさいでいた。",
+      "ko": "거대한 바위가 길을 막고 있었다."
+    }
+  },
+  {
+    "id": 718,
+    "expression": "嫌う",
+    "reading": "きらう",
+    "meaning_en": "to hate, to dislike, to loathe",
+    "meaning_ko": "싫어하다",
+    "example": {
+      "ja": "彼女は嘘をつく人を嫌う。",
+      "reading": "かのじょはうそをつくひとをきらう。",
+      "ko": "그녀는 거짓말하는 사람을 싫어한다."
+    }
+  },
+  {
+    "id": 719,
+    "expression": "霧",
+    "reading": "きり",
+    "meaning_en": "fog, mist",
+    "meaning_ko": "안개",
+    "example": {
+      "ja": "朝、山に霧がかかっていた。",
+      "reading": "あさ、やまにきりがかかっていた。",
+      "ko": "아침에 산에 안개가 끼어 있었다."
+    }
+  },
+  {
+    "id": 720,
+    "expression": "切れ",
+    "reading": "きれ",
+    "meaning_en": "cloth, piece, cut",
+    "meaning_ko": "조각, 한 토막",
+    "example": {
+      "ja": "ケーキを一切れ食べた。",
+      "reading": "ケーキをひときれたべた。",
+      "ko": "케이크를 한 조각 먹었다."
+    }
+  },
+  {
+    "id": 721,
+    "expression": "切れる",
+    "reading": "きれる",
+    "meaning_en": "to cut well, to be sharp; to break (off)",
+    "meaning_ko": "잘 들다, 끊어지다",
+    "example": {
+      "ja": "このナイフはよく切れる。",
+      "reading": "このナイフはよくきれる。",
+      "ko": "이 나이프는 잘 든다."
+    }
+  },
+  {
+    "id": 722,
+    "expression": "記録",
+    "reading": "きろく",
+    "meaning_en": "record, minutes, document",
+    "meaning_ko": "기록",
+    "example": {
+      "ja": "大会で新記録が出た。",
+      "reading": "たいかいでしんきろくがでた。",
+      "ko": "대회에서 신기록이 나왔다."
+    }
+  },
+  {
+    "id": 723,
+    "expression": "議論",
+    "reading": "ぎろん",
+    "meaning_en": "argument, discussion, dispute",
+    "meaning_ko": "논의, 토론",
+    "example": {
+      "ja": "会議で活発な議論が行われた。",
+      "reading": "かいぎでかっぱつなぎろんがおこなわれた。",
+      "ko": "회의에서 활발한 토론이 이루어졌다."
+    }
+  },
+  {
+    "id": 724,
+    "expression": "金",
+    "reading": "きん",
+    "meaning_en": "gold, metal; money",
+    "meaning_ko": "금",
+    "example": {
+      "ja": "金のメダルをもらった。",
+      "reading": "きんのメダルをもらった。",
+      "ko": "금메달을 받았다."
+    }
+  },
+  {
+    "id": 725,
+    "expression": "銀",
+    "reading": "ぎん",
+    "meaning_en": "silver",
+    "meaning_ko": "은",
+    "example": {
+      "ja": "銀のアクセサリーが好きだ。",
+      "reading": "ぎんのアクセサリーがすきだ。",
+      "ko": "은 액세서리를 좋아한다."
+    }
+  },
+  {
+    "id": 726,
+    "expression": "禁煙",
+    "reading": "きんえん",
+    "meaning_en": "No Smoking",
+    "meaning_ko": "금연",
+    "example": {
+      "ja": "この建物内は禁煙です。",
+      "reading": "このたてものないはきんえんです。",
+      "ko": "이 건물 내는 금연입니다."
+    }
+  },
+  {
+    "id": 727,
+    "expression": "金額",
+    "reading": "きんがく",
+    "meaning_en": "amount of money",
+    "meaning_ko": "금액",
+    "example": {
+      "ja": "合計金額を確認してください。",
+      "reading": "ごうけいきんがくをかくにんしてください。",
+      "ko": "합계 금액을 확인해 주세요."
+    }
+  },
+  {
+    "id": 728,
+    "expression": "金庫",
+    "reading": "きんこ",
+    "meaning_en": "safe, vault",
+    "meaning_ko": "금고",
+    "example": {
+      "ja": "大切なものを金庫に入れた。",
+      "reading": "たいせつなものをきんこにいれた。",
+      "ko": "소중한 것을 금고에 넣었다."
+    }
+  },
+  {
+    "id": 729,
+    "expression": "禁止",
+    "reading": "きんし",
+    "meaning_en": "prohibition, ban",
+    "meaning_ko": "금지",
+    "example": {
+      "ja": "ここでの撮影は禁止されている。",
+      "reading": "ここでのさつえいはきんしされている。",
+      "ko": "이곳에서의 촬영은 금지되어 있다."
+    }
+  },
+  {
+    "id": 730,
+    "expression": "金銭",
+    "reading": "きんせん",
+    "meaning_en": "money, cash",
+    "meaning_ko": "금전, 돈",
+    "example": {
+      "ja": "金銭に関するトラブルが起きた。",
+      "reading": "きんせんにかんするトラブルがおきた。",
+      "ko": "금전에 관한 트러블이 생겼다."
+    }
+  },
+  {
+    "id": 731,
+    "expression": "金属",
+    "reading": "きんぞく",
+    "meaning_en": "metal",
+    "meaning_ko": "금속",
+    "example": {
+      "ja": "この製品は金属でできている。",
+      "reading": "このせいひんはきんぞくでできている。",
+      "ko": "이 제품은 금속으로 만들어져 있다."
+    }
+  },
+  {
+    "id": 732,
+    "expression": "近代",
+    "reading": "きんだい",
+    "meaning_en": "modern times",
+    "meaning_ko": "근대",
+    "example": {
+      "ja": "近代の歴史を学んでいる。",
+      "reading": "きんだいのれきしをまなんでいる。",
+      "ko": "근대 역사를 배우고 있다."
+    }
+  },
+  {
+    "id": 733,
+    "expression": "緊張",
+    "reading": "きんちょう",
+    "meaning_en": "tension, mental strain, nervousness",
+    "meaning_ko": "긴장",
+    "example": {
+      "ja": "発表の前は緊張する。",
+      "reading": "はっぴょうのまえはきんちょうする。",
+      "ko": "발표 전에는 긴장된다."
+    }
+  },
+  {
+    "id": 734,
+    "expression": "筋肉",
+    "reading": "きんにく",
+    "meaning_en": "muscle, sinews",
+    "meaning_ko": "근육",
+    "example": {
+      "ja": "運動して筋肉をつけたい。",
+      "reading": "うんどうしてきんにくをつけたい。",
+      "ko": "운동해서 근육을 키우고 싶다."
+    }
+  },
+  {
+    "id": 735,
+    "expression": "金融",
+    "reading": "きんゆう",
+    "meaning_en": "finance, money and banking",
+    "meaning_ko": "금융",
+    "example": {
+      "ja": "金融市場が不安定になっている。",
+      "reading": "きんゆうしじょうがふあんていになっている。",
+      "ko": "금융 시장이 불안정해지고 있다."
+    }
+  },
+  {
+    "id": 736,
+    "expression": "句",
+    "reading": "く",
+    "meaning_en": "phrase",
+    "meaning_ko": "구, 어구",
+    "example": {
+      "ja": "有名な俳句を一句暗記した。",
+      "reading": "ゆうめいなはいくをひとくあんきした。",
+      "ko": "유명한 하이쿠를 한 구 외웠다."
+    }
+  },
+  {
+    "id": 737,
+    "expression": "食う",
+    "reading": "くう",
+    "meaning_en": "(male) (vulg.) to eat",
+    "meaning_ko": "먹다(남성어)",
+    "example": {
+      "ja": "腹が減ったから何か食おう。",
+      "reading": "はらがへったからなにかくおう。",
+      "ko": "배가 고프니까 뭔가 먹자."
+    }
+  },
+  {
+    "id": 738,
+    "expression": "偶然",
+    "reading": "ぐうぜん",
+    "meaning_en": "(by) chance, unexpectedly",
+    "meaning_ko": "우연히",
+    "example": {
+      "ja": "駅で偶然、旧友に会った。",
+      "reading": "えきでぐうぜん、きゅうゆうにあった。",
+      "ko": "역에서 우연히 옛 친구를 만났다."
+    }
+  },
+  {
+    "id": 739,
+    "expression": "臭い",
+    "reading": "くさい",
+    "meaning_en": "stinky, smelly, bad-smelling",
+    "meaning_ko": "냄새나다, 고약하다",
+    "example": {
+      "ja": "ゴミ箱が臭いので捨てた。",
+      "reading": "ゴミばこがくさいのですてた。",
+      "ko": "쓰레기통이 냄새나서 버렸다."
+    }
+  },
+  {
+    "id": 740,
+    "expression": "鎖",
+    "reading": "くさり",
+    "meaning_en": "chain",
+    "meaning_ko": "쇠사슬, 체인",
+    "example": {
+      "ja": "自転車を鎖で縛った。",
+      "reading": "じてんしゃをくさりでしばった。",
+      "ko": "자전거를 쇠사슬로 묶었다."
+    }
+  },
+  {
+    "id": 741,
+    "expression": "腐る",
+    "reading": "くさる",
+    "meaning_en": "to rot, to go bad",
+    "meaning_ko": "썩다",
+    "example": {
+      "ja": "野菜が腐ってしまった。",
+      "reading": "やさいがくさってしまった。",
+      "ko": "채소가 썩어 버렸다."
+    }
+  },
+  {
+    "id": 742,
+    "expression": "癖",
+    "reading": "くせ",
+    "meaning_en": "a habit (often a bad habit), peculiarity",
+    "meaning_ko": "버릇, 습관",
+    "example": {
+      "ja": "爪を噛む癖がある。",
+      "reading": "つめをかむくせがある。",
+      "ko": "손톱을 깨무는 버릇이 있다."
+    }
+  },
+  {
+    "id": 743,
+    "expression": "管",
+    "reading": "くだ",
+    "meaning_en": "pipe, tube",
+    "meaning_ko": "관, 파이프",
+    "example": {
+      "ja": "水道の管が壊れた。",
+      "reading": "すいどうのくだがこわれた。",
+      "ko": "수도관이 망가졌다."
+    }
+  },
+  {
+    "id": 744,
+    "expression": "具体",
+    "reading": "ぐたい",
+    "meaning_en": "concrete, tangible, material",
+    "meaning_ko": "구체적",
+    "example": {
+      "ja": "具体的な例を挙げてください。",
+      "reading": "ぐたいてきなれいをあげてください。",
+      "ko": "구체적인 예를 들어 주세요."
+    }
+  }
 ]

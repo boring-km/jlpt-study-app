@@ -12,7 +12,7 @@
   {"id":811,"expression":"しめた","reading":"しめた","meaning_en":"I've got it, all right, fine","meaning_ko":"잘 됐다, 옳지","example":{"ja":"しめた、財布が見つかった。","reading":"しめた、さいふがみつかった。","ko":"잘 됐다, 지갑을 찾았다."}},
   {"id":812,"expression":"しめる","reading":"しめる","meaning_en":"to be wet, to become wet, to be damp","meaning_ko":"축축해지다","example":{"ja":"雨で服がしめった。","reading":"あめでふくがしめった。","ko":"비에 옷이 축축해졌다."}},
   {"id":813,"expression":"地面","reading":"じめん","meaning_en":"ground, earth's surface","meaning_ko":"지면, 땅","example":{"ja":"地面が濡れているので滑らないで。","reading":"じめんがぬれているのですべらないで。","ko":"땅이 젖어 있으니 미끄러지지 마세요."}},
-  {"id":814,"expression":"ジャーナリスト","reading":"ジャーナリスト","meaning_en":"journalist","meaning_ko":"저널리스트, 기자","example":{"ja":"ジャーナリストとして現場を取材した。","reading":"じゃーなりすととしてげんばをとりざいした。","ko":"저널리스트로서 현장을 취재했다."}},
+  {"id":814,"expression":"ジャーナリスト","reading":"ジャーナリスト","meaning_en":"journalist","meaning_ko":"저널리스트, 기자","example":{"ja":"ジャーナリストとして現場を取材した。","reading":"じゃーなりすととしてげんばをとりさいした。","ko":"저널리스트로서 현장을 취재했다."}},
   {"id":815,"expression":"社会科学","reading":"しゃかいかがく","meaning_en":"social science","meaning_ko":"사회과학","example":{"ja":"社会科学の観点から問題を分析した。","reading":"しゃかいかがくのかんてんからもんだいをぶんせきした。","ko":"사회과학 관점에서 문제를 분석했다."}},
   {"id":816,"expression":"しゃがむ","reading":"しゃがむ","meaning_en":"to squat","meaning_ko":"쪼그려 앉다","example":{"ja":"子供の目線に合わせてしゃがんだ。","reading":"こどものめせんにあわせてしゃがんだ。","ko":"아이의 눈높이에 맞춰 쪼그려 앉았다."}},
   {"id":817,"expression":"蛇口","reading":"じゃぐち","meaning_en":"faucet, tap","meaning_ko":"수도꼭지","example":{"ja":"蛇口をひねって水を出した。","reading":"じゃぐちをひねってみずをだした。","ko":"수도꼭지를 틀어서 물을 냈다."}},
