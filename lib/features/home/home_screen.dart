@@ -93,22 +93,26 @@ class _HomeBody extends ConsumerWidget {
             style: Theme.of(context).textTheme.bodyLarge,
           ),
           const SizedBox(height: 8),
+          Text(
+            'N3 ${summary.n3Completed}/${summary.n3Total}'
+            ' · '
+            'N2 ${summary.n2Completed}/${summary.n2Total}',
+            style: Theme.of(context).textTheme.bodyMedium,
+          ),
+          const SizedBox(height: 8),
           ClipRRect(
             borderRadius: BorderRadius.circular(4),
             child: LinearProgressIndicator(
-              value: todayTarget > 0 ? todayCompleted / todayTarget : 0,
+              value: (summary.n3Total + summary.n2Total) > 0
+                  ? (summary.n3Completed + summary.n2Completed) /
+                      (summary.n3Total + summary.n2Total)
+                  : 0,
               minHeight: 6,
               backgroundColor: Theme.of(context).dividerColor,
               valueColor: AlwaysStoppedAnimation<Color>(
                 Theme.of(context).colorScheme.primary,
               ),
             ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            '${summary.currentLevel == JlptLevel.n3 ? "N3" : "N2"} '
-            '${summary.completedCount} / ${summary.totalCount}',
-            style: Theme.of(context).textTheme.bodyMedium,
           ),
           const SizedBox(height: 32),
           if (!summary.isReviewOnlyMode) ...[
