@@ -386,13 +386,13 @@
   {
     "id": 1433,
     "expression": "斜",
-    "reading": "はす",
-    "meaning_en": "diagonal",
-    "meaning_ko": "대각선, 비스듬함",
+    "reading": "ななめ",
+    "meaning_en": "diagonal, slanting",
+    "meaning_ko": "비스듬한, 대각선",
     "example": {
-      "ja": "道を斜めに横切った。",
-      "reading": "みちをはすによこぎった。",
-      "ko": "길을 비스듬하게 가로질렀다."
+      "ja": "斜めに線を引いた。",
+      "reading": "ななめにせんをひいた。",
+      "ko": "비스듬하게 선을 그었다."
     }
   },
   {

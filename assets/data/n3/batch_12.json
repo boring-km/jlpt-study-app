@@ -494,13 +494,13 @@
   {
     "id": 1066,
     "expression": "夜",
-    "reading": "よ",
+    "reading": "よる",
     "meaning_en": "evening, night",
     "meaning_ko": "밤, 저녁",
     "example": {
-      "ja": "夜になると気温が下がる。",
-      "reading": "よになるときおんがさがる。",
-      "ko": "밤이 되면 기온이 내려간다."
+      "ja": "夜になると静かになる。",
+      "reading": "よるになるとしずかになる。",
+      "ko": "밤이 되면 조용해진다."
     }
   },
   {

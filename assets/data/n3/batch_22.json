@@ -1,95 +1,1118 @@
 [
-  {"id": 1954, "expression": "選考", "reading": "せんこう", "meaning_en": "selection, screening", "meaning_ko": "선발, 심사", "example": {"ja": "書類選考の結果は来週通知されます。", "reading": "しょるいせんこうのけっかはらいしゅうつうちされます。", "ko": "서류 심사 결과는 다음 주에 통보됩니다."}},
-  {"id": 1955, "expression": "相", "reading": "そう", "meaning_en": "aspect, phase, countenance", "meaning_ko": "모습, 상", "example": {"ja": "彼の顔相はとても穏やかだ。", "reading": "かれのかおそうはとてもおだやかだ。", "ko": "그의 얼굴 표정은 매우 온화하다."}},
-  {"id": 1956, "expression": "沿う", "reading": "そう", "meaning_en": "to run along, to follow", "meaning_ko": "따르다, 연하다", "example": {"ja": "川沿いに歩いた。", "reading": "かわぞいにあるいた。", "ko": "강을 따라 걸었다."}},
-  {"id": 1957, "expression": "添う", "reading": "そう", "meaning_en": "to accompany, to comply with", "meaning_ko": "따르다, 부응하다", "example": {"ja": "ご期待に添えるよう努力します。", "reading": "ごきたいにそえるようどりょくします。", "ko": "기대에 부응할 수 있도록 노력하겠습니다."}},
-  {"id": 1958, "expression": "僧", "reading": "そう", "meaning_en": "monk, priest", "meaning_ko": "승려", "example": {"ja": "お寺で僧が読経していた。", "reading": "おてらでそうがどきょうしていた。", "ko": "절에서 승려가 독경하고 있었다."}},
-  {"id": 1959, "expression": "像", "reading": "ぞう", "meaning_en": "statue, image", "meaning_ko": "상, 동상", "example": {"ja": "公園に有名な彫刻家の像がある。", "reading": "こうえんにゆうめいなちょうこくかのぞうがある。", "ko": "공원에 유명한 조각가의 상이 있다."}},
-  {"id": 1960, "expression": "捜査", "reading": "そうさ", "meaning_en": "search (esp. in criminal investigations, investigation)", "meaning_ko": "수사", "example": {"ja": "警察が事件の捜査を続けている。", "reading": "けいさつがじけんのそうさをつづけている。", "ko": "경찰이 사건 수사를 계속하고 있다."}},
-  {"id": 1961, "expression": "操縦", "reading": "そうじゅう", "meaning_en": "management, control, manipulation", "meaning_ko": "조종", "example": {"ja": "パイロットが飛行機を操縦した。", "reading": "パイロットがひこうきをそうじゅうした。", "ko": "파일럿이 비행기를 조종했다."}},
-  {"id": 1962, "expression": "創造", "reading": "そうぞう", "meaning_en": "creation", "meaning_ko": "창조", "example": {"ja": "芸術は新しいものを創造する行為だ。", "reading": "げいじゅつはあたらしいものをそうぞうするこういだ。", "ko": "예술은 새로운 것을 창조하는 행위다."}},
-  {"id": 1963, "expression": "隊", "reading": "たい", "meaning_en": "party, troops", "meaning_ko": "대, 부대", "example": {"ja": "救助隊が現場に向かった。", "reading": "きゅうじょたいがげんばにむかった。", "ko": "구조대가 현장으로 향했다."}},
-  {"id": 1964, "expression": "退学", "reading": "たいがく", "meaning_en": "dropping out of school", "meaning_ko": "퇴학", "example": {"ja": "問題を起こして退学になった。", "reading": "もんだいをおこしてたいがくになった。", "ko": "문제를 일으켜 퇴학이 되었다."}},
-  {"id": 1965, "expression": "タイトル", "reading": "タイトル", "meaning_en": "title", "meaning_ko": "타이틀, 제목", "example": {"ja": "この本のタイトルが覚えられない。", "reading": "このほんのタイトルがおぼえられない。", "ko": "이 책의 제목이 기억나지 않는다."}},
-  {"id": 1966, "expression": "ダウン", "reading": "ダウン", "meaning_en": "down", "meaning_ko": "다운", "example": {"ja": "サーバーがダウンして使えなくなった。", "reading": "サーバーがダウンしてつかえなくなった。", "ko": "서버가 다운되어 사용할 수 없게 되었다."}},
-  {"id": 1967, "expression": "高まる", "reading": "たかまる", "meaning_en": "to rise; to grow; to mount (v.i.)", "meaning_ko": "높아지다", "example": {"ja": "試合前に気持ちが高まった。", "reading": "しあいまえにきもちがたかまった。", "ko": "경기 전에 기분이 고조되었다."}},
-  {"id": 1968, "expression": "断つ", "reading": "たつ", "meaning_en": "to sever, to cut off", "meaning_ko": "끊다", "example": {"ja": "悪い習慣を断つことが大切だ。", "reading": "わるいしゅうかんをたつことがたいせつだ。", "ko": "나쁜 습관을 끊는 것이 중요하다."}},
-  {"id": 1969, "expression": "盾", "reading": "たて", "meaning_en": "shield", "meaning_ko": "방패", "example": {"ja": "騎士は盾を持って戦った。", "reading": "きしはたてをもってたたかった。", "ko": "기사는 방패를 들고 싸웠다."}},
-  {"id": 1970, "expression": "例え", "reading": "たとえ", "meaning_en": "example; even though", "meaning_ko": "비유, 예를 들어", "example": {"ja": "例えを使って説明してください。", "reading": "たとえをつかってせつめいしてください。", "ko": "비유를 사용해서 설명해 주세요."}},
-  {"id": 1971, "expression": "チャイム", "reading": "チャイム", "meaning_en": "chime", "meaning_ko": "차임벨", "example": {"ja": "チャイムが鳴ったら授業を始めます。", "reading": "チャイムがなったらじゅぎょうをはじめます。", "ko": "차임벨이 울리면 수업을 시작합니다."}},
-  {"id": 1972, "expression": "挑戦", "reading": "ちょうせん", "meaning_en": "challenge, defiance", "meaning_ko": "도전", "example": {"ja": "新しいことに挑戦するのが好きだ。", "reading": "あたらしいことにちょうせんするのがすきだ。", "ko": "새로운 일에 도전하는 것을 좋아한다."}},
-  {"id": 1973, "expression": "治療", "reading": "ちりょう", "meaning_en": "medical treatment", "meaning_ko": "치료", "example": {"ja": "早めに治療を受けることが大切だ。", "reading": "はやめにちりょうをうけることがたいせつだ。", "ko": "일찍 치료를 받는 것이 중요하다."}},
-  {"id": 1974, "expression": "対", "reading": "つい", "meaning_en": "pair, couple, set", "meaning_ko": "쌍, 한 쌍", "example": {"ja": "この置物は対になっている。", "reading": "このおきものはついになっている。", "ko": "이 장식물은 한 쌍을 이루고 있다."}},
-  {"id": 1975, "expression": "接ぐ", "reading": "つぐ", "meaning_en": "to join; to piece together; to set (bones); to graft (trees)", "meaning_ko": "잇다, 접합하다", "example": {"ja": "骨折した部分を接いで固定した。", "reading": "こっせつしたぶぶんをついでこていした。", "ko": "골절된 부분을 잇고 고정했다."}},
-  {"id": 1976, "expression": "継ぐ", "reading": "つぐ", "meaning_en": "to succeed (someone in a business or inheritance)", "meaning_ko": "계승하다, 이어받다", "example": {"ja": "父の後を継いで会社を経営する。", "reading": "ちちのあとをついでかいしゃをけいえいする。", "ko": "아버지의 뒤를 이어 회사를 경영한다."}},
-  {"id": 1977, "expression": "摘む", "reading": "つむ", "meaning_en": "to pluck, to pick, to trim", "meaning_ko": "따다, 뜯다", "example": {"ja": "庭の花を摘んで花瓶に飾った。", "reading": "にわのはなをつんではなびんにかざった。", "ko": "정원의 꽃을 따서 꽃병에 꽂았다."}},
-  {"id": 1978, "expression": "露", "reading": "つゆ", "meaning_en": "dew", "meaning_ko": "이슬", "example": {"ja": "朝、草の上に露が光っていた。", "reading": "あさ、くさのうえにつゆがひかっていた。", "ko": "아침에 풀 위에 이슬이 반짝이고 있었다."}},
-  {"id": 1979, "expression": "強まる", "reading": "つよまる", "meaning_en": "to get strong, to gain strength", "meaning_ko": "강해지다", "example": {"ja": "台風が接近して風が強まった。", "reading": "たいふうがせっきんしてかぜがつよまった。", "ko": "태풍이 접근하여 바람이 강해졌다."}},
-  {"id": 1980, "expression": "強める", "reading": "つよめる", "meaning_en": "to strengthen, to emphasize", "meaning_ko": "강화하다", "example": {"ja": "セキュリティを強める必要がある。", "reading": "セキュリティをつよめるひつようがある。", "ko": "보안을 강화할 필요가 있다."}},
-  {"id": 1981, "expression": "データ", "reading": "データ", "meaning_en": "data", "meaning_ko": "데이터", "example": {"ja": "このデータを分析してください。", "reading": "このデータをぶんせきしてください。", "ko": "이 데이터를 분석해 주세요."}},
-  {"id": 1982, "expression": "デザイン", "reading": "デザイン", "meaning_en": "design", "meaning_ko": "디자인", "example": {"ja": "新しいロゴのデザインを考えた。", "reading": "あたらしいロゴのデザインをかんがえた。", "ko": "새로운 로고 디자인을 생각했다."}},
-  {"id": 1983, "expression": "デザート", "reading": "デザート", "meaning_en": "dessert", "meaning_ko": "디저트", "example": {"ja": "食後にデザートのケーキを食べた。", "reading": "しょくごにデザートのケーキをたべた。", "ko": "식후에 디저트로 케이크를 먹었다."}},
-  {"id": 1984, "expression": "転校", "reading": "てんこう", "meaning_en": "change schools", "meaning_ko": "전학", "example": {"ja": "引っ越しで新しい学校に転校した。", "reading": "ひっこしであたらしいがっこうにてんこうした。", "ko": "이사로 새 학교로 전학했다."}},
-  {"id": 1985, "expression": "伝言", "reading": "でんごん", "meaning_en": "verbal message", "meaning_ko": "전언, 메시지", "example": {"ja": "彼に伝言をお願いできますか。", "reading": "かれにでんごんをおねがいできますか。", "ko": "그에게 메시지를 전해 주실 수 있나요?"}},
-  {"id": 1986, "expression": "と", "reading": "と", "meaning_en": "and", "meaning_ko": "와/과", "example": {"ja": "りんごとバナナを買った。", "reading": "りんごとバナナをかった。", "ko": "사과와 바나나를 샀다."}},
-  {"id": 1987, "expression": "問う", "reading": "とう", "meaning_en": "to ask, to question", "meaning_ko": "묻다, 따지다", "example": {"ja": "責任を問う声が高まっている。", "reading": "せきにんをとうこえがたかまっている。", "ko": "책임을 묻는 목소리가 높아지고 있다."}},
-  {"id": 1988, "expression": "棟", "reading": "とう", "meaning_en": "ridge (of roof)", "meaning_ko": "동, 건물 동", "example": {"ja": "病院の第3棟に入院している。", "reading": "びょういんのだいさんとうににゅういんしている。", "ko": "병원 제3동에 입원하고 있다."}},
-  {"id": 1989, "expression": "倒産", "reading": "とうさん", "meaning_en": "(corporate) bankruptcy, insolvency", "meaning_ko": "도산, 파산", "example": {"ja": "その会社は不況で倒産した。", "reading": "そのかいしゃはふきょうでとうさんした。", "ko": "그 회사는 불황으로 도산했다."}},
-  {"id": 1990, "expression": "同士", "reading": "どうし", "meaning_en": "one another, companion, comrade", "meaning_ko": "끼리, 동료", "example": {"ja": "友達同士で旅行に行った。", "reading": "ともだちどうしでりょこうにいった。", "ko": "친구끼리 여행을 갔다."}},
-  {"id": 1991, "expression": "同志", "reading": "どうし", "meaning_en": "same mind, comrade, kindred soul", "meaning_ko": "동지", "example": {"ja": "同志とともに目標を達成した。", "reading": "どうしとともにもくひょうをたっせいした。", "ko": "동지와 함께 목표를 달성했다."}},
-  {"id": 1992, "expression": "当然", "reading": "とうぜん", "meaning_en": "obvious; natural", "meaning_ko": "당연히", "example": {"ja": "努力すれば当然結果が出る。", "reading": "どりょくすればとうぜんけっかがでる。", "ko": "노력하면 당연히 결과가 나온다."}},
-  {"id": 1993, "expression": "動揺", "reading": "どうよう", "meaning_en": "disturbance, flutter shock", "meaning_ko": "동요, 흔들림", "example": {"ja": "突然の知らせに動揺した。", "reading": "とつぜんのしらせにどうようした。", "ko": "갑작스러운 소식에 동요했다."}},
-  {"id": 1994, "expression": "説く", "reading": "とく", "meaning_en": "to explain, to advocate", "meaning_ko": "설파하다, 설명하다", "example": {"ja": "先生が平和の大切さを説いた。", "reading": "せんせいがへいわのたいせつさをといた。", "ko": "선생님이 평화의 중요성을 설파했다."}},
-  {"id": 1995, "expression": "綴じる", "reading": "とじる", "meaning_en": "to bind, to file", "meaning_ko": "묶다, 철하다", "example": {"ja": "書類をファイルに綴じた。", "reading": "しょるいをファイルにとじた。", "ko": "서류를 파일에 철했다."}},
-  {"id": 1996, "expression": "供", "reading": "とも", "meaning_en": "accompanying, attendant, companion, retinue", "meaning_ko": "수행원, 동행", "example": {"ja": "社長が供を連れて出かけた。", "reading": "しゃちょうがともをつれてでかけた。", "ko": "사장이 수행원을 데리고 외출했다."}},
-  {"id": 1997, "expression": "並", "reading": "なみ", "meaning_en": "medium (e.g., food serving size, quality, price, etc.), ordinary", "meaning_ko": "보통, 일반", "example": {"ja": "ラーメンを並盛りで注文した。", "reading": "ラーメンをなみもりでちゅうもんした。", "ko": "라멘을 보통 크기로 주문했다."}},
-  {"id": 1998, "expression": "慣らす", "reading": "ならす", "meaning_en": "to accustom", "meaning_ko": "익숙하게 하다", "example": {"ja": "子どもを新しい環境に慣らすのに時間がかかった。", "reading": "こどもをあたらしいかんきょうにならすのにじかんがかかった。", "ko": "아이를 새로운 환경에 익숙하게 하는 데 시간이 걸렸다."}},
-  {"id": 1999, "expression": "馴らす", "reading": "ならす", "meaning_en": "to domesticate, to tame", "meaning_ko": "길들이다", "example": {"ja": "野生の鳥を馴らすのは難しい。", "reading": "やせいのとりをならすのはむずかしい。", "ko": "야생 새를 길들이는 것은 어렵다."}},
-  {"id": 2000, "expression": "難", "reading": "なん", "meaning_en": "difficulty, hardships, defect", "meaning_ko": "어려움, 난점", "example": {"ja": "この問題は難があって解けなかった。", "reading": "このもんだいはなんがあってとけなかった。", "ko": "이 문제는 난점이 있어서 풀지 못했다."}},
-  {"id": 2001, "expression": "音", "reading": "ね", "meaning_en": "sound, note", "meaning_ko": "소리, 음", "example": {"ja": "ピアノの音が部屋に響いた。", "reading": "ピアノのねがへやにひびいた。", "ko": "피아노 소리가 방에 울렸다."}},
-  {"id": 2002, "expression": "年鑑", "reading": "ねんかん", "meaning_en": "yearbook", "meaning_ko": "연감", "example": {"ja": "図書館で去年の統計年鑑を調べた。", "reading": "としょかんできょねんのとうけいねんかんをしらべた。", "ko": "도서관에서 작년 통계 연감을 조사했다."}},
-  {"id": 2003, "expression": "脳", "reading": "のう", "meaning_en": "brain, memory", "meaning_ko": "뇌", "example": {"ja": "脳は体の中で最も重要な器官だ。", "reading": "のうはからだのなかでもっともじゅうようなきかんだ。", "ko": "뇌는 몸에서 가장 중요한 기관이다."}},
-  {"id": 2004, "expression": "臨む", "reading": "のぞむ", "meaning_en": "to look out on, to face, to attend (function)", "meaning_ko": "임하다, 마주하다", "example": {"ja": "真剣に試験に臨んだ。", "reading": "しんけんにしけんにのぞんだ。", "ko": "진지하게 시험에 임했다."}},
-  {"id": 2005, "expression": "肺", "reading": "はい", "meaning_en": "lung", "meaning_ko": "폐", "example": {"ja": "タバコは肺に悪い影響を与える。", "reading": "タバコははいにわるいえいきょうをあたえる。", "ko": "담배는 폐에 나쁜 영향을 준다."}},
-  {"id": 2006, "expression": "～敗", "reading": "はい", "meaning_en": "counter for loss, defeat", "meaning_ko": "패(패배 횟수)", "example": {"ja": "チームは今季5勝3敗の成績だ。", "reading": "チームはこんきごしょうさんぱいのせいせきだ。", "ko": "팀은 이번 시즌 5승 3패의 성적이다."}},
-  {"id": 2007, "expression": "映える", "reading": "はえる", "meaning_en": "to shine, to look attractive, to look pretty", "meaning_ko": "빛나다, 돋보이다", "example": {"ja": "青空に白い雲が映えていた。", "reading": "あおぞらにしろいくもがはえていた。", "ko": "파란 하늘에 흰 구름이 빛나고 있었다."}},
-  {"id": 2008, "expression": "諮る", "reading": "はかる", "meaning_en": "to consult with, to confer", "meaning_ko": "자문하다", "example": {"ja": "委員会に意見を諮った。", "reading": "いいんかいにいけんをはかった。", "ko": "위원회에 의견을 자문했다."}},
-  {"id": 2009, "expression": "図る", "reading": "はかる", "meaning_en": "to plot, to attempt, to devise, to design, to refer A to B", "meaning_ko": "도모하다, 꾀하다", "example": {"ja": "効率化を図るために改革を行った。", "reading": "こうりつかをはかるためにかいかくをおこなった。", "ko": "효율화를 도모하기 위해 개혁을 실시했다."}},
-  {"id": 2010, "expression": "生やす", "reading": "はやす", "meaning_en": "to grow, to cultivate, to wear beard", "meaning_ko": "기르다", "example": {"ja": "夏の間にひげを生やした。", "reading": "なつのあいだにひげをはやした。", "ko": "여름 동안 수염을 길렀다."}},
-  {"id": 2011, "expression": "班", "reading": "はん", "meaning_en": "group, party, section (mil)", "meaning_ko": "반, 조", "example": {"ja": "クラスを5つの班に分けた。", "reading": "クラスをいつつのはんにわけた。", "ko": "학급을 5개 조로 나눴다."}},
-  {"id": 2012, "expression": "判", "reading": "はん", "meaning_en": "size (of paper or books)", "meaning_ko": "판형, 크기", "example": {"ja": "A4判の用紙を使ってください。", "reading": "エーよんはんのようしをつかってください。", "ko": "A4 판형의 용지를 사용해 주세요."}},
-  {"id": 2013, "expression": "版", "reading": "はん", "meaning_en": "edition", "meaning_ko": "판", "example": {"ja": "この本の第2版が出版された。", "reading": "このほんのだいにはんがしゅっぱんされた。", "ko": "이 책의 제2판이 출판되었다."}},
-  {"id": 2014, "expression": "碑", "reading": "ひ", "meaning_en": "stone monument bearing an inscription", "meaning_ko": "비석", "example": {"ja": "公園に戦争記念碑が建っている。", "reading": "こうえんにせんそうきねんひがたっている。", "ko": "공원에 전쟁 기념비가 세워져 있다."}},
-  {"id": 2015, "expression": "非行", "reading": "ひこう", "meaning_en": "delinquency, misconduct", "meaning_ko": "비행, 불량행위", "example": {"ja": "少年の非行を防ぐ取り組みが必要だ。", "reading": "しょうねんのひこうをふせぐとりくみがひつようだ。", "ko": "청소년 비행을 막는 노력이 필요하다."}},
-  {"id": 2016, "expression": "票", "reading": "ひょう", "meaning_en": "label, ballot, sign", "meaning_ko": "표, 투표용지", "example": {"ja": "選挙で候補者に票を入れた。", "reading": "せんきょでこうほしゃにひょうをいれた。", "ko": "선거에서 후보자에게 표를 던졌다."}},
-  {"id": 2017, "expression": "広まる", "reading": "ひろまる", "meaning_en": "to spread, to be propagated", "meaning_ko": "퍼지다", "example": {"ja": "うわさが町中に広まった。", "reading": "うわさがまちじゅうにひろまった。", "ko": "소문이 마을 전체에 퍼졌다."}},
-  {"id": 2018, "expression": "深める", "reading": "ふかめる", "meaning_en": "to deepen, to heighten, to intensify", "meaning_ko": "깊게 하다", "example": {"ja": "交流を通じて理解を深めた。", "reading": "こうりゅうをつうじてりかいをふかめた。", "ko": "교류를 통해 이해를 깊게 했다."}},
-  {"id": 2019, "expression": "福", "reading": "ふく", "meaning_en": "good fortune", "meaning_ko": "복, 행운", "example": {"ja": "新年に福が訪れるよう願った。", "reading": "しんねんにふくがおとずれるようねがった。", "ko": "새해에 복이 오기를 빌었다."}},
-  {"id": 2020, "expression": "振り", "reading": "ふり", "meaning_en": "style, manner", "meaning_ko": "행동거지, 척", "example": {"ja": "知らない振りをして通り過ぎた。", "reading": "しらないふりをしてとおりすぎた。", "ko": "모르는 척하며 지나쳤다."}},
-  {"id": 2021, "expression": "経る", "reading": "へる", "meaning_en": "to pass, to elapse, to experience", "meaning_ko": "거치다, 경과하다", "example": {"ja": "時間を経て、傷は癒えた。", "reading": "じかんをへて、きずはいえた。", "ko": "시간이 지나면서 상처가 나았다."}},
-  {"id": 2022, "expression": "保護", "reading": "ほご", "meaning_en": "care, protection, shelter", "meaning_ko": "보호", "example": {"ja": "環境保護のために努力している。", "reading": "かんきょうほごのためにどりょくしている。", "ko": "환경 보호를 위해 노력하고 있다."}},
-  {"id": 2023, "expression": "保障", "reading": "ほしょう", "meaning_en": "guarantee, security, warranty", "meaning_ko": "보장", "example": {"ja": "国は国民の安全を保障する義務がある。", "reading": "くにはこくみんのあんぜんをほしょうするぎむがある。", "ko": "나라는 국민의 안전을 보장할 의무가 있다."}},
-  {"id": 2024, "expression": "補償", "reading": "ほしょう", "meaning_en": "compensation, reparation", "meaning_ko": "보상", "example": {"ja": "事故の被害者に補償金が支払われた。", "reading": "じこのひがいしゃにほしょうきんがしはらわれた。", "ko": "사고 피해자에게 보상금이 지급되었다."}},
-  {"id": 2025, "expression": "ほっと", "reading": "ほっと", "meaning_en": "with relief, relieved", "meaning_ko": "안도하여, 후련하게", "example": {"ja": "試験が終わってほっとした。", "reading": "しけんがおわってほっとした。", "ko": "시험이 끝나서 안도했다."}},
-  {"id": 2026, "expression": "前もって", "reading": "まえもって", "meaning_en": "in advance, beforehand, previously", "meaning_ko": "미리, 사전에", "example": {"ja": "前もって準備しておくことが大切だ。", "reading": "まえもってじゅんびしておくことがたいせつだ。", "ko": "미리 준비해 두는 것이 중요하다."}},
-  {"id": 2027, "expression": "膜", "reading": "まく", "meaning_en": "membrane, film", "meaning_ko": "막, 필름", "example": {"ja": "細胞は薄い膜で覆われている。", "reading": "さいぼうはうすいまくでおおわれている。", "ko": "세포는 얇은 막으로 덮여 있다."}},
-  {"id": 2028, "expression": "マスコミ", "reading": "マスコミ", "meaning_en": "mass communication", "meaning_ko": "매스컴, 언론", "example": {"ja": "マスコミに事件が大きく取り上げられた。", "reading": "マスコミにじけんがおおきくとりあげられた。", "ko": "언론에 사건이 크게 다뤄졌다."}},
-  {"id": 2029, "expression": "股", "reading": "また", "meaning_en": "crotch, groin", "meaning_ko": "가랑이, 사타구니", "example": {"ja": "股の筋肉を鍛えるトレーニングをした。", "reading": "またのきんにくをきたえるトレーニングをした。", "ko": "허벅지 근육을 단련하는 훈련을 했다."}},
-  {"id": 2030, "expression": "末", "reading": "まつ", "meaning_en": "the end of", "meaning_ko": "말, 끝", "example": {"ja": "月末に給料が支払われる。", "reading": "つきまつにきゅうりょうがしはらわれる。", "ko": "월말에 급여가 지급된다."}},
-  {"id": 2031, "expression": "マッサージ", "reading": "マッサージ", "meaning_en": "massage", "meaning_ko": "마사지", "example": {"ja": "肩こりにマッサージが効果的だ。", "reading": "かたこりにマッサージがこうかてきだ。", "ko": "어깨 결림에 마사지가 효과적이다."}},
-  {"id": 2032, "expression": "見掛ける", "reading": "みかける", "meaning_en": "to (happen to see), to notice, to catch sight of", "meaning_ko": "눈에 띄다, 우연히 보다", "example": {"ja": "駅で昔の友人を見掛けた。", "reading": "えきでむかしのゆうじんをみかけた。", "ko": "역에서 옛 친구를 우연히 봤다."}},
-  {"id": 2033, "expression": "捲る", "reading": "めくる", "meaning_en": "to turn over, to turn pages of a book", "meaning_ko": "넘기다", "example": {"ja": "本のページをゆっくり捲った。", "reading": "ほんのページをゆっくりめくった。", "ko": "책 페이지를 천천히 넘겼다."}},
-  {"id": 2034, "expression": "メッセージ", "reading": "メッセージ", "meaning_en": "message", "meaning_ko": "메시지", "example": {"ja": "友達からメッセージが届いた。", "reading": "ともだちからメッセージがとどいた。", "ko": "친구에게서 메시지가 왔다."}},
-  {"id": 2035, "expression": "野党", "reading": "やとう", "meaning_en": "opposition party", "meaning_ko": "야당", "example": {"ja": "野党が政府の方針に反対した。", "reading": "やとうがせいふのほうしんにはんたいした。", "ko": "야당이 정부 방침에 반대했다."}},
-  {"id": 2036, "expression": "優", "reading": "ゆう", "meaning_en": "superiority, high grade", "meaning_ko": "우수", "example": {"ja": "成績は優を取ることができた。", "reading": "せいせきはゆうをとることができた。", "ko": "성적에서 우수 학점을 받을 수 있었다."}},
-  {"id": 2037, "expression": "有機", "reading": "ゆうき", "meaning_en": "organic", "meaning_ko": "유기", "example": {"ja": "有機野菜は体に良いと言われている。", "reading": "ゆうきやさいはからだによいといわれている。", "ko": "유기농 채소는 몸에 좋다고 한다."}},
-  {"id": 2038, "expression": "世", "reading": "よ", "meaning_en": "world, society, generation", "meaning_ko": "세상, 세대", "example": {"ja": "世の中は常に変化している。", "reading": "よのなかはつねにへんかしている。", "ko": "세상은 항상 변화하고 있다."}},
-  {"id": 2039, "expression": "良い", "reading": "よい", "meaning_en": "good, nice", "meaning_ko": "좋다", "example": {"ja": "天気が良い日は外で遊ぼう。", "reading": "てんきがよいひはそとであそぼう。", "ko": "날씨가 좋은 날은 밖에서 놀자."}},
-  {"id": 2040, "expression": "予想", "reading": "よそう", "meaning_en": "expectation, anticipation, prediction", "meaning_ko": "예상", "example": {"ja": "予想通り試験は難しかった。", "reading": "よそうどおりしけんはむずかしかった。", "ko": "예상대로 시험은 어려웠다."}},
-  {"id": 2041, "expression": "弱まる", "reading": "よわまる", "meaning_en": "to weaken, to be emaciated, to be dejected", "meaning_ko": "약해지다", "example": {"ja": "夕方になると風が弱まった。", "reading": "ゆうがたになるとかぜがよわまった。", "ko": "저녁이 되자 바람이 약해졌다."}},
-  {"id": 2042, "expression": "弱める", "reading": "よわめる", "meaning_en": "to weaken", "meaning_ko": "약하게 하다", "example": {"ja": "エアコンの風を弱めてください。", "reading": "エアコンのかぜをよわめてください。", "ko": "에어컨 바람을 약하게 해 주세요."}},
-  {"id": 2043, "expression": "ラベル", "reading": "ラベル", "meaning_en": "label", "meaning_ko": "라벨, 레이블", "example": {"ja": "瓶にラベルを貼って区別する。", "reading": "びんにラベルをはってくべつする。", "ko": "병에 라벨을 붙여서 구분한다."}},
-  {"id": 2044, "expression": "ルール", "reading": "ルール", "meaning_en": "rule", "meaning_ko": "규칙", "example": {"ja": "ゲームのルールをよく読んでください。", "reading": "ゲームのルールをよくよんでください。", "ko": "게임 규칙을 잘 읽어 주세요."}},
-  {"id": 2045, "expression": "枠", "reading": "わく", "meaning_en": "frame, slide", "meaning_ko": "틀, 범위", "example": {"ja": "採用の枠が限られているので競争が激しい。", "reading": "さいようのわくがかぎられているのできょうそうがはげしい。", "ko": "채용 범위가 한정되어 있어 경쟁이 치열하다."}},
-  {"id": 2046, "expression": "表示", "reading": "ひょうじ", "meaning_en": "display, indication", "meaning_ko": "표시", "example": {"ja": "画面に警告が表示された。", "reading": "がめんにけいこくがひょうじされた。", "ko": "화면에 경고가 표시되었다."}}
+  {
+    "id": 1954,
+    "expression": "選考",
+    "reading": "せんこう",
+    "meaning_en": "selection, screening",
+    "meaning_ko": "선발, 심사",
+    "example": {
+      "ja": "書類選考の結果は来週通知されます。",
+      "reading": "しょるいせんこうのけっかはらいしゅうつうちされます。",
+      "ko": "서류 심사 결과는 다음 주에 통보됩니다."
+    }
+  },
+  {
+    "id": 1955,
+    "expression": "相",
+    "reading": "そう",
+    "meaning_en": "aspect, phase, countenance",
+    "meaning_ko": "모습, 상",
+    "example": {
+      "ja": "彼の顔相はとても穏やかだ。",
+      "reading": "かれのかおそうはとてもおだやかだ。",
+      "ko": "그의 얼굴 표정은 매우 온화하다."
+    }
+  },
+  {
+    "id": 1956,
+    "expression": "沿う",
+    "reading": "そう",
+    "meaning_en": "to run along, to follow",
+    "meaning_ko": "따르다, 연하다",
+    "example": {
+      "ja": "川沿いに歩いた。",
+      "reading": "かわぞいにあるいた。",
+      "ko": "강을 따라 걸었다."
+    }
+  },
+  {
+    "id": 1957,
+    "expression": "添う",
+    "reading": "そう",
+    "meaning_en": "to accompany, to comply with",
+    "meaning_ko": "따르다, 부응하다",
+    "example": {
+      "ja": "ご期待に添えるよう努力します。",
+      "reading": "ごきたいにそえるようどりょくします。",
+      "ko": "기대에 부응할 수 있도록 노력하겠습니다."
+    }
+  },
+  {
+    "id": 1958,
+    "expression": "僧",
+    "reading": "そう",
+    "meaning_en": "monk, priest",
+    "meaning_ko": "승려",
+    "example": {
+      "ja": "お寺で僧が読経していた。",
+      "reading": "おてらでそうがどきょうしていた。",
+      "ko": "절에서 승려가 독경하고 있었다."
+    }
+  },
+  {
+    "id": 1959,
+    "expression": "像",
+    "reading": "ぞう",
+    "meaning_en": "statue, image",
+    "meaning_ko": "상, 동상",
+    "example": {
+      "ja": "公園に有名な彫刻家の像がある。",
+      "reading": "こうえんにゆうめいなちょうこくかのぞうがある。",
+      "ko": "공원에 유명한 조각가의 상이 있다."
+    }
+  },
+  {
+    "id": 1960,
+    "expression": "捜査",
+    "reading": "そうさ",
+    "meaning_en": "search (esp. in criminal investigations, investigation)",
+    "meaning_ko": "수사",
+    "example": {
+      "ja": "警察が事件の捜査を続けている。",
+      "reading": "けいさつがじけんのそうさをつづけている。",
+      "ko": "경찰이 사건 수사를 계속하고 있다."
+    }
+  },
+  {
+    "id": 1961,
+    "expression": "操縦",
+    "reading": "そうじゅう",
+    "meaning_en": "management, control, manipulation",
+    "meaning_ko": "조종",
+    "example": {
+      "ja": "パイロットが飛行機を操縦した。",
+      "reading": "パイロットがひこうきをそうじゅうした。",
+      "ko": "파일럿이 비행기를 조종했다."
+    }
+  },
+  {
+    "id": 1962,
+    "expression": "創造",
+    "reading": "そうぞう",
+    "meaning_en": "creation",
+    "meaning_ko": "창조",
+    "example": {
+      "ja": "芸術は新しいものを創造する行為だ。",
+      "reading": "げいじゅつはあたらしいものをそうぞうするこういだ。",
+      "ko": "예술은 새로운 것을 창조하는 행위다."
+    }
+  },
+  {
+    "id": 1963,
+    "expression": "隊",
+    "reading": "たい",
+    "meaning_en": "party, troops",
+    "meaning_ko": "대, 부대",
+    "example": {
+      "ja": "救助隊が現場に向かった。",
+      "reading": "きゅうじょたいがげんばにむかった。",
+      "ko": "구조대가 현장으로 향했다."
+    }
+  },
+  {
+    "id": 1964,
+    "expression": "退学",
+    "reading": "たいがく",
+    "meaning_en": "dropping out of school",
+    "meaning_ko": "퇴학",
+    "example": {
+      "ja": "問題を起こして退学になった。",
+      "reading": "もんだいをおこしてたいがくになった。",
+      "ko": "문제를 일으켜 퇴학이 되었다."
+    }
+  },
+  {
+    "id": 1965,
+    "expression": "タイトル",
+    "reading": "タイトル",
+    "meaning_en": "title",
+    "meaning_ko": "타이틀, 제목",
+    "example": {
+      "ja": "この本のタイトルが覚えられない。",
+      "reading": "このほんのタイトルがおぼえられない。",
+      "ko": "이 책의 제목이 기억나지 않는다."
+    }
+  },
+  {
+    "id": 1966,
+    "expression": "ダウン",
+    "reading": "ダウン",
+    "meaning_en": "down",
+    "meaning_ko": "다운",
+    "example": {
+      "ja": "サーバーがダウンして使えなくなった。",
+      "reading": "サーバーがダウンしてつかえなくなった。",
+      "ko": "서버가 다운되어 사용할 수 없게 되었다."
+    }
+  },
+  {
+    "id": 1967,
+    "expression": "高まる",
+    "reading": "たかまる",
+    "meaning_en": "to rise; to grow; to mount (v.i.)",
+    "meaning_ko": "높아지다",
+    "example": {
+      "ja": "試合前に気持ちが高まった。",
+      "reading": "しあいまえにきもちがたかまった。",
+      "ko": "경기 전에 기분이 고조되었다."
+    }
+  },
+  {
+    "id": 1968,
+    "expression": "断つ",
+    "reading": "たつ",
+    "meaning_en": "to sever, to cut off",
+    "meaning_ko": "끊다",
+    "example": {
+      "ja": "悪い習慣を断つことが大切だ。",
+      "reading": "わるいしゅうかんをたつことがたいせつだ。",
+      "ko": "나쁜 습관을 끊는 것이 중요하다."
+    }
+  },
+  {
+    "id": 1969,
+    "expression": "盾",
+    "reading": "たて",
+    "meaning_en": "shield",
+    "meaning_ko": "방패",
+    "example": {
+      "ja": "騎士は盾を持って戦った。",
+      "reading": "きしはたてをもってたたかった。",
+      "ko": "기사는 방패를 들고 싸웠다."
+    }
+  },
+  {
+    "id": 1970,
+    "expression": "例え",
+    "reading": "たとえ",
+    "meaning_en": "example; even though",
+    "meaning_ko": "비유, 예를 들어",
+    "example": {
+      "ja": "例えを使って説明してください。",
+      "reading": "たとえをつかってせつめいしてください。",
+      "ko": "비유를 사용해서 설명해 주세요."
+    }
+  },
+  {
+    "id": 1971,
+    "expression": "チャイム",
+    "reading": "チャイム",
+    "meaning_en": "chime",
+    "meaning_ko": "차임벨",
+    "example": {
+      "ja": "チャイムが鳴ったら授業を始めます。",
+      "reading": "チャイムがなったらじゅぎょうをはじめます。",
+      "ko": "차임벨이 울리면 수업을 시작합니다."
+    }
+  },
+  {
+    "id": 1972,
+    "expression": "挑戦",
+    "reading": "ちょうせん",
+    "meaning_en": "challenge, defiance",
+    "meaning_ko": "도전",
+    "example": {
+      "ja": "新しいことに挑戦するのが好きだ。",
+      "reading": "あたらしいことにちょうせんするのがすきだ。",
+      "ko": "새로운 일에 도전하는 것을 좋아한다."
+    }
+  },
+  {
+    "id": 1973,
+    "expression": "治療",
+    "reading": "ちりょう",
+    "meaning_en": "medical treatment",
+    "meaning_ko": "치료",
+    "example": {
+      "ja": "早めに治療を受けることが大切だ。",
+      "reading": "はやめにちりょうをうけることがたいせつだ。",
+      "ko": "일찍 치료를 받는 것이 중요하다."
+    }
+  },
+  {
+    "id": 1974,
+    "expression": "対",
+    "reading": "つい",
+    "meaning_en": "pair, couple, set",
+    "meaning_ko": "쌍, 한 쌍",
+    "example": {
+      "ja": "この置物は対になっている。",
+      "reading": "このおきものはついになっている。",
+      "ko": "이 장식물은 한 쌍을 이루고 있다."
+    }
+  },
+  {
+    "id": 1975,
+    "expression": "接ぐ",
+    "reading": "つぐ",
+    "meaning_en": "to join; to piece together; to set (bones); to graft (trees)",
+    "meaning_ko": "잇다, 접합하다",
+    "example": {
+      "ja": "骨折した部分を接いで固定した。",
+      "reading": "こっせつしたぶぶんをついでこていした。",
+      "ko": "골절된 부분을 잇고 고정했다."
+    }
+  },
+  {
+    "id": 1976,
+    "expression": "継ぐ",
+    "reading": "つぐ",
+    "meaning_en": "to succeed (someone in a business or inheritance)",
+    "meaning_ko": "계승하다, 이어받다",
+    "example": {
+      "ja": "父の後を継いで会社を経営する。",
+      "reading": "ちちのあとをついでかいしゃをけいえいする。",
+      "ko": "아버지의 뒤를 이어 회사를 경영한다."
+    }
+  },
+  {
+    "id": 1977,
+    "expression": "摘む",
+    "reading": "つむ",
+    "meaning_en": "to pluck, to pick, to trim",
+    "meaning_ko": "따다, 뜯다",
+    "example": {
+      "ja": "庭の花を摘んで花瓶に飾った。",
+      "reading": "にわのはなをつんではなびんにかざった。",
+      "ko": "정원의 꽃을 따서 꽃병에 꽂았다."
+    }
+  },
+  {
+    "id": 1978,
+    "expression": "露",
+    "reading": "つゆ",
+    "meaning_en": "dew",
+    "meaning_ko": "이슬",
+    "example": {
+      "ja": "朝、草の上に露が光っていた。",
+      "reading": "あさ、くさのうえにつゆがひかっていた。",
+      "ko": "아침에 풀 위에 이슬이 반짝이고 있었다."
+    }
+  },
+  {
+    "id": 1979,
+    "expression": "強まる",
+    "reading": "つよまる",
+    "meaning_en": "to get strong, to gain strength",
+    "meaning_ko": "강해지다",
+    "example": {
+      "ja": "台風が接近して風が強まった。",
+      "reading": "たいふうがせっきんしてかぜがつよまった。",
+      "ko": "태풍이 접근하여 바람이 강해졌다."
+    }
+  },
+  {
+    "id": 1980,
+    "expression": "強める",
+    "reading": "つよめる",
+    "meaning_en": "to strengthen, to emphasize",
+    "meaning_ko": "강화하다",
+    "example": {
+      "ja": "セキュリティを強める必要がある。",
+      "reading": "セキュリティをつよめるひつようがある。",
+      "ko": "보안을 강화할 필요가 있다."
+    }
+  },
+  {
+    "id": 1981,
+    "expression": "データ",
+    "reading": "データ",
+    "meaning_en": "data",
+    "meaning_ko": "데이터",
+    "example": {
+      "ja": "このデータを分析してください。",
+      "reading": "このデータをぶんせきしてください。",
+      "ko": "이 데이터를 분석해 주세요."
+    }
+  },
+  {
+    "id": 1982,
+    "expression": "デザイン",
+    "reading": "デザイン",
+    "meaning_en": "design",
+    "meaning_ko": "디자인",
+    "example": {
+      "ja": "新しいロゴのデザインを考えた。",
+      "reading": "あたらしいロゴのデザインをかんがえた。",
+      "ko": "새로운 로고 디자인을 생각했다."
+    }
+  },
+  {
+    "id": 1983,
+    "expression": "デザート",
+    "reading": "デザート",
+    "meaning_en": "dessert",
+    "meaning_ko": "디저트",
+    "example": {
+      "ja": "食後にデザートのケーキを食べた。",
+      "reading": "しょくごにデザートのケーキをたべた。",
+      "ko": "식후에 디저트로 케이크를 먹었다."
+    }
+  },
+  {
+    "id": 1984,
+    "expression": "転校",
+    "reading": "てんこう",
+    "meaning_en": "change schools",
+    "meaning_ko": "전학",
+    "example": {
+      "ja": "引っ越しで新しい学校に転校した。",
+      "reading": "ひっこしであたらしいがっこうにてんこうした。",
+      "ko": "이사로 새 학교로 전학했다."
+    }
+  },
+  {
+    "id": 1985,
+    "expression": "伝言",
+    "reading": "でんごん",
+    "meaning_en": "verbal message",
+    "meaning_ko": "전언, 메시지",
+    "example": {
+      "ja": "彼に伝言をお願いできますか。",
+      "reading": "かれにでんごんをおねがいできますか。",
+      "ko": "그에게 메시지를 전해 주실 수 있나요?"
+    }
+  },
+  {
+    "id": 1986,
+    "expression": "と",
+    "reading": "と",
+    "meaning_en": "and",
+    "meaning_ko": "와/과",
+    "example": {
+      "ja": "りんごとバナナを買った。",
+      "reading": "りんごとバナナをかった。",
+      "ko": "사과와 바나나를 샀다."
+    }
+  },
+  {
+    "id": 1987,
+    "expression": "問う",
+    "reading": "とう",
+    "meaning_en": "to ask, to question",
+    "meaning_ko": "묻다, 따지다",
+    "example": {
+      "ja": "責任を問う声が高まっている。",
+      "reading": "せきにんをとうこえがたかまっている。",
+      "ko": "책임을 묻는 목소리가 높아지고 있다."
+    }
+  },
+  {
+    "id": 1988,
+    "expression": "棟",
+    "reading": "むね",
+    "meaning_en": "ridge (of roof), building",
+    "meaning_ko": "동, 건물",
+    "example": {
+      "ja": "マンションは三棟ある。",
+      "reading": "まんしょんはさんむねある。",
+      "ko": "맨션은 세 동이 있다."
+    }
+  },
+  {
+    "id": 1989,
+    "expression": "倒産",
+    "reading": "とうさん",
+    "meaning_en": "(corporate) bankruptcy, insolvency",
+    "meaning_ko": "도산, 파산",
+    "example": {
+      "ja": "その会社は不況で倒産した。",
+      "reading": "そのかいしゃはふきょうでとうさんした。",
+      "ko": "그 회사는 불황으로 도산했다."
+    }
+  },
+  {
+    "id": 1990,
+    "expression": "同士",
+    "reading": "どうし",
+    "meaning_en": "one another, companion, comrade",
+    "meaning_ko": "끼리, 동료",
+    "example": {
+      "ja": "友達同士で旅行に行った。",
+      "reading": "ともだちどうしでりょこうにいった。",
+      "ko": "친구끼리 여행을 갔다."
+    }
+  },
+  {
+    "id": 1991,
+    "expression": "同志",
+    "reading": "どうし",
+    "meaning_en": "same mind, comrade, kindred soul",
+    "meaning_ko": "동지",
+    "example": {
+      "ja": "同志とともに目標を達成した。",
+      "reading": "どうしとともにもくひょうをたっせいした。",
+      "ko": "동지와 함께 목표를 달성했다."
+    }
+  },
+  {
+    "id": 1992,
+    "expression": "当然",
+    "reading": "とうぜん",
+    "meaning_en": "obvious; natural",
+    "meaning_ko": "당연히",
+    "example": {
+      "ja": "努力すれば当然結果が出る。",
+      "reading": "どりょくすればとうぜんけっかがでる。",
+      "ko": "노력하면 당연히 결과가 나온다."
+    }
+  },
+  {
+    "id": 1993,
+    "expression": "動揺",
+    "reading": "どうよう",
+    "meaning_en": "disturbance, flutter shock",
+    "meaning_ko": "동요, 흔들림",
+    "example": {
+      "ja": "突然の知らせに動揺した。",
+      "reading": "とつぜんのしらせにどうようした。",
+      "ko": "갑작스러운 소식에 동요했다."
+    }
+  },
+  {
+    "id": 1994,
+    "expression": "説く",
+    "reading": "とく",
+    "meaning_en": "to explain, to advocate",
+    "meaning_ko": "설파하다, 설명하다",
+    "example": {
+      "ja": "先生が平和の大切さを説いた。",
+      "reading": "せんせいがへいわのたいせつさをといた。",
+      "ko": "선생님이 평화의 중요성을 설파했다."
+    }
+  },
+  {
+    "id": 1995,
+    "expression": "綴じる",
+    "reading": "とじる",
+    "meaning_en": "to bind, to file",
+    "meaning_ko": "묶다, 철하다",
+    "example": {
+      "ja": "書類をファイルに綴じた。",
+      "reading": "しょるいをファイルにとじた。",
+      "ko": "서류를 파일에 철했다."
+    }
+  },
+  {
+    "id": 1996,
+    "expression": "供",
+    "reading": "とも",
+    "meaning_en": "accompanying, attendant, companion, retinue",
+    "meaning_ko": "수행원, 동행",
+    "example": {
+      "ja": "社長が供を連れて出かけた。",
+      "reading": "しゃちょうがともをつれてでかけた。",
+      "ko": "사장이 수행원을 데리고 외출했다."
+    }
+  },
+  {
+    "id": 1997,
+    "expression": "並",
+    "reading": "なみ",
+    "meaning_en": "medium (e.g., food serving size, quality, price, etc.), ordinary",
+    "meaning_ko": "보통, 일반",
+    "example": {
+      "ja": "ラーメンを並盛りで注文した。",
+      "reading": "ラーメンをなみもりでちゅうもんした。",
+      "ko": "라멘을 보통 크기로 주문했다."
+    }
+  },
+  {
+    "id": 1998,
+    "expression": "慣らす",
+    "reading": "ならす",
+    "meaning_en": "to accustom",
+    "meaning_ko": "익숙하게 하다",
+    "example": {
+      "ja": "子どもを新しい環境に慣らすのに時間がかかった。",
+      "reading": "こどもをあたらしいかんきょうにならすのにじかんがかかった。",
+      "ko": "아이를 새로운 환경에 익숙하게 하는 데 시간이 걸렸다."
+    }
+  },
+  {
+    "id": 1999,
+    "expression": "馴らす",
+    "reading": "ならす",
+    "meaning_en": "to domesticate, to tame",
+    "meaning_ko": "길들이다",
+    "example": {
+      "ja": "野生の鳥を馴らすのは難しい。",
+      "reading": "やせいのとりをならすのはむずかしい。",
+      "ko": "야생 새를 길들이는 것은 어렵다."
+    }
+  },
+  {
+    "id": 2000,
+    "expression": "難",
+    "reading": "なん",
+    "meaning_en": "difficulty, hardships, defect",
+    "meaning_ko": "어려움, 난점",
+    "example": {
+      "ja": "この問題は難があって解けなかった。",
+      "reading": "このもんだいはなんがあってとけなかった。",
+      "ko": "이 문제는 난점이 있어서 풀지 못했다."
+    }
+  },
+  {
+    "id": 2001,
+    "expression": "音",
+    "reading": "ね",
+    "meaning_en": "sound, note",
+    "meaning_ko": "소리, 음",
+    "example": {
+      "ja": "ピアノの音が部屋に響いた。",
+      "reading": "ピアノのねがへやにひびいた。",
+      "ko": "피아노 소리가 방에 울렸다."
+    }
+  },
+  {
+    "id": 2002,
+    "expression": "年鑑",
+    "reading": "ねんかん",
+    "meaning_en": "yearbook",
+    "meaning_ko": "연감",
+    "example": {
+      "ja": "図書館で去年の統計年鑑を調べた。",
+      "reading": "としょかんできょねんのとうけいねんかんをしらべた。",
+      "ko": "도서관에서 작년 통계 연감을 조사했다."
+    }
+  },
+  {
+    "id": 2003,
+    "expression": "脳",
+    "reading": "のう",
+    "meaning_en": "brain, memory",
+    "meaning_ko": "뇌",
+    "example": {
+      "ja": "脳は体の中で最も重要な器官だ。",
+      "reading": "のうはからだのなかでもっともじゅうようなきかんだ。",
+      "ko": "뇌는 몸에서 가장 중요한 기관이다."
+    }
+  },
+  {
+    "id": 2004,
+    "expression": "臨む",
+    "reading": "のぞむ",
+    "meaning_en": "to look out on, to face, to attend (function)",
+    "meaning_ko": "임하다, 마주하다",
+    "example": {
+      "ja": "真剣に試験に臨んだ。",
+      "reading": "しんけんにしけんにのぞんだ。",
+      "ko": "진지하게 시험에 임했다."
+    }
+  },
+  {
+    "id": 2005,
+    "expression": "肺",
+    "reading": "はい",
+    "meaning_en": "lung",
+    "meaning_ko": "폐",
+    "example": {
+      "ja": "タバコは肺に悪い影響を与える。",
+      "reading": "タバコははいにわるいえいきょうをあたえる。",
+      "ko": "담배는 폐에 나쁜 영향을 준다."
+    }
+  },
+  {
+    "id": 2006,
+    "expression": "～敗",
+    "reading": "はい",
+    "meaning_en": "counter for loss, defeat",
+    "meaning_ko": "패(패배 횟수)",
+    "example": {
+      "ja": "チームは今季5勝3敗の成績だ。",
+      "reading": "チームはこんきごしょうさんぱいのせいせきだ。",
+      "ko": "팀은 이번 시즌 5승 3패의 성적이다."
+    }
+  },
+  {
+    "id": 2007,
+    "expression": "映える",
+    "reading": "はえる",
+    "meaning_en": "to shine, to look attractive, to look pretty",
+    "meaning_ko": "빛나다, 돋보이다",
+    "example": {
+      "ja": "青空に白い雲が映えていた。",
+      "reading": "あおぞらにしろいくもがはえていた。",
+      "ko": "파란 하늘에 흰 구름이 빛나고 있었다."
+    }
+  },
+  {
+    "id": 2008,
+    "expression": "諮る",
+    "reading": "はかる",
+    "meaning_en": "to consult with, to confer",
+    "meaning_ko": "자문하다",
+    "example": {
+      "ja": "委員会に意見を諮った。",
+      "reading": "いいんかいにいけんをはかった。",
+      "ko": "위원회에 의견을 자문했다."
+    }
+  },
+  {
+    "id": 2009,
+    "expression": "図る",
+    "reading": "はかる",
+    "meaning_en": "to plot, to attempt, to devise, to design, to refer A to B",
+    "meaning_ko": "도모하다, 꾀하다",
+    "example": {
+      "ja": "効率化を図るために改革を行った。",
+      "reading": "こうりつかをはかるためにかいかくをおこなった。",
+      "ko": "효율화를 도모하기 위해 개혁을 실시했다."
+    }
+  },
+  {
+    "id": 2010,
+    "expression": "生やす",
+    "reading": "はやす",
+    "meaning_en": "to grow, to cultivate, to wear beard",
+    "meaning_ko": "기르다",
+    "example": {
+      "ja": "夏の間にひげを生やした。",
+      "reading": "なつのあいだにひげをはやした。",
+      "ko": "여름 동안 수염을 길렀다."
+    }
+  },
+  {
+    "id": 2011,
+    "expression": "班",
+    "reading": "はん",
+    "meaning_en": "group, party, section (mil)",
+    "meaning_ko": "반, 조",
+    "example": {
+      "ja": "クラスを5つの班に分けた。",
+      "reading": "クラスをいつつのはんにわけた。",
+      "ko": "학급을 5개 조로 나눴다."
+    }
+  },
+  {
+    "id": 2012,
+    "expression": "判",
+    "reading": "はん",
+    "meaning_en": "size (of paper or books)",
+    "meaning_ko": "판형, 크기",
+    "example": {
+      "ja": "A4判の用紙を使ってください。",
+      "reading": "エーよんはんのようしをつかってください。",
+      "ko": "A4 판형의 용지를 사용해 주세요."
+    }
+  },
+  {
+    "id": 2013,
+    "expression": "版",
+    "reading": "はん",
+    "meaning_en": "edition",
+    "meaning_ko": "판",
+    "example": {
+      "ja": "この本の第2版が出版された。",
+      "reading": "このほんのだいにはんがしゅっぱんされた。",
+      "ko": "이 책의 제2판이 출판되었다."
+    }
+  },
+  {
+    "id": 2014,
+    "expression": "碑",
+    "reading": "ひ",
+    "meaning_en": "stone monument bearing an inscription",
+    "meaning_ko": "비석",
+    "example": {
+      "ja": "公園に戦争記念碑が建っている。",
+      "reading": "こうえんにせんそうきねんひがたっている。",
+      "ko": "공원에 전쟁 기념비가 세워져 있다."
+    }
+  },
+  {
+    "id": 2015,
+    "expression": "非行",
+    "reading": "ひこう",
+    "meaning_en": "delinquency, misconduct",
+    "meaning_ko": "비행, 불량행위",
+    "example": {
+      "ja": "少年の非行を防ぐ取り組みが必要だ。",
+      "reading": "しょうねんのひこうをふせぐとりくみがひつようだ。",
+      "ko": "청소년 비행을 막는 노력이 필요하다."
+    }
+  },
+  {
+    "id": 2016,
+    "expression": "票",
+    "reading": "ひょう",
+    "meaning_en": "label, ballot, sign",
+    "meaning_ko": "표, 투표용지",
+    "example": {
+      "ja": "選挙で候補者に票を入れた。",
+      "reading": "せんきょでこうほしゃにひょうをいれた。",
+      "ko": "선거에서 후보자에게 표를 던졌다."
+    }
+  },
+  {
+    "id": 2017,
+    "expression": "広まる",
+    "reading": "ひろまる",
+    "meaning_en": "to spread, to be propagated",
+    "meaning_ko": "퍼지다",
+    "example": {
+      "ja": "うわさが町中に広まった。",
+      "reading": "うわさがまちじゅうにひろまった。",
+      "ko": "소문이 마을 전체에 퍼졌다."
+    }
+  },
+  {
+    "id": 2018,
+    "expression": "深める",
+    "reading": "ふかめる",
+    "meaning_en": "to deepen, to heighten, to intensify",
+    "meaning_ko": "깊게 하다",
+    "example": {
+      "ja": "交流を通じて理解を深めた。",
+      "reading": "こうりゅうをつうじてりかいをふかめた。",
+      "ko": "교류를 통해 이해를 깊게 했다."
+    }
+  },
+  {
+    "id": 2019,
+    "expression": "福",
+    "reading": "ふく",
+    "meaning_en": "good fortune",
+    "meaning_ko": "복, 행운",
+    "example": {
+      "ja": "新年に福が訪れるよう願った。",
+      "reading": "しんねんにふくがおとずれるようねがった。",
+      "ko": "새해에 복이 오기를 빌었다."
+    }
+  },
+  {
+    "id": 2020,
+    "expression": "振り",
+    "reading": "ふり",
+    "meaning_en": "style, manner",
+    "meaning_ko": "행동거지, 척",
+    "example": {
+      "ja": "知らない振りをして通り過ぎた。",
+      "reading": "しらないふりをしてとおりすぎた。",
+      "ko": "모르는 척하며 지나쳤다."
+    }
+  },
+  {
+    "id": 2021,
+    "expression": "経る",
+    "reading": "へる",
+    "meaning_en": "to pass, to elapse, to experience",
+    "meaning_ko": "거치다, 경과하다",
+    "example": {
+      "ja": "時間を経て、傷は癒えた。",
+      "reading": "じかんをへて、きずはいえた。",
+      "ko": "시간이 지나면서 상처가 나았다."
+    }
+  },
+  {
+    "id": 2022,
+    "expression": "保護",
+    "reading": "ほご",
+    "meaning_en": "care, protection, shelter",
+    "meaning_ko": "보호",
+    "example": {
+      "ja": "環境保護のために努力している。",
+      "reading": "かんきょうほごのためにどりょくしている。",
+      "ko": "환경 보호를 위해 노력하고 있다."
+    }
+  },
+  {
+    "id": 2023,
+    "expression": "保障",
+    "reading": "ほしょう",
+    "meaning_en": "guarantee, security, warranty",
+    "meaning_ko": "보장",
+    "example": {
+      "ja": "国は国民の安全を保障する義務がある。",
+      "reading": "くにはこくみんのあんぜんをほしょうするぎむがある。",
+      "ko": "나라는 국민의 안전을 보장할 의무가 있다."
+    }
+  },
+  {
+    "id": 2024,
+    "expression": "補償",
+    "reading": "ほしょう",
+    "meaning_en": "compensation, reparation",
+    "meaning_ko": "보상",
+    "example": {
+      "ja": "事故の被害者に補償金が支払われた。",
+      "reading": "じこのひがいしゃにほしょうきんがしはらわれた。",
+      "ko": "사고 피해자에게 보상금이 지급되었다."
+    }
+  },
+  {
+    "id": 2025,
+    "expression": "ほっと",
+    "reading": "ほっと",
+    "meaning_en": "with relief, relieved",
+    "meaning_ko": "안도하여, 후련하게",
+    "example": {
+      "ja": "試験が終わってほっとした。",
+      "reading": "しけんがおわってほっとした。",
+      "ko": "시험이 끝나서 안도했다."
+    }
+  },
+  {
+    "id": 2026,
+    "expression": "前もって",
+    "reading": "まえもって",
+    "meaning_en": "in advance, beforehand, previously",
+    "meaning_ko": "미리, 사전에",
+    "example": {
+      "ja": "前もって準備しておくことが大切だ。",
+      "reading": "まえもってじゅんびしておくことがたいせつだ。",
+      "ko": "미리 준비해 두는 것이 중요하다."
+    }
+  },
+  {
+    "id": 2027,
+    "expression": "膜",
+    "reading": "まく",
+    "meaning_en": "membrane, film",
+    "meaning_ko": "막, 필름",
+    "example": {
+      "ja": "細胞は薄い膜で覆われている。",
+      "reading": "さいぼうはうすいまくでおおわれている。",
+      "ko": "세포는 얇은 막으로 덮여 있다."
+    }
+  },
+  {
+    "id": 2028,
+    "expression": "マスコミ",
+    "reading": "マスコミ",
+    "meaning_en": "mass communication",
+    "meaning_ko": "매스컴, 언론",
+    "example": {
+      "ja": "マスコミに事件が大きく取り上げられた。",
+      "reading": "マスコミにじけんがおおきくとりあげられた。",
+      "ko": "언론에 사건이 크게 다뤄졌다."
+    }
+  },
+  {
+    "id": 2029,
+    "expression": "股",
+    "reading": "また",
+    "meaning_en": "crotch, groin",
+    "meaning_ko": "가랑이, 사타구니",
+    "example": {
+      "ja": "股の筋肉を鍛えるトレーニングをした。",
+      "reading": "またのきんにくをきたえるトレーニングをした。",
+      "ko": "허벅지 근육을 단련하는 훈련을 했다."
+    }
+  },
+  {
+    "id": 2030,
+    "expression": "末",
+    "reading": "まつ",
+    "meaning_en": "the end of",
+    "meaning_ko": "말, 끝",
+    "example": {
+      "ja": "月末に給料が支払われる。",
+      "reading": "つきまつにきゅうりょうがしはらわれる。",
+      "ko": "월말에 급여가 지급된다."
+    }
+  },
+  {
+    "id": 2031,
+    "expression": "マッサージ",
+    "reading": "マッサージ",
+    "meaning_en": "massage",
+    "meaning_ko": "마사지",
+    "example": {
+      "ja": "肩こりにマッサージが効果的だ。",
+      "reading": "かたこりにマッサージがこうかてきだ。",
+      "ko": "어깨 결림에 마사지가 효과적이다."
+    }
+  },
+  {
+    "id": 2032,
+    "expression": "見掛ける",
+    "reading": "みかける",
+    "meaning_en": "to (happen to see), to notice, to catch sight of",
+    "meaning_ko": "눈에 띄다, 우연히 보다",
+    "example": {
+      "ja": "駅で昔の友人を見掛けた。",
+      "reading": "えきでむかしのゆうじんをみかけた。",
+      "ko": "역에서 옛 친구를 우연히 봤다."
+    }
+  },
+  {
+    "id": 2033,
+    "expression": "捲る",
+    "reading": "めくる",
+    "meaning_en": "to turn over, to turn pages of a book",
+    "meaning_ko": "넘기다",
+    "example": {
+      "ja": "本のページをゆっくり捲った。",
+      "reading": "ほんのページをゆっくりめくった。",
+      "ko": "책 페이지를 천천히 넘겼다."
+    }
+  },
+  {
+    "id": 2034,
+    "expression": "メッセージ",
+    "reading": "メッセージ",
+    "meaning_en": "message",
+    "meaning_ko": "메시지",
+    "example": {
+      "ja": "友達からメッセージが届いた。",
+      "reading": "ともだちからメッセージがとどいた。",
+      "ko": "친구에게서 메시지가 왔다."
+    }
+  },
+  {
+    "id": 2035,
+    "expression": "野党",
+    "reading": "やとう",
+    "meaning_en": "opposition party",
+    "meaning_ko": "야당",
+    "example": {
+      "ja": "野党が政府の方針に反対した。",
+      "reading": "やとうがせいふのほうしんにはんたいした。",
+      "ko": "야당이 정부 방침에 반대했다."
+    }
+  },
+  {
+    "id": 2036,
+    "expression": "優",
+    "reading": "ゆう",
+    "meaning_en": "superiority, high grade",
+    "meaning_ko": "우수",
+    "example": {
+      "ja": "成績は優を取ることができた。",
+      "reading": "せいせきはゆうをとることができた。",
+      "ko": "성적에서 우수 학점을 받을 수 있었다."
+    }
+  },
+  {
+    "id": 2037,
+    "expression": "有機",
+    "reading": "ゆうき",
+    "meaning_en": "organic",
+    "meaning_ko": "유기",
+    "example": {
+      "ja": "有機野菜は体に良いと言われている。",
+      "reading": "ゆうきやさいはからだによいといわれている。",
+      "ko": "유기농 채소는 몸에 좋다고 한다."
+    }
+  },
+  {
+    "id": 2038,
+    "expression": "世",
+    "reading": "よ",
+    "meaning_en": "world, society, generation",
+    "meaning_ko": "세상, 세대",
+    "example": {
+      "ja": "世の中は常に変化している。",
+      "reading": "よのなかはつねにへんかしている。",
+      "ko": "세상은 항상 변화하고 있다."
+    }
+  },
+  {
+    "id": 2039,
+    "expression": "良い",
+    "reading": "よい",
+    "meaning_en": "good, nice",
+    "meaning_ko": "좋다",
+    "example": {
+      "ja": "天気が良い日は外で遊ぼう。",
+      "reading": "てんきがよいひはそとであそぼう。",
+      "ko": "날씨가 좋은 날은 밖에서 놀자."
+    }
+  },
+  {
+    "id": 2040,
+    "expression": "予想",
+    "reading": "よそう",
+    "meaning_en": "expectation, anticipation, prediction",
+    "meaning_ko": "예상",
+    "example": {
+      "ja": "予想通り試験は難しかった。",
+      "reading": "よそうどおりしけんはむずかしかった。",
+      "ko": "예상대로 시험은 어려웠다."
+    }
+  },
+  {
+    "id": 2041,
+    "expression": "弱まる",
+    "reading": "よわまる",
+    "meaning_en": "to weaken, to be emaciated, to be dejected",
+    "meaning_ko": "약해지다",
+    "example": {
+      "ja": "夕方になると風が弱まった。",
+      "reading": "ゆうがたになるとかぜがよわまった。",
+      "ko": "저녁이 되자 바람이 약해졌다."
+    }
+  },
+  {
+    "id": 2042,
+    "expression": "弱める",
+    "reading": "よわめる",
+    "meaning_en": "to weaken",
+    "meaning_ko": "약하게 하다",
+    "example": {
+      "ja": "エアコンの風を弱めてください。",
+      "reading": "エアコンのかぜをよわめてください。",
+      "ko": "에어컨 바람을 약하게 해 주세요."
+    }
+  },
+  {
+    "id": 2043,
+    "expression": "ラベル",
+    "reading": "ラベル",
+    "meaning_en": "label",
+    "meaning_ko": "라벨, 레이블",
+    "example": {
+      "ja": "瓶にラベルを貼って区別する。",
+      "reading": "びんにラベルをはってくべつする。",
+      "ko": "병에 라벨을 붙여서 구분한다."
+    }
+  },
+  {
+    "id": 2044,
+    "expression": "ルール",
+    "reading": "ルール",
+    "meaning_en": "rule",
+    "meaning_ko": "규칙",
+    "example": {
+      "ja": "ゲームのルールをよく読んでください。",
+      "reading": "ゲームのルールをよくよんでください。",
+      "ko": "게임 규칙을 잘 읽어 주세요."
+    }
+  },
+  {
+    "id": 2045,
+    "expression": "枠",
+    "reading": "わく",
+    "meaning_en": "frame, slide",
+    "meaning_ko": "틀, 범위",
+    "example": {
+      "ja": "採用の枠が限られているので競争が激しい。",
+      "reading": "さいようのわくがかぎられているのできょうそうがはげしい。",
+      "ko": "채용 범위가 한정되어 있어 경쟁이 치열하다."
+    }
+  },
+  {
+    "id": 2046,
+    "expression": "表示",
+    "reading": "ひょうじ",
+    "meaning_en": "display, indication",
+    "meaning_ko": "표시",
+    "example": {
+      "ja": "画面に警告が表示された。",
+      "reading": "がめんにけいこくがひょうじされた。",
+      "ko": "화면에 경고가 표시되었다."
+    }
+  }
 ]

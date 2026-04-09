@@ -998,13 +998,13 @@
   {
     "id": 828,
     "expression": "後",
-    "reading": "ご",
-    "meaning_en": "afterwards, since then",
-    "meaning_ko": "이후, 나중",
+    "reading": "あと",
+    "meaning_en": "after, later",
+    "meaning_ko": "후에, 나중에",
     "example": {
-      "ja": "その後、二人は連絡を取り合っていない。",
-      "reading": "そのご、ふたりはれんらくをとりあっていない。",
-      "ko": "그 이후 두 사람은 연락을 주고받지 않고 있다."
+      "ja": "仕事の後で食事をした。",
+      "reading": "しごとのあとでしょくじをした。",
+      "ko": "일이 끝난 후에 식사를 했다."
     }
   },
   {

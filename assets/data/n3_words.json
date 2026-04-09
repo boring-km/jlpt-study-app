@@ -290,13 +290,13 @@
   {
     "id": 25,
     "expression": "直",
-    "reading": "じき",
-    "meaning_en": "immediately, soon, shortly",
-    "meaning_ko": "곧, 바로",
+    "reading": "じか",
+    "meaning_en": "direct, in person",
+    "meaning_ko": "직접",
     "example": {
-      "ja": "もう直来ると思います。",
-      "reading": "もうじきくるとおもいます。",
-      "ko": "이제 곧 올 것 같습니다."
+      "ja": "直に会って話したい。",
+      "reading": "じかにあってはなしたい。",
+      "ko": "직접 만나서 이야기하고 싶다."
     }
   },
   {
@@ -926,13 +926,13 @@
   {
     "id": 78,
     "expression": "下",
-    "reading": "しも",
-    "meaning_en": "under, below, beneath",
-    "meaning_ko": "아래, 하부",
+    "reading": "した",
+    "meaning_en": "below, under, beneath",
+    "meaning_ko": "아래, 밑",
     "example": {
-      "ja": "川の下流には大きな船が通る。",
-      "reading": "かわのしもながにはおおきなふねがとおる。",
-      "ko": "강 하류에는 큰 배가 다닌다."
+      "ja": "机の下に猫がいる。",
+      "reading": "つくえのしたにねこがいる。",
+      "ko": "책상 아래에 고양이가 있다."
     }
   },
   {
@@ -2844,18 +2844,6 @@
     }
   },
   {
-    "id": 238,
-    "expression": "澄む",
-    "reading": "すむ",
-    "meaning_en": "to clear (e.g., weather), to become transparent",
-    "meaning_ko": "맑아지다",
-    "example": {
-      "ja": "川の水が清んで底まで見えた。",
-      "reading": "かわのみずがすんでそこまでみえた。",
-      "ko": "강물이 맑아져 바닥까지 보였다."
-    }
-  },
-  {
     "id": 239,
     "expression": "刷る",
     "reading": "する",
@@ -3807,12 +3795,12 @@
     "id": 318,
     "expression": "粗",
     "reading": "あら",
-    "meaning_en": "defect, flaw, fault",
-    "meaning_ko": "결점, 흠",
+    "meaning_en": "rough, crude, flaw",
+    "meaning_ko": "결점, 흠, 거친",
     "example": {
-      "ja": "人の粗を探すより長所を見るべきだ。",
-      "reading": "ひとのあらをさがすよりちょうしょをみるべきだ。",
-      "ko": "남의 결점을 찾기보다 장점을 봐야 한다."
+      "ja": "彼の粗を探すのはやめよう。",
+      "reading": "かれのあらをさがすのはやめよう。",
+      "ko": "그의 흠을 찾는 건 그만두자."
     }
   },
   {
@@ -3938,13 +3926,13 @@
   {
     "id": 329,
     "expression": "或",
-    "reading": "ある",
-    "meaning_en": "a certain..., some...",
-    "meaning_ko": "어떤, 어느",
+    "reading": "あるいは",
+    "meaning_en": "or, possibly",
+    "meaning_ko": "혹은, 또는",
     "example": {
-      "ja": "或日、不思議な出来事が起きた。",
-      "reading": "あるひ、ふしぎなできごとがおきた。",
-      "ko": "어느 날, 신기한 일이 일어났다."
+      "ja": "電車、或いはバスで行ける。",
+      "reading": "でんしゃ、あるいはばすでいける。",
+      "ko": "전철, 혹은 버스로 갈 수 있다."
     }
   },
   {
@@ -4956,26 +4944,14 @@
     }
   },
   {
-    "id": 414,
-    "expression": "上",
-    "reading": "うわ",
-    "meaning_en": "upper, outer, surface",
-    "meaning_ko": "위, 겉",
-    "example": {
-      "ja": "上着を着てから出かけた。",
-      "reading": "うわぎをきてからでかけた。",
-      "ko": "겉옷을 입고 나서 외출했다."
-    }
-  },
-  {
     "id": 415,
     "expression": "魚",
-    "reading": "うお",
+    "reading": "さかな",
     "meaning_en": "fish",
     "meaning_ko": "물고기, 생선",
     "example": {
       "ja": "川で魚を捕まえた。",
-      "reading": "かわでうおをつかまえた。",
+      "reading": "かわでさかなをつかまえた。",
       "ko": "강에서 물고기를 잡았다."
     }
   },
@@ -5282,13 +5258,13 @@
   {
     "id": 441,
     "expression": "柄",
-    "reading": "え",
-    "meaning_en": "handle (of a sword, dagger, etc.), grip",
-    "meaning_ko": "자루, 손잡이",
+    "reading": "がら",
+    "meaning_en": "pattern, design, build",
+    "meaning_ko": "무늬, 체격",
     "example": {
-      "ja": "包丁の柄が壊れた。",
-      "reading": "ほうちょうのえがこわれた。",
-      "ko": "식칼의 손잡이가 부러졌다."
+      "ja": "この服は花柄がかわいい。",
+      "reading": "このふくははながらがかわいい。",
+      "ko": "이 옷은 꽃무늬가 귀엽다."
     }
   },
   {
@@ -5421,18 +5397,6 @@
       "ja": "努力して良い結果を得た。",
       "reading": "どりょくしていいけっかをえた。",
       "ko": "노력하여 좋은 결과를 얻었다."
-    }
-  },
-  {
-    "id": 453,
-    "expression": "得る",
-    "reading": "うる",
-    "meaning_en": "to get, to gain, to win",
-    "meaning_ko": "얻다 (문어)",
-    "example": {
-      "ja": "その可能性もあり得る。",
-      "reading": "そのかのうせいもありうる。",
-      "ko": "그 가능성도 있을 수 있다."
     }
   },
   {
@@ -7286,13 +7250,13 @@
   {
     "id": 608,
     "expression": "上",
-    "reading": "かみ",
-    "meaning_en": "first volume; superior quality; governmental",
-    "meaning_ko": "상(권), 윗",
+    "reading": "うえ",
+    "meaning_en": "above, up, on top of",
+    "meaning_ko": "위, 위쪽",
     "example": {
-      "ja": "この本の上の巻を読んだ。",
-      "reading": "このほんのかみのまきをよんだ。",
-      "ko": "이 책의 상권을 읽었다."
+      "ja": "机の上に本がある。",
+      "reading": "つくえのうえにほんがある。",
+      "ko": "책상 위에 책이 있다."
     }
   },
   {
@@ -7370,25 +7334,13 @@
   {
     "id": 615,
     "expression": "空",
-    "reading": "から",
-    "meaning_en": "empty",
-    "meaning_ko": "비어있음, 빈",
+    "reading": "そら",
+    "meaning_en": "sky, air",
+    "meaning_ko": "하늘",
     "example": {
-      "ja": "財布の中が空になった。",
-      "reading": "さいふのなかがからになった。",
-      "ko": "지갑 안이 텅 비었다."
-    }
-  },
-  {
-    "id": 616,
-    "expression": "柄",
-    "reading": "がら",
-    "meaning_en": "pattern; build; character",
-    "meaning_ko": "무늬, 체격",
-    "example": {
-      "ja": "この服の柄がきれいだ。",
-      "reading": "このふくのがらがきれいだ。",
-      "ko": "이 옷의 무늬가 예쁘다."
+      "ja": "今日は空がきれいだ。",
+      "reading": "きょうはそらがきれいだ。",
+      "ko": "오늘은 하늘이 예쁘다."
     }
   },
   {
@@ -8906,13 +8858,13 @@
   {
     "id": 743,
     "expression": "管",
-    "reading": "くだ",
+    "reading": "かん",
     "meaning_en": "pipe, tube",
     "meaning_ko": "관, 파이프",
     "example": {
       "ja": "水道の管が壊れた。",
-      "reading": "すいどうのくだがこわれた。",
-      "ko": "수도관이 망가졌다."
+      "reading": "すいどうのかんがこわれた。",
+      "ko": "수도관이 고장났다."
     }
   },
   {
@@ -9926,13 +9878,13 @@
   {
     "id": 828,
     "expression": "後",
-    "reading": "ご",
-    "meaning_en": "afterwards, since then",
-    "meaning_ko": "이후, 나중",
+    "reading": "あと",
+    "meaning_en": "after, later",
+    "meaning_ko": "후에, 나중에",
     "example": {
-      "ja": "その後、二人は連絡を取り合っていない。",
-      "reading": "そのご、ふたりはれんらくをとりあっていない。",
-      "ko": "그 이후 두 사람은 연락을 주고받지 않고 있다."
+      "ja": "仕事の後で食事をした。",
+      "reading": "しごとのあとでしょくじをした。",
+      "ko": "일이 끝난 후에 식사를 했다."
     }
   },
   {
@@ -11460,18 +11412,6 @@
     }
   },
   {
-    "id": 956,
-    "expression": "円",
-    "reading": "えん",
-    "meaning_en": "yen (currency); circle",
-    "meaning_ko": "엔(일본 화폐); 원형, 동그라미",
-    "example": {
-      "ja": "千円札を出してお釣りをもらった。",
-      "reading": "せんえんさつをだしておつりをもらった。",
-      "ko": "천 엔 지폐를 내고 거스름돈을 받았다。"
-    }
-  },
-  {
     "id": 957,
     "expression": "まるで",
     "reading": "まるで",
@@ -12156,18 +12096,6 @@
     }
   },
   {
-    "id": 1014,
-    "expression": "文字",
-    "reading": "もんじ",
-    "meaning_en": "letter (of alphabet), character",
-    "meaning_ko": "문자, 글자",
-    "example": {
-      "ja": "古い文字を解読するのは難しい。",
-      "reading": "ふるいもんじをかいどくするのはむずかしい。",
-      "ko": "오래된 문자를 해독하는 것은 어렵다."
-    }
-  },
-  {
     "id": 1015,
     "expression": "もしかすると",
     "reading": "もしかすると",
@@ -12782,13 +12710,13 @@
   {
     "id": 1066,
     "expression": "夜",
-    "reading": "よ",
+    "reading": "よる",
     "meaning_en": "evening, night",
     "meaning_ko": "밤, 저녁",
     "example": {
-      "ja": "夜になると気温が下がる。",
-      "reading": "よになるときおんがさがる。",
-      "ko": "밤이 되면 기온이 내려간다."
+      "ja": "夜になると静かになる。",
+      "reading": "よるになるとしずかになる。",
+      "ko": "밤이 되면 조용해진다."
     }
   },
   {
@@ -14229,18 +14157,6 @@
       "ja": "秋になると山で狩りをする人が増える。",
       "reading": "あきになるとやまでかりをするひとがふえる。",
       "ko": "가을이 되면 산에서 사냥하는 사람이 늘어난다."
-    }
-  },
-  {
-    "id": 1187,
-    "expression": "管",
-    "reading": "かん",
-    "meaning_en": "pipe, tube",
-    "meaning_ko": "관, 파이프",
-    "example": {
-      "ja": "水道の管が破裂した。",
-      "reading": "すいどうのかんがはれつした。",
-      "ko": "수도관이 파열되었다."
     }
   },
   {
@@ -19836,18 +19752,6 @@
     }
   },
   {
-    "id": 1654,
-    "expression": "梅雨",
-    "reading": "つゆ",
-    "meaning_en": "rainy season",
-    "meaning_ko": "장마",
-    "example": {
-      "ja": "梅雨の季節は毎日雨が降る。",
-      "reading": "つゆのきせつはまいにちあめがふる。",
-      "ko": "장마철에는 매일 비가 내린다."
-    }
-  },
-  {
     "id": 1655,
     "expression": "バイオリン",
     "reading": "バイオリン",
@@ -20630,13 +20534,13 @@
   {
     "id": 1720,
     "expression": "灯",
-    "reading": "ひ",
-    "meaning_en": "light",
+    "reading": "あかり",
+    "meaning_en": "light, lamp",
     "meaning_ko": "불빛, 등불",
     "example": {
-      "ja": "夜の港に灯が揺れていた。",
-      "reading": "よるのみなとにひがゆれていた。",
-      "ko": "밤 항구에 불빛이 흔들리고 있었다."
+      "ja": "部屋の灯をつけた。",
+      "reading": "へやのあかりをつけた。",
+      "ko": "방의 불을 켰다."
     }
   },
   {
@@ -21156,30 +21060,6 @@
     }
   },
   {
-    "id": 1764,
-    "expression": "不",
-    "reading": "ぶ",
-    "meaning_en": "un(~), non(~), negative prefix",
-    "meaning_ko": "불(부정 접두사)",
-    "example": {
-      "ja": "彼の話し方はぶっきらぼうだ。",
-      "reading": "かれのはなしかたはぶっきらぼうだ。",
-      "ko": "그의 말투는 무뚝뚝하다."
-    }
-  },
-  {
-    "id": 1765,
-    "expression": "無",
-    "reading": "ぶ",
-    "meaning_en": "nothing, naught, nil, zero",
-    "meaning_ko": "무(없음)",
-    "example": {
-      "ja": "無愛想な態度は相手を傷つける。",
-      "reading": "ぶあいそうなたいどはあいてをきずつける。",
-      "ko": "무뚝뚝한 태도는 상대방에게 상처를 준다."
-    }
-  },
-  {
     "id": 1766,
     "expression": "分",
     "reading": "ぶ",
@@ -21333,18 +21213,6 @@
       "ja": "彼の突然の死は家族にとって大きな不幸だった。",
       "reading": "かれのとつぜんのしはかぞくにとっておおきなふこうだった。",
       "ko": "그의 갑작스러운 죽음은 가족에게 큰 불행이었다."
-    }
-  },
-  {
-    "id": 1779,
-    "expression": "節",
-    "reading": "ふし",
-    "meaning_en": "tune, tone, knob",
-    "meaning_ko": "마디, 가락",
-    "example": {
-      "ja": "竹の節と節の間を切って使った。",
-      "reading": "たけのふしとふしのあいだをきってつかった。",
-      "ko": "대나무 마디와 마디 사이를 잘라서 사용했다."
     }
   },
   {
@@ -22281,18 +22149,6 @@
       "ja": "キャンプファイヤーの炎が夜空を照らした。",
       "reading": "キャンプファイヤーのほのおがよぞらをてらした。",
       "ko": "캠프파이어의 불꽃이 밤하늘을 비췄다."
-    }
-  },
-  {
-    "id": 1858,
-    "expression": "頬",
-    "reading": "ほほ",
-    "meaning_en": "cheek (of face)",
-    "meaning_ko": "뺨, 볼",
-    "example": {
-      "ja": "赤ちゃんのほほはとても柔らかい。",
-      "reading": "あかちゃんのほほはとてもやわらかい。",
-      "ko": "아기의 볼은 매우 부드럽다."
     }
   },
   {
@@ -23846,13 +23702,13 @@
   {
     "id": 1988,
     "expression": "棟",
-    "reading": "とう",
-    "meaning_en": "ridge (of roof)",
-    "meaning_ko": "동, 건물 동",
+    "reading": "むね",
+    "meaning_en": "ridge (of roof), building",
+    "meaning_ko": "동, 건물",
     "example": {
-      "ja": "病院の第3棟に入院している。",
-      "reading": "びょういんのだいさんとうににゅういんしている。",
-      "ko": "병원 제3동에 입원하고 있다."
+      "ja": "マンションは三棟ある。",
+      "reading": "まんしょんはさんむねある。",
+      "ko": "맨션은 세 동이 있다."
     }
   },
   {

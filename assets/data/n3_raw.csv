@@ -23,7 +23,7 @@ expression,reading,meaning,tags,guid
 四角,しかく,square,JLPT JLPT_2 JLPT_3,J[L(f7xE~B
 直に,じかに,"immediately, readily, directly",JLPT JLPT_2 JLPT_3,"Gui,0]IdY5"
 しかも,しかも,"moreover, furthermore, besides, plus",JLPT Intermediate_Japanese JLPT_3 JLPT_2 Intermediate_Japanese_Ln.9 Intermediate_Japanese_Ln.2,NW!O~u6B#]
-直,じき,"immediately, soon, shortly",JLPT JLPT_2 JLPT_3,wd?tx<3Bac
+直,じか,"immediately, soon, shortly",JLPT JLPT_2 JLPT_3,wd?tx<3Bac
 時期,じき,"time, season, period",JLPT JLPT_2 JLPT_3,DJ<W>Fb$j>
 支給,しきゅう,"payment, allowance",JLPT JLPT_2 JLPT_3,MpCDrKuR@c
 至急,しきゅう,"urgent, pressing",JLPT JLPT_2 JLPT_3,"K+,ttKQ<dz"
@@ -76,7 +76,7 @@ expression,reading,meaning,tags,guid
 示す,しめす,"to show, to indicate",JLPT JLPT_2 JLPT_3,Jd8*LeirRj
 占める,しめる,to take up; to account for,JLPT Intermediate_Japanese JLPT_3 JLPT_2 Intermediate_Japanese_Ln.14,r`M6Y4!/$F
 湿る,しめる,"to be wet, to be damp",JLPT JLPT_2 JLPT_3,uFiSD0nBbH
-下,しも,"under, below, beneath",JLPT JLPT_2 JLPT_3,"NEdu]f-jA,"
+下,した,"under, below, beneath",JLPT JLPT_2 JLPT_3,"NEdu]f-jA,"
 霜,しも,frost,JLPT JLPT_2 JLPT_3,r%B(k2*%-2
 借金,しゃっきん,"debt, loan, liabilities",JLPT JLPT_2 JLPT_3,HTrhI~ql4k
 しゃべる,しゃべる,"to talk, to chat, to chatter (same as 話す (はなす))",JLPT Intermediate_Japanese JLPT_3 JLPT_2 Intermediate_Japanese_Ln.8,xm(;YK[sEF
@@ -327,7 +327,7 @@ expression,reading,meaning,tags,guid
 現れる,あらわれる,"to appear (v.i.), to become visible; to express",JLPT Intermediate_Japanese JLPT_3 JLPT_2 Intermediate_Japanese_Ln.8,uNu]Gn1cS@
 ありがとう,ありがとう,Thank you,JLPT JLPT_2 JLPT_3,"BCk,]QT,C;"
 在る; 有る,ある,"to live, to be, to exist",JLPT JLPT_2 JLPT_3,ugXsXN3GZ/
-或,ある,"a certain..., some...",JLPT JLPT_2 JLPT_3,fPA~S.(r2^
+或,あるいは,"a certain..., some...",JLPT JLPT_2 JLPT_3,fPA~S.(r2^
 あるいは,あるいは,"or, perhaps",JLPT JLPT_2 JLPT_3,GpvtMObv5I
 アルバム,アルバム,album,JLPT JLPT_2 JLPT_3,LY~;26p.Bn
 泡,あわ,"bubble, foam",JLPT JLPT_2 JLPT_3,xuN<Cc$=0q
@@ -413,7 +413,7 @@ expression,reading,meaning,tags,guid
 引用,いんよう,"quotation, citation",JLPT JLPT_2 JLPT_3,mgmTGyy@R!
 ウイスキー,ウイスキー,whiskey,JLPT JLPT_2 JLPT_3,pU);qhPs)v
 上,うわ,"upper, outer, surface",JLPT JLPT_2 JLPT_3,Alx@.Upj.V
-魚,うお,fish,JLPT JLPT_2 JLPT_3,"OhV1B,p7lY"
+魚,さかな,fish,JLPT JLPT_2 JLPT_3,"OhV1B,p7lY"
 うがい,うがい,gargling,JLPT Intermediate_Japanese JLPT_3 JLPT_2 Intermediate_Japanese_Ln.12,k@]kPJW~yl
 受け取る,うけとる,"to receive, to get, to accept",JLPT JLPT_2 JLPT_3,"Jr/,h++/bg"
 動かす,うごかす,"to move, to shift",JLPT JLPT_2 JLPT_3,NB>1{PM|;}
@@ -439,7 +439,7 @@ expression,reading,meaning,tags,guid
 噂,うわさ,"rumor, gossip",JLPT JLPT_2 JLPT_3,iJw30XJ732
 運,うん,"fortune, luck",JLPT JLPT_2 JLPT_3,"niW>.BR,WX"
 運転,うんてん,"operation, driving",JLPT JLPT_2 JLPT_3,x@0Upz+IK7
-柄,え,"handle (of a sword, dagger, etc.), grip",JLPT_1 JLPT JLPT_2 JLPT_3,vAFwXg-!s2
+柄,がら,"handle (of a sword, dagger, etc.), grip",JLPT_1 JLPT JLPT_2 JLPT_3,vAFwXg-!s2
 永遠,えいえん,"eternity, perpetuity, immortality",JLPT JLPT_2 JLPT_3,DxPif#CAiw
 永久,えいきゅう,"eternity, perpetuity, immortality",JLPT JLPT_2 JLPT_3,"H2N,Hwk+O>"
 影響,えいきょう,"influence, effect",JLPT Intermediate_Japanese JLPT_3 JLPT_2 Intermediate_Japanese_Ln.9,xzq]$1i3z}
@@ -606,14 +606,14 @@ expression,reading,meaning,tags,guid
 株,かぶ,stock; stump (of tree),JLPT JLPT_2 JLPT_3,i!::Yg?ZPB
 被る,かぶる,to wear; to be covered with,JLPT JLPT_2 JLPT_3,KZvZ3xJvf=
 我慢,がまん,"patience, endurance, perseverance",JLPT JLPT_2 JLPT_3,b.uAP*cO(_
-上,かみ,first volume; superior quality; governmental,JLPT JLPT_2 JLPT_3,B2f-z2M%?X
+上,うえ,first volume; superior quality; governmental,JLPT JLPT_2 JLPT_3,B2f-z2M%?X
 神,かみ,god,JLPT JLPT_2 JLPT_3,bOG}3!+.y2
 雷,かみなり,thunder,JLPT JLPT_2 JLPT_3,A`y:r{2n8V
 髪の毛,かみのけ,hair (head),JLPT JLPT_2 JLPT_3,k>oV)Rt7]w
 科目,かもく,"(school) subject, curriculum, course",JLPT JLPT_2 JLPT_3,mt1}<&PDy^
 かもしれない,かもしれない,"maybe, perhaps",JLPT JLPT_2 JLPT_3,"fXI7dlE,H5"
 かゆい,かゆい,"itchy, itching",JLPT JLPT_2 JLPT_3,i@bIkK/P`w
-空,から,empty,JLPT JLPT_2 JLPT_3,"LiJsM!pT#,"
+空,そら,empty,JLPT JLPT_2 JLPT_3,"LiJsM!pT#,"
 柄,がら,pattern; build; character,JLPT JLPT_2 JLPT_3,uk^tW>*afz
 刈る,かる,"to cut (hair), to mow (grass), to harvest",JLPT JLPT_2 JLPT_3,ON/-tkLwG!
 河,かわ,"river, stream",JLPT JLPT_2 JLPT_3,mIM2jXP:@M
@@ -741,7 +741,7 @@ expression,reading,meaning,tags,guid
 鎖,くさり,chain,JLPT JLPT_2 JLPT_3,cOg]TL4|L&
 腐る,くさる,"to rot, to go bad",JLPT JLPT_2 JLPT_3,u_}*Hl&WiO
 癖,くせ,"a habit (often a bad habit), peculiarity",JLPT JLPT_2 JLPT_3,Ae-]tyqPg+
-管,くだ,"pipe, tube",JLPT JLPT_2 JLPT_3,pL(+IcFnzy
+管,かん,"pipe, tube",JLPT JLPT_2 JLPT_3,pL(+IcFnzy
 具体,ぐたい,"concrete, tangible, material",JLPT JLPT_2 JLPT_3,j&j}xVZwy2
 下り,くだり,down-train (going away from Tokyo),JLPT JLPT_2 JLPT_3,ll}#-y;}nb
 苦痛,くつう,"pain, agony",JLPT JLPT_2 JLPT_3,"gHRe}_+,oB"
@@ -826,7 +826,7 @@ expression,reading,meaning,tags,guid
 現場,げんば,"actual spot, scene, field",JLPT JLPT_2 JLPT_3,pPYxD+.Tt<
 憲法,けんぽう,constitution,JLPT JLPT_2 JLPT_3,Pt+Ua9}uUU
 権利,けんり,"right, privilege",JLPT JLPT_2 JLPT_3,BlH<4P^#PV
-後,ご,"afterwards, since then",JLPT JLPT_2 JLPT_3,NFyG.<z1HC
+後,あと,"afterwards, since then",JLPT JLPT_2 JLPT_3,NFyG.<z1HC
 恋,こい,"love, tender passion",JLPT JLPT_2 JLPT_3,I%Sh/ap#4{
 濃い,こい,"thick (as of color, liquid), dense, strong",JLPT JLPT_2 JLPT_3,cR>i$T~1vO
 恋人,こいびと,lover; sweetheart; girlfriend,JLPT Intermediate_Japanese JLPT_3 JLPT_2 Intermediate_Japanese_Ln.9,"lgn5l,{H`B"
@@ -1064,7 +1064,7 @@ expression,reading,meaning,tags,guid
 豊か,ゆたか,"abundant, wealthy, plentiful, rich",JLPT JLPT_2 JLPT_3,"d9lbZ0yM,{"
 茹でる,ゆでる,to boil,JLPT JLPT_2 JLPT_3,vocx6RiGG7
 許す,ゆるす,"to permit, to allow, to approve",JLPT Intermediate_Japanese JLPT_3 JLPT_2 Intermediate_Japanese_Ln.8,jUZ.+k2dQs
-夜,よ,"evening, night",JLPT JLPT_2 JLPT_3,O|UO#;VR|i
+夜,よる,"evening, night",JLPT JLPT_2 JLPT_3,O|UO#;VR|i
 夜明け,よあけ,"dawn, daybreak",JLPT JLPT_2 JLPT_3,P]gvvnr3UX
 酔う,よう,to get drunk,JLPT JLPT_2 JLPT_3,Nw#Iv9NMME
 容易,ようい,"easy, simple, plain",JLPT JLPT_2 JLPT_3,P+bB1Di`Ky
@@ -1718,7 +1718,7 @@ expression,reading,meaning,tags,guid
 判断,はんだん,"judgment, decision",JLPT JLPT_2 JLPT_3,v@gzHM&*wS
 犯人,はんにん,"offender, criminal",JLPT JLPT_3 JLPT_2 Genki Genki_Ln.21,KepmoPPwL&
 販売,はんばい,"sale, selling, marketing",JLPT JLPT_2 JLPT_3,c`5qHhM#2.
-灯,ひ,light,JLPT JLPT_2 JLPT_3,I||i~_;O|L
+灯,あかり,light,JLPT JLPT_2 JLPT_3,I||i~_;O|L
 ビール,ビール,beer,JLPT Genki_Ln.11 JLPT_3 JLPT_2 Genki,l^Yo8c$buu
 被害,ひがい,damage,JLPT Intermediate_Japanese JLPT_3 JLPT_2 Intermediate_Japanese_Ln.10,tAfC4<pK2g
 比較,ひかく,comparison,JLPT JLPT_2 JLPT_3,JGY{<0z3/z
@@ -1762,8 +1762,8 @@ expression,reading,meaning,tags,guid
 便,びん,"way, means; flight",JLPT Genki_Ln.10 JLPT_3 JLPT_2 Genki,"hW&&,9z!hz"
 ピン,ピン,pin,JLPT JLPT_2 JLPT_3,w[{)#&AAgf
 不,ふ,"un(~), non(~), negative prefix",JLPT JLPT_2 JLPT_3,DaVjdKEUb@
-不,ぶ,"un(~), non(~), negative prefix",JLPT JLPT_2 JLPT_3,xWoO+hKXb|
-無,ぶ,"nothing, naught, nil, zero",JLPT JLPT_2 JLPT_3,"F0,T~)w`pd"
+不,ふ,"un(~), non(~), negative prefix",JLPT JLPT_2 JLPT_3,xWoO+hKXb|
+無,む,"nothing, naught, nil, zero",JLPT JLPT_2 JLPT_3,"F0,T~)w`pd"
 分,ぶ,"dividing, part",JLPT JLPT_2 JLPT_3,o4et&;Hn=[
 不安,ふあん,"anxiety, uneasiness",JLPT JLPT_2 JLPT_3,B.}P5XzBC<
 風景,ふうけい,scenery,JLPT JLPT_2 JLPT_3,K|bB_b5g2q
@@ -1777,7 +1777,7 @@ expression,reading,meaning,tags,guid
 含める,ふくめる,to include,JLPT JLPT_2 JLPT_3,Lp<OS_$:v^
 袋,ふくろ,"bag, sack",JLPT JLPT_2 JLPT_3,fF&Fkk&[N(
 不幸,ふこう,"unhappiness, sorrow, misfortune",JLPT JLPT_2 JLPT_3,n27gAU4MS<
-節,ふし,"tune, tone, knob",JLPT JLPT_2 JLPT_3,meTR#p8LaO
+節,せつ,"tune, tone, knob",JLPT JLPT_2 JLPT_3,meTR#p8LaO
 無事,ぶじ,"safety, peace",JLPT JLPT_2 JLPT_3,c|X1eKToE(
 不思議,ふしぎ,"mystery, curiosity",JLPT JLPT_2 JLPT_3,i2aoaA[Rbt
 不自由,ふじゆう,"discomfort, disability, inconvenience",JLPT JLPT_2 JLPT_3,OXxKs56cIo
@@ -1986,7 +1986,7 @@ expression,reading,meaning,tags,guid
 伝言,でんごん,verbal message,JLPT_1 JLPT JLPT_3,GvqvJ@T>v!
 と,と,and,JLPT_1 JLPT JLPT_3,M:Axq>|(Kg
 問う,とう,"to ask, to question",JLPT_1 JLPT JLPT_3,liQ|$R<T6G
-棟,とう,ridge (of roof,JLPT_1 JLPT JLPT_3,DbAa])9/F(
+棟,むね,ridge (of roof,JLPT_1 JLPT JLPT_3,DbAa])9/F(
 倒産,とうさん,"(corporate) bankruptcy, insolvency",JLPT_1 JLPT JLPT_3,z@^@3D{^xO
 同士,どうし,"one another, companion, comrade",JLPT Intermediate_Japanese JLPT_1 JLPT_3 Intermediate_Japanese_Ln.9,LZ;*se^02u
 同志,どうし,"same mind, comrade, kindred soul",JLPT_1 JLPT JLPT_3,hK!%#l^Nm>

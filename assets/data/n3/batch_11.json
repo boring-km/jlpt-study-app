@@ -300,18 +300,6 @@
     }
   },
   {
-    "id": 956,
-    "expression": "円",
-    "reading": "えん",
-    "meaning_en": "yen (currency); circle",
-    "meaning_ko": "엔(일본 화폐); 원형, 동그라미",
-    "example": {
-      "ja": "千円札を出してお釣りをもらった。",
-      "reading": "せんえんさつをだしておつりをもらった。",
-      "ko": "천 엔 지폐를 내고 거스름돈을 받았다。"
-    }
-  },
-  {
     "id": 957,
     "expression": "まるで",
     "reading": "まるで",
@@ -993,18 +981,6 @@
       "ja": "漢字は難しい文字が多い。",
       "reading": "かんじはむずかしいもじがおおい。",
       "ko": "한자는 어려운 글자가 많다."
-    }
-  },
-  {
-    "id": 1014,
-    "expression": "文字",
-    "reading": "もんじ",
-    "meaning_en": "letter (of alphabet), character",
-    "meaning_ko": "문자, 글자",
-    "example": {
-      "ja": "古い文字を解読するのは難しい。",
-      "reading": "ふるいもんじをかいどくするのはむずかしい。",
-      "ko": "오래된 문자를 해독하는 것은 어렵다."
     }
   },
   {

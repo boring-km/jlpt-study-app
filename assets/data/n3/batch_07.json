@@ -590,13 +590,13 @@
   {
     "id": 608,
     "expression": "上",
-    "reading": "かみ",
-    "meaning_en": "first volume; superior quality; governmental",
-    "meaning_ko": "상(권), 윗",
+    "reading": "うえ",
+    "meaning_en": "above, up, on top of",
+    "meaning_ko": "위, 위쪽",
     "example": {
-      "ja": "この本の上の巻を読んだ。",
-      "reading": "このほんのかみのまきをよんだ。",
-      "ko": "이 책의 상권을 읽었다."
+      "ja": "机の上に本がある。",
+      "reading": "つくえのうえにほんがある。",
+      "ko": "책상 위에 책이 있다."
     }
   },
   {
@@ -674,25 +674,13 @@
   {
     "id": 615,
     "expression": "空",
-    "reading": "から",
-    "meaning_en": "empty",
-    "meaning_ko": "비어있음, 빈",
+    "reading": "そら",
+    "meaning_en": "sky, air",
+    "meaning_ko": "하늘",
     "example": {
-      "ja": "財布の中が空になった。",
-      "reading": "さいふのなかがからになった。",
-      "ko": "지갑 안이 텅 비었다."
-    }
-  },
-  {
-    "id": 616,
-    "expression": "柄",
-    "reading": "がら",
-    "meaning_en": "pattern; build; character",
-    "meaning_ko": "무늬, 체격",
-    "example": {
-      "ja": "この服の柄がきれいだ。",
-      "reading": "このふくのがらがきれいだ。",
-      "ko": "이 옷의 무늬가 예쁘다."
+      "ja": "今日は空がきれいだ。",
+      "reading": "きょうはそらがきれいだ。",
+      "ko": "오늘은 하늘이 예쁘다."
     }
   },
   {

@@ -1094,13 +1094,13 @@
   {
     "id": 743,
     "expression": "管",
-    "reading": "くだ",
+    "reading": "かん",
     "meaning_en": "pipe, tube",
     "meaning_ko": "관, 파이프",
     "example": {
       "ja": "水道の管が壊れた。",
-      "reading": "すいどうのくだがこわれた。",
-      "ko": "수도관이 망가졌다."
+      "reading": "すいどうのかんがこわれた。",
+      "ko": "수도관이 고장났다."
     }
   },
   {

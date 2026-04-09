@@ -459,12 +459,12 @@
     "id": 318,
     "expression": "粗",
     "reading": "あら",
-    "meaning_en": "defect, flaw, fault",
-    "meaning_ko": "결점, 흠",
+    "meaning_en": "rough, crude, flaw",
+    "meaning_ko": "결점, 흠, 거친",
     "example": {
-      "ja": "人の粗を探すより長所を見るべきだ。",
-      "reading": "ひとのあらをさがすよりちょうしょをみるべきだ。",
-      "ko": "남의 결점을 찾기보다 장점을 봐야 한다."
+      "ja": "彼の粗を探すのはやめよう。",
+      "reading": "かれのあらをさがすのはやめよう。",
+      "ko": "그의 흠을 찾는 건 그만두자."
     }
   },
   {
@@ -590,13 +590,13 @@
   {
     "id": 329,
     "expression": "或",
-    "reading": "ある",
-    "meaning_en": "a certain..., some...",
-    "meaning_ko": "어떤, 어느",
+    "reading": "あるいは",
+    "meaning_en": "or, possibly",
+    "meaning_ko": "혹은, 또는",
     "example": {
-      "ja": "或日、不思議な出来事が起きた。",
-      "reading": "あるひ、ふしぎなできごとがおきた。",
-      "ko": "어느 날, 신기한 일이 일어났다."
+      "ja": "電車、或いはバスで行ける。",
+      "reading": "でんしゃ、あるいはばすでいける。",
+      "ko": "전철, 혹은 버스로 갈 수 있다."
     }
   },
   {

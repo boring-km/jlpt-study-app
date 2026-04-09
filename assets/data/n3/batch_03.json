@@ -612,18 +612,6 @@
     }
   },
   {
-    "id": 238,
-    "expression": "澄む",
-    "reading": "すむ",
-    "meaning_en": "to clear (e.g., weather), to become transparent",
-    "meaning_ko": "맑아지다",
-    "example": {
-      "ja": "川の水が清んで底まで見えた。",
-      "reading": "かわのみずがすんでそこまでみえた。",
-      "ko": "강물이 맑아져 바닥까지 보였다."
-    }
-  },
-  {
     "id": 239,
     "expression": "刷る",
     "reading": "する",
