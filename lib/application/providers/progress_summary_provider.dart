@@ -16,6 +16,7 @@ class ProgressSummary {
   final int daysUntilExam;
   final int dailyTarget;
   final bool isReviewOnlyMode;
+  final int weakCount;
 
   const ProgressSummary({
     required this.currentLevel,
@@ -28,6 +29,7 @@ class ProgressSummary {
     required this.daysUntilExam,
     required this.dailyTarget,
     required this.isReviewOnlyMode,
+    required this.weakCount,
   });
 }
 
@@ -60,6 +62,10 @@ final progressSummaryProvider = FutureProvider<ProgressSummary>((ref) async {
     dailyTarget = (totalRemaining / days).ceil();
   }
 
+  // 현재 레벨 + 아직 N3 안 끝났으면 N2 약점까지 합산하는 건 과함.
+  // 지금 공부 중인 레벨의 약점만 노출.
+  final weakCount = await progressRepo.countWeak(currentLevel);
+
   return ProgressSummary(
     currentLevel: currentLevel,
     completedCount: completed,
@@ -71,5 +77,6 @@ final progressSummaryProvider = FutureProvider<ProgressSummary>((ref) async {
     daysUntilExam: days,
     dailyTarget: dailyTarget,
     isReviewOnlyMode: isReviewOnly,
+    weakCount: weakCount,
   );
 });

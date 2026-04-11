@@ -53,6 +53,7 @@ void main() {
         wordId: w.id,
         isCompleted: false,
         reviewCount: 0,
+        missCount: 0,
         updatedAt: DateTime.now(),
       ));
     }
@@ -93,6 +94,7 @@ void main() {
         wordId: w.id,
         isCompleted: false,
         reviewCount: 0,
+        missCount: 0,
         updatedAt: DateTime.now(),
       ));
     }

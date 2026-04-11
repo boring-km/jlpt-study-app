@@ -13,9 +13,14 @@ void main() {
     currentLevel: JlptLevel.n3,
     completedCount: 10,
     totalCount: 100,
+    n3Completed: 10,
+    n3Total: 100,
+    n2Completed: 0,
+    n2Total: 100,
     daysUntilExam: 30,
     dailyTarget: 5,
     isReviewOnlyMode: false,
+    weakCount: 0,
   );
 
   Widget buildHomeScreen({
@@ -69,9 +74,14 @@ void main() {
       currentLevel: JlptLevel.n3,
       completedCount: 0,
       totalCount: 100,
+      n3Completed: 0,
+      n3Total: 100,
+      n2Completed: 0,
+      n2Total: 100,
       daysUntilExam: -5,
       dailyTarget: 5,
       isReviewOnlyMode: false,
+      weakCount: 0,
     );
     await tester.pumpWidget(buildHomeScreen(summary: pastSummary));
     await tester.pumpAndSettle();
@@ -83,9 +93,14 @@ void main() {
       currentLevel: JlptLevel.n3,
       completedCount: 100,
       totalCount: 100,
+      n3Completed: 100,
+      n3Total: 100,
+      n2Completed: 0,
+      n2Total: 100,
       daysUntilExam: 10,
       dailyTarget: 0,
       isReviewOnlyMode: true,
+      weakCount: 0,
     );
     await tester.pumpWidget(buildHomeScreen(summary: reviewSummary));
     await tester.pumpAndSettle();

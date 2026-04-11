@@ -4,6 +4,7 @@ class WordProgress {
   final DateTime? completedAt;
   final DateTime? lastReviewedAt;
   final int reviewCount;
+  final int missCount;
   final DateTime updatedAt;
 
   const WordProgress({
@@ -12,6 +13,7 @@ class WordProgress {
     this.completedAt,
     this.lastReviewedAt,
     required this.reviewCount,
+    required this.missCount,
     required this.updatedAt,
   });
 
@@ -25,6 +27,7 @@ class WordProgress {
       completedAt: completedAtStr != null ? DateTime.parse(completedAtStr) : null,
       lastReviewedAt: lastReviewedAtStr != null ? DateTime.parse(lastReviewedAtStr) : null,
       reviewCount: map['review_count'] as int,
+      missCount: (map['miss_count'] as int?) ?? 0,
       updatedAt: DateTime.parse(map['updated_at'] as String),
     );
   }
@@ -35,6 +38,7 @@ class WordProgress {
         'completed_at': completedAt?.toIso8601String(),
         'last_reviewed_at': lastReviewedAt?.toIso8601String(),
         'review_count': reviewCount,
+        'miss_count': missCount,
         'updated_at': updatedAt.toIso8601String(),
       };
 
@@ -44,6 +48,7 @@ class WordProgress {
     DateTime? completedAt,
     DateTime? lastReviewedAt,
     int? reviewCount,
+    int? missCount,
     DateTime? updatedAt,
   }) {
     return WordProgress(
@@ -52,6 +57,7 @@ class WordProgress {
       completedAt: completedAt ?? this.completedAt,
       lastReviewedAt: lastReviewedAt ?? this.lastReviewedAt,
       reviewCount: reviewCount ?? this.reviewCount,
+      missCount: missCount ?? this.missCount,
       updatedAt: updatedAt ?? this.updatedAt,
     );
   }

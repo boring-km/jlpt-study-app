@@ -12,11 +12,13 @@ void main() {
         'completed_at': '2026-04-07T12:00:00.000',
         'last_reviewed_at': null,
         'review_count': 2,
+        'miss_count': 3,
         'updated_at': '2026-04-07T12:00:00.000',
       };
       final p = WordProgress.fromDbMap(map);
       expect(p.isCompleted, isTrue);
       expect(p.reviewCount, 2);
+      expect(p.missCount, 3);
     });
 
     test('fromDbMap parses isCompleted=0 as false', () {
@@ -26,10 +28,24 @@ void main() {
         'completed_at': null,
         'last_reviewed_at': null,
         'review_count': 0,
+        'miss_count': 0,
         'updated_at': '2026-04-07T12:00:00.000',
       };
       final p = WordProgress.fromDbMap(map);
       expect(p.isCompleted, isFalse);
+    });
+
+    test('fromDbMap tolerates missing miss_count (pre-v2 row)', () {
+      final map = {
+        'word_id': 'n3_0001',
+        'is_completed': 1,
+        'completed_at': null,
+        'last_reviewed_at': null,
+        'review_count': 0,
+        'updated_at': '2026-04-07T12:00:00.000',
+      };
+      final p = WordProgress.fromDbMap(map);
+      expect(p.missCount, 0);
     });
 
     test('copyWith preserves unchanged fields', () {
@@ -37,12 +53,14 @@ void main() {
         wordId: 'n3_0001',
         isCompleted: false,
         reviewCount: 0,
+        missCount: 0,
         updatedAt: now,
       );
       final updated = p.copyWith(isCompleted: true, updatedAt: now);
       expect(updated.wordId, 'n3_0001');
       expect(updated.isCompleted, isTrue);
       expect(updated.reviewCount, 0);
+      expect(updated.missCount, 0);
     });
 
     test('toDbMap serializes isCompleted as int', () {
@@ -50,11 +68,13 @@ void main() {
         wordId: 'n3_0001',
         isCompleted: true,
         reviewCount: 1,
+        missCount: 2,
         updatedAt: now,
       );
       final map = p.toDbMap();
       expect(map['is_completed'], 1);
       expect(map['word_id'], 'n3_0001');
+      expect(map['miss_count'], 2);
     });
   });
 }

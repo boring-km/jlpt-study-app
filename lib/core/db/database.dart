@@ -14,8 +14,9 @@ class AppDatabase {
     final dbName = name ?? 'test_${DateTime.now().microsecondsSinceEpoch}';
     return openDatabase(
       ':memory:$dbName',
-      version: 1,
+      version: 2,
       onCreate: _onCreate,
+      onUpgrade: _onUpgrade,
     );
   }
 
@@ -24,8 +25,9 @@ class AppDatabase {
     final path = join(dbPath, 'jlpt.db');
     return openDatabase(
       path,
-      version: 1,
+      version: 2,
       onCreate: _onCreate,
+      onUpgrade: _onUpgrade,
     );
   }
 
@@ -53,11 +55,15 @@ class AppDatabase {
         completed_at TEXT,
         last_reviewed_at TEXT,
         review_count INTEGER NOT NULL DEFAULT 0,
+        miss_count INTEGER NOT NULL DEFAULT 0,
         updated_at TEXT NOT NULL
       )
     ''');
     await db.execute(
       'CREATE INDEX idx_word_progress_completed ON word_progress (is_completed, completed_at)',
+    );
+    await db.execute(
+      'CREATE INDEX idx_word_progress_miss ON word_progress (miss_count, is_completed)',
     );
 
     await db.execute('''
@@ -123,4 +129,27 @@ class AppDatabase {
       )
     ''');
   }
+
+  /// v1 → v2 업그레이드 처리.
+  /// 1) word_progress에 miss_count 컬럼 추가
+  /// 2) 기존 완료 단어는 최소 1회 약점으로 백필 — 초기 버전이라 과거 오답 로그가
+  ///    남아있지 않으므로 사용자가 명시적으로 "한번씩 다 오답이었던 걸로" 요청함
+  static Future<void> _onUpgrade(
+    Database db,
+    int oldVersion,
+    int newVersion,
+  ) async {
+    if (oldVersion < 2) {
+      await db.execute(
+        'ALTER TABLE word_progress ADD COLUMN miss_count INTEGER NOT NULL DEFAULT 0',
+      );
+      await db.execute(
+        'UPDATE word_progress SET miss_count = 1 WHERE is_completed = 1',
+      );
+      await db.execute(
+        'CREATE INDEX IF NOT EXISTS idx_word_progress_miss ON word_progress (miss_count, is_completed)',
+      );
+    }
+  }
+
 }

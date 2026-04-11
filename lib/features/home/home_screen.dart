@@ -215,6 +215,9 @@ class _HomeBody extends ConsumerWidget {
                   label: '전체 복습',
                   icon: Icons.history_outlined,
                   enabled: summary.completedCount > 0,
+                  subtitle: summary.weakCount > 0
+                      ? '약점 ${summary.weakCount}개'
+                      : null,
                   onTap: () => context.push('/review'),
                 ),
               ),
@@ -260,6 +263,7 @@ class _SmallCard extends StatelessWidget {
   final String label;
   final IconData icon;
   final bool enabled;
+  final String? subtitle;
   final VoidCallback onTap;
 
   const _SmallCard({
@@ -267,6 +271,7 @@ class _SmallCard extends StatelessWidget {
     required this.icon,
     required this.enabled,
     required this.onTap,
+    this.subtitle,
   });
 
   @override
@@ -305,6 +310,20 @@ class _SmallCard extends StatelessWidget {
               ),
               textAlign: TextAlign.center,
             ),
+            if (subtitle != null) ...[
+              const SizedBox(height: 2),
+              Text(
+                subtitle!,
+                style: TextStyle(
+                  fontSize: 11,
+                  color: enabled
+                      ? Theme.of(context).colorScheme.primary
+                      : Theme.of(context).colorScheme.onSurfaceVariant,
+                  fontWeight: FontWeight.w600,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
           ],
         ),
       ),

@@ -39,9 +39,14 @@ void main() {
     currentLevel: JlptLevel.n3,
     completedCount: 10,
     totalCount: 100,
+    n3Completed: 10,
+    n3Total: 100,
+    n2Completed: 0,
+    n2Total: 100,
     daysUntilExam: 30,
     dailyTarget: 5,
     isReviewOnlyMode: false,
+    weakCount: 0,
   );
 
   Widget buildWidget() => ProviderScope(

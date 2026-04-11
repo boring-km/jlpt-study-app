@@ -45,4 +45,84 @@ void main() {
     expect(ids, isNot(contains('n3_0001')));
     expect(ids, contains('n3_0002'));
   });
+
+  test('incrementMiss creates row when missing and bumps miss_count', () async {
+    await repo.incrementMiss('n3_0001');
+    final p1 = await repo.get('n3_0001');
+    expect(p1, isNotNull);
+    expect(p1!.missCount, 1);
+    await repo.incrementMiss('n3_0001');
+    await repo.incrementMiss('n3_0001');
+    final p2 = await repo.get('n3_0001');
+    expect(p2!.missCount, 3);
+  });
+
+  test('decrementMiss floors at 0 and is no-op when row missing', () async {
+    // no row yet → no-op
+    await repo.decrementMiss('n3_0001');
+    expect(await repo.get('n3_0001'), isNull);
+
+    await repo.incrementMiss('n3_0001');
+    await repo.decrementMiss('n3_0001');
+    expect((await repo.get('n3_0001'))!.missCount, 0);
+    // already 0 → stays 0
+    await repo.decrementMiss('n3_0001');
+    expect((await repo.get('n3_0001'))!.missCount, 0);
+  });
+
+  test('markCompleted preserves existing miss_count', () async {
+    await repo.incrementMiss('n3_0001');
+    await repo.incrementMiss('n3_0001');
+    await repo.markCompleted('n3_0001');
+    final p = await repo.get('n3_0001');
+    expect(p!.isCompleted, isTrue);
+    expect(p.missCount, 2);
+  });
+
+  test('getWeakWordIds returns only completed with miss > 0 at current level', () async {
+    // 완료 + 약점 1
+    await repo.markCompleted('n3_0001');
+    await repo.incrementMiss('n3_0001');
+    await repo.incrementMiss('n3_0001'); // miss=2
+    // 완료인데 약점 아님
+    await repo.markCompleted('n3_0002');
+    final weak = await repo.getWeakWordIds(JlptLevel.n3);
+    expect(weak, ['n3_0001']);
+  });
+
+  test('getWeakWordIds sorts by miss_count DESC', () async {
+    await repo.markCompleted('n3_0001');
+    await repo.markCompleted('n3_0002');
+    await repo.incrementMiss('n3_0001'); // miss=1
+    await repo.incrementMiss('n3_0002');
+    await repo.incrementMiss('n3_0002');
+    await repo.incrementMiss('n3_0002'); // miss=3
+    final weak = await repo.getWeakWordIds(JlptLevel.n3);
+    expect(weak, ['n3_0002', 'n3_0001']);
+  });
+
+  test('getWeakWordIds applies limit', () async {
+    await repo.markCompleted('n3_0001');
+    await repo.markCompleted('n3_0002');
+    await repo.incrementMiss('n3_0001');
+    await repo.incrementMiss('n3_0002');
+    final weak = await repo.getWeakWordIds(JlptLevel.n3, limit: 1);
+    expect(weak.length, 1);
+  });
+
+  test('getWeakWordIds excludes uncompleted words', () async {
+    // 완료되지 않은 상태에서 오답만 기록
+    await repo.incrementMiss('n3_0001');
+    final weak = await repo.getWeakWordIds(JlptLevel.n3);
+    expect(weak, isEmpty);
+  });
+
+  test('countWeak counts matching words', () async {
+    await repo.markCompleted('n3_0001');
+    await repo.markCompleted('n3_0002');
+    await repo.incrementMiss('n3_0001');
+    expect(await repo.countWeak(JlptLevel.n3), 1);
+    await repo.incrementMiss('n3_0002');
+    expect(await repo.countWeak(JlptLevel.n3), 2);
+  });
 }

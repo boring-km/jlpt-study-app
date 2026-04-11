@@ -94,7 +94,7 @@ class TodayStudySetNotifier extends AsyncNotifier<TodayStudySet?> {
     );
   }
 
-  /// 단어 결과 업데이트
+  /// 단어 결과 업데이트. 오답이면 miss_count +1, 정답이면 -1 (0 floor).
   Future<void> updateItemResult(
     String wordId, {
     required bool passed,
@@ -102,6 +102,7 @@ class TodayStudySetNotifier extends AsyncNotifier<TodayStudySet?> {
   }) async {
     final db = await ref.read(databaseProvider.future);
     final repo = StudySetRepository(db);
+    final progressRepo = ProgressRepository(db);
     final current = state.valueOrNull;
     if (current == null) return;
 
@@ -124,6 +125,12 @@ class TodayStudySetNotifier extends AsyncNotifier<TodayStudySet?> {
           );
 
     await repo.updateItem(updated);
+
+    if (passed) {
+      await progressRepo.decrementMiss(wordId);
+    } else {
+      await progressRepo.incrementMiss(wordId);
+    }
 
     final newItems = List<TodayStudyItem>.from(current.items);
     newItems[itemIndex] = updated;
