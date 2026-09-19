@@ -27,7 +27,6 @@ class SettingsRepository {
   Future<AppSettings> load() async {
     final examDateStr = await _get('exam_date');
     final themeModeStr = await _get('theme_mode');
-    final seededAtStr = await _get('seeded_at');
     final themeMode = switch (themeModeStr) {
       'dark' => AppThemeMode.dark,
       'light' || 'system' || null => AppThemeMode.light,
@@ -38,7 +37,6 @@ class SettingsRepository {
           ? DateTime.parse(examDateStr)
           : AppSettings.defaults.examDate,
       themeMode: themeMode,
-      seededAt: seededAtStr != null ? DateTime.parse(seededAtStr) : null,
     );
   }
 
@@ -46,7 +44,12 @@ class SettingsRepository {
       _set('exam_date', date.toIso8601String());
   Future<void> saveThemeMode(AppThemeMode mode) =>
       _set('theme_mode', mode.name);
-  Future<void> markSeeded() =>
-      _set('seeded_at', DateTime.now().toIso8601String());
-  Future<bool> isSeeded() async => (await _get('seeded_at')) != null;
+
+  /// 에셋 카탈로그 시딩 버전. 미설정이면 0.
+  Future<int> dataVersion() async {
+    final v = await _get('data_version');
+    return v != null ? int.tryParse(v) ?? 0 : 0;
+  }
+
+  Future<void> setDataVersion(int version) => _set('data_version', version.toString());
 }
