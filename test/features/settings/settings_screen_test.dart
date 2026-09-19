@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:jlpt/application/providers/settings_provider.dart';
+import 'package:jlpt/domain/models/app_settings.dart';
 import 'package:jlpt/features/settings/settings_screen.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
+
+class _FixedSettingsNotifier extends SettingsNotifier {
+  @override
+  Future<AppSettings> build() async => AppSettings(
+        examDate: DateTime(2026, 12, 6),
+        themeMode: AppThemeMode.light,
+      );
+}
 
 void main() {
   setUpAll(() {
@@ -52,5 +62,45 @@ void main() {
     await tester.tap(find.text('데이터 초기화'));
     await tester.pump();
     expect(find.byType(AlertDialog), findsOneWidget);
+  });
+
+  testWidgets('shows 시험일 and the formatted exam date, opens date picker',
+      (tester) async {
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          settingsProvider.overrideWith(_FixedSettingsNotifier.new),
+        ],
+        child: const MaterialApp(home: SettingsScreen()),
+      ),
+    );
+    await tester.pump();
+
+    expect(find.text('시험일'), findsOneWidget);
+    expect(find.text('2026.12.06'), findsOneWidget);
+
+    await tester.tap(find.text('시험일'));
+    await tester.pumpAndSettle();
+    expect(find.byType(DatePickerDialog), findsOneWidget);
+  });
+
+  testWidgets('shows next JLPT shortcut button', (tester) async {
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          settingsProvider.overrideWith(_FixedSettingsNotifier.new),
+        ],
+        child: const MaterialApp(home: SettingsScreen()),
+      ),
+    );
+    await tester.pump();
+
+    final buttonFinder = find.byWidgetPredicate(
+      (widget) =>
+          widget is TextButton &&
+          widget.child is Text &&
+          (widget.child as Text).data?.startsWith('다음 JLPT (') == true,
+    );
+    expect(buttonFinder, findsOneWidget);
   });
 }

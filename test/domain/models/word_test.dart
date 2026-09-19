@@ -1,119 +1,61 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:jlpt/domain/models/word.dart';
 import 'package:jlpt/domain/models/enums.dart';
+import 'package:jlpt/domain/models/word.dart';
 
 void main() {
-  group('WordExample', () {
-    test('fromJson parses correctly', () {
-      final json = {'ja': '例文', 'reading': 'れいぶん', 'ko': '예문'};
-      final example = WordExample.fromJson(json);
-      expect(example.ja, '例文');
-      expect(example.reading, 'れいぶん');
-      expect(example.ko, '예문');
+  test('fromAssetJson builds n2 id and reads type/is_trap', () {
+    final w = Word.fromAssetJson({
+      'id': 7,
+      'expression': '工夫',
+      'reading': 'くふう',
+      'meaning_ko': '궁리, 고안',
+      'type': 'on',
+      'is_trap': true,
+      'example': {'ja': 'a', 'reading': 'b', 'ko': 'c'},
     });
-
-    test('toJson round-trips', () {
-      const example = WordExample(ja: '例文', reading: 'れいぶん', ko: '예문');
-      final json = example.toJson();
-      expect(json['ja'], '例文');
-      expect(json['reading'], 'れいぶん');
-      expect(json['ko'], '예문');
-    });
+    expect(w.id, 'n2_0007');
+    expect(w.type, WordType.on);
+    expect(w.isTrap, isTrue);
+    expect(w.source, 'n2');
+    expect(w.example?.ja, 'a');
   });
 
-  group('Word.fromAssetJson', () {
-    test('generates n3 prefixed id', () {
-      final json = {
-        'id': 1,
-        'expression': '作法',
-        'reading': 'さほう',
-        'meaning_ko': '예절',
-        'example': {'ja': '食事の作法を学んだ。', 'reading': 'しょくじのさほうをまなんだ。', 'ko': '식사 예절을 배웠다.'},
-      };
-      final word = Word.fromAssetJson(json, JlptLevel.n3);
-      expect(word.id, 'n3_0001');
-      expect(word.jlptLevel, JlptLevel.n3);
-      expect(word.expression, '作法');
-      expect(word.reading, 'さほう');
-      expect(word.meaningKo, '예절');
-      expect(word.example, isNotNull);
+  test('fromAssetJson defaults type/is_trap when missing', () {
+    final w = Word.fromAssetJson({
+      'id': 1,
+      'expression': 'やかん',
+      'reading': 'やかん',
+      'meaning_ko': '주전자',
     });
-
-    test('generates n2 prefixed id', () {
-      final json = {
-        'id': 42,
-        'expression': '題名',
-        'reading': 'だいめい',
-        'meaning_ko': '제목',
-        'example': null,
-      };
-      final word = Word.fromAssetJson(json, JlptLevel.n2);
-      expect(word.id, 'n2_0042');
-      expect(word.example, isNull);
-    });
-
-    test('hasKanji returns true when expression differs from reading', () {
-      final word = Word.fromAssetJson(
-        {'id': 1, 'expression': '作法', 'reading': 'さほう', 'meaning_ko': '예절', 'example': null},
-        JlptLevel.n3,
-      );
-      expect(word.hasKanji, isTrue);
-    });
-
-    test('hasKanji returns false when expression equals reading', () {
-      final word = Word.fromAssetJson(
-        {'id': 1, 'expression': 'さほう', 'reading': 'さほう', 'meaning_ko': '예절', 'example': null},
-        JlptLevel.n3,
-      );
-      expect(word.hasKanji, isFalse);
-    });
+    expect(w.type, WordType.other);
+    expect(w.isTrap, isFalse);
+    expect(w.example, isNull);
   });
 
-  group('Word.fromDbMap / toDbMap', () {
-    test('round-trips without example', () {
-      final map = {
-        'id': 'n3_0001',
-        'jlpt_level': 'N3',
-        'expression': '作法',
-        'reading': 'さほう',
-        'meaning_ko': '예절',
-        'example_ja': null,
-        'example_reading': null,
-        'example_ko': null,
-      };
-      final word = Word.fromDbMap(map);
-      expect(word.id, 'n3_0001');
-      expect(word.jlptLevel, JlptLevel.n3);
-      expect(word.example, isNull);
-    });
+  test('hasKanji detects CJK ideographs', () {
+    expect(const Word(id: 'a', expression: '補う', reading: 'おぎなう', meaningKo: 'x').hasKanji, isTrue);
+    expect(const Word(id: 'b', expression: 'コンピューター', reading: 'コンピューター', meaningKo: 'x').hasKanji, isFalse);
+    expect(const Word(id: 'c', expression: '～位', reading: 'い', meaningKo: 'x').hasKanji, isTrue);
+  });
 
-    test('round-trips with example', () {
-      final map = {
-        'id': 'n3_0001',
-        'jlpt_level': 'N3',
-        'expression': '作法',
-        'reading': 'さほう',
-        'meaning_ko': '예절',
-        'example_ja': '食事の作法を学んだ。',
-        'example_reading': 'しょくじのさほうをまなんだ。',
-        'example_ko': '식사 예절을 배웠다.',
-      };
-      final word = Word.fromDbMap(map);
-      expect(word.example?.ja, '食事の作法を学んだ。');
-    });
-
-    test('toDbMap contains required keys', () {
-      const word = Word(
-        id: 'n3_0001',
-        jlptLevel: JlptLevel.n3,
-        expression: '作法',
-        reading: 'さほう',
-        meaningKo: '예절',
-      );
-      final map = word.toDbMap();
-      expect(map['id'], 'n3_0001');
-      expect(map['jlpt_level'], 'N3');
-      expect(map.containsKey('created_at'), isTrue);
-    });
+  test('toDbMap/fromDbMap round-trip', () {
+    const w = Word(
+      id: 'user_1',
+      expression: '把握',
+      reading: 'はあく',
+      meaningKo: '파악',
+      type: WordType.on,
+      isTrap: false,
+      source: 'user',
+    );
+    final map = w.toDbMap();
+    expect(map['jlpt_level'], 'N2');
+    expect(map['type'], 'on');
+    expect(map['is_trap'], 0);
+    expect(map['source'], 'user');
+    final back = Word.fromDbMap({...map, 'is_trap': 0});
+    expect(back.id, 'user_1');
+    expect(back.type, WordType.on);
+    expect(back.source, 'user');
   });
 }

@@ -1,6 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../domain/models/word.dart';
-import '../../domain/models/enums.dart';
 import '../../domain/repositories/word_repository.dart';
 import '../../domain/repositories/progress_repository.dart';
 import '../../application/providers/database_provider.dart';
@@ -8,25 +7,27 @@ import '../../application/providers/word_catalog_provider.dart';
 
 class ExploreFilter {
   final String query;
-  final JlptLevel? levelFilter;
+
+  /// `Word.source` 값으로 거르기. 현재는 `'user'`(추가한 단어)만 쓴다.
+  final String? sourceFilter;
   final bool? completedFilter;
 
   const ExploreFilter({
     this.query = '',
-    this.levelFilter,
+    this.sourceFilter,
     this.completedFilter,
   });
 
   ExploreFilter copyWith({
     String? query,
-    Object? levelFilter = _sentinel,
+    Object? sourceFilter = _sentinel,
     Object? completedFilter = _sentinel,
   }) =>
       ExploreFilter(
         query: query ?? this.query,
-        levelFilter: levelFilter == _sentinel
-            ? this.levelFilter
-            : levelFilter as JlptLevel?,
+        sourceFilter: sourceFilter == _sentinel
+            ? this.sourceFilter
+            : sourceFilter as String?,
         completedFilter: completedFilter == _sentinel
             ? this.completedFilter
             : completedFilter as bool?,
@@ -70,10 +71,8 @@ class ExploreNotifier extends AsyncNotifier<ExploreState> {
   Future<ExploreState> build() async {
     final db = await ref.watch(databaseProvider.future);
     final catalog = await ref.watch(wordCatalogProvider.future);
-    final progressRepo = ProgressRepository(db);
-    final n3Ids = (await progressRepo.getCompletedWordIds(JlptLevel.n3)).toSet();
-    final n2Ids = (await progressRepo.getCompletedWordIds(JlptLevel.n2)).toSet();
-    final completedIds = {...n3Ids, ...n2Ids};
+    final completedIds =
+        (await ProgressRepository(db).getCompletedWordIds()).toSet();
 
     return ExploreState(
       filter: const ExploreFilter(),
@@ -91,19 +90,13 @@ class ExploreNotifier extends AsyncNotifier<ExploreState> {
     final db = await ref.read(databaseProvider.future);
     final wordRepo = WordRepository(db);
 
-    List<Word> results;
-    if (filter.query.isNotEmpty) {
-      results = await wordRepo.search(filter.query);
-    } else {
-      results = filter.levelFilter != null
-          ? await wordRepo.getByLevel(filter.levelFilter!)
-          : await wordRepo.getAll();
-    }
+    var results = filter.query.isNotEmpty
+        ? await wordRepo.search(filter.query)
+        : await wordRepo.getAll();
 
-    if (filter.levelFilter != null && filter.query.isNotEmpty) {
-      results = results
-          .where((w) => w.jlptLevel == filter.levelFilter)
-          .toList();
+    if (filter.sourceFilter != null) {
+      results =
+          results.where((w) => w.source == filter.sourceFilter).toList();
     }
 
     if (filter.completedFilter != null) {

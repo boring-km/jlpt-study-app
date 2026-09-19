@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../domain/models/error_tag.dart';
 import 'stats_provider.dart';
 
 class StatsScreen extends ConsumerWidget {
@@ -24,8 +25,16 @@ class _StatsBody extends StatelessWidget {
   final StatsState stats;
   const _StatsBody({required this.stats});
 
+  /// `장음 3 · 촉음 1` — 0인 태그는 빼고 [ErrorTag.values] 순서로 이어 붙인다.
+  String _missSummary() => [
+        for (final tag in ErrorTag.values)
+          if ((stats.missByTag[tag] ?? 0) > 0) '${tag.label} ${stats.missByTag[tag]}',
+      ].join(' · ');
+
   @override
   Widget build(BuildContext context) {
+    final missSummary = _missSummary();
+
     return Padding(
       padding: const EdgeInsets.all(24),
       child: Column(
@@ -33,41 +42,29 @@ class _StatsBody extends StatelessWidget {
         children: [
           const SizedBox(height: 16),
           _LevelProgressCard(
-            label: 'N3',
-            completed: stats.n3Completed,
-            total: stats.n3Total,
-            percent: stats.n3Percent,
-          ),
-          const SizedBox(height: 16),
-          _LevelProgressCard(
             label: 'N2',
-            completed: stats.n2Completed,
-            total: stats.n2Total,
-            percent: stats.n2Percent,
+            completed: stats.completed,
+            total: stats.total,
+            percent: stats.percent,
           ),
-          const SizedBox(height: 32),
+          const SizedBox(height: 24),
           Text(
-            '전체 진도',
+            '약점 ${stats.weak}개',
             style: Theme.of(context).textTheme.titleMedium,
           ),
-          const SizedBox(height: 12),
-          LinearProgressIndicator(
-            value: stats.overallPercent,
-            minHeight: 12,
-            backgroundColor: Theme.of(context).dividerColor,
-            valueColor:
-                AlwaysStoppedAnimation<Color>(Theme.of(context).colorScheme.primary),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            '${(stats.overallPercent * 100).toStringAsFixed(1)}%',
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-              color: Theme.of(context).colorScheme.primary,
+          if (missSummary.isNotEmpty) ...[
+            const SizedBox(height: 8),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Text(
+                missSummary,
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                ),
+              ),
             ),
-            textAlign: TextAlign.end,
-          ),
+          ],
         ],
       ),
     );
@@ -124,8 +121,8 @@ class _LevelProgressCard extends StatelessWidget {
             value: percent,
             minHeight: 8,
             backgroundColor: Theme.of(context).dividerColor,
-            valueColor:
-                AlwaysStoppedAnimation<Color>(Theme.of(context).colorScheme.primary),
+            valueColor: AlwaysStoppedAnimation<Color>(
+                Theme.of(context).colorScheme.primary),
           ),
           const SizedBox(height: 6),
           Text(

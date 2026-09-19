@@ -38,7 +38,7 @@ class ReviewRepository {
     await _db.update(
       'review_sessions',
       {
-        'status': _studyStageToSnake(status),
+        'status': studyStageToDb(status),
         'completed_at': completedAt?.toIso8601String(),
       },
       where: 'id = ?',
@@ -54,17 +54,9 @@ class ReviewRepository {
       whereArgs: [item.sessionId, item.wordId],
     );
   }
-}
 
-String _studyStageToSnake(StudyStage stage) {
-  switch (stage) {
-    case StudyStage.flashcard:
-      return 'flashcard';
-    case StudyStage.quizReading:
-      return 'quiz_reading';
-    case StudyStage.quizMeaning:
-      return 'quiz_meaning';
-    case StudyStage.completed:
-      return 'completed';
+  Future<void> deleteAll() async {
+    await _db.delete('review_session_items');
+    await _db.delete('review_sessions');
   }
 }

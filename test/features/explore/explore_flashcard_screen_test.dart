@@ -4,14 +4,13 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:jlpt/features/explore/explore_flashcard_screen.dart';
 import 'package:jlpt/features/explore/explore_provider.dart';
 import 'package:jlpt/domain/models/word.dart';
-import 'package:jlpt/domain/models/enums.dart';
 import 'package:jlpt/widgets/flashcard_page_view.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 // 테스트 단어 목록
 final testWords = [
-  Word(id: '1', expression: '食べる', reading: 'たべる', meaningKo: '먹다', jlptLevel: JlptLevel.n3, example: null),
-  Word(id: '2', expression: '飲む', reading: 'のむ', meaningKo: '마시다', jlptLevel: JlptLevel.n3, example: null),
+  Word(id: '1', expression: '食べる', reading: 'たべる', meaningKo: '먹다'),
+  Word(id: '2', expression: '飲む', reading: 'のむ', meaningKo: '마시다'),
 ];
 
 void main() {

@@ -2,6 +2,11 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
 class AppDatabase {
+  static const int kVersion = 3;
+
+  /// 에셋 단어 데이터 버전. 올리면 다음 실행 시 카탈로그 upsert.
+  static const int kDataVersion = 2;
+
   static Database? _db;
 
   static Future<Database> get instance async {
@@ -9,27 +14,28 @@ class AppDatabase {
     return _db!;
   }
 
+  static Future<String> get filePath async =>
+      join(await getDatabasesPath(), 'jlpt.db');
+
+  static Future<void> close() async {
+    await _db?.close();
+    _db = null;
+  }
+
   /// 테스트 전용: 고유 이름의 인메모리 DB 반환 (테스트 간 격리 보장)
   static Future<Database> openForTest({String? name}) async {
     final dbName = name ?? 'test_${DateTime.now().microsecondsSinceEpoch}';
-    return openDatabase(
-      ':memory:$dbName',
-      version: 2,
-      onCreate: _onCreate,
-      onUpgrade: _onUpgrade,
-    );
+    return openAtPath(':memory:$dbName');
   }
 
-  static Future<Database> _open() async {
-    final dbPath = await getDatabasesPath();
-    final path = join(dbPath, 'jlpt.db');
-    return openDatabase(
-      path,
-      version: 2,
-      onCreate: _onCreate,
-      onUpgrade: _onUpgrade,
-    );
-  }
+  static Future<Database> openAtPath(String path) => openDatabase(
+        path,
+        version: kVersion,
+        onCreate: _onCreate,
+        onUpgrade: _onUpgrade,
+      );
+
+  static Future<Database> _open() async => openAtPath(await filePath);
 
   static Future<void> _onCreate(Database db, int version) async {
     await db.execute('''
@@ -39,14 +45,18 @@ class AppDatabase {
         expression TEXT,
         reading TEXT NOT NULL,
         meaning_ko TEXT NOT NULL,
+        type TEXT NOT NULL DEFAULT 'other',
+        is_trap INTEGER NOT NULL DEFAULT 0,
+        source TEXT NOT NULL DEFAULT 'n2',
         example_ja TEXT,
         example_reading TEXT,
         example_ko TEXT,
         created_at TEXT NOT NULL
       )
     ''');
-    await db.execute('CREATE INDEX idx_words_level ON words (jlpt_level)');
     await db.execute('CREATE INDEX idx_words_reading ON words (reading)');
+    await db.execute('CREATE INDEX idx_words_type ON words (type)');
+    await db.execute('CREATE INDEX idx_words_expression ON words (expression)');
 
     await db.execute('''
       CREATE TABLE word_progress (
@@ -128,12 +138,24 @@ class AppDatabase {
         updated_at TEXT NOT NULL
       )
     ''');
+
+    await _createMissLog(db);
   }
 
-  /// v1 → v2 업그레이드 처리.
-  /// 1) word_progress에 miss_count 컬럼 추가
-  /// 2) 기존 완료 단어는 최소 1회 약점으로 백필 — 초기 버전이라 과거 오답 로그가
-  ///    남아있지 않으므로 사용자가 명시적으로 "한번씩 다 오답이었던 걸로" 요청함
+  static Future<void> _createMissLog(Database db) async {
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS miss_log (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        word_id TEXT NOT NULL REFERENCES words(id),
+        tag TEXT NOT NULL,
+        created_at TEXT NOT NULL
+      )
+    ''');
+    await db.execute(
+      'CREATE INDEX IF NOT EXISTS idx_miss_log_tag ON miss_log (tag, created_at)',
+    );
+  }
+
   static Future<void> _onUpgrade(
     Database db,
     int oldVersion,
@@ -150,6 +172,29 @@ class AppDatabase {
         'CREATE INDEX IF NOT EXISTS idx_word_progress_miss ON word_progress (miss_count, is_completed)',
       );
     }
+    if (oldVersion < 3) {
+      await _upgradeToV3(db);
+    }
   }
 
+  /// v3: N3 제거, 단어 분류 컬럼, miss_log, 데이터 재시딩 트리거.
+  static Future<void> _upgradeToV3(Database db) async {
+    await db.execute("ALTER TABLE words ADD COLUMN type TEXT NOT NULL DEFAULT 'other'");
+    await db.execute('ALTER TABLE words ADD COLUMN is_trap INTEGER NOT NULL DEFAULT 0');
+    await db.execute("ALTER TABLE words ADD COLUMN source TEXT NOT NULL DEFAULT 'n2'");
+    await db.execute('CREATE INDEX IF NOT EXISTS idx_words_type ON words (type)');
+    await db.execute('CREATE INDEX IF NOT EXISTS idx_words_expression ON words (expression)');
+
+    const n3 = "SELECT id FROM words WHERE jlpt_level = 'N3'";
+    await db.execute('DELETE FROM review_session_items WHERE word_id IN ($n3)');
+    await db.execute('DELETE FROM daily_study_set_items WHERE word_id IN ($n3)');
+    await db.execute('DELETE FROM word_progress WHERE word_id IN ($n3)');
+    await db.execute("DELETE FROM daily_study_sets WHERE jlpt_level = 'N3'");
+    await db.execute("DELETE FROM words WHERE jlpt_level = 'N3'");
+
+    await _createMissLog(db);
+
+    // 구 시딩 플래그 제거 → 카탈로그 프로바이더가 data_version 기준으로 재시딩
+    await db.execute("DELETE FROM app_settings WHERE key IN ('seeded_at', 'data_version')");
+  }
 }

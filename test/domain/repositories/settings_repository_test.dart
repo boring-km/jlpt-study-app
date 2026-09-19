@@ -20,7 +20,7 @@ void main() {
 
   test('load returns defaults when no settings stored', () async {
     final settings = await repo.load();
-    expect(settings.examDate, DateTime(2026, 7, 5));
+    expect(settings.examDate, AppSettings.nextJlptDate(DateTime.now()));
     expect(settings.themeMode, AppThemeMode.light);
   });
 
@@ -48,12 +48,12 @@ void main() {
     expect(settings.themeMode, AppThemeMode.light);
   });
 
-  test('isSeeded returns false initially', () async {
-    expect(await repo.isSeeded(), isFalse);
-  });
-
-  test('markSeeded then isSeeded returns true', () async {
-    await repo.markSeeded();
-    expect(await repo.isSeeded(), isTrue);
+  test('dataVersion defaults to 0 and persists', () async {
+    final db = await AppDatabase.openForTest();
+    final repo = SettingsRepository(db);
+    expect(await repo.dataVersion(), 0);
+    await repo.setDataVersion(2);
+    expect(await repo.dataVersion(), 2);
+    await db.close();
   });
 }

@@ -3,8 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../core/theme/app_theme.dart';
 import '../../domain/models/word.dart';
-import '../../domain/models/enums.dart';
-import '../../widgets/word_badge.dart';
+import '../words/add_word_sheet.dart';
 import 'explore_provider.dart';
 
 class WordListScreen extends ConsumerStatefulWidget {
@@ -30,12 +29,12 @@ class _WordListScreenState extends ConsumerState<WordListScreen> {
     ref.read(exploreProvider.notifier).updateFilter(current.copyWith(query: query));
   }
 
-  void _onLevelFilter(JlptLevel? level) {
+  void _onSourceFilter(String? source) {
     final current = ref.read(exploreProvider).valueOrNull?.filter ??
         const ExploreFilter();
     ref
         .read(exploreProvider.notifier)
-        .updateFilter(current.copyWith(levelFilter: level));
+        .updateFilter(current.copyWith(sourceFilter: source));
   }
 
   void _onCompletedFilter(bool? completed) {
@@ -54,6 +53,11 @@ class _WordListScreenState extends ConsumerState<WordListScreen> {
       appBar: AppBar(
         title: const Text('단어 리스트'),
         actions: [
+          IconButton(
+            icon: const Icon(Icons.add),
+            tooltip: '단어 추가',
+            onPressed: () => showAddWordSheet(context),
+          ),
           IconButton(
             icon: const Icon(Icons.style_outlined),
             tooltip: '플래시카드로 보기',
@@ -90,20 +94,15 @@ class _WordListScreenState extends ConsumerState<WordListScreen> {
                 children: [
                   _FilterChip(
                     label: '전체',
-                    selected: state.filter.levelFilter == null,
-                    onTap: () => _onLevelFilter(null),
+                    selected: state.filter.sourceFilter == null,
+                    onTap: () => _onSourceFilter(null),
                   ),
                   const SizedBox(width: 8),
                   _FilterChip(
-                    label: 'N3',
-                    selected: state.filter.levelFilter == JlptLevel.n3,
-                    onTap: () => _onLevelFilter(JlptLevel.n3),
-                  ),
-                  const SizedBox(width: 8),
-                  _FilterChip(
-                    label: 'N2',
-                    selected: state.filter.levelFilter == JlptLevel.n2,
-                    onTap: () => _onLevelFilter(JlptLevel.n2),
+                    label: '추가한 단어',
+                    selected: state.filter.sourceFilter == 'user',
+                    onTap: () => _onSourceFilter(
+                        state.filter.sourceFilter == 'user' ? null : 'user'),
                   ),
                   const SizedBox(width: 8),
                   _FilterChip(
@@ -226,9 +225,7 @@ class _WordTile extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  (word.expression?.isNotEmpty ?? false)
-                      ? word.expression!
-                      : word.reading,
+                  word.expression.isNotEmpty ? word.expression : word.reading,
                   style: const TextStyle(
                       fontSize: 18, fontWeight: FontWeight.w600),
                 ),
@@ -240,12 +237,9 @@ class _WordTile extends StatelessWidget {
                       color: Theme.of(context).colorScheme.onSurfaceVariant),
                 ),
                 const Spacer(),
-                WordBadge(level: word.jlptLevel),
-                if (isCompleted) ...[
-                  const SizedBox(width: 6),
+                if (isCompleted)
                   const Icon(Icons.check_circle,
                       size: 16, color: AppColors.success),
-                ],
               ],
             ),
             const SizedBox(height: 4),

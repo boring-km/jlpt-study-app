@@ -39,7 +39,7 @@ class StudySetRepository {
     await _db.update(
       'daily_study_sets',
       {
-        'status': _studyStageToSnake(status),
+        'status': studyStageToDb(status),
         'completed_at': completedAt?.toIso8601String(),
         'updated_at': now,
       },
@@ -62,45 +62,29 @@ class StudySetRepository {
     await _db.delete('daily_study_sets', where: 'study_date = ?', whereArgs: [date]);
   }
 
-  Future<List<String>> getCompletedDates() async {
-    final rows = await _db.query(
-      'daily_study_sets',
-      where: 'completed_at IS NOT NULL',
-      orderBy: 'study_date DESC',
-    );
-    return rows.map((r) => r['study_date'] as String).toList();
-  }
-
-  Future<int> currentStreak() async {
-    final dates = await getCompletedDates();
-    if (dates.isEmpty) return 0;
-    int streak = 0;
-    DateTime check = DateTime.now();
-    for (final d in dates) {
-      final date = DateTime.parse(d);
-      final diff = DateTime(check.year, check.month, check.day)
-          .difference(DateTime(date.year, date.month, date.day))
-          .inDays;
-      if (diff == 0 || diff == 1) {
-        streak++;
-        check = date;
-      } else {
-        break;
-      }
+  /// 오늘 세트에 단어를 추가하고 다시 풀이 상태로 되돌린다.
+  Future<void> appendItems(String date, List<TodayStudyItem> items) async {
+    final existingCount = (await getByDate(date))!.items.length;
+    final batch = _db.batch();
+    for (final item in items) {
+      batch.insert('daily_study_set_items', item.toDbMap());
     }
-    return streak;
+    await batch.commit(noResult: true);
+    await _db.update(
+      'daily_study_sets',
+      {
+        'status': studyStageToDb(StudyStage.quiz),
+        'completed_at': null,
+        'target_count': existingCount + items.length,
+        'updated_at': DateTime.now().toIso8601String(),
+      },
+      where: 'study_date = ?',
+      whereArgs: [date],
+    );
   }
-}
 
-String _studyStageToSnake(StudyStage stage) {
-  switch (stage) {
-    case StudyStage.flashcard:
-      return 'flashcard';
-    case StudyStage.quizReading:
-      return 'quiz_reading';
-    case StudyStage.quizMeaning:
-      return 'quiz_meaning';
-    case StudyStage.completed:
-      return 'completed';
+  Future<void> deleteAll() async {
+    await _db.delete('daily_study_set_items');
+    await _db.delete('daily_study_sets');
   }
 }
