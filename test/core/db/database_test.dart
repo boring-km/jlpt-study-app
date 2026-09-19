@@ -11,7 +11,7 @@ void main() {
     databaseFactory = databaseFactoryFfi;
   });
 
-  test('creates all 7 tables', () async {
+  test('creates all 8 tables', () async {
     final db = await AppDatabase.openForTest();
     final tables = await db.rawQuery(
       "SELECT name FROM sqlite_master WHERE type='table' ORDER BY name",
@@ -23,6 +23,7 @@ void main() {
       'daily_study_sets',
       'review_session_items',
       'review_sessions',
+      'miss_log',
       'word_progress',
       'words',
     ]));
@@ -35,7 +36,8 @@ void main() {
     final cols = info.map((r) => r['name'] as String).toList();
     expect(cols, containsAll([
       'id', 'jlpt_level', 'expression', 'reading',
-      'meaning_ko', 'example_ja', 'example_reading', 'example_ko', 'created_at',
+      'meaning_ko', 'type', 'is_trap', 'source',
+      'example_ja', 'example_reading', 'example_ko', 'created_at',
     ]));
     await db.close();
   });
@@ -170,5 +172,41 @@ void main() {
 
     await v2.close();
     await tmpDir.delete(recursive: true);
+  });
+
+  test('upgrade from v2 removes N3 rows, adds columns and miss_log', () async {
+    final dir = await Directory.systemTemp.createTemp('jlpt_mig');
+    final path = p.join(dir.path, 'v2.db');
+    // v2 스키마 수동 생성
+    final v2 = await openDatabase(path, version: 2, onCreate: (db, _) async {
+      await db.execute('CREATE TABLE words (id TEXT PRIMARY KEY, jlpt_level TEXT NOT NULL, expression TEXT, reading TEXT NOT NULL, meaning_ko TEXT NOT NULL, example_ja TEXT, example_reading TEXT, example_ko TEXT, created_at TEXT NOT NULL)');
+      await db.execute('CREATE TABLE word_progress (word_id TEXT PRIMARY KEY, is_completed INTEGER NOT NULL DEFAULT 0, completed_at TEXT, last_reviewed_at TEXT, review_count INTEGER NOT NULL DEFAULT 0, miss_count INTEGER NOT NULL DEFAULT 0, updated_at TEXT NOT NULL)');
+      await db.execute('CREATE TABLE daily_study_sets (study_date TEXT PRIMARY KEY, jlpt_level TEXT NOT NULL, target_count INTEGER NOT NULL, status TEXT NOT NULL, started_at TEXT, completed_at TEXT, created_at TEXT NOT NULL, updated_at TEXT NOT NULL)');
+      await db.execute('CREATE TABLE daily_study_set_items (study_date TEXT NOT NULL, word_id TEXT NOT NULL, display_order INTEGER NOT NULL, reading_passed INTEGER NOT NULL DEFAULT 0, meaning_passed INTEGER NOT NULL DEFAULT 0, reading_attempts INTEGER NOT NULL DEFAULT 0, meaning_attempts INTEGER NOT NULL DEFAULT 0, last_result TEXT, updated_at TEXT NOT NULL, PRIMARY KEY (study_date, word_id))');
+      await db.execute('CREATE TABLE review_sessions (id TEXT PRIMARY KEY, review_date TEXT NOT NULL, item_count INTEGER NOT NULL, status TEXT NOT NULL, started_at TEXT NOT NULL, completed_at TEXT)');
+      await db.execute('CREATE TABLE review_session_items (session_id TEXT NOT NULL, word_id TEXT NOT NULL, display_order INTEGER NOT NULL, reading_passed INTEGER NOT NULL DEFAULT 0, meaning_passed INTEGER NOT NULL DEFAULT 0, reading_attempts INTEGER NOT NULL DEFAULT 0, meaning_attempts INTEGER NOT NULL DEFAULT 0, PRIMARY KEY (session_id, word_id))');
+      await db.execute('CREATE TABLE app_settings (key TEXT PRIMARY KEY, value TEXT NOT NULL, updated_at TEXT NOT NULL)');
+      await db.insert('words', {'id': 'n3_0001', 'jlpt_level': 'N3', 'expression': 'a', 'reading': 'あ', 'meaning_ko': 'x', 'created_at': 't'});
+      await db.insert('words', {'id': 'n2_0001', 'jlpt_level': 'N2', 'expression': 'b', 'reading': 'い', 'meaning_ko': 'y', 'created_at': 't'});
+      await db.insert('word_progress', {'word_id': 'n3_0001', 'is_completed': 1, 'updated_at': 't'});
+      await db.insert('word_progress', {'word_id': 'n2_0001', 'is_completed': 1, 'updated_at': 't'});
+      await db.insert('daily_study_sets', {'study_date': '2026-01-01', 'jlpt_level': 'N3', 'target_count': 1, 'status': 'flashcard', 'created_at': 't', 'updated_at': 't'});
+      await db.insert('daily_study_set_items', {'study_date': '2026-01-01', 'word_id': 'n3_0001', 'display_order': 0, 'updated_at': 't'});
+      await db.insert('app_settings', {'key': 'seeded_at', 'value': 't', 'updated_at': 't'});
+    });
+    await v2.close();
+
+    final v3 = await AppDatabase.openAtPath(path);
+    expect((await v3.query('words')).map((r) => r['id']), ['n2_0001']);
+    expect((await v3.query('word_progress')).length, 1);
+    expect((await v3.query('daily_study_sets')).length, 0);
+    expect((await v3.query('daily_study_set_items')).length, 0);
+    final cols = (await v3.rawQuery('PRAGMA table_info(words)')).map((r) => r['name']).toList();
+    expect(cols, containsAll(['type', 'is_trap', 'source']));
+    final tables = (await v3.rawQuery("SELECT name FROM sqlite_master WHERE type='table'")).map((r) => r['name']).toList();
+    expect(tables, contains('miss_log'));
+    expect(await v3.query('app_settings', where: "key = 'data_version'"), isEmpty);
+    await v3.close();
+    await dir.delete(recursive: true);
   });
 }
