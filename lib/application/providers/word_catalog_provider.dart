@@ -51,6 +51,7 @@ class WordCatalogNotifier extends AsyncNotifier<List<Word>> {
     final db = await ref.read(databaseProvider.future);
     await WordRepository(db).insertUserWord(word);
     final current = state.valueOrNull ?? [];
-    state = AsyncData([...current, word]);
+    // insertUserWord가 강제하는 source='user'를 상태에도 그대로 반영한다.
+    state = AsyncData([...current, word.copyWith(source: 'user')]);
   }
 }

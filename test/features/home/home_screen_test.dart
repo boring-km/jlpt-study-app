@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
@@ -185,6 +186,25 @@ void main() {
     expect(find.text('QUIZ'), findsOneWidget);
   });
 
+  /// 클립보드 플랫폼 채널을 가짜로 물린다. [text]가 null이면 빈 클립보드.
+  void mockClipboard({required bool hasStrings, String? text}) {
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(SystemChannels.platform, (call) async {
+      switch (call.method) {
+        case 'Clipboard.hasStrings':
+          return <String, dynamic>{'value': hasStrings};
+        case 'Clipboard.getData':
+          return <String, dynamic>{'text': text};
+        default:
+          return null;
+      }
+    });
+    addTearDown(() {
+      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+          .setMockMethodCallHandler(SystemChannels.platform, null);
+    });
+  }
+
   testWidgets('tapping 복습 opens the review filter sheet', (tester) async {
     await tester.pumpWidget(buildHomeScreen());
     await tester.pumpAndSettle();
@@ -195,6 +215,55 @@ void main() {
     expect(find.text('전체'), findsOneWidget);
     // 시트를 여는 것만으로 복습 세션이 만들어지면 안 된다.
     expect(find.text('QUIZ'), findsNothing);
+  });
+
+  testWidgets('tapping 단어 추가 opens the add word sheet', (tester) async {
+    await tester.pumpWidget(buildHomeScreen());
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('단어 추가'));
+    await tester.pumpAndSettle();
+
+    expect(find.byKey(const Key('add-expression')), findsOneWidget);
+  });
+
+  testWidgets('no clipboard chip when the clipboard is empty', (tester) async {
+    mockClipboard(hasStrings: false);
+    await tester.pumpWidget(buildHomeScreen());
+    await tester.pumpAndSettle();
+
+    expect(find.text('클립보드에서 단어 추가'), findsNothing);
+  });
+
+  testWidgets('clipboard chip opens the sheet prefilled with the pasted word',
+      (tester) async {
+    mockClipboard(hasStrings: true, text: '把握');
+    await tester.pumpWidget(buildHomeScreen());
+    await tester.pumpAndSettle();
+
+    expect(find.text('클립보드에서 단어 추가'), findsOneWidget);
+    await tester.tap(find.text('클립보드에서 단어 추가'));
+    await tester.pumpAndSettle();
+
+    final field = tester.widget<TextField>(
+      find.byKey(const Key('add-expression')),
+    );
+    expect(field.controller?.text, '把握');
+  });
+
+  testWidgets('clipboard chip warns when the clipboard is not a japanese word',
+      (tester) async {
+    mockClipboard(hasStrings: true, text: 'hello world');
+    await tester.pumpWidget(buildHomeScreen());
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('클립보드에서 단어 추가'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('클립보드에 일본어 단어가 없다'), findsOneWidget);
+    expect(find.byKey(const Key('add-expression')), findsNothing);
+    // 한 번 쓰고 나면 칩은 사라진다.
+    expect(find.text('클립보드에서 단어 추가'), findsNothing);
   });
 }
 

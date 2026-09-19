@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../core/theme/app_theme.dart';
 import '../../domain/models/word.dart';
+import '../words/add_word_sheet.dart';
 import 'explore_provider.dart';
 
 class WordListScreen extends ConsumerStatefulWidget {
@@ -55,8 +56,7 @@ class _WordListScreenState extends ConsumerState<WordListScreen> {
           IconButton(
             icon: const Icon(Icons.add),
             tooltip: '단어 추가',
-            // TODO(task-11): showAddWordSheet(context)로 교체.
-            onPressed: () {},
+            onPressed: () => showAddWordSheet(context),
           ),
           IconButton(
             icon: const Icon(Icons.style_outlined),
