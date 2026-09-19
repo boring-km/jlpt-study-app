@@ -10,6 +10,7 @@ import 'package:jlpt/domain/models/error_tag.dart';
 import 'package:jlpt/domain/models/word.dart';
 import 'package:jlpt/domain/repositories/progress_repository.dart';
 import 'package:jlpt/domain/repositories/settings_repository.dart';
+import 'package:jlpt/domain/repositories/study_set_repository.dart';
 import 'package:jlpt/domain/repositories/word_repository.dart';
 
 void main() {
@@ -93,6 +94,27 @@ void main() {
     expect(second.items.skip(5).every((i) => !i.passed), isTrue);
     expect(second.status, StudyStage.quiz);
     expect(second.items.map((i) => i.wordId).toSet().length, 10);
+    expect(second.completedAt, isNull);
+    final reloaded = await StudySetRepository(db).getByDate(second.studyDate);
+    expect(reloaded!.status, StudyStage.quiz);
+    expect(reloaded.completedAt, isNull);
+    await db.close();
+  });
+
+  test('createTodaySet appends weak words on top of dailyTarget new words', () async {
+    final (db, c) = await setup();
+    final progressRepo = ProgressRepository(db);
+    final weakIds = ['n2_0009', 'n2_0010', 'n2_0011'];
+    for (final id in weakIds) {
+      await progressRepo.markCompleted(id);
+      await progressRepo.incrementMiss(id);
+    }
+    final set = await c.read(todayStudySetProvider.notifier).createTodaySet();
+    expect(set.items.length, 8);
+    expect(set.targetCount, set.items.length);
+    final ids = set.items.map((i) => i.wordId).toList();
+    expect(ids.toSet().length, 8);
+    expect(ids.where(weakIds.contains).length, 3);
     await db.close();
   });
 }

@@ -50,6 +50,8 @@ class TodayStudySetNotifier extends AsyncNotifier<TodayStudySet?> {
   }
 
   Future<TodayStudySet> createTodaySet() async {
+    // 진행 중인 build()가 나중에 state를 덮어쓰지 않도록 먼저 해소한다.
+    await future;
     final db = await ref.read(databaseProvider.future);
     final items = await _buildItems(startOrder: 0, exclude: const {});
     final now = DateTime.now();
@@ -69,7 +71,7 @@ class TodayStudySetNotifier extends AsyncNotifier<TodayStudySet?> {
 
   /// 완료된 오늘 세트에 새 단어를 덧붙이고 다시 quiz 상태로.
   Future<TodayStudySet> appendNextSet() async {
-    final current = state.valueOrNull;
+    final current = await future;
     if (current == null) return createTodaySet();
     final db = await ref.read(databaseProvider.future);
     final items = await _buildItems(
@@ -89,7 +91,7 @@ class TodayStudySetNotifier extends AsyncNotifier<TodayStudySet?> {
   }
 
   Future<void> updateItemResult(String wordId, {required bool passed, ErrorTag? tag}) async {
-    final current = state.valueOrNull;
+    final current = await future;
     if (current == null) return;
     final idx = current.items.indexWhere((i) => i.wordId == wordId);
     if (idx < 0) return;
@@ -113,7 +115,7 @@ class TodayStudySetNotifier extends AsyncNotifier<TodayStudySet?> {
   }
 
   Future<void> finish() async {
-    final current = state.valueOrNull;
+    final current = await future;
     if (current == null) return;
     final db = await ref.read(databaseProvider.future);
     final progressRepo = ProgressRepository(db);
