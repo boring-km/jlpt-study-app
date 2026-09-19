@@ -165,7 +165,14 @@ class QuizScreenState extends ConsumerState<QuizScreen> {
       _goComplete();
       return;
     }
-    setState(() => _index = next);
+    // 새 보기가 도착할 때까지 로딩 상태로 떨어뜨린다. 인덱스만 올리면
+    // 다음 단어에 이전 문제의 보기·공개 상태가 그대로 붙는다.
+    setState(() {
+      _index = next;
+      _choices = [];
+      _selected = null;
+      _revealed = false;
+    });
     _loadChoices();
   }
 
@@ -177,15 +184,19 @@ class QuizScreenState extends ConsumerState<QuizScreen> {
   Widget build(BuildContext context) {
     final word = _currentWord();
     if (word == null || _choices.isEmpty) {
-      return const Scaffold(body: Center(child: CircularProgressIndicator()));
+      return Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          actions: [_closeButton(context)],
+        ),
+        body: const Center(child: CircularProgressIndicator()),
+      );
     }
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: Text('${_index + 1} / ${_queue.length}'),
-        actions: [
-          IconButton(icon: const Icon(Icons.close), onPressed: () => context.go('/')),
-        ],
+        actions: [_closeButton(context)],
       ),
       body: SafeArea(
         child: Padding(
@@ -228,6 +239,9 @@ class QuizScreenState extends ConsumerState<QuizScreen> {
       ),
     );
   }
+
+  Widget _closeButton(BuildContext context) =>
+      IconButton(icon: const Icon(Icons.close), onPressed: () => context.go('/'));
 
   _ChoiceState _choiceState(int i) {
     if (!_revealed) return _ChoiceState.idle;

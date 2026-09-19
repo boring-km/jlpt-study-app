@@ -37,14 +37,17 @@ class _QuizCompleteScreenState extends ConsumerState<QuizCompleteScreen> {
     } else {
       await ref.read(reviewSessionProvider.notifier).complete();
     }
+    if (!mounted) return;
     await ref.read(wordCatalogProvider.future); // wordById 준비 보장
+    if (!mounted) return;
     final db = await ref.read(databaseProvider.future);
+    if (!mounted) return;
     final repo = MissLogRepository(db);
     final tags = <String, List<ErrorTag>>{};
     for (final id in _wrongWordIds()) {
       tags[id] = await repo.tagsForWord(id);
+      if (!mounted) return;
     }
-    if (!mounted) return;
     setState(() {
       _tags = tags;
       _finished = true;
