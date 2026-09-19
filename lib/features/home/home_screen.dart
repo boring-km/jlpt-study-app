@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../application/providers/progress_summary_provider.dart';
-import '../../application/providers/review_session_provider.dart';
 import '../../application/providers/settings_provider.dart';
 import '../../application/providers/today_study_set_provider.dart';
 import '../../domain/models/app_settings.dart';
 import '../../domain/models/enums.dart';
 import '../../domain/models/today_study_set.dart';
 import '../quiz/quiz_mode.dart';
+import '../review/review_filter_sheet.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -174,8 +174,7 @@ class _HomeBody extends ConsumerWidget {
                   subtitle: summary.weakCount > 0
                       ? '약점 ${summary.weakCount}개'
                       : null,
-                  // TODO(task-10): showReviewFilterSheet(context)로 교체.
-                  onTap: () => _startReview(context, ref),
+                  onTap: () => showReviewFilterSheet(context),
                 ),
               ),
               const SizedBox(width: 12),
@@ -193,12 +192,6 @@ class _HomeBody extends ConsumerWidget {
         ],
       ),
     );
-  }
-
-  Future<void> _startReview(BuildContext context, WidgetRef ref) async {
-    await ref.read(reviewSessionProvider.notifier).startNewSession();
-    if (!context.mounted) return;
-    context.push('/quiz', extra: QuizMode.review);
   }
 
   Future<void> _startNextStudy(BuildContext context, WidgetRef ref) async {

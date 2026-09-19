@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
+import 'package:jlpt/application/providers/miss_tag_counts_provider.dart';
 import 'package:jlpt/application/providers/progress_summary_provider.dart';
 import 'package:jlpt/application/providers/today_study_set_provider.dart';
 import 'package:jlpt/domain/models/enums.dart';
+import 'package:jlpt/domain/models/error_tag.dart';
 import 'package:jlpt/domain/models/today_study_set.dart';
 import 'package:jlpt/features/home/home_screen.dart';
 
@@ -54,22 +56,25 @@ void main() {
       routes: [
         GoRoute(
           path: '/',
-          builder: (context, state) => ProviderScope(
-            overrides: [
-              progressSummaryProvider.overrideWith((ref) async => s),
-              todayStudySetProvider.overrideWith(() => n),
-            ],
-            child: const HomeScreen(),
-          ),
+          builder: (context, state) => const HomeScreen(),
         ),
-        // Task 9 전까지 /quiz는 PlaceholderScreen이므로 테스트용 스텁으로 대체.
         GoRoute(
           path: '/quiz',
           builder: (context, state) => const Scaffold(body: Text('QUIZ')),
         ),
       ],
     );
-    return MaterialApp.router(routerConfig: router);
+    // 바텀시트는 MaterialApp의 Navigator 아래 뜨므로 ProviderScope가
+    // 라우트가 아니라 앱 바깥에 있어야 오버라이드를 본다.
+    return ProviderScope(
+      overrides: [
+        progressSummaryProvider.overrideWith((ref) async => s),
+        todayStudySetProvider.overrideWith(() => n),
+        // 복습 시트가 DB를 건드리지 않도록 빈 태그 카운트로 고정.
+        missTagCountsProvider.overrideWith((ref) async => const <ErrorTag, int>{}),
+      ],
+      child: MaterialApp.router(routerConfig: router),
+    );
   }
 
   testWidgets('shows D-Day text', (tester) async {
@@ -178,6 +183,18 @@ void main() {
 
     expect(notifier.appendNextSetCalls, 1);
     expect(find.text('QUIZ'), findsOneWidget);
+  });
+
+  testWidgets('tapping 복습 opens the review filter sheet', (tester) async {
+    await tester.pumpWidget(buildHomeScreen());
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('복습'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('전체'), findsOneWidget);
+    // 시트를 여는 것만으로 복습 세션이 만들어지면 안 된다.
+    expect(find.text('QUIZ'), findsNothing);
   });
 }
 
