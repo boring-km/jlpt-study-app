@@ -58,6 +58,23 @@ void main() {
     await db.close();
   });
 
+  test('targets everything that is left on the exam day itself', () async {
+    final db = await seedDb(7);
+    await SettingsRepository(db).saveExamDate(DateTime.now());
+
+    final container = ProviderContainer(
+      overrides: [databaseProvider.overrideWith((ref) async => db)],
+    );
+    addTearDown(container.dispose);
+
+    final summary = await container.read(progressSummaryProvider.future);
+    expect(summary.daysUntilExam, 0);
+    expect(summary.isExamPassed, isFalse);
+    expect(summary.remainingCount, 7);
+    expect(summary.dailyTarget, 7); // ceil(7 / 1)
+    await db.close();
+  });
+
   test('falls back to post-exam daily target once the exam date has passed', () async {
     final db = await seedDb(25);
     await SettingsRepository(db)

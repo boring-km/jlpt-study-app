@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../application/providers/progress_summary_provider.dart';
+import '../../application/providers/review_session_provider.dart';
 import '../../application/providers/settings_provider.dart';
 import '../../application/providers/today_study_set_provider.dart';
 import '../../domain/models/app_settings.dart';
 import '../../domain/models/enums.dart';
 import '../../domain/models/today_study_set.dart';
-import '../../widgets/word_badge.dart';
+import '../quiz/quiz_mode.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -82,7 +83,6 @@ class _HomeBody extends ConsumerWidget {
                       ref.read(settingsProvider.notifier).updateThemeMode(next);
                     },
                   ),
-                  WordBadge(level: summary.currentLevel),
                 ],
               ),
             ],
@@ -94,18 +94,15 @@ class _HomeBody extends ConsumerWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            'N3 ${summary.n3Completed}/${summary.n3Total}'
-            ' · '
-            'N2 ${summary.n2Completed}/${summary.n2Total}',
+            'N2 ${summary.completedCount} / ${summary.totalCount}',
             style: Theme.of(context).textTheme.bodyMedium,
           ),
           const SizedBox(height: 8),
           ClipRRect(
             borderRadius: BorderRadius.circular(4),
             child: LinearProgressIndicator(
-              value: (summary.n3Total + summary.n2Total) > 0
-                  ? (summary.n3Completed + summary.n2Completed) /
-                      (summary.n3Total + summary.n2Total)
+              value: summary.totalCount > 0
+                  ? summary.completedCount / summary.totalCount
                   : 0,
               minHeight: 6,
               backgroundColor: Theme.of(context).dividerColor,
@@ -115,79 +112,54 @@ class _HomeBody extends ConsumerWidget {
             ),
           ),
           const SizedBox(height: 32),
-          if (!summary.isReviewOnlyMode) ...[
-            SizedBox(
-              width: double.infinity,
-              height: 56,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Theme.of(context).colorScheme.primary,
-                  foregroundColor: Theme.of(context).colorScheme.onPrimary,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(14),
-                  ),
+          SizedBox(
+            width: double.infinity,
+            height: 56,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Theme.of(context).colorScheme.primary,
+                foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(14),
                 ),
-                onPressed: isSetCompleted
-                    ? null
-                    : () => _startStudy(context, ref, set),
-                child: Text(
-                  set == null
-                      ? '오늘 학습 시작'
-                      : isSetCompleted
-                      ? '오늘 학습 완료 ✓'
-                      : '이어하기',
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                  ),
+              ),
+              onPressed:
+                  isSetCompleted ? null : () => _startStudy(context, ref, set),
+              child: Text(
+                set == null
+                    ? '학습 시작'
+                    : isSetCompleted
+                    ? '오늘 학습 완료 ✓'
+                    : '이어하기',
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
             ),
-            if (isSetCompleted)
-              Padding(
-                padding: const EdgeInsets.only(top: 12),
-                child: SizedBox(
-                  width: double.infinity,
-                  height: 56,
-                  child: OutlinedButton(
-                    style: OutlinedButton.styleFrom(
-                      foregroundColor: Theme.of(context).colorScheme.primary,
-                      side: BorderSide(
-                        color: Theme.of(context).colorScheme.primary,
-                        width: 2.0,
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(14),
-                      ),
+          ),
+          if (isSetCompleted)
+            Padding(
+              padding: const EdgeInsets.only(top: 12),
+              child: SizedBox(
+                width: double.infinity,
+                height: 56,
+                child: OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                    foregroundColor: Theme.of(context).colorScheme.primary,
+                    side: BorderSide(
+                      color: Theme.of(context).colorScheme.primary,
+                      width: 2.0,
                     ),
-                    onPressed: () => _startNextStudy(context, ref),
-                    child: const Text(
-                      '다음 학습 시작',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                      ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14),
                     ),
                   ),
-                ),
-              ),
-          ],
-          if (summary.isReviewOnlyMode)
-            SizedBox(
-              width: double.infinity,
-              height: 56,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Theme.of(context).colorScheme.primary,
-                  foregroundColor: Theme.of(context).colorScheme.onPrimary,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(14),
+                  onPressed: () => _startNextStudy(context, ref),
+                  child: const Text(
+                    '다음 학습 시작',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                   ),
-                ),
-                onPressed: () => context.push('/review'),
-                child: const Text(
-                  '복습 시작',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                 ),
               ),
             ),
@@ -196,29 +168,24 @@ class _HomeBody extends ConsumerWidget {
             children: [
               Expanded(
                 child: _SmallCard(
-                  label: '오늘 복습',
+                  label: '복습',
                   icon: Icons.replay_outlined,
-                  enabled: isSetCompleted,
-                  onTap: () {
-                    final wordIds = set?.items
-                            .where((i) => i.isFullyCompleted)
-                            .map((i) => i.wordId)
-                            .toList() ??
-                        [];
-                    context.push('/review/today', extra: wordIds);
-                  },
+                  enabled: summary.completedCount > 0,
+                  subtitle: summary.weakCount > 0
+                      ? '약점 ${summary.weakCount}개'
+                      : null,
+                  // TODO(task-10): showReviewFilterSheet(context)로 교체.
+                  onTap: () => _startReview(context, ref),
                 ),
               ),
               const SizedBox(width: 12),
               Expanded(
                 child: _SmallCard(
-                  label: '전체 복습',
-                  icon: Icons.history_outlined,
-                  enabled: summary.completedCount > 0,
-                  subtitle: summary.weakCount > 0
-                      ? '약점 ${summary.weakCount}개'
-                      : null,
-                  onTap: () => context.push('/review'),
+                  label: '단어 추가',
+                  icon: Icons.add_circle_outline,
+                  enabled: true,
+                  // TODO(task-11): showAddWordSheet(context)로 교체.
+                  onTap: () {},
                 ),
               ),
             ],
@@ -228,11 +195,16 @@ class _HomeBody extends ConsumerWidget {
     );
   }
 
+  Future<void> _startReview(BuildContext context, WidgetRef ref) async {
+    await ref.read(reviewSessionProvider.notifier).startNewSession();
+    if (!context.mounted) return;
+    context.push('/quiz', extra: QuizMode.review);
+  }
+
   Future<void> _startNextStudy(BuildContext context, WidgetRef ref) async {
-    await ref.read(todayStudySetProvider.notifier).createNextSet();
-    final set = ref.read(todayStudySetProvider).valueOrNull;
-    if (set == null || !context.mounted) return;
-    context.push('/study/flashcard');
+    await ref.read(todayStudySetProvider.notifier).appendNextSet();
+    if (!context.mounted) return;
+    context.push('/quiz', extra: QuizMode.study);
   }
 
   Future<void> _startStudy(
@@ -243,19 +215,8 @@ class _HomeBody extends ConsumerWidget {
     if (currentSet == null) {
       await ref.read(todayStudySetProvider.notifier).createTodaySet();
     }
-    final set = ref.read(todayStudySetProvider).valueOrNull;
-    if (set == null || !context.mounted) return;
-
-    switch (set.status) {
-      case StudyStage.flashcard:
-        context.push('/study/flashcard');
-      case StudyStage.quizReading:
-        context.push('/study/quiz-reading');
-      case StudyStage.quizMeaning:
-        context.push('/study/quiz-meaning');
-      case StudyStage.completed:
-        break;
-    }
+    if (!context.mounted) return;
+    context.push('/quiz', extra: QuizMode.study);
   }
 }
 

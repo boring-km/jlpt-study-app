@@ -4,29 +4,19 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jlpt/application/providers/progress_summary_provider.dart';
 import 'package:jlpt/application/providers/today_study_set_provider.dart';
-import 'package:jlpt/domain/models/enums.dart';
 import 'package:jlpt/domain/models/today_study_set.dart';
 import 'package:jlpt/features/home/home_screen.dart';
 
 void main() {
-  final testSummary = ProgressSummary(
-    currentLevel: JlptLevel.n3,
+  const testSummary = ProgressSummary(
     completedCount: 10,
     totalCount: 100,
-    n3Completed: 10,
-    n3Total: 100,
-    n2Completed: 0,
-    n2Total: 100,
     daysUntilExam: 30,
     dailyTarget: 5,
-    isReviewOnlyMode: false,
     weakCount: 0,
   );
 
-  Widget buildHomeScreen({
-    ProgressSummary? summary,
-    AsyncValue<dynamic>? setAsyncValue,
-  }) {
+  Widget buildHomeScreen({ProgressSummary? summary}) {
     final s = summary ?? testSummary;
     final router = GoRouter(
       routes: [
@@ -51,10 +41,10 @@ void main() {
     expect(find.text('D-30'), findsOneWidget);
   });
 
-  testWidgets('shows current level badge', (tester) async {
+  testWidgets('shows progress line', (tester) async {
     await tester.pumpWidget(buildHomeScreen());
     await tester.pumpAndSettle();
-    expect(find.text('N3'), findsOneWidget);
+    expect(find.text('N2 10 / 100'), findsOneWidget);
   });
 
   testWidgets('shows today progress text', (tester) async {
@@ -63,48 +53,44 @@ void main() {
     expect(find.textContaining('오늘'), findsWidgets);
   });
 
-  testWidgets('shows start study button when no set', (tester) async {
+  testWidgets('shows study button when no set', (tester) async {
     await tester.pumpWidget(buildHomeScreen());
     await tester.pumpAndSettle();
-    expect(find.text('오늘 학습 시작'), findsOneWidget);
+    expect(find.text('학습 시작'), findsOneWidget);
   });
 
-  testWidgets('shows D+ when exam has passed', (tester) async {
-    final pastSummary = ProgressSummary(
-      currentLevel: JlptLevel.n3,
+  testWidgets('exam passed still shows study button', (tester) async {
+    const pastSummary = ProgressSummary(
       completedCount: 0,
       totalCount: 100,
-      n3Completed: 0,
-      n3Total: 100,
-      n2Completed: 0,
-      n2Total: 100,
       daysUntilExam: -5,
-      dailyTarget: 5,
-      isReviewOnlyMode: false,
+      dailyTarget: 10,
       weakCount: 0,
     );
     await tester.pumpWidget(buildHomeScreen(summary: pastSummary));
     await tester.pumpAndSettle();
     expect(find.text('D+5'), findsOneWidget);
+    expect(find.text('학습 시작'), findsOneWidget);
   });
 
-  testWidgets('shows 복습 시작 button when in review-only mode', (tester) async {
-    final reviewSummary = ProgressSummary(
-      currentLevel: JlptLevel.n3,
-      completedCount: 100,
+  testWidgets('shows review card with weak count', (tester) async {
+    const weakSummary = ProgressSummary(
+      completedCount: 10,
       totalCount: 100,
-      n3Completed: 100,
-      n3Total: 100,
-      n2Completed: 0,
-      n2Total: 100,
-      daysUntilExam: 10,
-      dailyTarget: 0,
-      isReviewOnlyMode: true,
-      weakCount: 0,
+      daysUntilExam: 30,
+      dailyTarget: 5,
+      weakCount: 3,
     );
-    await tester.pumpWidget(buildHomeScreen(summary: reviewSummary));
+    await tester.pumpWidget(buildHomeScreen(summary: weakSummary));
     await tester.pumpAndSettle();
-    expect(find.text('복습 시작'), findsOneWidget);
+    expect(find.text('복습'), findsOneWidget);
+    expect(find.text('약점 3개'), findsOneWidget);
+  });
+
+  testWidgets('shows add word card', (tester) async {
+    await tester.pumpWidget(buildHomeScreen());
+    await tester.pumpAndSettle();
+    expect(find.text('단어 추가'), findsOneWidget);
   });
 }
 

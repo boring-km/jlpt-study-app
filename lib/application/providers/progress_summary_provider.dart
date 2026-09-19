@@ -40,10 +40,11 @@ final progressSummaryProvider = FutureProvider<ProgressSummary>((ref) async {
   final days = settings.daysUntilExam(DateTime.now());
 
   final int dailyTarget;
-  if (days <= 0) {
+  if (days < 0) {
     dailyTarget = remaining == 0 ? 0 : kPostExamDailyTarget;
   } else {
-    dailyTarget = (remaining / days).ceil();
+    // 시험 당일(days == 0)은 남은 전부가 그날의 목표 — ceil(remaining / 1).
+    dailyTarget = (remaining / (days == 0 ? 1 : days)).ceil();
   }
 
   return ProgressSummary(

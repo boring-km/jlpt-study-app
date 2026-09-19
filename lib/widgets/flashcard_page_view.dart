@@ -98,6 +98,10 @@ class _FlashcardPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // 가나 전용 단어는 expression이 reading과 같다 — 뒷면에서 두 번 보이지 않게 한다.
+    final hasExpression =
+        word.expression.isNotEmpty && word.expression != word.reading;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
       child: FlipCard(
@@ -106,7 +110,7 @@ class _FlashcardPage extends StatelessWidget {
         front: CardFace(
           child: Center(
             child: Text(
-              word.expression ?? word.reading,
+              word.expression.isNotEmpty ? word.expression : word.reading,
               style: TextStyle(
                 fontSize: 48,
                 fontWeight: FontWeight.w700,
@@ -122,16 +126,16 @@ class _FlashcardPage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                if (word.expression != null)
+                if (hasExpression)
                   Text(
-                    word.expression!,
+                    word.expression,
                     style: TextStyle(
                       fontSize: 36,
                       fontWeight: FontWeight.w700,
                       color: Theme.of(context).colorScheme.onSurface,
                     ),
                   ),
-                if (word.expression != null) const SizedBox(height: 8),
+                if (hasExpression) const SizedBox(height: 8),
                 Text(
                   word.reading,
                   style: TextStyle(
