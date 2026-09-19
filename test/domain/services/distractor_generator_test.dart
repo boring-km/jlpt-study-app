@@ -41,6 +41,12 @@ void main() {
     test('toggles handakuten', () {
       expect(g.dakutenVariants('はあく'), contains('ぱあく'));
     });
+    test('handakuten char maps back to both unvoiced and voiced rows', () {
+      expect(g.dakutenVariants('ぱあく'), containsAll(['はあく', 'ばあく']));
+    });
+    test('voiced char maps to handakuten row', () {
+      expect(g.dakutenVariants('ばあく'), containsAll(['はあく', 'ぱあく']));
+    });
   });
 
   group('generate', () {

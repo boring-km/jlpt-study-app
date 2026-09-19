@@ -21,8 +21,18 @@ class DistractorGenerator {
     'た': 'だ', 'ち': 'ぢ', 'つ': 'づ', 'て': 'で', 'と': 'ど',
     'は': 'ば', 'ひ': 'び', 'ふ': 'ぶ', 'へ': 'べ', 'ほ': 'ぼ',
   };
-  static const _handakutenPairs = {
+  // は행↔ぱ행 반탁음 표기 오류: ぱ행 글자는 は행과 ば행 양쪽으로, は/ば행 글자는
+  // ぱ행으로 변형되어야 한다 (탁점 유무를 헷갈리는 실제 오답 패턴).
+  static const _paToHa = {
+    'ぱ': 'は', 'ぴ': 'ひ', 'ぷ': 'ふ', 'ぺ': 'へ', 'ぽ': 'ほ',
+  };
+  static const _paToBa = {
+    'ぱ': 'ば', 'ぴ': 'び', 'ぷ': 'ぶ', 'ぺ': 'べ', 'ぽ': 'ぼ',
+  };
+  static const _haToPa = {
     'は': 'ぱ', 'ひ': 'ぴ', 'ふ': 'ぷ', 'へ': 'ぺ', 'ほ': 'ぽ',
+  };
+  static const _baToPa = {
     'ば': 'ぱ', 'び': 'ぴ', 'ぶ': 'ぷ', 'べ': 'ぺ', 'ぼ': 'ぽ',
   };
   static final _katakana = RegExp(r'[゠-ヺ]');
@@ -70,14 +80,15 @@ class DistractorGenerator {
     final out = <String>{};
     final chars = r.split('');
     final reverse = {for (final e in _dakutenPairs.entries) e.value: e.key};
-    final reverseHan = {for (final e in _handakutenPairs.entries) e.value: e.key};
     for (var i = 0; i < chars.length; i++) {
       final c = chars[i];
       for (final swap in [
         _dakutenPairs[c],
         reverse[c],
-        _handakutenPairs[c],
-        reverseHan[c],
+        _paToHa[c],
+        _paToBa[c],
+        _haToPa[c],
+        _baToPa[c],
       ]) {
         if (swap != null) {
           out.add((List.of(chars)..[i] = swap).join());
