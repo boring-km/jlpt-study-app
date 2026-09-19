@@ -59,8 +59,14 @@ class WordRepository {
     await batch.commit(noResult: true);
   }
 
+  /// 사용자 단어는 항상 source='user'로 저장한다 — n2 카탈로그 정리(deleteN2NotIn)에서
+  /// 지워지면 안 되기 때문.
   Future<void> insertUserWord(Word word) async {
-    await _db.insert('words', word.toDbMap(), conflictAlgorithm: ConflictAlgorithm.abort);
+    await _db.insert(
+      'words',
+      word.copyWith(source: 'user').toDbMap(),
+      conflictAlgorithm: ConflictAlgorithm.abort,
+    );
   }
 
   Future<int> count() async {
@@ -126,8 +132,9 @@ class WordRepository {
     required int limit,
     required String excludeWordId,
   }) async {
+    // id가 아니라 뜻으로 제외한다 — 뜻이 같은 단어가 있으면 정답이 보기로 섞인다.
     final rows = await _db.rawQuery(
-      'SELECT DISTINCT meaning_ko FROM words WHERE id != ? ORDER BY RANDOM() LIMIT ?',
+      'SELECT DISTINCT meaning_ko FROM words WHERE meaning_ko != (SELECT meaning_ko FROM words WHERE id = ?) ORDER BY RANDOM() LIMIT ?',
       [excludeWordId, limit],
     );
     return rows.map((r) => r['meaning_ko'] as String).toList();
