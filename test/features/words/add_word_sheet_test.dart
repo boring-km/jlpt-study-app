@@ -130,6 +130,40 @@ void main() {
     await tester.runAsync(db.close);
   });
 
+  testWidgets('saving inside the debounce window still rejects a duplicate',
+      (tester) async {
+    final (db, container) = await setup(tester, words: const [
+      Word(
+        id: 'n2_0001',
+        expression: '生産',
+        reading: 'せいさん',
+        meaningKo: '생산',
+        type: WordType.on,
+      ),
+    ]);
+    addTearDown(container.dispose);
+    await tester.pumpWidget(app(container));
+    await settleWithDb(tester);
+    await openSheet(tester);
+
+    // 디바운스(300ms)가 돌기 전에 저장을 누른다 — 아직 '이미 있는 단어'가 안 뜬 상태.
+    await tester.enterText(find.byKey(const Key('add-expression')), '生産');
+    await tester.enterText(find.byKey(const Key('add-reading')), 'せいさん');
+    expect(
+      tester.widget<ElevatedButton>(find.byKey(const Key('add-save'))).onPressed,
+      isNotNull,
+    );
+    await tester.tap(find.byKey(const Key('add-save')));
+    await settleWithDb(tester);
+
+    expect(find.text('이미 있는 단어'), findsOneWidget);
+    // 시트가 열린 채 남고 단어는 추가되지 않는다.
+    expect(find.byKey(const Key('add-expression')), findsOneWidget);
+    final count = await tester.runAsync(() => WordRepository(db).count());
+    expect(count, 1);
+    await tester.runAsync(db.close);
+  });
+
   testWidgets('empty expression shows 표기를 입력하세요', (tester) async {
     final (db, container) = await setup(tester);
     addTearDown(container.dispose);

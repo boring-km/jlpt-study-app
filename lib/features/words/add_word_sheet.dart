@@ -136,6 +136,34 @@ class _AddWordSheetState extends ConsumerState<AddWordSheet> {
     });
 
     final navigator = Navigator.of(context);
+    // 시트가 닫힌 뒤에도 캐시는 갱신해야 하므로 ref 대신 컨테이너를 붙잡아 둔다.
+    final container = ProviderScope.containerOf(context, listen: false);
+
+    // 디바운스가 돌기 전에 저장을 누르면 중복 안내를 건너뛰게 된다.
+    // expression에는 유니크 제약이 없어 DB도 못 막으니 여기서 직접 확인한다.
+    _debounce?.cancel();
+    final Word? duplicate;
+    try {
+      final db = await ref.read(databaseProvider.future);
+      duplicate = await WordRepository(db).findByExpression(expression);
+    } catch (_) {
+      if (!mounted) return;
+      setState(() {
+        _saving = false;
+        _error = '저장하지 못했다';
+      });
+      return;
+    }
+    if (!mounted) return;
+    if (duplicate != null) {
+      setState(() {
+        _saving = false;
+        _existing = duplicate;
+        _error = '이미 있는 단어';
+      });
+      return;
+    }
+
     final word = Word(
       id: 'user_${DateTime.now().millisecondsSinceEpoch}',
       expression: expression,
@@ -158,8 +186,8 @@ class _AddWordSheetState extends ConsumerState<AddWordSheet> {
       });
       return;
     }
-    ref.invalidate(progressSummaryProvider);
-    ref.invalidate(exploreProvider);
+    container.invalidate(progressSummaryProvider);
+    container.invalidate(exploreProvider);
     if (!mounted) return;
     navigator.pop();
   }
@@ -212,8 +240,7 @@ class _AddWordSheetState extends ConsumerState<AddWordSheet> {
                   color: Theme.of(context).colorScheme.onSurfaceVariant,
                 ),
               ),
-            ],
-            if (_error != null) ...[
+            ] else if (_error != null) ...[
               const SizedBox(height: 12),
               Text(
                 _error!,
