@@ -6,6 +6,9 @@ import '../../domain/models/app_settings.dart';
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
 
+  String _fmt(DateTime d) =>
+      '${d.year}.${d.month.toString().padLeft(2, '0')}.${d.day.toString().padLeft(2, '0')}';
+
   Future<void> _showResetDialog(BuildContext context) async {
     await showDialog<void>(
       context: context,
@@ -30,11 +33,41 @@ class SettingsScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final settings = ref.watch(settingsProvider);
     final themeMode = settings.valueOrNull?.themeMode ?? AppThemeMode.light;
+    final examDate = settings.valueOrNull?.examDate ?? AppSettings.defaults.examDate;
 
     return Scaffold(
       appBar: AppBar(title: const Text('설정')),
       body: ListView(
         children: [
+          ListTile(
+            title: const Text('시험일'),
+            subtitle: Text(_fmt(examDate)),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () async {
+              final now = DateTime.now();
+              final picked = await showDatePicker(
+                context: context,
+                initialDate: examDate.isBefore(now) ? now : examDate,
+                firstDate: DateTime(now.year, now.month, now.day),
+                lastDate: DateTime(now.year + 3, 12, 31),
+              );
+              if (picked != null) {
+                ref.read(settingsProvider.notifier).updateExamDate(picked);
+              }
+            },
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: TextButton(
+              onPressed: () => ref
+                  .read(settingsProvider.notifier)
+                  .updateExamDate(AppSettings.nextJlptDate(DateTime.now())),
+              child: Text(
+                '다음 JLPT (${_fmt(AppSettings.nextJlptDate(DateTime.now()))})',
+              ),
+            ),
+          ),
+          const Divider(),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             child: Column(

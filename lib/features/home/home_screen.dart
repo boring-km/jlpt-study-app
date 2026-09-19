@@ -119,6 +119,11 @@ class _HomeBodyState extends ConsumerState<_HomeBody>
                     onPressed: () => context.push('/kana'),
                   ),
                   IconButton(
+                    icon: const Icon(Icons.settings_outlined),
+                    tooltip: '설정',
+                    onPressed: () => context.push('/settings'),
+                  ),
+                  IconButton(
                     icon: Icon(switch (themeMode) {
                       AppThemeMode.light => Icons.light_mode_outlined,
                       AppThemeMode.dark => Icons.dark_mode_outlined,

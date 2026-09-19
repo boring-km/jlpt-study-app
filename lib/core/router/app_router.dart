@@ -6,6 +6,7 @@ import '../../features/explore/word_list_screen.dart';
 import '../../features/explore/explore_flashcard_screen.dart';
 import '../../features/stats/stats_screen.dart';
 import '../../features/kana/kana_screen.dart';
+import '../../features/settings/settings_screen.dart';
 import '../../features/quiz/quiz_complete_screen.dart';
 import '../../features/quiz/quiz_mode.dart';
 import '../../features/quiz/quiz_screen.dart';
@@ -49,6 +50,10 @@ final appRouter = GoRouter(
     GoRoute(
       path: '/kana',
       builder: (context, state) => const KanaScreen(),
+    ),
+    GoRoute(
+      path: '/settings',
+      builder: (context, state) => const SettingsScreen(),
     ),
     StatefulShellRoute.indexedStack(
       builder: (context, state, shell) =>
