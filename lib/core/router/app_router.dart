@@ -6,16 +6,9 @@ import '../../features/explore/word_list_screen.dart';
 import '../../features/explore/explore_flashcard_screen.dart';
 import '../../features/stats/stats_screen.dart';
 import '../../features/kana/kana_screen.dart';
-
-// 플레이스홀더 - 이후 화면 구현 시 교체
-class PlaceholderScreen extends StatelessWidget {
-  final String name;
-  const PlaceholderScreen(this.name, {super.key});
-  @override
-  Widget build(BuildContext context) => Scaffold(
-        body: Center(child: Text(name)),
-      );
-}
+import '../../features/quiz/quiz_complete_screen.dart';
+import '../../features/quiz/quiz_mode.dart';
+import '../../features/quiz/quiz_screen.dart';
 
 class ScaffoldWithNavBar extends StatelessWidget {
   final StatefulNavigationShell navigationShell;
@@ -46,11 +39,12 @@ final appRouter = GoRouter(
     // 바텀 네비게이션 없는 전체화면 라우트
     GoRoute(
       path: '/quiz',
-      builder: (context, state) => const PlaceholderScreen('quiz'),
+      builder: (context, state) => QuizScreen(mode: state.extra as QuizMode? ?? QuizMode.study),
     ),
     GoRoute(
       path: '/quiz/complete',
-      builder: (context, state) => const PlaceholderScreen('quiz complete'),
+      builder: (context, state) =>
+          QuizCompleteScreen(mode: state.extra as QuizMode? ?? QuizMode.study),
     ),
     GoRoute(
       path: '/kana',

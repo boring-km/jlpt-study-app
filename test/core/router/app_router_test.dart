@@ -13,11 +13,6 @@ void main() {
       expect(splashRoute, isNotNull);
     });
 
-    test('PlaceholderScreen has correct name', () {
-      const screen = PlaceholderScreen('테스트');
-      expect(screen.name, '테스트');
-    });
-
     test('ScaffoldWithNavBar can be instantiated', () {
       // ScaffoldWithNavBar는 NavigationShell이 필요하므로 클래스 존재만 확인
       expect(ScaffoldWithNavBar, isNotNull);
