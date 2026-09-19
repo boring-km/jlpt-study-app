@@ -7,6 +7,7 @@ import '../../domain/repositories/progress_repository.dart';
 import '../../domain/repositories/study_set_repository.dart';
 import '../../domain/services/study_set_builder.dart';
 import 'database_provider.dart';
+import 'miss_tag_counts_provider.dart';
 import 'progress_summary_provider.dart';
 
 final todayStudySetProvider =
@@ -109,6 +110,7 @@ class TodayStudySetNotifier extends AsyncNotifier<TodayStudySet?> {
     } else {
       await progressRepo.incrementMiss(wordId);
       await MissLogRepository(db).add(wordId, tag ?? ErrorTag.other);
+      ref.invalidate(missTagCountsProvider);
     }
     final items = List<TodayStudyItem>.from(current.items)..[idx] = updated;
     state = AsyncData(current.copyWith(items: items, updatedAt: DateTime.now()));
