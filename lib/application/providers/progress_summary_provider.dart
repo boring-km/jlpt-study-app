@@ -1,82 +1,56 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../domain/models/enums.dart';
 import '../../domain/repositories/progress_repository.dart';
 import '../../domain/repositories/word_repository.dart';
 import 'database_provider.dart';
 import 'settings_provider.dart';
+import 'word_catalog_provider.dart';
+
+/// 시험일 이후 하루 신규 단어 수.
+const int kPostExamDailyTarget = 10;
 
 class ProgressSummary {
-  final JlptLevel currentLevel;
   final int completedCount;
   final int totalCount;
-  final int n3Completed;
-  final int n3Total;
-  final int n2Completed;
-  final int n2Total;
   final int daysUntilExam;
   final int dailyTarget;
-  final bool isReviewOnlyMode;
   final int weakCount;
 
   const ProgressSummary({
-    required this.currentLevel,
     required this.completedCount,
     required this.totalCount,
-    required this.n3Completed,
-    required this.n3Total,
-    required this.n2Completed,
-    required this.n2Total,
     required this.daysUntilExam,
     required this.dailyTarget,
-    required this.isReviewOnlyMode,
     required this.weakCount,
   });
+
+  bool get isExamPassed => daysUntilExam < 0;
+  int get remainingCount => totalCount - completedCount;
 }
 
 final progressSummaryProvider = FutureProvider<ProgressSummary>((ref) async {
   final db = await ref.watch(databaseProvider.future);
   final settings = await ref.watch(settingsProvider.future);
+  await ref.watch(wordCatalogProvider.future); // 시딩 완료 보장
   final progressRepo = ProgressRepository(db);
   final wordRepo = WordRepository(db);
 
-  // N3 완료 여부로 현재 레벨 결정
-  final n3Total = await wordRepo.countByLevel(JlptLevel.n3);
-  final n3Completed = await progressRepo.countCompleted(JlptLevel.n3);
-  final currentLevel =
-      n3Completed >= n3Total && n3Total > 0 ? JlptLevel.n2 : JlptLevel.n3;
+  final total = await wordRepo.count();
+  final completed = await progressRepo.countCompleted();
+  final remaining = total - completed;
+  final days = settings.daysUntilExam(DateTime.now());
 
-  final total = await wordRepo.countByLevel(currentLevel);
-  final completed = await progressRepo.countCompleted(currentLevel);
-
-  // dailyTarget은 N3+N2 전체 남은 단어 기준으로 계산
-  final n2Total = await wordRepo.countByLevel(JlptLevel.n2);
-  final n2Completed = await progressRepo.countCompleted(JlptLevel.n2);
-  final totalRemaining = (n3Total - n3Completed) + (n2Total - n2Completed);
-
-  final now = DateTime.now();
-  final days = settings.daysUntilExam(now);
-  final isReviewOnly = days <= 0;
-
-  int dailyTarget = 0;
-  if (!isReviewOnly && days > 0) {
-    dailyTarget = (totalRemaining / days).ceil();
+  final int dailyTarget;
+  if (days <= 0) {
+    dailyTarget = remaining == 0 ? 0 : kPostExamDailyTarget;
+  } else {
+    dailyTarget = (remaining / days).ceil();
   }
 
-  // 현재 레벨 + 아직 N3 안 끝났으면 N2 약점까지 합산하는 건 과함.
-  // 지금 공부 중인 레벨의 약점만 노출.
-  final weakCount = await progressRepo.countWeak(currentLevel);
-
   return ProgressSummary(
-    currentLevel: currentLevel,
     completedCount: completed,
     totalCount: total,
-    n3Completed: n3Completed,
-    n3Total: n3Total,
-    n2Completed: n2Completed,
-    n2Total: n2Total,
     daysUntilExam: days,
     dailyTarget: dailyTarget,
-    isReviewOnlyMode: isReviewOnly,
-    weakCount: weakCount,
+    weakCount: await progressRepo.countWeak(),
   );
 });

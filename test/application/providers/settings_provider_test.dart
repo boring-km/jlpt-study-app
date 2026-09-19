@@ -20,7 +20,7 @@ void main() {
     addTearDown(container.dispose);
 
     final settings = await container.read(settingsProvider.future);
-    expect(settings.examDate, DateTime(2026, 7, 5));
+    expect(settings.examDate, AppSettings.nextJlptDate(DateTime.now()));
     expect(settings.themeMode, AppThemeMode.light);
   });
 

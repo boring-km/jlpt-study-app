@@ -18,22 +18,16 @@ class SettingsNotifier extends AsyncNotifier<AppSettings> {
   Future<void> updateExamDate(DateTime date) async {
     final db = await ref.read(databaseProvider.future);
     await SettingsRepository(db).saveExamDate(date);
-    final current = state.valueOrNull ?? AppSettings.defaults;
-    state = AsyncData(AppSettings(
-      examDate: date,
-      themeMode: current.themeMode,
-      seededAt: current.seededAt,
-    ));
+    state = AsyncData(
+      (state.valueOrNull ?? AppSettings.defaults).copyWith(examDate: date),
+    );
   }
 
   Future<void> updateThemeMode(AppThemeMode mode) async {
     final db = await ref.read(databaseProvider.future);
     await SettingsRepository(db).saveThemeMode(mode);
-    final current = state.valueOrNull ?? AppSettings.defaults;
-    state = AsyncData(AppSettings(
-      examDate: current.examDate,
-      themeMode: mode,
-      seededAt: current.seededAt,
-    ));
+    state = AsyncData(
+      (state.valueOrNull ?? AppSettings.defaults).copyWith(themeMode: mode),
+    );
   }
 }

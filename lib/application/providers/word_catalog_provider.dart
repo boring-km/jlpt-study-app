@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../core/db/database.dart';
 import '../../domain/models/word.dart';
-import '../../domain/models/enums.dart';
 import '../../domain/repositories/word_repository.dart';
 import '../../domain/repositories/settings_repository.dart';
 import 'database_provider.dart';
@@ -19,8 +19,7 @@ class WordCatalogNotifier extends AsyncNotifier<List<Word>> {
     final wordRepo = WordRepository(db);
     final settingsRepo = SettingsRepository(db);
 
-    final seeded = await settingsRepo.isSeeded();
-    if (!seeded) {
+    if (await settingsRepo.dataVersion() < AppDatabase.kDataVersion) {
       await _seedFromAssets(wordRepo, settingsRepo);
     }
     return wordRepo.getAll();
@@ -30,17 +29,28 @@ class WordCatalogNotifier extends AsyncNotifier<List<Word>> {
     WordRepository wordRepo,
     SettingsRepository settingsRepo,
   ) async {
-    final n3Json = await rootBundle.loadString('assets/data/n3_words.json');
-    final n2Json = await rootBundle.loadString('assets/data/n2_words.json');
-
-    final n3List = (jsonDecode(n3Json) as List)
-        .map((e) => Word.fromAssetJson(e as Map<String, dynamic>, JlptLevel.n3))
+    final json = await rootBundle.loadString('assets/data/n2_words.json');
+    final words = (jsonDecode(json) as List)
+        .map((e) => Word.fromAssetJson(e as Map<String, dynamic>))
         .toList();
-    final n2List = (jsonDecode(n2Json) as List)
-        .map((e) => Word.fromAssetJson(e as Map<String, dynamic>, JlptLevel.n2))
-        .toList();
+    await wordRepo.upsertAll(words);
+    await wordRepo.deleteN2NotIn(words.map((w) => w.id).toSet());
+    await settingsRepo.setDataVersion(AppDatabase.kDataVersion);
+  }
 
-    await wordRepo.insertAll([...n3List, ...n2List]);
-    await settingsRepo.markSeeded();
+  Word? wordById(String id) {
+    final list = state.valueOrNull;
+    if (list == null) return null;
+    for (final w in list) {
+      if (w.id == id) return w;
+    }
+    return null;
+  }
+
+  Future<void> addUserWord(Word word) async {
+    final db = await ref.read(databaseProvider.future);
+    await WordRepository(db).insertUserWord(word);
+    final current = state.valueOrNull ?? [];
+    state = AsyncData([...current, word]);
   }
 }

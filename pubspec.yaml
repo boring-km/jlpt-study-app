@@ -59,7 +59,6 @@ flutter:
 
   assets:
     - assets/data/n2_words.json
-    - assets/data/n3_words.json
 
   fonts:
     - family: Pretendard
