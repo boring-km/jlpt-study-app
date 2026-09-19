@@ -1,5 +1,8 @@
 import 'package:jlpt/domain/models/enums.dart';
 
+/// copyWith에서 "전달되지 않음"과 "명시적 null"을 구분하기 위한 센티널.
+const _unset = Object();
+
 class TodayStudyItem {
   final String studyDate;
   final String wordId;
@@ -101,12 +104,13 @@ class TodayStudySet {
         'updated_at': updatedAt.toIso8601String(),
       };
 
+  /// [completedAt]은 센티널 기본값을 쓰므로 `null`을 명시해 초기화할 수 있다.
   TodayStudySet copyWith({
     int? targetCount,
     StudyStage? status,
     List<TodayStudyItem>? items,
     DateTime? startedAt,
-    DateTime? completedAt,
+    Object? completedAt = _unset,
     DateTime? updatedAt,
   }) =>
       TodayStudySet(
@@ -115,7 +119,9 @@ class TodayStudySet {
         status: status ?? this.status,
         items: items ?? this.items,
         startedAt: startedAt ?? this.startedAt,
-        completedAt: completedAt ?? this.completedAt,
+        completedAt: identical(completedAt, _unset)
+            ? this.completedAt
+            : completedAt as DateTime?,
         createdAt: createdAt,
         updatedAt: updatedAt ?? this.updatedAt,
       );

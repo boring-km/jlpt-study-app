@@ -1,156 +1,128 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../domain/models/today_study_set.dart';
 import '../../domain/models/enums.dart';
-import '../../domain/repositories/study_set_repository.dart';
+import '../../domain/models/error_tag.dart';
+import '../../domain/models/today_study_set.dart';
+import '../../domain/repositories/miss_log_repository.dart';
 import '../../domain/repositories/progress_repository.dart';
+import '../../domain/repositories/study_set_repository.dart';
+import '../../domain/services/study_set_builder.dart';
 import 'database_provider.dart';
 import 'progress_summary_provider.dart';
 
 final todayStudySetProvider =
-    AsyncNotifierProvider<TodayStudySetNotifier, TodayStudySet?>(
-  TodayStudySetNotifier.new,
-);
+    AsyncNotifierProvider<TodayStudySetNotifier, TodayStudySet?>(TodayStudySetNotifier.new);
+
+String todayDateString([DateTime? now]) {
+  final d = now ?? DateTime.now();
+  return '${d.year}-${d.month.toString().padLeft(2, '0')}-${d.day.toString().padLeft(2, '0')}';
+}
 
 class TodayStudySetNotifier extends AsyncNotifier<TodayStudySet?> {
   @override
   Future<TodayStudySet?> build() async {
     final db = await ref.watch(databaseProvider.future);
-    final today = _todayStr();
-    final repo = StudySetRepository(db);
-    return repo.getByDate(today);
+    return StudySetRepository(db).getByDate(todayDateString());
   }
 
-  String _todayStr() {
-    final now = DateTime.now();
-    return '${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}';
-  }
-
-  /// 오늘 세트가 없을 때 새로 생성 (홈 화면 "오늘 학습 시작" 탭 시 호출)
-  Future<TodayStudySet> createTodaySet() async {
+  Future<List<TodayStudyItem>> _buildItems({
+    required int startOrder,
+    required Set<String> exclude,
+  }) async {
     final db = await ref.read(databaseProvider.future);
     final summary = await ref.read(progressSummaryProvider.future);
-    final progressRepo = ProgressRepository(db);
-    final studyRepo = StudySetRepository(db);
-    final today = _todayStr();
-
-    final uncompletedIds =
-        await progressRepo.getUncompletedWordIds(summary.currentLevel);
-    uncompletedIds.shuffle();
-    final selected = uncompletedIds.take(summary.dailyTarget).toList();
-
+    final builder = StudySetBuilder(ProgressRepository(db));
+    final newIds = await builder.pickNewWordIds(summary.dailyTarget, exclude: exclude);
+    final weakIds = await builder.pickWeakWordIds(exclude: {...exclude, ...newIds});
+    final ids = [...newIds, ...weakIds]..shuffle();
     final now = DateTime.now();
-    final items = selected.asMap().entries.map((e) {
-      return TodayStudyItem(
-        studyDate: today,
-        wordId: e.value,
-        displayOrder: e.key,
-        readingPassed: false,
-        meaningPassed: false,
-        readingAttempts: 0,
-        meaningAttempts: 0,
-        updatedAt: now,
-      );
-    }).toList();
+    final today = todayDateString(now);
+    return [
+      for (var i = 0; i < ids.length; i++)
+        TodayStudyItem(
+          studyDate: today,
+          wordId: ids[i],
+          displayOrder: startOrder + i,
+          passed: false,
+          attempts: 0,
+          updatedAt: now,
+        ),
+    ];
+  }
 
+  Future<TodayStudySet> createTodaySet() async {
+    final db = await ref.read(databaseProvider.future);
+    final items = await _buildItems(startOrder: 0, exclude: const {});
+    final now = DateTime.now();
     final set = TodayStudySet(
-      studyDate: today,
-      jlptLevel: summary.currentLevel,
-      targetCount: selected.length,
-      status: StudyStage.flashcard,
+      studyDate: todayDateString(now),
+      targetCount: items.length,
+      status: StudyStage.quiz,
       items: items,
       startedAt: now,
       createdAt: now,
       updatedAt: now,
     );
-
-    await studyRepo.createSet(set);
+    await StudySetRepository(db).createSet(set);
     state = AsyncData(set);
     return set;
   }
 
-  /// 완료된 세트를 삭제하고 새 단어 세트로 학습 시작
-  Future<TodayStudySet> createNextSet() async {
+  /// 완료된 오늘 세트에 새 단어를 덧붙이고 다시 quiz 상태로.
+  Future<TodayStudySet> appendNextSet() async {
+    final current = state.valueOrNull;
+    if (current == null) return createTodaySet();
     final db = await ref.read(databaseProvider.future);
-    final repo = StudySetRepository(db);
-    final today = _todayStr();
-    await repo.deleteSet(today);
-    return createTodaySet();
-  }
-
-  /// 현재 단계 완료 후 다음 단계로 진행
-  Future<void> advanceStage(StudyStage nextStage) async {
-    final db = await ref.read(databaseProvider.future);
-    final today = _todayStr();
-    final repo = StudySetRepository(db);
-    final completedAt =
-        nextStage == StudyStage.completed ? DateTime.now() : null;
-    await repo.updateSetStatus(today, nextStage, completedAt: completedAt);
-    state = AsyncData(
-      state.valueOrNull?.copyWith(
-        status: nextStage,
-        completedAt: completedAt,
-        updatedAt: DateTime.now(),
-      ),
+    final items = await _buildItems(
+      startOrder: current.items.length,
+      exclude: current.items.map((i) => i.wordId).toSet(),
     );
+    await StudySetRepository(db).appendItems(current.studyDate, items);
+    final updated = current.copyWith(
+      items: [...current.items, ...items],
+      targetCount: current.items.length + items.length,
+      status: StudyStage.quiz,
+      completedAt: null,
+      updatedAt: DateTime.now(),
+    );
+    state = AsyncData(updated);
+    return updated;
   }
 
-  /// 단어 결과 업데이트. 오답이면 miss_count +1, 정답이면 -1 (0 floor).
-  Future<void> updateItemResult(
-    String wordId, {
-    required bool passed,
-    required bool isReadingStage,
-  }) async {
-    final db = await ref.read(databaseProvider.future);
-    final repo = StudySetRepository(db);
-    final progressRepo = ProgressRepository(db);
+  Future<void> updateItemResult(String wordId, {required bool passed, ErrorTag? tag}) async {
     final current = state.valueOrNull;
     if (current == null) return;
-
-    final itemIndex = current.items.indexWhere((i) => i.wordId == wordId);
-    if (itemIndex < 0) return;
-    final item = current.items[itemIndex];
-
-    final updated = isReadingStage
-        ? item.copyWith(
-            readingPassed: passed,
-            readingAttempts: item.readingAttempts + 1,
-            lastResult: passed ? QuizResult.correct : QuizResult.wrong,
-            updatedAt: DateTime.now(),
-          )
-        : item.copyWith(
-            meaningPassed: passed,
-            meaningAttempts: item.meaningAttempts + 1,
-            lastResult: passed ? QuizResult.know : QuizResult.dontKnow,
-            updatedAt: DateTime.now(),
-          );
-
-    await repo.updateItem(updated);
-
+    final idx = current.items.indexWhere((i) => i.wordId == wordId);
+    if (idx < 0) return;
+    final db = await ref.read(databaseProvider.future);
+    final item = current.items[idx];
+    final updated = item.copyWith(
+      passed: passed,
+      attempts: item.attempts + 1,
+      updatedAt: DateTime.now(),
+    );
+    await StudySetRepository(db).updateItem(updated);
+    final progressRepo = ProgressRepository(db);
     if (passed) {
       await progressRepo.decrementMiss(wordId);
     } else {
       await progressRepo.incrementMiss(wordId);
+      await MissLogRepository(db).add(wordId, tag ?? ErrorTag.other);
     }
-
-    final newItems = List<TodayStudyItem>.from(current.items);
-    newItems[itemIndex] = updated;
-    state = AsyncData(
-      current.copyWith(items: newItems, updatedAt: DateTime.now()),
-    );
+    final items = List<TodayStudyItem>.from(current.items)..[idx] = updated;
+    state = AsyncData(current.copyWith(items: items, updatedAt: DateTime.now()));
   }
 
-  /// 1단계+2단계 모두 통과한 단어를 completed로 마킹
-  Future<void> markCompletedWords() async {
-    final db = await ref.read(databaseProvider.future);
-    final progressRepo = ProgressRepository(db);
+  Future<void> finish() async {
     final current = state.valueOrNull;
     if (current == null) return;
-
-    for (final item in current.items) {
-      if (item.isFullyCompleted) {
-        await progressRepo.markCompleted(item.wordId);
-      }
+    final db = await ref.read(databaseProvider.future);
+    final progressRepo = ProgressRepository(db);
+    for (final item in current.items.where((i) => i.passed)) {
+      await progressRepo.markCompleted(item.wordId);
     }
+    final now = DateTime.now();
+    await StudySetRepository(db).updateSetStatus(current.studyDate, StudyStage.completed, completedAt: now);
+    state = AsyncData(current.copyWith(status: StudyStage.completed, completedAt: now, updatedAt: now));
     ref.invalidate(progressSummaryProvider);
   }
 }
