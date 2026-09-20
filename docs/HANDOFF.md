@@ -76,3 +76,30 @@ TestFlight 업로드:
 flutter build ipa --release --export-options-plist=ios/ExportOptions.plist
 # 마지막 "failed to list directory build/ios/ipa" 는 무해 (upload 모드라 IPA 파일 안 남음)
 ```
+
+## 7. 다음 세션용 프롬프트 (복붙)
+
+**A. UI 디자인 평가 → 개선 (스킬 4개 설치됨: impeccable v4.3.1, ui-ux-pro-max, material-3, flutter-design/mobile-app-design-mastery)**
+```
+docs/HANDOFF.md 읽고 시작. iOS 시뮬레이터(iPhone 17, UDID 242D3538-3472-49A4-8356-E412039855C4)에 앱 설치·실행해서 홈/퀴즈/완료/복습 시트/탐색/설정 화면 스크린샷 찍은 뒤
+1) /impeccable critique 로 화면별 평가 (Operate 모드, 미니멀 선호),
+2) 방향 제안 2~3개를 스크린샷 목업 없이 글로 먼저 보여주고 내가 고르면
+3) flutter-design + mobile-app-design-mastery 패턴으로 구현, material-3 감사로 마무리.
+기능·문구·라우트는 바꾸지 말 것. 브랜치 feat/ui-polish. 완료 후 flutter analyze/test + integration_test/checklist_test.dart 통과 확인.
+```
+
+**B. 파킹된 코스메틱 6건 한 번에 처리**
+```
+docs/HANDOFF.md §4-3의 파킹 항목 6개를 브랜치 feat/parked-fixes에서 한 fix 라운드로 처리해줘: 완료 화면 가나 단어 읽기 중복 표시, 복습 필터 시트를 루트 내비게이터에 띄우기, 완료 화면 '다음 학습 시작' _busy 가드+스낵바, 홈 _guard에 debugPrint, isValidBackup user_version 0 거부, ExploreNotifier.updateFilter 스냅샷 경합. 각각 테스트 추가, 리뷰 1회, 233+ 테스트 통과 후 머지 여부 물어봐.
+```
+
+**C. TestFlight 업로드**
+```
+/testflight
+```
+(또는 "TestFlight 올려줘". 빌드 번호 자동 +1, 커밋·푸시·업로드·검증까지.)
+
+**D. App Store 정식 제출**
+```
+App Store Connect에 1.2.0 정식 제출 준비해줘. Chrome으로 appstoreconnect.apple.com 열어줄 테니 로그인은 내가 할게. 최신 처리 완료 빌드 선택, 스크린샷/설명 현황 확인, 심사 제출 직전에 멈추고 나한테 확인받아.
+```
