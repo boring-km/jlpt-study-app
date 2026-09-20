@@ -18,6 +18,14 @@ class _WordListScreenState extends ConsumerState<WordListScreen> {
   int? _expandedIndex;
 
   @override
+  void initState() {
+    super.initState();
+    // 필터는 화면 밖(exploreFilterProvider)에 살아남으므로, 검색창도 그 값에서
+    // 시작해야 입력 내용과 실제 필터가 어긋나지 않는다.
+    _searchController.text = ref.read(exploreFilterProvider).query;
+  }
+
+  @override
   void dispose() {
     _searchController.dispose();
     super.dispose();

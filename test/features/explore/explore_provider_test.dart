@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:jlpt/application/providers/database_provider.dart';
+import 'package:jlpt/application/providers/word_catalog_provider.dart';
 import 'package:jlpt/core/db/database.dart';
 import 'package:jlpt/domain/models/enums.dart';
 import 'package:jlpt/domain/models/word.dart';
@@ -138,6 +139,30 @@ void main() {
       ),
       ['user_1'],
     );
+  });
+
+  test('keeps the filter when the catalog changes and shows the new word',
+      () async {
+    final container = await setup();
+    // '추가한 단어' 칩을 켠 상태에서 단어를 추가하면, 목록이 전체로
+    // 되돌아가지 않고 필터가 유지된 채 새 단어가 보여야 한다.
+    await container
+        .read(exploreProvider.notifier)
+        .updateFilter(const ExploreFilter(sourceFilter: 'user'));
+
+    await container.read(wordCatalogProvider.notifier).addUserWord(
+          const Word(
+            id: 'user_3',
+            expression: '新語',
+            reading: 'しんご',
+            meaningKo: '신어',
+            type: WordType.on,
+          ),
+        );
+
+    final state = await container.read(exploreProvider.future);
+    expect(state.filter.sourceFilter, 'user');
+    expect(state.results.map((w) => w.id), ['user_1', 'user_2', 'user_3']);
   });
 
   test('clearing the filters restores the whole catalog', () async {

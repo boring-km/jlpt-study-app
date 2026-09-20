@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sqflite/sqflite.dart';
 import '../../domain/models/word.dart';
 import '../../domain/repositories/word_repository.dart';
 import '../../domain/repositories/progress_repository.dart';
@@ -66,6 +67,12 @@ class ExploreState {
 final exploreProvider =
     AsyncNotifierProvider<ExploreNotifier, ExploreState>(ExploreNotifier.new);
 
+/// 사용자가 고른 필터. 카탈로그가 바뀌면([wordCatalogProvider]) [exploreProvider]가
+/// 통째로 다시 빌드되므로, 필터를 그 상태 안에 두면 단어를 하나 추가할 때마다
+/// 칩 선택과 검색어가 풀린다. 그래서 다시 빌드되는 상태 바깥에 보관한다.
+final exploreFilterProvider =
+    StateProvider<ExploreFilter>((ref) => const ExploreFilter());
+
 class ExploreNotifier extends AsyncNotifier<ExploreState> {
   @override
   Future<ExploreState> build() async {
@@ -73,21 +80,30 @@ class ExploreNotifier extends AsyncNotifier<ExploreState> {
     final catalog = await ref.watch(wordCatalogProvider.future);
     final completedIds =
         (await ProgressRepository(db).getCompletedWordIds()).toSet();
+    // watch가 아니라 read — 필터 변경은 updateFilter가 직접 처리한다.
+    // watch하면 필터를 바꿀 때마다 build()가 다시 돌아 무한 루프가 된다.
+    final filter = ref.read(exploreFilterProvider);
 
     return ExploreState(
-      filter: const ExploreFilter(),
-      results: catalog,
+      filter: filter,
+      results: _isUnfiltered(filter)
+          ? catalog
+          : await _applyFilter(filter, db, completedIds),
       completedWordIds: completedIds,
       isLoading: false,
     );
   }
 
-  Future<void> updateFilter(ExploreFilter filter) async {
-    final current = state.valueOrNull;
-    if (current == null) return;
-    state = AsyncData(current.copyWith(isLoading: true, filter: filter));
+  static bool _isUnfiltered(ExploreFilter filter) =>
+      filter.query.isEmpty &&
+      filter.sourceFilter == null &&
+      filter.completedFilter == null;
 
-    final db = await ref.read(databaseProvider.future);
+  Future<List<Word>> _applyFilter(
+    ExploreFilter filter,
+    Database db,
+    Set<String> completedWordIds,
+  ) async {
     final wordRepo = WordRepository(db);
 
     var results = filter.query.isNotEmpty
@@ -101,10 +117,22 @@ class ExploreNotifier extends AsyncNotifier<ExploreState> {
 
     if (filter.completedFilter != null) {
       results = results.where((w) {
-        final isCompleted = current.completedWordIds.contains(w.id);
+        final isCompleted = completedWordIds.contains(w.id);
         return filter.completedFilter! ? isCompleted : !isCompleted;
       }).toList();
     }
+
+    return results;
+  }
+
+  Future<void> updateFilter(ExploreFilter filter) async {
+    final current = state.valueOrNull;
+    if (current == null) return;
+    ref.read(exploreFilterProvider.notifier).state = filter;
+    state = AsyncData(current.copyWith(isLoading: true, filter: filter));
+
+    final db = await ref.read(databaseProvider.future);
+    final results = await _applyFilter(filter, db, current.completedWordIds);
 
     state = AsyncData(
       current.copyWith(
