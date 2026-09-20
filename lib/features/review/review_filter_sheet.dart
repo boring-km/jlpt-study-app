@@ -15,21 +15,42 @@ Future<void> showReviewFilterSheet(BuildContext context) {
   );
 }
 
-class _ReviewFilterSheet extends ConsumerWidget {
+class _ReviewFilterSheet extends ConsumerStatefulWidget {
   const _ReviewFilterSheet();
 
-  Future<void> _start(BuildContext context, WidgetRef ref, ErrorTag? tag) async {
+  @override
+  ConsumerState<_ReviewFilterSheet> createState() => _ReviewFilterSheetState();
+}
+
+class _ReviewFilterSheetState extends ConsumerState<_ReviewFilterSheet> {
+  /// 세션 생성이 끝나기 전의 두 번째 탭은 무시한다 — 안 그러면 아무도 풀지
+  /// 않을 두 번째 review_sessions row가 남는다.
+  bool _starting = false;
+
+  Future<void> _start(ErrorTag? tag) async {
+    if (_starting) return;
+    setState(() => _starting = true);
     // pop 이후에는 이 시트 컨텍스트로 조상을 찾을 수 없으므로 미리 붙잡아 둔다.
     final router = GoRouter.of(context);
     final navigator = Navigator.of(context);
-    await ref.read(reviewSessionProvider.notifier).startNewSession(tag: tag);
-    if (!context.mounted) return;
+    final messenger = ScaffoldMessenger.of(context);
+    try {
+      await ref.read(reviewSessionProvider.notifier).startNewSession(tag: tag);
+    } catch (_) {
+      if (!mounted) return;
+      setState(() => _starting = false);
+      messenger.showSnackBar(
+        const SnackBar(content: Text('복습을 시작하지 못했습니다. 잠시 후 다시 시도해 주세요.')),
+      );
+      return;
+    }
+    if (!mounted) return;
     navigator.pop();
     router.push('/quiz', extra: QuizMode.review);
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final counts = ref.watch(missTagCountsProvider).valueOrNull ?? const {};
     return SafeArea(
       child: Padding(
@@ -46,13 +67,13 @@ class _ReviewFilterSheet extends ConsumerWidget {
               children: [
                 ActionChip(
                   label: const Text('전체'),
-                  onPressed: () => _start(context, ref, null),
+                  onPressed: _starting ? null : () => _start(null),
                 ),
                 for (final tag in ErrorTag.values)
                   if ((counts[tag] ?? 0) > 0)
                     ActionChip(
                       label: Text('${tag.label} ${counts[tag]}'),
-                      onPressed: () => _start(context, ref, tag),
+                      onPressed: _starting ? null : () => _start(tag),
                     ),
               ],
             ),

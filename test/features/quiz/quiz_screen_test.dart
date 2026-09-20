@@ -6,8 +6,10 @@ import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:jlpt/application/providers/database_provider.dart';
 import 'package:jlpt/application/providers/progress_summary_provider.dart';
 import 'package:jlpt/application/providers/today_study_set_provider.dart';
+import 'package:jlpt/application/providers/word_catalog_provider.dart';
 import 'package:jlpt/core/db/database.dart';
 import 'package:jlpt/domain/models/enums.dart';
+import 'package:jlpt/domain/models/today_study_set.dart';
 import 'package:jlpt/domain/models/word.dart';
 import 'package:jlpt/domain/repositories/settings_repository.dart';
 import 'package:jlpt/domain/repositories/word_repository.dart';
@@ -143,6 +145,37 @@ void main() {
     await tester.runAsync(db.close);
   });
 
+  testWidgets('a DB failure shows an error state with a retry instead of a spinner',
+      (tester) async {
+    // 보기 로딩이 실패하면 예전에는 스피너에 영구히 머물렀다.
+    final container = ProviderContainer(overrides: [
+      databaseProvider.overrideWith((ref) async => throw StateError('db down')),
+      wordCatalogProvider.overrideWith(_StubCatalogNotifier.new),
+      todayStudySetProvider.overrideWith(_StubStudySetNotifier.new),
+    ]);
+    addTearDown(container.dispose);
+    // 화면이 뜨기 전에 세트·카탈로그를 해소해 둔다 (다른 테스트의 setup과 동일).
+    await container.read(wordCatalogProvider.future);
+    await container.read(todayStudySetProvider.future);
+
+    await tester.pumpWidget(app(container));
+    for (var i = 0; i < 10; i++) {
+      await tester.pump(const Duration(milliseconds: 20));
+    }
+
+    expect(find.byType(CircularProgressIndicator), findsNothing);
+    expect(find.text('보기를 불러오지 못했습니다.'), findsOneWidget);
+    expect(find.text('다시 시도'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+
+    // 재시도는 다시 시도하고(여전히 실패) 에러 상태를 유지한다.
+    await tester.tap(find.text('다시 시도'));
+    for (var i = 0; i < 10; i++) {
+      await tester.pump(const Duration(milliseconds: 20));
+    }
+    expect(find.text('보기를 불러오지 못했습니다.'), findsOneWidget);
+  });
+
   testWidgets('모르겠다 logs a miss with the other tag', (tester) async {
     final (db, c) = await setup(tester);
     final firstWordId = c.read(todayStudySetProvider).valueOrNull!.items.first.wordId;
@@ -160,4 +193,35 @@ void main() {
     expect(rows.single['tag'], 'other');
     await tester.runAsync(db.close);
   });
+}
+
+/// DB 없이 카탈로그를 들고 있는 stub.
+class _StubCatalogNotifier extends WordCatalogNotifier {
+  @override
+  Future<List<Word>> build() async => _fiveWords;
+}
+
+/// DB 없이 오늘 세트를 들고 있는 stub (첫 단어만 미완료).
+class _StubStudySetNotifier extends TodayStudySetNotifier {
+  @override
+  Future<TodayStudySet?> build() async {
+    final now = DateTime(2026, 9, 20);
+    return TodayStudySet(
+      studyDate: '2026-09-20',
+      targetCount: 1,
+      status: StudyStage.quiz,
+      items: [
+        TodayStudyItem(
+          studyDate: '2026-09-20',
+          wordId: 'n2_0001',
+          displayOrder: 0,
+          passed: false,
+          attempts: 0,
+          updatedAt: now,
+        ),
+      ],
+      createdAt: now,
+      updatedAt: now,
+    );
+  }
 }
