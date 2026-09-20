@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../core/theme/app_theme.dart';
 import '../domain/models/word.dart';
 import 'flip_card.dart';
 
@@ -74,9 +75,9 @@ class _FlashcardPageViewState extends State<FlashcardPageView> {
           ),
         ),
         if (widget.bottomWidget != null) ...[
-          const SizedBox(height: 24),
+          const SizedBox(height: AppSpacing.lg),
           Padding(
-            padding: const EdgeInsets.only(bottom: 24),
+            padding: const EdgeInsets.only(bottom: AppSpacing.lg),
             child: widget.bottomWidget!,
           ),
         ],
@@ -98,12 +99,17 @@ class _FlashcardPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     // 가나 전용 단어는 expression이 reading과 같다 — 뒷면에서 두 번 보이지 않게 한다.
     final hasExpression =
         word.expression.isNotEmpty && word.expression != word.reading;
+    final example = word.example;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.lg,
+        vertical: AppSpacing.lg,
+      ),
       child: FlipCard(
         isFlipped: isFlipped,
         onTap: onFlip,
@@ -111,70 +117,59 @@ class _FlashcardPage extends StatelessWidget {
           child: Center(
             child: Text(
               word.expression.isNotEmpty ? word.expression : word.reading,
-              style: TextStyle(
-                fontSize: 48,
-                fontWeight: FontWeight.w700,
-                color: Theme.of(context).colorScheme.onSurface,
-              ),
+              style: AppText.jaDisplay(context),
               textAlign: TextAlign.center,
             ),
           ),
         ),
         back: CardFace(
           child: SingleChildScrollView(
-            padding: const EdgeInsets.all(24),
+            padding: const EdgeInsets.all(AppSpacing.lg),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                if (hasExpression)
+                if (hasExpression) ...[
                   Text(
                     word.expression,
-                    style: TextStyle(
-                      fontSize: 36,
-                      fontWeight: FontWeight.w700,
-                      color: Theme.of(context).colorScheme.onSurface,
-                    ),
+                    // 뒷면에선 읽기·뜻과 함께 놓이므로 표제를 한 단 낮춘다.
+                    style: AppText.jaHeadline(context),
+                    textAlign: TextAlign.center,
                   ),
-                if (hasExpression) const SizedBox(height: 8),
+                  const SizedBox(height: AppSpacing.sm),
+                ],
                 Text(
                   word.reading,
-                  style: TextStyle(
-                    fontSize: 32,
-                    fontWeight: FontWeight.w600,
-                    color: Theme.of(context).colorScheme.primary,
+                  style: AppText.jaTitle(
+                    context,
+                    color: theme.colorScheme.primary,
                   ),
-                ),
-                const SizedBox(height: 12),
-                Text(
-                  word.meaningKo,
-                  style: const TextStyle(fontSize: 20),
                   textAlign: TextAlign.center,
                 ),
-                if (word.example != null) ...[
-                  const SizedBox(height: 24),
-                  const Divider(),
-                  const SizedBox(height: 12),
+                const SizedBox(height: AppSpacing.md),
+                Text(
+                  word.meaningKo,
+                  style: theme.textTheme.bodyLarge,
+                  textAlign: TextAlign.center,
+                ),
+                if (example != null) ...[
+                  const SizedBox(height: AppSpacing.lg),
+                  const Divider(height: 1),
+                  const SizedBox(height: AppSpacing.base),
                   Text(
-                    word.example!.ja,
-                    style: const TextStyle(fontSize: 22),
+                    example.ja,
+                    style: AppText.jaBody(context),
                     textAlign: TextAlign.center,
                   ),
-                  const SizedBox(height: 6),
+                  const SizedBox(height: AppSpacing.xs),
                   Text(
-                    word.example!.reading,
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Theme.of(context).colorScheme.onSurfaceVariant,
-                    ),
+                    example.reading,
+                    style: AppText.jaCaption(context),
                     textAlign: TextAlign.center,
                   ),
-                  const SizedBox(height: 6),
+                  const SizedBox(height: AppSpacing.xs),
                   Text(
-                    word.example!.ko,
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Theme.of(context).colorScheme.onSurfaceVariant,
-                    ),
+                    example.ko,
+                    style: theme.textTheme.bodySmall,
                     textAlign: TextAlign.center,
                   ),
                 ],
@@ -192,19 +187,23 @@ class CardFace extends StatelessWidget {
   const CardFace({super.key, required this.child});
 
   @override
-  Widget build(BuildContext context) => Container(
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: Theme.of(context).cardColor,
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: [
-            BoxShadow(
-              color: Theme.of(context).shadowColor.withValues(alpha: 0.12),
-              blurRadius: 16,
-              offset: const Offset(0, 4),
-            ),
-          ],
-        ),
-        child: child,
-      );
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: colorScheme.surfaceContainer,
+        borderRadius: BorderRadius.circular(AppRadius.lg),
+        boxShadow: [
+          BoxShadow(
+            color: colorScheme.shadow.withValues(alpha: isDark ? 0.4 : 0.08),
+            blurRadius: 24,
+            offset: const Offset(0, 8),
+          ),
+        ],
+      ),
+      child: child,
+    );
+  }
 }

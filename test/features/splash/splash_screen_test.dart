@@ -9,8 +9,9 @@ import 'package:jlpt/features/splash/splash_screen.dart';
 
 void main() {
   group('SplashScreen', () {
-    testWidgets('shows loading message while catalog is loading',
-        (WidgetTester tester) async {
+    testWidgets('shows loading message while catalog is loading', (
+      WidgetTester tester,
+    ) async {
       final completer = Completer<List<Word>>();
 
       await tester.pumpWidget(
@@ -30,8 +31,9 @@ void main() {
       completer.complete([]);
     });
 
-    testWidgets('shows error message on catalog error',
-        (WidgetTester tester) async {
+    testWidgets('shows error message on catalog error', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         ProviderScope(
           overrides: [
@@ -43,7 +45,7 @@ void main() {
 
       await tester.pump();
       await tester.pump();
-      expect(find.textContaining('로딩 실패'), findsOneWidget);
+      expect(find.text('단어 데이터를 불러오지 못했다. 앱을 다시 실행해 주세요.'), findsOneWidget);
     });
 
     testWidgets('shows JLPT title text', (WidgetTester tester) async {

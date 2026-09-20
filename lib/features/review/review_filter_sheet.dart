@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../application/providers/miss_tag_counts_provider.dart';
 import '../../application/providers/review_session_provider.dart';
+import '../../core/theme/app_theme.dart';
 import '../../domain/models/error_tag.dart';
 import '../quiz/quiz_mode.dart';
 
@@ -11,6 +12,8 @@ import '../quiz/quiz_mode.dart';
 Future<void> showReviewFilterSheet(BuildContext context) {
   return showModalBottomSheet<void>(
     context: context,
+    useRootNavigator: true,
+    useSafeArea: true,
     builder: (ctx) => const _ReviewFilterSheet(),
   );
 }
@@ -51,34 +54,43 @@ class _ReviewFilterSheetState extends ConsumerState<_ReviewFilterSheet> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     final counts = ref.watch(missTagCountsProvider).valueOrNull ?? const {};
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.all(24),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('복습', style: Theme.of(context).textTheme.titleMedium),
-            const SizedBox(height: 12),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: [
-                ActionChip(
-                  label: const Text('전체'),
-                  onPressed: _starting ? null : () => _start(null),
-                ),
-                for (final tag in ErrorTag.values)
-                  if ((counts[tag] ?? 0) > 0)
-                    ActionChip(
-                      label: Text('${tag.label} ${counts[tag]}'),
-                      onPressed: _starting ? null : () => _start(tag),
-                    ),
-              ],
-            ),
-          ],
-        ),
+    // useSafeArea는 위쪽만 띄운다 — 홈 인디케이터만큼 아래를 직접 띄운다.
+    final bottomSafe = MediaQuery.viewPaddingOf(context).bottom;
+    return Padding(
+      padding: EdgeInsets.fromLTRB(
+        AppSpacing.lg,
+        AppSpacing.sm,
+        AppSpacing.lg,
+        AppSpacing.lg + bottomSafe,
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text('복습', style: theme.textTheme.titleLarge),
+          const SizedBox(height: AppSpacing.xs),
+          Text('틀린 종류별로 다시 푼다', style: theme.textTheme.bodySmall),
+          const SizedBox(height: AppSpacing.base),
+          Wrap(
+            spacing: AppSpacing.sm,
+            runSpacing: AppSpacing.sm,
+            children: [
+              ActionChip(
+                label: const Text('전체'),
+                onPressed: _starting ? null : () => _start(null),
+              ),
+              for (final tag in ErrorTag.values)
+                if ((counts[tag] ?? 0) > 0)
+                  ActionChip(
+                    label: Text('${tag.label} ${counts[tag]}'),
+                    onPressed: _starting ? null : () => _start(tag),
+                  ),
+            ],
+          ),
+          const SizedBox(height: AppSpacing.base),
+        ],
       ),
     );
   }

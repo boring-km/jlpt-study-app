@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../application/providers/database_provider.dart';
 import '../../application/providers/progress_summary_provider.dart';
 import '../../application/providers/word_catalog_provider.dart';
+import '../../core/theme/app_theme.dart';
 import '../../domain/models/enums.dart';
 import '../../domain/models/word.dart';
 import '../../domain/repositories/word_repository.dart';
@@ -30,6 +31,8 @@ Future<void> showAddWordSheet(
 }) {
   return showModalBottomSheet<void>(
     context: context,
+    useRootNavigator: true,
+    useSafeArea: true,
     isScrollControlled: true,
     builder: (ctx) => Padding(
       padding: EdgeInsets.only(bottom: MediaQuery.of(ctx).viewInsets.bottom),
@@ -136,6 +139,8 @@ class _AddWordSheetState extends ConsumerState<AddWordSheet> {
     });
 
     final navigator = Navigator.of(context);
+    // pop 이후엔 이 컨텍스트로 메신저를 못 찾으니 미리 붙잡아 둔다.
+    final messenger = ScaffoldMessenger.maybeOf(context);
     // 시트가 닫힌 뒤에도 캐시는 갱신해야 하므로 ref 대신 컨테이너를 붙잡아 둔다.
     final container = ProviderScope.containerOf(context, listen: false);
 
@@ -150,7 +155,7 @@ class _AddWordSheetState extends ConsumerState<AddWordSheet> {
       if (!mounted) return;
       setState(() {
         _saving = false;
-        _error = '저장하지 못했다';
+        _error = '저장하지 못했습니다. 잠시 후 다시 시도해 주세요';
       });
       return;
     }
@@ -182,80 +187,84 @@ class _AddWordSheetState extends ConsumerState<AddWordSheet> {
       if (!mounted) return;
       setState(() {
         _saving = false;
-        _error = '저장하지 못했다';
+        _error = '저장하지 못했습니다. 잠시 후 다시 시도해 주세요';
       });
       return;
     }
     container.invalidate(progressSummaryProvider);
     container.invalidate(exploreProvider);
     if (!mounted) return;
+    messenger?.showSnackBar(SnackBar(content: Text('$expression 추가됨')));
     navigator.pop();
   }
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     final canSave = _existing == null && !_saving;
-    return SafeArea(
+    // useSafeArea는 위쪽만 띄운다 — 홈 인디케이터가 저장 버튼을 덮지 않도록
+    // 아래 여백은 직접 더한다.
+    final bottomSafe = MediaQuery.viewPaddingOf(context).bottom;
+    // 키보드가 올라와도 저장 버튼까지 닿도록 본문은 스크롤한다.
+    return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.all(24),
+        padding: EdgeInsets.fromLTRB(
+          AppSpacing.lg,
+          AppSpacing.lg,
+          AppSpacing.lg,
+          AppSpacing.lg + bottomSafe,
+        ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text('단어 추가', style: Theme.of(context).textTheme.titleMedium),
-            const SizedBox(height: 16),
+            Text('단어 추가', style: theme.textTheme.titleLarge),
+            const SizedBox(height: AppSpacing.base),
             TextField(
               key: const Key('add-expression'),
               controller: _expression,
               autofocus: widget.initialExpression == null,
               onChanged: _onExpressionChanged,
+              // 한자가 한국식 자형으로 나오지 않도록 입력 글자도 일본어 폰트로.
+              style: AppText.jaBody(context),
               decoration: const InputDecoration(
                 labelText: '표기',
                 hintText: '把握',
               ),
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: AppSpacing.md),
             TextField(
               key: const Key('add-reading'),
               controller: _reading,
+              style: AppText.jaBody(context),
               decoration: const InputDecoration(
                 labelText: '읽기',
                 hintText: 'はあく',
               ),
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: AppSpacing.md),
             TextField(
               key: const Key('add-meaning'),
               controller: _meaning,
-              decoration: const InputDecoration(
-                labelText: '뜻',
-                hintText: '파악',
-              ),
+              decoration: const InputDecoration(labelText: '뜻', hintText: '파악'),
             ),
             if (_existing != null) ...[
-              const SizedBox(height: 12),
-              Text(
-                '이미 있는 단어',
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.onSurfaceVariant,
-                ),
-              ),
+              const SizedBox(height: AppSpacing.md),
+              Text('이미 있는 단어', style: theme.textTheme.bodySmall),
             ] else if (_error != null) ...[
-              const SizedBox(height: 12),
+              const SizedBox(height: AppSpacing.md),
               Text(
                 _error!,
-                style: TextStyle(color: Theme.of(context).colorScheme.error),
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: theme.colorScheme.error,
+                ),
               ),
             ],
-            const SizedBox(height: 20),
-            SizedBox(
-              width: double.infinity,
-              height: 48,
-              child: ElevatedButton(
-                key: const Key('add-save'),
-                onPressed: canSave ? _save : null,
-                child: const Text('저장'),
-              ),
+            const SizedBox(height: AppSpacing.lg),
+            ElevatedButton(
+              key: const Key('add-save'),
+              onPressed: canSave ? _save : null,
+              child: const Text('저장'),
             ),
           ],
         ),

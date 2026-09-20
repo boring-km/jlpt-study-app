@@ -1,4 +1,5 @@
-enum AppThemeMode { light, dark }
+/// 기본은 system — iOS 다크 모드 사용자가 처음 열어도 흰 화면을 보지 않는다.
+enum AppThemeMode { system, light, dark }
 
 class AppSettings {
   final DateTime examDate;
@@ -7,9 +8,9 @@ class AppSettings {
   const AppSettings({required this.examDate, required this.themeMode});
 
   static AppSettings get defaults => AppSettings(
-        examDate: nextJlptDate(DateTime.now()),
-        themeMode: AppThemeMode.light,
-      );
+    examDate: nextJlptDate(DateTime.now()),
+    themeMode: AppThemeMode.system,
+  );
 
   /// JLPT는 7월·12월 첫째 일요일. 오늘 이후(당일 포함) 가장 가까운 시험일.
   static DateTime nextJlptDate(DateTime now) {

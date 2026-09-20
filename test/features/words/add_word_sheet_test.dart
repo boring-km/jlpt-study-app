@@ -30,29 +30,29 @@ void main() {
       db = await AppDatabase.openForTest();
       await SettingsRepository(db).setDataVersion(AppDatabase.kDataVersion);
       if (words.isNotEmpty) await WordRepository(db).insertAll(words);
-      container = ProviderContainer(overrides: [
-        databaseProvider.overrideWith((ref) async => db),
-      ]);
+      container = ProviderContainer(
+        overrides: [databaseProvider.overrideWith((ref) async => db)],
+      );
       await container.read(wordCatalogProvider.future);
     });
     return (db, container);
   }
 
   Widget app(ProviderContainer container) => UncontrolledProviderScope(
-        container: container,
-        child: MaterialApp(
-          home: Scaffold(
-            body: Builder(
-              builder: (ctx) => Center(
-                child: ElevatedButton(
-                  onPressed: () => showAddWordSheet(ctx),
-                  child: const Text('OPEN'),
-                ),
-              ),
+    container: container,
+    child: MaterialApp(
+      home: Scaffold(
+        body: Builder(
+          builder: (ctx) => Center(
+            child: ElevatedButton(
+              onPressed: () => showAddWordSheet(ctx),
+              child: const Text('OPEN'),
             ),
           ),
         ),
-      );
+      ),
+    ),
+  );
 
   Future<void> openSheet(WidgetTester tester) async {
     await tester.tap(find.text('OPEN'));
@@ -71,8 +71,9 @@ void main() {
     expect(looksJapanese('あ' * 20), isTrue);
   });
 
-  testWidgets('saves user word with reading required for kanji',
-      (tester) async {
+  testWidgets('saves user word with reading required for kanji', (
+    tester,
+  ) async {
     final (db, container) = await setup(tester);
     addTearDown(container.dispose);
     await tester.pumpWidget(app(container));
@@ -94,6 +95,8 @@ void main() {
     await settleWithDb(tester);
 
     expect(find.byKey(const Key('add-expression')), findsNothing);
+    // 시트가 닫히면 추가됐는지 알 길이 없어 스낵바로 알린다.
+    expect(find.text('把握 추가됨'), findsOneWidget);
     final saved = container.read(wordCatalogProvider).valueOrNull ?? [];
     final userWords = saved.where((w) => w.source == 'user').toList();
     expect(userWords, hasLength(1));
@@ -103,17 +106,21 @@ void main() {
     await tester.runAsync(db.close);
   });
 
-  testWidgets('existing expression shows 이미 있는 단어 and disables save',
-      (tester) async {
-    final (db, container) = await setup(tester, words: const [
-      Word(
-        id: 'n2_0001',
-        expression: '生産',
-        reading: 'せいさん',
-        meaningKo: '생산',
-        type: WordType.on,
-      ),
-    ]);
+  testWidgets('existing expression shows 이미 있는 단어 and disables save', (
+    tester,
+  ) async {
+    final (db, container) = await setup(
+      tester,
+      words: const [
+        Word(
+          id: 'n2_0001',
+          expression: '生産',
+          reading: 'せいさん',
+          meaningKo: '생산',
+          type: WordType.on,
+        ),
+      ],
+    );
     addTearDown(container.dispose);
     await tester.pumpWidget(app(container));
     await settleWithDb(tester);
@@ -130,17 +137,21 @@ void main() {
     await tester.runAsync(db.close);
   });
 
-  testWidgets('saving inside the debounce window still rejects a duplicate',
-      (tester) async {
-    final (db, container) = await setup(tester, words: const [
-      Word(
-        id: 'n2_0001',
-        expression: '生産',
-        reading: 'せいさん',
-        meaningKo: '생산',
-        type: WordType.on,
-      ),
-    ]);
+  testWidgets('saving inside the debounce window still rejects a duplicate', (
+    tester,
+  ) async {
+    final (db, container) = await setup(
+      tester,
+      words: const [
+        Word(
+          id: 'n2_0001',
+          expression: '生産',
+          reading: 'せいさん',
+          meaningKo: '생산',
+          type: WordType.on,
+        ),
+      ],
+    );
     addTearDown(container.dispose);
     await tester.pumpWidget(app(container));
     await settleWithDb(tester);
@@ -150,7 +161,9 @@ void main() {
     await tester.enterText(find.byKey(const Key('add-expression')), '生産');
     await tester.enterText(find.byKey(const Key('add-reading')), 'せいさん');
     expect(
-      tester.widget<ElevatedButton>(find.byKey(const Key('add-save'))).onPressed,
+      tester
+          .widget<ElevatedButton>(find.byKey(const Key('add-save')))
+          .onPressed,
       isNotNull,
     );
     await tester.tap(find.byKey(const Key('add-save')));
@@ -178,28 +191,32 @@ void main() {
     await tester.runAsync(db.close);
   });
 
-  testWidgets('katakana word without kanji falls back to expression as reading',
-      (tester) async {
-    final (db, container) = await setup(tester);
-    addTearDown(container.dispose);
-    await tester.pumpWidget(app(container));
-    await settleWithDb(tester);
-    await openSheet(tester);
+  testWidgets(
+    'katakana word without kanji falls back to expression as reading',
+    (tester) async {
+      final (db, container) = await setup(tester);
+      addTearDown(container.dispose);
+      await tester.pumpWidget(app(container));
+      await settleWithDb(tester);
+      await openSheet(tester);
 
-    await tester.enterText(find.byKey(const Key('add-expression')), 'コーヒー');
-    await settleWithDb(tester);
-    await tester.tap(find.byKey(const Key('add-save')));
-    await settleWithDb(tester);
+      await tester.enterText(find.byKey(const Key('add-expression')), 'コーヒー');
+      await settleWithDb(tester);
+      await tester.tap(find.byKey(const Key('add-save')));
+      await settleWithDb(tester);
 
-    final saved = container.read(wordCatalogProvider).valueOrNull ?? [];
-    final word = saved.singleWhere((w) => w.source == 'user');
-    expect(word.expression, 'コーヒー');
-    expect(word.reading, 'コーヒー');
-    expect(word.type, WordType.katakana);
-    await tester.runAsync(db.close);
-  });
+      final saved = container.read(wordCatalogProvider).valueOrNull ?? [];
+      final word = saved.singleWhere((w) => w.source == 'user');
+      expect(word.expression, 'コーヒー');
+      expect(word.reading, 'コーヒー');
+      expect(word.type, WordType.katakana);
+      await tester.runAsync(db.close);
+    },
+  );
 
-  testWidgets('initialExpression prefills the expression field', (tester) async {
+  testWidgets('initialExpression prefills the expression field', (
+    tester,
+  ) async {
     final (db, container) = await setup(tester);
     addTearDown(container.dispose);
     await tester.pumpWidget(

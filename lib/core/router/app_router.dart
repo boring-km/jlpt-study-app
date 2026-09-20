@@ -17,40 +17,46 @@ class ScaffoldWithNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        body: navigationShell,
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: navigationShell.currentIndex,
-          onTap: navigationShell.goBranch,
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: '홈'),
-            BottomNavigationBarItem(icon: Icon(Icons.search_outlined), label: '탐색'),
-            BottomNavigationBarItem(icon: Icon(Icons.bar_chart_outlined), label: '통계'),
-          ],
+    body: navigationShell,
+    // 탭 바와 본문을 가르는 헤어라인 하나 — 화면 전체에서 허용된 유일한 선.
+    bottomNavigationBar: Container(
+      decoration: BoxDecoration(
+        border: Border(
+          top: BorderSide(color: Theme.of(context).colorScheme.outlineVariant),
         ),
-      );
+      ),
+      child: NavigationBar(
+        selectedIndex: navigationShell.currentIndex,
+        onDestinationSelected: navigationShell.goBranch,
+        destinations: const [
+          NavigationDestination(icon: Icon(Icons.home_outlined), label: '홈'),
+          NavigationDestination(icon: Icon(Icons.search_outlined), label: '탐색'),
+          NavigationDestination(
+            icon: Icon(Icons.bar_chart_outlined),
+            label: '통계',
+          ),
+        ],
+      ),
+    ),
+  );
 }
 
 final appRouter = GoRouter(
   initialLocation: '/splash',
   routes: [
-    GoRoute(
-      path: '/splash',
-      builder: (context, state) => const SplashScreen(),
-    ),
+    GoRoute(path: '/splash', builder: (context, state) => const SplashScreen()),
     // 바텀 네비게이션 없는 전체화면 라우트
     GoRoute(
       path: '/quiz',
-      builder: (context, state) => QuizScreen(mode: state.extra as QuizMode? ?? QuizMode.study),
+      builder: (context, state) =>
+          QuizScreen(mode: state.extra as QuizMode? ?? QuizMode.study),
     ),
     GoRoute(
       path: '/quiz/complete',
       builder: (context, state) =>
           QuizCompleteScreen(mode: state.extra as QuizMode? ?? QuizMode.study),
     ),
-    GoRoute(
-      path: '/kana',
-      builder: (context, state) => const KanaScreen(),
-    ),
+    GoRoute(path: '/kana', builder: (context, state) => const KanaScreen()),
     GoRoute(
       path: '/settings',
       builder: (context, state) => const SettingsScreen(),
@@ -59,30 +65,33 @@ final appRouter = GoRouter(
       builder: (context, state, shell) =>
           ScaffoldWithNavBar(navigationShell: shell),
       branches: [
-        StatefulShellBranch(routes: [
-          GoRoute(
-            path: '/',
-            builder: (context, state) => const HomeScreen(),
-          ),
-        ]),
-        StatefulShellBranch(routes: [
-          GoRoute(
-            path: '/explore',
-            builder: (context, state) => const WordListScreen(),
-            routes: [
-              GoRoute(
-                path: 'flashcard',
-                builder: (context, state) => const ExploreFlashcardScreen(),
-              ),
-            ],
-          ),
-        ]),
-        StatefulShellBranch(routes: [
-          GoRoute(
-            path: '/stats',
-            builder: (context, state) => const StatsScreen(),
-          ),
-        ]),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(path: '/', builder: (context, state) => const HomeScreen()),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: '/explore',
+              builder: (context, state) => const WordListScreen(),
+              routes: [
+                GoRoute(
+                  path: 'flashcard',
+                  builder: (context, state) => const ExploreFlashcardScreen(),
+                ),
+              ],
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: '/stats',
+              builder: (context, state) => const StatsScreen(),
+            ),
+          ],
+        ),
       ],
     ),
   ],

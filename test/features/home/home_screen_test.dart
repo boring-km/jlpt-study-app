@@ -57,13 +57,14 @@ void main() {
     final n = notifier ?? _NullStudySetNotifier();
     final router = GoRouter(
       routes: [
-        GoRoute(
-          path: '/',
-          builder: (context, state) => const HomeScreen(),
-        ),
+        GoRoute(path: '/', builder: (context, state) => const HomeScreen()),
         GoRoute(
           path: '/quiz',
           builder: (context, state) => const Scaffold(body: Text('QUIZ')),
+        ),
+        GoRoute(
+          path: '/kana',
+          builder: (context, state) => const Scaffold(body: Text('KANA')),
         ),
       ],
     );
@@ -74,7 +75,9 @@ void main() {
         progressSummaryProvider.overrideWith((ref) async => s),
         todayStudySetProvider.overrideWith(() => n),
         // 복습 시트가 DB를 건드리지 않도록 빈 태그 카운트로 고정.
-        missTagCountsProvider.overrideWith((ref) async => const <ErrorTag, int>{}),
+        missTagCountsProvider.overrideWith(
+          (ref) async => const <ErrorTag, int>{},
+        ),
       ],
       child: MaterialApp.router(routerConfig: router),
     );
@@ -132,6 +135,76 @@ void main() {
     expect(find.text('약점 3개'), findsOneWidget);
   });
 
+  testWidgets('review card is dimmed with a hint before any study', (
+    tester,
+  ) async {
+    const freshSummary = ProgressSummary(
+      completedCount: 0,
+      totalCount: 100,
+      daysUntilExam: 30,
+      dailyTarget: 5,
+      weakCount: 0,
+    );
+    await tester.pumpWidget(buildHomeScreen(summary: freshSummary));
+    await tester.pumpAndSettle();
+
+    expect(find.text('복습'), findsOneWidget);
+    // 고장 난 것처럼 보이지 않도록 왜 닫혀 있는지 말해 준다.
+    expect(find.text('학습 후 열림'), findsOneWidget);
+
+    await tester.tap(find.text('복습'));
+    await tester.pumpAndSettle();
+    expect(find.text('전체'), findsNothing);
+  });
+
+  testWidgets('kana pill opens the kana table', (tester) async {
+    await tester.pumpWidget(buildHomeScreen());
+    await tester.pumpAndSettle();
+
+    expect(find.text('かな'), findsOneWidget);
+    await tester.tap(find.text('かな'));
+    await tester.pumpAndSettle();
+    expect(find.text('KANA'), findsOneWidget);
+  });
+
+  testWidgets('no theme toggle on home — 설정에서만 바꾼다', (tester) async {
+    await tester.pumpWidget(buildHomeScreen());
+    await tester.pumpAndSettle();
+
+    expect(find.byIcon(Icons.settings_outlined), findsOneWidget);
+    expect(find.byIcon(Icons.light_mode_outlined), findsNothing);
+    expect(find.byIcon(Icons.dark_mode_outlined), findsNothing);
+  });
+
+  testWidgets('a failing summary offers a retry instead of a raw error', (
+    tester,
+  ) async {
+    final router = GoRouter(
+      routes: [
+        GoRoute(path: '/', builder: (context, state) => const HomeScreen()),
+      ],
+    );
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          progressSummaryProvider.overrideWith(
+            (ref) async => throw StateError('db is down'),
+          ),
+          todayStudySetProvider.overrideWith(_NullStudySetNotifier.new),
+          missTagCountsProvider.overrideWith(
+            (ref) async => const <ErrorTag, int>{},
+          ),
+        ],
+        child: MaterialApp.router(routerConfig: router),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.text('홈을 불러오지 못했다'), findsOneWidget);
+    expect(find.textContaining('db is down'), findsNothing);
+    expect(find.text('다시 시도'), findsOneWidget);
+  });
+
   testWidgets('shows add word card', (tester) async {
     await tester.pumpWidget(buildHomeScreen());
     await tester.pumpAndSettle();
@@ -151,30 +224,33 @@ void main() {
     expect(find.text('학습 시작'), findsNothing);
   });
 
-  testWidgets('completed set disables the main button and offers the next set',
-      (tester) async {
-    final notifier = _StubStudySetNotifier(
-      buildSet(status: StudyStage.completed, itemCount: 3, passedCount: 3),
-    );
-    await tester.pumpWidget(buildHomeScreen(notifier: notifier));
-    await tester.pumpAndSettle();
+  testWidgets(
+    'completed set disables the main button and offers the next set',
+    (tester) async {
+      final notifier = _StubStudySetNotifier(
+        buildSet(status: StudyStage.completed, itemCount: 3, passedCount: 3),
+      );
+      await tester.pumpWidget(buildHomeScreen(notifier: notifier));
+      await tester.pumpAndSettle();
 
-    expect(find.text('오늘 학습 완료 ✓'), findsOneWidget);
-    expect(find.text('오늘 3 / 3 완료'), findsOneWidget);
+      expect(find.text('오늘 학습 완료 ✓'), findsOneWidget);
+      expect(find.text('오늘 3 / 3 완료'), findsOneWidget);
 
-    final button = tester.widget<ElevatedButton>(
-      find.ancestor(
-        of: find.text('오늘 학습 완료 ✓'),
-        matching: find.byType(ElevatedButton),
-      ),
-    );
-    expect(button.onPressed, isNull);
+      final button = tester.widget<ElevatedButton>(
+        find.ancestor(
+          of: find.text('오늘 학습 완료 ✓'),
+          matching: find.byType(ElevatedButton),
+        ),
+      );
+      expect(button.onPressed, isNull);
 
-    expect(find.text('다음 학습 시작'), findsOneWidget);
-  });
+      expect(find.text('다음 학습 시작'), findsOneWidget);
+    },
+  );
 
-  testWidgets('tapping 다음 학습 시작 appends a set and opens the quiz',
-      (tester) async {
+  testWidgets('tapping 다음 학습 시작 appends a set and opens the quiz', (
+    tester,
+  ) async {
     final notifier = _StubStudySetNotifier(
       buildSet(status: StudyStage.completed, itemCount: 3, passedCount: 3),
     );
@@ -221,8 +297,9 @@ void main() {
     expect(notifier.createTodaySetCalls, 1);
   });
 
-  testWidgets('a failing 학습 시작 shows a snackbar instead of an uncaught error',
-      (tester) async {
+  testWidgets('a failing 학습 시작 shows a snackbar instead of an uncaught error', (
+    tester,
+  ) async {
     final notifier = _ThrowingStudySetNotifier();
     await tester.pumpWidget(buildHomeScreen(notifier: notifier));
     await tester.pumpAndSettle();
@@ -230,8 +307,7 @@ void main() {
     await tester.tap(find.text('학습 시작'));
     await tester.pumpAndSettle();
 
-    expect(find.text('학습을 시작하지 못했습니다. 잠시 후 다시 시도해 주세요.'),
-        findsOneWidget);
+    expect(find.text('학습을 시작하지 못했습니다. 잠시 후 다시 시도해 주세요.'), findsOneWidget);
     expect(tester.takeException(), isNull);
     expect(find.text('QUIZ'), findsNothing);
   });
@@ -240,15 +316,15 @@ void main() {
   void mockClipboard({required bool hasStrings, String? text}) {
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
         .setMockMethodCallHandler(SystemChannels.platform, (call) async {
-      switch (call.method) {
-        case 'Clipboard.hasStrings':
-          return <String, dynamic>{'value': hasStrings};
-        case 'Clipboard.getData':
-          return <String, dynamic>{'text': text};
-        default:
-          return null;
-      }
-    });
+          switch (call.method) {
+            case 'Clipboard.hasStrings':
+              return <String, dynamic>{'value': hasStrings};
+            case 'Clipboard.getData':
+              return <String, dynamic>{'text': text};
+            default:
+              return null;
+          }
+        });
     addTearDown(() {
       TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
           .setMockMethodCallHandler(SystemChannels.platform, null);
@@ -285,8 +361,9 @@ void main() {
     expect(find.text('클립보드에서 단어 추가'), findsNothing);
   });
 
-  testWidgets('clipboard chip opens the sheet prefilled with the pasted word',
-      (tester) async {
+  testWidgets('clipboard chip opens the sheet prefilled with the pasted word', (
+    tester,
+  ) async {
     mockClipboard(hasStrings: true, text: '把握');
     await tester.pumpWidget(buildHomeScreen());
     await tester.pumpAndSettle();
@@ -301,20 +378,22 @@ void main() {
     expect(field.controller?.text, '把握');
   });
 
-  testWidgets('clipboard chip warns when the clipboard is not a japanese word',
-      (tester) async {
-    mockClipboard(hasStrings: true, text: 'hello world');
-    await tester.pumpWidget(buildHomeScreen());
-    await tester.pumpAndSettle();
+  testWidgets(
+    'clipboard chip warns when the clipboard is not a japanese word',
+    (tester) async {
+      mockClipboard(hasStrings: true, text: 'hello world');
+      await tester.pumpWidget(buildHomeScreen());
+      await tester.pumpAndSettle();
 
-    await tester.tap(find.text('클립보드에서 단어 추가'));
-    await tester.pumpAndSettle();
+      await tester.tap(find.text('클립보드에서 단어 추가'));
+      await tester.pumpAndSettle();
 
-    expect(find.text('클립보드에 일본어 단어가 없다'), findsOneWidget);
-    expect(find.byKey(const Key('add-expression')), findsNothing);
-    // 한 번 쓰고 나면 칩은 사라진다.
-    expect(find.text('클립보드에서 단어 추가'), findsNothing);
-  });
+      expect(find.text('클립보드에 일본어 단어가 없다'), findsOneWidget);
+      expect(find.byKey(const Key('add-expression')), findsNothing);
+      // 한 번 쓰고 나면 칩은 사라진다.
+      expect(find.text('클립보드에서 단어 추가'), findsNothing);
+    },
+  );
 }
 
 class _NullStudySetNotifier extends TodayStudySetNotifier {

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -14,8 +16,14 @@ class WordListScreen extends ConsumerStatefulWidget {
 }
 
 class _WordListScreenState extends ConsumerState<WordListScreen> {
+  static const _debounce = Duration(milliseconds: 250);
+
   final _searchController = TextEditingController();
-  int? _expandedIndex;
+  Timer? _searchTimer;
+
+  /// 인덱스가 아니라 단어 id로 잡는다 — 디바운스·필터로 목록이 통째로
+  /// 바뀌어도 엉뚱한 행이 펼쳐지지 않는다.
+  String? _expandedWordId;
 
   @override
   void initState() {
@@ -27,27 +35,52 @@ class _WordListScreenState extends ConsumerState<WordListScreen> {
 
   @override
   void dispose() {
+    _searchTimer?.cancel();
     _searchController.dispose();
     super.dispose();
   }
 
+  /// 한 글자마다 DB를 치지 않도록 250ms 묶어서 보낸다.
   void _onSearch(String query) {
-    final current = ref.read(exploreProvider).valueOrNull?.filter ??
-        const ExploreFilter();
-    ref.read(exploreProvider.notifier).updateFilter(current.copyWith(query: query));
+    // 지우기 버튼이 붙고 떨어지는 건 즉시 보여야 한다.
+    setState(() {});
+    _searchTimer?.cancel();
+    _searchTimer = Timer(_debounce, () => _applyQuery(query));
+  }
+
+  void _applyQuery(String query) {
+    final current =
+        ref.read(exploreProvider).valueOrNull?.filter ?? const ExploreFilter();
+    ref
+        .read(exploreProvider.notifier)
+        .updateFilter(current.copyWith(query: query));
+  }
+
+  void _clearSearch() {
+    _searchTimer?.cancel();
+    _searchController.clear();
+    setState(() {});
+    _applyQuery('');
+  }
+
+  void _resetFilters() {
+    _searchTimer?.cancel();
+    _searchController.clear();
+    setState(() {});
+    ref.read(exploreProvider.notifier).updateFilter(const ExploreFilter());
   }
 
   void _onSourceFilter(String? source) {
-    final current = ref.read(exploreProvider).valueOrNull?.filter ??
-        const ExploreFilter();
+    final current =
+        ref.read(exploreProvider).valueOrNull?.filter ?? const ExploreFilter();
     ref
         .read(exploreProvider.notifier)
         .updateFilter(current.copyWith(sourceFilter: source));
   }
 
   void _onCompletedFilter(bool? completed) {
-    final current = ref.read(exploreProvider).valueOrNull?.filter ??
-        const ExploreFilter();
+    final current =
+        ref.read(exploreProvider).valueOrNull?.filter ?? const ExploreFilter();
     ref
         .read(exploreProvider.notifier)
         .updateFilter(current.copyWith(completedFilter: completed));
@@ -56,10 +89,11 @@ class _WordListScreenState extends ConsumerState<WordListScreen> {
   @override
   Widget build(BuildContext context) {
     final exploreAsync = ref.watch(exploreProvider);
+    final colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('단어 리스트'),
+        title: const Text('탐색'),
         actions: [
           IconButton(
             icon: const Icon(Icons.add),
@@ -69,96 +103,172 @@ class _WordListScreenState extends ConsumerState<WordListScreen> {
           IconButton(
             icon: const Icon(Icons.style_outlined),
             tooltip: '플래시카드로 보기',
-            onPressed: () => context.go('/explore/flashcard'),
+            // push여야 플래시카드 화면의 닫기(pop)가 이 목록으로 돌아온다.
+            onPressed: () => context.push('/explore/flashcard'),
           ),
         ],
       ),
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+            padding: const EdgeInsets.fromLTRB(
+              AppSpacing.base,
+              AppSpacing.sm,
+              AppSpacing.base,
+              0,
+            ),
             child: TextField(
               controller: _searchController,
               onChanged: _onSearch,
+              textInputAction: TextInputAction.search,
               decoration: InputDecoration(
                 hintText: '한자 · 히라가나 · 한국어로 검색',
                 prefixIcon: const Icon(Icons.search),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(14),
-                  borderSide: BorderSide(color: Theme.of(context).dividerColor, width: 1.5),
-                ),
-                filled: true,
-                contentPadding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                suffixIcon: _searchController.text.isEmpty
+                    ? null
+                    : IconButton(
+                        icon: const Icon(Icons.close),
+                        tooltip: '검색어 지우기',
+                        onPressed: _clearSearch,
+                      ),
               ),
             ),
           ),
-          const SizedBox(height: 8),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: exploreAsync.when(
-              data: (state) => Row(
-                children: [
-                  _FilterChip(
-                    label: '전체',
-                    selected: state.filter.sourceFilter == null,
-                    onTap: () => _onSourceFilter(null),
-                  ),
-                  const SizedBox(width: 8),
-                  _FilterChip(
-                    label: '추가한 단어',
-                    selected: state.filter.sourceFilter == 'user',
-                    onTap: () => _onSourceFilter(
-                        state.filter.sourceFilter == 'user' ? null : 'user'),
-                  ),
-                  const SizedBox(width: 8),
-                  _FilterChip(
-                    label: '완료',
-                    selected: state.filter.completedFilter == true,
-                    onTap: () => _onCompletedFilter(
-                        state.filter.completedFilter == true ? null : true),
-                  ),
-                  const SizedBox(width: 8),
-                  _FilterChip(
-                    label: '미완료',
-                    selected: state.filter.completedFilter == false,
-                    onTap: () => _onCompletedFilter(
-                        state.filter.completedFilter == false ? null : false),
-                  ),
-                ],
-              ),
-              loading: () => const SizedBox.shrink(),
-              error: (e, s) => const SizedBox.shrink(),
+          const SizedBox(height: AppSpacing.md),
+          exploreAsync.when(
+            data: (state) => _FilterRow(
+              filter: state.filter,
+              onSource: _onSourceFilter,
+              onCompleted: _onCompletedFilter,
             ),
+            loading: () => const SizedBox.shrink(),
+            error: (e, s) => const SizedBox.shrink(),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: AppSpacing.md),
           Expanded(
             child: exploreAsync.when(
-              data: (state) => state.isLoading
-                  ? const Center(child: CircularProgressIndicator())
-                  : ListView.builder(
-                      itemCount: state.results.length,
-                      itemBuilder: (context, index) {
-                        final word = state.results[index];
-                        final isCompleted =
-                            state.completedWordIds.contains(word.id);
-                        return _WordTile(
-                          word: word,
-                          isCompleted: isCompleted,
-                          isExpanded: _expandedIndex == index,
-                          onTap: () => setState(() {
-                            _expandedIndex =
-                                _expandedIndex == index ? null : index;
-                          }),
-                        );
-                      },
-                    ),
+              data: (state) {
+                if (state.isLoading) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+                if (state.results.isEmpty) {
+                  return _EmptyResults(
+                    hasFilter: !_isUnfiltered(state.filter),
+                    onReset: _resetFilters,
+                  );
+                }
+                return ListView.separated(
+                  padding: const EdgeInsets.only(bottom: AppSpacing.lg),
+                  itemCount: state.results.length,
+                  separatorBuilder: (context, index) => const Divider(
+                    height: 1,
+                    indent: AppSpacing.base,
+                    endIndent: AppSpacing.base,
+                  ),
+                  itemBuilder: (context, index) {
+                    final word = state.results[index];
+                    return _WordTile(
+                      word: word,
+                      isCompleted: state.completedWordIds.contains(word.id),
+                      isExpanded: _expandedWordId == word.id,
+                      onTap: () => setState(() {
+                        _expandedWordId = _expandedWordId == word.id
+                            ? null
+                            : word.id;
+                      }),
+                    );
+                  },
+                );
+              },
               loading: () => const Center(child: CircularProgressIndicator()),
-              error: (e, s) => Center(child: Text('오류: $e')),
+              error: (e, s) => Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      '단어를 불러오지 못했다',
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: colorScheme.onSurfaceVariant,
+                      ),
+                    ),
+                    const SizedBox(height: AppSpacing.sm),
+                    TextButton(
+                      onPressed: () => ref.invalidate(exploreProvider),
+                      child: const Text('다시 시도'),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  static bool _isUnfiltered(ExploreFilter filter) =>
+      filter.query.isEmpty &&
+      filter.sourceFilter == null &&
+      filter.completedFilter == null;
+}
+
+/// 출처 축([전체][추가한 단어])과 진행 축([완료][미완료])을 헤어라인 하나로 가른다.
+class _FilterRow extends StatelessWidget {
+  final ExploreFilter filter;
+  final ValueChanged<String?> onSource;
+  final ValueChanged<bool?> onCompleted;
+
+  const _FilterRow({
+    required this.filter,
+    required this.onSource,
+    required this.onCompleted,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    // 부모 Column이 칩 행을 가운데 놓지 않도록 왼쪽 정렬을 고정한다.
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.symmetric(horizontal: AppSpacing.base),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            _FilterChip(
+              label: '전체',
+              selected: filter.sourceFilter == null,
+              onTap: () => onSource(null),
+            ),
+            const SizedBox(width: AppSpacing.sm),
+            _FilterChip(
+              label: '추가한 단어',
+              selected: filter.sourceFilter == 'user',
+              onTap: () =>
+                  onSource(filter.sourceFilter == 'user' ? null : 'user'),
+            ),
+            const SizedBox(width: AppSpacing.base),
+            Container(
+              width: 1,
+              height: AppSpacing.base,
+              color: Theme.of(context).colorScheme.outlineVariant,
+            ),
+            const SizedBox(width: AppSpacing.base),
+            _FilterChip(
+              label: '완료',
+              selected: filter.completedFilter == true,
+              onTap: () =>
+                  onCompleted(filter.completedFilter == true ? null : true),
+            ),
+            const SizedBox(width: AppSpacing.sm),
+            _FilterChip(
+              label: '미완료',
+              selected: filter.completedFilter == false,
+              onTap: () =>
+                  onCompleted(filter.completedFilter == false ? null : false),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -176,28 +286,72 @@ class _FilterChip extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => GestureDetector(
-        onTap: onTap,
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-          decoration: BoxDecoration(
-            color: selected ? Theme.of(context).colorScheme.primary : Colors.transparent,
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(
-              color: selected ? Theme.of(context).colorScheme.primary : Theme.of(context).dividerColor,
-              width: 1.5,
-            ),
-          ),
-          child: Text(
-            label,
-            style: TextStyle(
-              fontSize: 13,
-              color: selected ? Theme.of(context).colorScheme.onPrimary : Theme.of(context).colorScheme.onSurface,
-              fontWeight: selected ? FontWeight.w600 : FontWeight.w400,
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return Semantics(
+      button: true,
+      selected: selected,
+      label: label,
+      onTap: onTap,
+      // 안쪽 Text가 라벨을 한 번 더 읽지 않도록 자식 시맨틱스는 감춘다.
+      excludeSemantics: true,
+      child: Material(
+        color: selected ? colorScheme.primary : colorScheme.surfaceContainer,
+        shape: const StadiumBorder(),
+        clipBehavior: Clip.antiAlias,
+        child: InkWell(
+          onTap: onTap,
+          // 시각 높이는 36 남짓이지만 탭 영역은 44 이상으로 잡는다.
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(minHeight: 44),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+              child: Center(
+                widthFactor: 1,
+                child: Text(
+                  label,
+                  style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                    color: selected
+                        ? colorScheme.onPrimary
+                        : colorScheme.onSurface,
+                  ),
+                ),
+              ),
             ),
           ),
         ),
-      );
+      ),
+    );
+  }
+}
+
+class _EmptyResults extends StatelessWidget {
+  final bool hasFilter;
+  final VoidCallback onReset;
+
+  const _EmptyResults({required this.hasFilter, required this.onReset});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            '검색 결과가 없다',
+            style: theme.textTheme.bodyMedium?.copyWith(
+              color: theme.colorScheme.onSurfaceVariant,
+            ),
+          ),
+          if (hasFilter) ...[
+            const SizedBox(height: AppSpacing.sm),
+            TextButton(onPressed: onReset, child: const Text('필터 지우기')),
+          ],
+        ],
+      ),
+    );
+  }
 }
 
 class _WordTile extends StatelessWidget {
@@ -215,17 +369,19 @@ class _WordTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final example = word.example;
+    final animationDuration = MediaQuery.disableAnimationsOf(context)
+        ? Duration.zero
+        : const Duration(milliseconds: 250);
+
+    return InkWell(
       onTap: onTap,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 250),
-        curve: Curves.easeInOut,
-        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: Theme.of(context).cardColor,
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: Theme.of(context).dividerColor, width: 1.5),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppSpacing.base,
+          vertical: 14,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -234,53 +390,51 @@ class _WordTile extends StatelessWidget {
               children: [
                 Text(
                   word.expression.isNotEmpty ? word.expression : word.reading,
-                  style: const TextStyle(
-                      fontSize: 18, fontWeight: FontWeight.w600),
+                  style: AppText.jaLabel(context),
                 ),
-                const SizedBox(width: 8),
-                Text(
-                  word.reading,
-                  style: TextStyle(
-                      fontSize: 13,
-                      color: Theme.of(context).colorScheme.onSurfaceVariant),
+                const SizedBox(width: AppSpacing.sm),
+                Expanded(
+                  child: Text(
+                    word.reading,
+                    style: AppText.jaCaption(context),
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
-                const Spacer(),
                 if (isCompleted)
-                  const Icon(Icons.check_circle,
-                      size: 16, color: AppColors.success),
+                  Semantics(
+                    label: '완료',
+                    child: Icon(
+                      Icons.check_circle_rounded,
+                      size: 18,
+                      color: colorScheme.success,
+                    ),
+                  ),
               ],
             ),
-            const SizedBox(height: 4),
-            Text(word.meaningKo,
-                style: TextStyle(
-                    fontSize: 14,
-                    color: Theme.of(context).colorScheme.onSurfaceVariant)),
+            const SizedBox(height: AppSpacing.xs),
+            Text(
+              word.meaningKo,
+              style: theme.textTheme.bodyMedium?.copyWith(
+                color: colorScheme.onSurfaceVariant,
+              ),
+            ),
             AnimatedSize(
-              duration: const Duration(milliseconds: 250),
+              duration: animationDuration,
               curve: Curves.easeInOut,
-              child: isExpanded && word.example != null
+              alignment: Alignment.topCenter,
+              child: isExpanded && example != null
                   ? Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const SizedBox(height: 12),
-                        const Divider(),
-                        const SizedBox(height: 8),
-                        Text(word.example!.ja,
-                            style: const TextStyle(fontSize: 23)),
-                        const SizedBox(height: 6),
-                        Text(word.example!.reading,
-                            style: TextStyle(
-                                fontSize: 19,
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .onSurfaceVariant)),
-                        const SizedBox(height: 4),
-                        Text(word.example!.ko,
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .onSurfaceVariant)),
+                        const SizedBox(height: AppSpacing.md),
+                        Text(example.ja, style: AppText.jaBody(context)),
+                        const SizedBox(height: AppSpacing.xs),
+                        Text(
+                          example.reading,
+                          style: AppText.jaCaption(context),
+                        ),
+                        const SizedBox(height: AppSpacing.xs),
+                        Text(example.ko, style: theme.textTheme.bodySmall),
                       ],
                     )
                   : const SizedBox.shrink(),

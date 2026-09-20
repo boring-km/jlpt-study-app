@@ -185,7 +185,14 @@ void main() {
       }
       final before = quizTitle(tester);
       await tester.tap(find.byKey(Key('quiz-choice-$ci')));
-      // 정답이면 1초 뒤 자동으로 넘어간다. 제목이 바뀌거나 완료 화면이 뜰 때까지.
+      // 정답도 자동으로 넘어가지 않는다 — '다음'을 눌러야 진행한다.
+      await waitFor(
+        tester,
+        () => present(find.widgetWithText(ElevatedButton, '다음')),
+        timeout: const Duration(seconds: 25),
+        reason: '정답 후 다음 버튼',
+      );
+      await tester.tap(find.widgetWithText(ElevatedButton, '다음'));
       await waitFor(
         tester,
         () =>
@@ -228,7 +235,7 @@ void main() {
     // 홈으로
     await tapUntil(
       tester,
-      find.widgetWithText(ElevatedButton, '홈으로'),
+      find.widgetWithText(TextButton, '홈으로'),
       () => onHome() && present(find.text('D-77')),
       reason: '완료 화면 → 홈',
     );
@@ -301,8 +308,7 @@ void main() {
       tester,
       find.byIcon(Icons.search_outlined),
       () =>
-          present(find.byType(WordListScreen)) &&
-          present(find.text('추가한 단어')),
+          present(find.byType(WordListScreen)) && present(find.text('추가한 단어')),
       reason: '탐색 탭',
     );
     await settle(tester);
@@ -333,7 +339,14 @@ void main() {
       reason: '설정 화면 열기',
     );
     await settle(tester);
-    expect(find.text('2026.12.06'), findsOneWidget);
+    // 시험일 행과 '다음 JLPT로 설정' 행이 같은 날짜를 보여주므로 시험일 행 안에서만 찾는다.
+    expect(
+      find.descendant(
+        of: find.widgetWithText(ListTile, '시험일'),
+        matching: find.text('2026.12.06'),
+      ),
+      findsOneWidget,
+    );
 
     await tapUntil(
       tester,

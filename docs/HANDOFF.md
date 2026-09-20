@@ -1,4 +1,4 @@
-# HANDOFF — N2 집중 리디자인 (2026-09-20, 2차 갱신)
+# HANDOFF — N2 집중 리디자인 (2026-09-20, 3차 갱신: UI 폴리시)
 
 다음 세션이 이어받기 위한 문서. 코드 구조는 저장소를 보면 되므로 여기엔 **상태·결정·미완·재개 절차**만 적는다.
 
@@ -6,10 +6,10 @@
 
 | 항목 | 값 |
 |---|---|
-| 브랜치 | `main` = `3ab004b` (origin 동기화). `feat/n2-followup` 머지 후 삭제 |
+| 브랜치 | `main` = `b667a78`. **`feat/ui-polish` 작업 중(미커밋)** — §3.5 참고 |
 | 앱 버전 | `1.2.0+8`, iOS Deployment Target 15.0 |
 | TestFlight | 빌드 8 업로드 성공 (2026-09-20 21:23, Delivery UUID 0049e883). App Store Connect 처리 확인 필요 |
-| 테스트 | `flutter analyze` 클린, `flutter test` 233/233, `flutter drive` 시뮬레이터 체크리스트 6/6 (`integration_test/checklist_test.dart`) |
+| 테스트 | `flutter analyze` 클린, `flutter test` 258/258, `flutter drive` 시뮬레이터 체크리스트 8/8 (`integration_test/checklist_test.dart`) |
 | 스펙 | `docs/superpowers/specs/2026-09-19-n2-focus-redesign-design.md` |
 | 플랜 | `docs/superpowers/plans/2026-09-19-n2-focus-redesign.md` (Task 1–14) |
 | SDD 레저 | `.superpowers/sdd/2026-09-19-n2-focus-redesign/progress.md` (git-ignored, 로컬만) — 모든 판정·이월 항목 기록 |
@@ -39,11 +39,26 @@
   - 홈 `_busy` 가드, 퀴즈 로드 실패 화면, 복습 시트 칩 가드, v3 마이그레이션 테스트 강화, `ios/Podfile.lock` 갱신.
 - **시뮬레이터 체크리스트** 6/6 통과(플랜 Task 14 Step 4). `flutter drive --driver=test_driver/integration_test.dart --target=integration_test/checklist_test.dart -d <sim>`.
 
+## 3.5. 3차 세션(2026-09-20 밤) — UI 디자인 평가·폴리시 (`feat/ui-polish`, 미커밋)
+
+- **평가**: `/impeccable critique` 듀얼 에이전트 → **19/40 Poor**, 네이티브 감사 9/20. 핵심: `dividerColor`(근검정) 한 토큰이 카드 테두리·구분선·진행바 트랙을 겸용해 "검은 선 격자", 바텀시트가 셸 내비게이터 안에 떠 탭바 위에 잘림, 한자가 Pretendard 폴백(한국식 자형), 넷플릭스 레드/카카오 옐로 팔레트. 스냅샷 `.impeccable/critique/2026-09-20T13-05-32Z__lib-features.md`.
+- **선택한 방향: "종이와 먹"** (테두리 0, 톤으로 위계, 종이·먹·주홍 3색, 한자 NotoSansJP 주인공). P0 기능 결함도 이 브랜치에 포함하기로 결정.
+- **구현 요약** (`lib/core/theme/app_theme.dart` 전면 재작성 + 화면 전부):
+  - 팔레트: 라이트 종이 `#FAF8F3`/먹 `#1C1917`/주홍 `#B5371F`, 다크 반전(주홍 `#EC7A63`, 다크 `onPrimary`=먹). 정답 이끼 `#2A6236`. 전부 WCAG AA 계산 확인. `AppSpacing`/`AppRadius`/`AppText.ja*`(NotoSansJP + Pretendard 폴백) 토큰.
+  - 카드·칩·선택지·검색창 테두리 제거 → `surfaceContainer` 면. 선은 리스트 행 사이 헤어라인 + 탭바 상단 1줄만.
+  - `AppThemeMode.system` 추가(기본값). 홈 테마 토글 제거, 설정 3분할(시스템/라이트/다크). 스플래시 테마 색.
+  - 바텀시트 2곳 `useRootNavigator: true, useSafeArea: true` + 전폭(`stretch`) + 하단 `viewPadding`. 탭바 `NavigationBar`(M3).
+  - 퀴즈: 닫기 좌측, 한자 64px NotoSansJP, 정답=이끼+체크 / 오답=취소선+X, **1초 자동 넘김 제거(항상 '다음')**, 햅틱. 완료 화면: **첫 시도 정답 N / 25** + 시도 횟수, `_finish()` try/catch·재시도, 가나 단어 읽기 중복 제거, 스크롤 가능·버튼 하단 고정.
+  - 설정: iOS grouped 섹션, **백업 가져오기 확인 다이얼로그**, 초기화 문구 사실 기준·`초기화` 파괴 색·햅틱. 탐색: 검색 250ms 디바운스·지우기, 칩 2축 구분·44pt, 빈 상태·필터 지우기, `push`/`pop` 정합. 통계·가나·플래시카드 동일 토큰.
+  - 접근성: `Semantics`(버튼·선택·enabled), 진행바 시맨틱, Reduce Motion(`disableAnimationsOf`), Dynamic Type용 스크롤·`Flexible`·`mainAxisExtent`.
+- **검증**: analyze 클린, 단위 258/258, 통합 8/8(시뮬레이터 iPhone 17), 다크 모드 시스템 연동 캡처 확인. 코드 리뷰 15건(P0 0) 전부 반영. MD3 감사 69/100(감점은 iPad 적응형 부재·의도된 커스텀).
+- **남긴 것**: 커밋·머지·TestFlight는 사용자 확인 후. 리뷰 후 재-critique 미실행. MD3 감사 권고 중 미적용: `FilledButton` 전환, 본문 maxWidth 600(iPad), 모션 토큰, 고대비 테마.
+
 ## 4. 미완 / 파킹
 
 1. ~~머지·푸시·TestFlight 빌드 8~~ 완료.
 2. **App Store 정식 제출** — ASC 웹 로그인 또는 API 키 필요.
-3. 파킹된 소소한 것(모두 코스메틱/희귀 경로): 완료 화면 가나 단어 읽기 중복 표시(`quiz_complete_screen.dart` `'${expression}  ${reading}'`); 복습 필터 시트가 루트 내비게이터 위가 아님(하단 탭바 위에 뜸); 완료 화면 '다음 학습 시작' 가드 없음; 홈 `_guard`가 에러 로그 없이 삼킴; `isValidBackup`이 `user_version 0` 허용; `ExploreNotifier.updateFilter` await 전 스냅샷 경합. 나머지 Minor 13건은 final-review-report.md 참고(SHIP 판정).
+3. 파킹 항목 중 **feat/ui-polish에서 해결**: 완료 화면 가나 읽기 중복, 복습 시트 루트 내비게이터, 완료 화면 '다음 학습 시작' 가드. **남음**: 홈 `_guard`가 에러 로그 없이 삼킴; `isValidBackup`이 `user_version 0` 허용; `ExploreNotifier.updateFilter` await 전 스냅샷 경합. 나머지 Minor 13건은 final-review-report.md 참고(SHIP 판정).
 4. 스펙 §7 '출처' 필드, `hanja_ko`, SRS, CSV — 이후 과제.
 
 ## 5. 판정 기록 (플랜과 다르게 결정한 것)
@@ -79,18 +94,17 @@ flutter build ipa --release --export-options-plist=ios/ExportOptions.plist
 
 ## 7. 다음 세션용 프롬프트 (복붙)
 
-**A. UI 디자인 평가 → 개선 (스킬 4개 설치됨: impeccable v4.3.1, ui-ux-pro-max, material-3, flutter-design/mobile-app-design-mastery)**
+**A. (완료) UI 디자인 평가 → 개선** — §3.5. 후속으로 쓸 프롬프트:
 ```
-docs/HANDOFF.md 읽고 시작. iOS 시뮬레이터(iPhone 17, UDID 242D3538-3472-49A4-8356-E412039855C4)에 앱 설치·실행해서 홈/퀴즈/완료/복습 시트/탐색/설정 화면 스크린샷 찍은 뒤
-1) /impeccable critique 로 화면별 평가 (Operate 모드, 미니멀 선호),
-2) 방향 제안 2~3개를 스크린샷 목업 없이 글로 먼저 보여주고 내가 고르면
-3) flutter-design + mobile-app-design-mastery 패턴으로 구현, material-3 감사로 마무리.
-기능·문구·라우트는 바꾸지 말 것. 브랜치 feat/ui-polish. 완료 후 flutter analyze/test + integration_test/checklist_test.dart 통과 확인.
+docs/HANDOFF.md §3.5 읽고, feat/ui-polish를 커밋(메시지: "feat: paper-and-ink UI polish")하고 main에 머지·푸시한 뒤 /testflight 로 올려줘.
+```
+```
+docs/HANDOFF.md 읽고 feat/ui-polish 상태에서 /impeccable critique 재실행해 점수 변화 확인하고, P1 이상만 한 라운드 더 고쳐줘.
 ```
 
-**B. 파킹된 코스메틱 6건 한 번에 처리**
+**B. 남은 파킹 3건 처리**
 ```
-docs/HANDOFF.md §4-3의 파킹 항목 6개를 브랜치 feat/parked-fixes에서 한 fix 라운드로 처리해줘: 완료 화면 가나 단어 읽기 중복 표시, 복습 필터 시트를 루트 내비게이터에 띄우기, 완료 화면 '다음 학습 시작' _busy 가드+스낵바, 홈 _guard에 debugPrint, isValidBackup user_version 0 거부, ExploreNotifier.updateFilter 스냅샷 경합. 각각 테스트 추가, 리뷰 1회, 233+ 테스트 통과 후 머지 여부 물어봐.
+docs/HANDOFF.md §4-3의 남은 파킹 항목 3개를 브랜치 feat/parked-fixes에서 한 fix 라운드로 처리해줘: 홈 _guard에 debugPrint, isValidBackup user_version 0 거부, ExploreNotifier.updateFilter 스냅샷 경합. 각각 테스트 추가, 리뷰 1회, 258+ 테스트 통과 후 머지 여부 물어봐.
 ```
 
 **C. TestFlight 업로드**

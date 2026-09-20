@@ -56,71 +56,104 @@ void main() {
     final db = await AppDatabase.openForTest();
     await SettingsRepository(db).setDataVersion(AppDatabase.kDataVersion);
     await WordRepository(db).insertAll(const [
-      Word(id: 'n2_0001', expression: '生産', reading: 'せいさん', meaningKo: '생산', type: WordType.on),
-      Word(id: 'n2_0002', expression: '把握', reading: 'はあく', meaningKo: '파악', type: WordType.on),
-      Word(id: 'n2_0003', expression: '果実', reading: 'かじつ', meaningKo: '과실', type: WordType.on),
+      Word(
+        id: 'n2_0001',
+        expression: '生産',
+        reading: 'せいさん',
+        meaningKo: '생산',
+        type: WordType.on,
+      ),
+      Word(
+        id: 'n2_0002',
+        expression: '把握',
+        reading: 'はあく',
+        meaningKo: '파악',
+        type: WordType.on,
+      ),
+      Word(
+        id: 'n2_0003',
+        expression: '果実',
+        reading: 'かじつ',
+        meaningKo: '과실',
+        type: WordType.on,
+      ),
     ]);
     return db;
   }
 
   /// 3개 중 n2_0002만 attempts=2 (= 한 번 틀림).
   TodayStudySet buildSet() => TodayStudySet(
-        studyDate: '2026-09-19',
-        targetCount: 3,
-        status: StudyStage.quiz,
-        items: [
-          for (var i = 1; i <= 3; i++)
-            TodayStudyItem(
-              studyDate: '2026-09-19',
-              wordId: 'n2_000$i',
-              displayOrder: i - 1,
-              passed: true,
-              attempts: i == 2 ? 2 : 1,
-              updatedAt: now,
-            ),
-        ],
-        createdAt: now,
-        updatedAt: now,
-      );
+    studyDate: '2026-09-19',
+    targetCount: 3,
+    status: StudyStage.quiz,
+    items: [
+      for (var i = 1; i <= 3; i++)
+        TodayStudyItem(
+          studyDate: '2026-09-19',
+          wordId: 'n2_000$i',
+          displayOrder: i - 1,
+          passed: true,
+          attempts: i == 2 ? 2 : 1,
+          updatedAt: now,
+        ),
+    ],
+    createdAt: now,
+    updatedAt: now,
+  );
 
   Widget app(ProviderContainer c, QuizMode mode) => UncontrolledProviderScope(
-        container: c,
-        child: MaterialApp.router(
-          routerConfig: GoRouter(routes: [
-            GoRoute(path: '/', builder: (context, state) => QuizCompleteScreen(mode: mode)),
-          ]),
-        ),
-      );
+    container: c,
+    child: MaterialApp.router(
+      routerConfig: GoRouter(
+        routes: [
+          GoRoute(
+            path: '/',
+            builder: (context, state) => QuizCompleteScreen(mode: mode),
+          ),
+        ],
+      ),
+    ),
+  );
 
-  testWidgets('study mode shows totals, wrong words with tags and next-set button',
-      (tester) async {
-    late Database db;
-    late ProviderContainer c;
-    final notifier = _FakeTodaySetNotifier(buildSet());
-    await tester.runAsync(() async {
-      db = await seedDb();
-      await MissLogRepository(db).add('n2_0002', ErrorTag.longVowel);
-      c = ProviderContainer(overrides: [
-        databaseProvider.overrideWith((ref) async => db),
-        todayStudySetProvider.overrideWith(() => notifier),
-      ]);
-    });
+  testWidgets(
+    'study mode shows totals, wrong words with tags and next-set button',
+    (tester) async {
+      late Database db;
+      late ProviderContainer c;
+      final notifier = _FakeTodaySetNotifier(buildSet());
+      await tester.runAsync(() async {
+        db = await seedDb();
+        await MissLogRepository(db).add('n2_0002', ErrorTag.longVowel);
+        c = ProviderContainer(
+          overrides: [
+            databaseProvider.overrideWith((ref) async => db),
+            todayStudySetProvider.overrideWith(() => notifier),
+          ],
+        );
+      });
 
-    await tester.pumpWidget(app(c, QuizMode.study));
-    await settleWithDb(tester);
+      await tester.pumpWidget(app(c, QuizMode.study));
+      await settleWithDb(tester);
 
-    expect(find.text('오늘 학습 완료'), findsOneWidget);
-    expect(find.text('정답 3 / 시도 4'), findsOneWidget);
-    expect(find.text('틀린 단어 1개'), findsOneWidget);
-    expect(find.text('把握  はあく'), findsOneWidget);
-    expect(find.text('장음'), findsOneWidget);
-    expect(find.text('다음 학습 시작'), findsOneWidget);
-    expect(notifier.finishCalls, 1);
+      expect(find.text('오늘 학습 완료'), findsOneWidget);
+      // 3개 중 n2_0002만 두 번 시도 → 첫 시도 정답 2 / 3, 총 시도 4회.
+      expect(find.text('첫 시도 정답'), findsOneWidget);
+      expect(find.text('2'), findsOneWidget);
+      expect(find.text(' / 3'), findsOneWidget);
+      expect(find.text('시도 4회'), findsOneWidget);
+      expect(find.text('틀린 단어 1개'), findsOneWidget);
+      expect(find.text('把握  はあく'), findsOneWidget);
+      expect(find.text('장음'), findsOneWidget);
+      expect(find.text('다음 학습 시작'), findsOneWidget);
+      expect(notifier.finishCalls, 1);
 
-    await tester.runAsync(db.close);
-  });
+      await tester.runAsync(db.close);
+    },
+  );
 
-  testWidgets('review mode shows review title and no next-set button', (tester) async {
+  testWidgets('review mode shows review title and no next-set button', (
+    tester,
+  ) async {
     final session = ReviewSession(
       id: 'review_1',
       reviewDate: '2026-09-19',
@@ -128,9 +161,19 @@ void main() {
       status: StudyStage.quiz,
       items: const [
         ReviewSessionItem(
-            sessionId: 'review_1', wordId: 'n2_0001', displayOrder: 0, passed: true, attempts: 1),
+          sessionId: 'review_1',
+          wordId: 'n2_0001',
+          displayOrder: 0,
+          passed: true,
+          attempts: 1,
+        ),
         ReviewSessionItem(
-            sessionId: 'review_1', wordId: 'n2_0003', displayOrder: 1, passed: true, attempts: 1),
+          sessionId: 'review_1',
+          wordId: 'n2_0003',
+          displayOrder: 1,
+          passed: true,
+          attempts: 1,
+        ),
       ],
       startedAt: now,
     );
@@ -139,17 +182,23 @@ void main() {
     late ProviderContainer c;
     await tester.runAsync(() async {
       db = await seedDb();
-      c = ProviderContainer(overrides: [
-        databaseProvider.overrideWith((ref) async => db),
-        reviewSessionProvider.overrideWith(() => notifier),
-      ]);
+      c = ProviderContainer(
+        overrides: [
+          databaseProvider.overrideWith((ref) async => db),
+          reviewSessionProvider.overrideWith(() => notifier),
+        ],
+      );
     });
 
     await tester.pumpWidget(app(c, QuizMode.review));
     await settleWithDb(tester);
 
     expect(find.text('복습 완료'), findsOneWidget);
-    expect(find.text('정답 2 / 시도 2'), findsOneWidget);
+    // 둘 다 한 번에 맞혔다 → 2 / 2, 시도 2회.
+    expect(find.text('첫 시도 정답'), findsOneWidget);
+    expect(find.text('2'), findsOneWidget);
+    expect(find.text(' / 2'), findsOneWidget);
+    expect(find.text('시도 2회'), findsOneWidget);
     expect(find.text('한 번에 다 맞혔다'), findsOneWidget);
     expect(find.text('다음 학습 시작'), findsNothing);
     expect(find.text('홈으로'), findsOneWidget);
@@ -157,4 +206,88 @@ void main() {
 
     await tester.runAsync(db.close);
   });
+
+  testWidgets('kana-only wrong words show the reading once', (tester) async {
+    // 표기와 읽기가 같은 단어를 'コーヒー  コーヒー'로 두 번 찍던 버그.
+    late Database db;
+    late ProviderContainer c;
+    final set = TodayStudySet(
+      studyDate: '2026-09-19',
+      targetCount: 1,
+      status: StudyStage.quiz,
+      items: [
+        TodayStudyItem(
+          studyDate: '2026-09-19',
+          wordId: 'n2_0004',
+          displayOrder: 0,
+          passed: true,
+          attempts: 2,
+          updatedAt: now,
+        ),
+      ],
+      createdAt: now,
+      updatedAt: now,
+    );
+    await tester.runAsync(() async {
+      db = await seedDb();
+      await WordRepository(db).insertAll(const [
+        Word(
+          id: 'n2_0004',
+          expression: 'コーヒー',
+          reading: 'コーヒー',
+          meaningKo: '커피',
+          type: WordType.katakana,
+        ),
+      ]);
+      c = ProviderContainer(
+        overrides: [
+          databaseProvider.overrideWith((ref) async => db),
+          todayStudySetProvider.overrideWith(() => _FakeTodaySetNotifier(set)),
+        ],
+      );
+    });
+
+    await tester.pumpWidget(app(c, QuizMode.study));
+    await settleWithDb(tester);
+
+    expect(find.text('コーヒー'), findsOneWidget);
+    expect(find.text('コーヒー  コーヒー'), findsNothing);
+
+    await tester.runAsync(db.close);
+  });
+
+  testWidgets(
+    'a failure while wrapping up shows a retry instead of a spinner',
+    (tester) async {
+      // 마감이 터지면 예전에는 스피너에 영구히 갇혔다.
+      final c = ProviderContainer(
+        overrides: [
+          databaseProvider.overrideWith(
+            (ref) async => throw StateError('db down'),
+          ),
+          todayStudySetProvider.overrideWith(
+            () => _FakeTodaySetNotifier(buildSet()),
+          ),
+        ],
+      );
+      addTearDown(c.dispose);
+
+      await tester.pumpWidget(app(c, QuizMode.study));
+      for (var i = 0; i < 10; i++) {
+        await tester.pump(const Duration(milliseconds: 20));
+      }
+
+      expect(find.byType(CircularProgressIndicator), findsNothing);
+      expect(find.text('결과를 정리하지 못했다'), findsOneWidget);
+      expect(find.text('다시 시도'), findsOneWidget);
+      expect(tester.takeException(), isNull);
+
+      // 재시도해도 여전히 실패하면 에러 상태를 유지한다.
+      await tester.tap(find.text('다시 시도'));
+      for (var i = 0; i < 10; i++) {
+        await tester.pump(const Duration(milliseconds: 20));
+      }
+      expect(find.text('결과를 정리하지 못했다'), findsOneWidget);
+    },
+  );
 }
