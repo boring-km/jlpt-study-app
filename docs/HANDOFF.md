@@ -1,4 +1,4 @@
-# HANDOFF — N2 집중 리디자인 (2026-09-20)
+# HANDOFF — N2 집중 리디자인 (2026-09-20, 2차 갱신)
 
 다음 세션이 이어받기 위한 문서. 코드 구조는 저장소를 보면 되므로 여기엔 **상태·결정·미완·재개 절차**만 적는다.
 
@@ -6,10 +6,10 @@
 
 | 항목 | 값 |
 |---|---|
-| 브랜치 | `main` = `b220026` (origin 동기화). `feat/n2-focus` 머지 완료, 브랜치도 푸시됨 |
+| 브랜치 | `feat/n2-followup` (main `2c2d15d`에서 분기, 미머지·미푸시) |
 | 앱 버전 | `1.2.0+7`, iOS Deployment Target 15.0 |
 | TestFlight | 빌드 7 업로드됨 (빌드 6은 ITMS-90068 MinimumOSVersion 13.0으로 거부 → 15.0으로 올려 재업로드). App Store Connect 처리 확인 필요 |
-| 테스트 | `flutter analyze` 클린, `flutter test` 205/205 |
+| 테스트 | `flutter analyze` 클린, `flutter test` 233/233, `flutter drive` 시뮬레이터 체크리스트 6/6 (`integration_test/checklist_test.dart`) |
 | 스펙 | `docs/superpowers/specs/2026-09-19-n2-focus-redesign-design.md` |
 | 플랜 | `docs/superpowers/plans/2026-09-19-n2-focus-redesign.md` (Task 1–14) |
 | SDD 레저 | `.superpowers/sdd/2026-09-19-n2-focus-redesign/progress.md` (git-ignored, 로컬만) — 모든 판정·이월 항목 기록 |
@@ -29,18 +29,24 @@
 - **설정**: `/settings` 라우트 + 홈 톱니 아이콘, 시험일 DatePicker, "다음 JLPT" 원탭. 기본 시험일 = 다음 7월/12월 첫째 일요일 자동. 시험일 지나도 학습 버튼 유지.
 - `ios/ExportOptions.plist`(App Store Connect 업로드 옵션) 커밋.
 
-## 3. 미완 (다음 세션에서 마저)
+## 3. 2차 세션(2026-09-20 오후)에서 한 것
 
-사용자 요청: "토큰 많아지면 최소로 진행했던 거 마저 확인".
+- **Task 12 나머지 완료**: `BackupService`(내보내기 = 임시 스냅샷 `jlpt-backup-<date>.db` 공유, 가져오기 = `user_version`·컬럼 검증 → `.pre-import` 롤백 복사 → 원자적 교체), `SettingsNotifier.resetProgress()` 실제 동작, 백업 타일 재진입 가드. 리뷰 3라운드.
+- **최종 전체 브랜치 리뷰(Task 14)** 수행 → Critical 1(자정 넘김 시 세트 항목 날짜 불일치로 다음날 UNIQUE 크래시) + Important 4 + 트리아지 FIX 6 모두 수정·재리뷰 클린. 상세: `.superpowers/sdd/.../final-review-report.md`(로컬).
+  - `finish()`/`complete()`가 탐색·통계 프로바이더도 invalidate.
+  - 탐색 필터가 카탈로그 변경 후에도 유지(`exploreFilterProvider`).
+  - `kMaxDailyTarget = 40` 상한(스펙 §5.1 갱신).
+  - 홈 `_busy` 가드, 퀴즈 로드 실패 화면, 복습 시트 칩 가드, v3 마이그레이션 테스트 강화, `ios/Podfile.lock` 갱신.
+- **시뮬레이터 체크리스트** 6/6 통과(플랜 Task 14 Step 4). `flutter drive --driver=test_driver/integration_test.dart --target=integration_test/checklist_test.dart -d <sim>`.
 
-1. **Task 12 나머지** — 백업 내보내기(`share_plus`, DB 파일 공유 시트) / 가져오기(`file_picker`, 검증 후 교체) / '데이터 초기화' 실제 동작(`ProgressRepository.resetAllProgress()` 이미 있음, 설정 다이얼로그 확인 버튼만 연결하면 됨). 플랜 Task 12 브리프 참고.
-2. **최종 전체 브랜치 코드 리뷰** (플랜 Task 14) — 토큰 부족으로 생략. 레저의 `minor (deferred)` 9줄 분류 필요. 눈에 띄는 것: 복습 시트 칩 더블탭 시 세션 2개 생성; `_lookup` 에러 삼킴; `exploreProvider` invalidate 시 필터 리셋; 퀴즈 비공개 레이아웃 스크롤 없음(긴 표제어 오버플로 가능); `_ChoiceButton` 시맨틱 없음; 라우터 `extra` 캐스트 예외.
-3. **시뮬레이터 실사용 확인** — 자동 테스트만 통과. 플랜 Task 14 Step 4 체크리스트(홈 D-day, 학습→퀴즈→완료, 복습 필터, 단어 추가, 시험일 변경).
-4. **App Store 정식 제출** — ASC 웹 로그인(Chrome) 또는 API 키(.p8) 필요. TestFlight는 됨.
-5. 스펙 §7 '출처' 필드 생략함(저장할 컬럼 없음). 원하면 `words.note` 컬럼 + 시트 필드 추가.
-6. `hanja_ko`(한국어 한자음), SRS, CSV 임포트/익스포트 — 스펙 비목표. 이후 과제.
+## 4. 미완 / 파킹
 
-## 4. 판정 기록 (플랜과 다르게 결정한 것)
+1. **머지·푸시·TestFlight 빌드 8** — 사용자 결정 필요. `pubspec.yaml` 버전 아직 `1.2.0+7`.
+2. **App Store 정식 제출** — ASC 웹 로그인 또는 API 키 필요.
+3. 파킹된 소소한 것(모두 코스메틱/희귀 경로): 완료 화면 가나 단어 읽기 중복 표시(`quiz_complete_screen.dart` `'${expression}  ${reading}'`); 복습 필터 시트가 루트 내비게이터 위가 아님(하단 탭바 위에 뜸); 완료 화면 '다음 학습 시작' 가드 없음; 홈 `_guard`가 에러 로그 없이 삼킴; `isValidBackup`이 `user_version 0` 허용; `ExploreNotifier.updateFilter` await 전 스냅샷 경합. 나머지 Minor 13건은 final-review-report.md 참고(SHIP 판정).
+4. 스펙 §7 '출처' 필드, `hanja_ko`, SRS, CSV — 이후 과제.
+
+## 5. 판정 기록 (플랜과 다르게 결정한 것)
 
 - Tasks 1–3, 10–11 각각 한 번에 구현·리뷰 (파일 결합도).
 - `getRandomMeanings`가 정답과 같은 뜻을 오답으로 뽑을 수 있던 플랜 코드 수정 (뜻 문자열 기준 제외).
@@ -51,15 +57,18 @@
 - `insertUserWord`가 `source='user'` 강제 (플랜은 호출자에 의존 → 재시딩 때 삭제 위험).
 - 중복 단어 가드를 저장 시점에 재조회 (디바운스 창 우회 방지).
 - iOS Deployment Target 13.0 → 15.0 (Apple 거부).
+- `dailyTarget` 상한 40 (스펙 §5.1 공식엔 상한 없음 → D-1에 전체 카탈로그가 세트가 됨).
+- `isValidBackup`: `user_version <= 3`, 3이면 v3 컬럼·`miss_log` 필수.
+- 시뮬레이터 체크리스트는 수동 대신 `integration_test`로 자동화·커밋.
 
-## 5. 재개 절차
+## 6. 재개 절차
 
 ```bash
 git checkout main && git pull
 flutter pub get && flutter analyze && flutter test
 cat .superpowers/sdd/2026-09-19-n2-focus-redesign/progress.md   # 있으면
 ```
-플랜 Task 12(백업 부분)·Task 14 브리프를 그대로 실행하면 됨. 리뷰 방식은 이번과 동일하게 `superpowers:subagent-driven-development`.
+플랜 Task 1–14 전부 완료. 남은 건 §4.
 
 TestFlight 업로드:
 ```bash
