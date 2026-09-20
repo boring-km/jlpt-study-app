@@ -6,9 +6,9 @@
 
 | 항목 | 값 |
 |---|---|
-| 브랜치 | `feat/n2-followup` (main `2c2d15d`에서 분기, 미머지·미푸시) |
-| 앱 버전 | `1.2.0+7`, iOS Deployment Target 15.0 |
-| TestFlight | 빌드 7 업로드됨 (빌드 6은 ITMS-90068 MinimumOSVersion 13.0으로 거부 → 15.0으로 올려 재업로드). App Store Connect 처리 확인 필요 |
+| 브랜치 | `main` = `3ab004b` (origin 동기화). `feat/n2-followup` 머지 후 삭제 |
+| 앱 버전 | `1.2.0+8`, iOS Deployment Target 15.0 |
+| TestFlight | 빌드 8 업로드 성공 (2026-09-20 21:23, Delivery UUID 0049e883). App Store Connect 처리 확인 필요 |
 | 테스트 | `flutter analyze` 클린, `flutter test` 233/233, `flutter drive` 시뮬레이터 체크리스트 6/6 (`integration_test/checklist_test.dart`) |
 | 스펙 | `docs/superpowers/specs/2026-09-19-n2-focus-redesign-design.md` |
 | 플랜 | `docs/superpowers/plans/2026-09-19-n2-focus-redesign.md` (Task 1–14) |
@@ -41,7 +41,7 @@
 
 ## 4. 미완 / 파킹
 
-1. **머지·푸시·TestFlight 빌드 8** — 사용자 결정 필요. `pubspec.yaml` 버전 아직 `1.2.0+7`.
+1. ~~머지·푸시·TestFlight 빌드 8~~ 완료.
 2. **App Store 정식 제출** — ASC 웹 로그인 또는 API 키 필요.
 3. 파킹된 소소한 것(모두 코스메틱/희귀 경로): 완료 화면 가나 단어 읽기 중복 표시(`quiz_complete_screen.dart` `'${expression}  ${reading}'`); 복습 필터 시트가 루트 내비게이터 위가 아님(하단 탭바 위에 뜸); 완료 화면 '다음 학습 시작' 가드 없음; 홈 `_guard`가 에러 로그 없이 삼킴; `isValidBackup`이 `user_version 0` 허용; `ExploreNotifier.updateFilter` await 전 스냅샷 경합. 나머지 Minor 13건은 final-review-report.md 참고(SHIP 판정).
 4. 스펙 §7 '출처' 필드, `hanja_ko`, SRS, CSV — 이후 과제.
