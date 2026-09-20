@@ -6,9 +6,9 @@
 
 | 항목 | 값 |
 |---|---|
-| 브랜치 | `main` = `b667a78`. **`feat/ui-polish` 작업 중(미커밋)** — §3.5 참고 |
-| 앱 버전 | `1.2.0+8`, iOS Deployment Target 15.0 |
-| TestFlight | 빌드 8 업로드 성공 (2026-09-20 21:23, Delivery UUID 0049e883). App Store Connect 처리 확인 필요 |
+| 브랜치 | `main` = `ff7520f` (origin 동기화). `feat/ui-polish` 머지 후 삭제 |
+| 앱 버전 | `1.2.0+9`, iOS Deployment Target 15.0 |
+| TestFlight | 빌드 9 업로드 성공 (2026-09-20 22:49, Delivery UUID 5e78fd25). App Store Connect 처리 확인 필요 |
 | 테스트 | `flutter analyze` 클린, `flutter test` 258/258, `flutter drive` 시뮬레이터 체크리스트 8/8 (`integration_test/checklist_test.dart`) |
 | 스펙 | `docs/superpowers/specs/2026-09-19-n2-focus-redesign-design.md` |
 | 플랜 | `docs/superpowers/plans/2026-09-19-n2-focus-redesign.md` (Task 1–14) |
@@ -39,7 +39,7 @@
   - 홈 `_busy` 가드, 퀴즈 로드 실패 화면, 복습 시트 칩 가드, v3 마이그레이션 테스트 강화, `ios/Podfile.lock` 갱신.
 - **시뮬레이터 체크리스트** 6/6 통과(플랜 Task 14 Step 4). `flutter drive --driver=test_driver/integration_test.dart --target=integration_test/checklist_test.dart -d <sim>`.
 
-## 3.5. 3차 세션(2026-09-20 밤) — UI 디자인 평가·폴리시 (`feat/ui-polish`, 미커밋)
+## 3.5. 3차 세션(2026-09-20 밤) — UI 디자인 평가·폴리시 (`feat/ui-polish`, main 머지됨)
 
 - **평가**: `/impeccable critique` 듀얼 에이전트 → **19/40 Poor**, 네이티브 감사 9/20. 핵심: `dividerColor`(근검정) 한 토큰이 카드 테두리·구분선·진행바 트랙을 겸용해 "검은 선 격자", 바텀시트가 셸 내비게이터 안에 떠 탭바 위에 잘림, 한자가 Pretendard 폴백(한국식 자형), 넷플릭스 레드/카카오 옐로 팔레트. 스냅샷 `.impeccable/critique/2026-09-20T13-05-32Z__lib-features.md`.
 - **선택한 방향: "종이와 먹"** (테두리 0, 톤으로 위계, 종이·먹·주홍 3색, 한자 NotoSansJP 주인공). P0 기능 결함도 이 브랜치에 포함하기로 결정.
@@ -52,7 +52,7 @@
   - 설정: iOS grouped 섹션, **백업 가져오기 확인 다이얼로그**, 초기화 문구 사실 기준·`초기화` 파괴 색·햅틱. 탐색: 검색 250ms 디바운스·지우기, 칩 2축 구분·44pt, 빈 상태·필터 지우기, `push`/`pop` 정합. 통계·가나·플래시카드 동일 토큰.
   - 접근성: `Semantics`(버튼·선택·enabled), 진행바 시맨틱, Reduce Motion(`disableAnimationsOf`), Dynamic Type용 스크롤·`Flexible`·`mainAxisExtent`.
 - **검증**: analyze 클린, 단위 258/258, 통합 8/8(시뮬레이터 iPhone 17), 다크 모드 시스템 연동 캡처 확인. 코드 리뷰 15건(P0 0) 전부 반영. MD3 감사 69/100(감점은 iPad 적응형 부재·의도된 커스텀).
-- **남긴 것**: 커밋·머지·TestFlight는 사용자 확인 후. 리뷰 후 재-critique 미실행. MD3 감사 권고 중 미적용: `FilledButton` 전환, 본문 maxWidth 600(iPad), 모션 토큰, 고대비 테마.
+- **남긴 것**: 리뷰 후 재-critique 미실행. MD3 감사 권고 중 미적용: `FilledButton` 전환, 본문 maxWidth 600(iPad), 모션 토큰, 고대비 테마.
 
 ## 4. 미완 / 파킹
 
@@ -94,10 +94,7 @@ flutter build ipa --release --export-options-plist=ios/ExportOptions.plist
 
 ## 7. 다음 세션용 프롬프트 (복붙)
 
-**A. (완료) UI 디자인 평가 → 개선** — §3.5. 후속으로 쓸 프롬프트:
-```
-docs/HANDOFF.md §3.5 읽고, feat/ui-polish를 커밋(메시지: "feat: paper-and-ink UI polish")하고 main에 머지·푸시한 뒤 /testflight 로 올려줘.
-```
+**A. (완료·머지·TestFlight 9) UI 디자인 평가 → 개선** — §3.5. 후속:
 ```
 docs/HANDOFF.md 읽고 feat/ui-polish 상태에서 /impeccable critique 재실행해 점수 변화 확인하고, P1 이상만 한 라운드 더 고쳐줘.
 ```
