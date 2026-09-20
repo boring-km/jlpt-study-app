@@ -1,0 +1,65 @@
+import 'dart:io';
+
+import 'package:flutter_test/flutter_test.dart';
+import 'package:path/path.dart' as p;
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
+import 'package:jlpt/application/services/backup_service.dart';
+import 'package:jlpt/core/db/database.dart';
+
+void main() {
+  setUpAll(() {
+    sqfliteFfiInit();
+    databaseFactory = databaseFactoryFfi;
+  });
+
+  test('isValidBackup true for our schema, false for random file', () async {
+    final dir = await Directory.systemTemp.createTemp('bk');
+    final good = p.join(dir.path, 'good.db');
+    final db = await AppDatabase.openAtPath(good);
+    await db.close();
+    expect(await BackupService.isValidBackup(good), isTrue);
+    final bad = p.join(dir.path, 'bad.db');
+    await File(bad).writeAsString('not a db');
+    expect(await BackupService.isValidBackup(bad), isFalse);
+    await dir.delete(recursive: true);
+  });
+
+  test('importFrom copies a valid backup over the target path', () async {
+    final dir = await Directory.systemTemp.createTemp('bk');
+    final source = p.join(dir.path, 'source.db');
+    final db = await AppDatabase.openAtPath(source);
+    await db.close();
+
+    final target = p.join(dir.path, 'target.db');
+    // 기존 대상 파일이 있는 상태를 시뮬레이션.
+    await File(target).writeAsString('old target contents');
+
+    final ok = await BackupService().importFrom(source, targetPath: target);
+
+    expect(ok, isTrue);
+    expect(
+      await File(target).readAsBytes(),
+      await File(source).readAsBytes(),
+    );
+
+    await dir.delete(recursive: true);
+  });
+
+  test('importFrom returns false and leaves target untouched for an invalid file',
+      () async {
+    final dir = await Directory.systemTemp.createTemp('bk');
+    final bad = p.join(dir.path, 'bad.db');
+    await File(bad).writeAsString('not a db');
+
+    final target = p.join(dir.path, 'target.db');
+    const originalContents = 'original target contents';
+    await File(target).writeAsString(originalContents);
+
+    final ok = await BackupService().importFrom(bad, targetPath: target);
+
+    expect(ok, isFalse);
+    expect(await File(target).readAsString(), originalContents);
+
+    await dir.delete(recursive: true);
+  });
+}

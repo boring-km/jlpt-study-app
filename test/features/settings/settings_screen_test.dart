@@ -14,6 +14,21 @@ class _FixedSettingsNotifier extends SettingsNotifier {
       );
 }
 
+class _RecordingSettingsNotifier extends SettingsNotifier {
+  int resetProgressCallCount = 0;
+
+  @override
+  Future<AppSettings> build() async => AppSettings(
+        examDate: DateTime(2026, 12, 6),
+        themeMode: AppThemeMode.light,
+      );
+
+  @override
+  Future<void> resetProgress() async {
+    resetProgressCallCount++;
+  }
+}
+
 void main() {
   setUpAll(() {
     sqfliteFfiInit();
@@ -102,5 +117,39 @@ void main() {
           (widget.child as Text).data?.startsWith('다음 JLPT (') == true,
     );
     expect(buttonFinder, findsOneWidget);
+  });
+
+  testWidgets('백업 내보내기 / 백업 가져오기 tiles are shown', (tester) async {
+    await tester.pumpWidget(
+      const ProviderScope(child: MaterialApp(home: SettingsScreen())),
+    );
+    await tester.pump();
+
+    expect(find.text('백업 내보내기'), findsOneWidget);
+    expect(find.text('백업 가져오기'), findsOneWidget);
+  });
+
+  testWidgets('tapping 데이터 초기화 → 확인 calls resetProgress and closes dialog',
+      (tester) async {
+    final notifier = _RecordingSettingsNotifier();
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          settingsProvider.overrideWith(() => notifier),
+        ],
+        child: const MaterialApp(home: SettingsScreen()),
+      ),
+    );
+    await tester.pump();
+
+    await tester.tap(find.text('데이터 초기화'));
+    await tester.pump();
+    expect(find.byType(AlertDialog), findsOneWidget);
+
+    await tester.tap(find.text('확인'));
+    await tester.pumpAndSettle();
+
+    expect(notifier.resetProgressCallCount, 1);
+    expect(find.byType(AlertDialog), findsNothing);
   });
 }

@@ -1,7 +1,12 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../domain/models/app_settings.dart';
+import '../../domain/repositories/progress_repository.dart';
 import '../../domain/repositories/settings_repository.dart';
 import 'database_provider.dart';
+import 'miss_tag_counts_provider.dart';
+import 'progress_summary_provider.dart';
+import 'review_session_provider.dart';
+import 'today_study_set_provider.dart';
 
 final settingsProvider =
     AsyncNotifierProvider<SettingsNotifier, AppSettings>(
@@ -29,5 +34,14 @@ class SettingsNotifier extends AsyncNotifier<AppSettings> {
     state = AsyncData(
       (state.valueOrNull ?? AppSettings.defaults).copyWith(themeMode: mode),
     );
+  }
+
+  Future<void> resetProgress() async {
+    final db = await ref.read(databaseProvider.future);
+    await ProgressRepository(db).resetAllProgress();
+    ref.invalidate(progressSummaryProvider);
+    ref.invalidate(todayStudySetProvider);
+    ref.invalidate(missTagCountsProvider);
+    ref.invalidate(reviewSessionProvider);
   }
 }

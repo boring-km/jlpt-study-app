@@ -5,6 +5,7 @@ import 'package:jlpt/core/db/database.dart';
 import 'package:jlpt/application/providers/database_provider.dart';
 import 'package:jlpt/application/providers/settings_provider.dart';
 import 'package:jlpt/domain/models/app_settings.dart';
+import 'package:jlpt/domain/repositories/progress_repository.dart';
 
 void main() {
   setUpAll(() {
@@ -38,5 +39,23 @@ void main() {
 
     final updated = await container.read(settingsProvider.future);
     expect(updated.examDate.year, 2027);
+  });
+
+  test('resetProgress clears word_progress rows', () async {
+    final db = await AppDatabase.openForTest();
+    await ProgressRepository(db).markCompleted('n2_0001');
+    final before = await db.query('word_progress');
+    expect(before, isNotEmpty);
+
+    final container = ProviderContainer(
+      overrides: [databaseProvider.overrideWith((ref) async => db)],
+    );
+    addTearDown(container.dispose);
+
+    await container.read(settingsProvider.future); // initialize
+    await container.read(settingsProvider.notifier).resetProgress();
+
+    final after = await db.query('word_progress');
+    expect(after, isEmpty);
   });
 }
