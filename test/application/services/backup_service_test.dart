@@ -62,4 +62,37 @@ void main() {
 
     await dir.delete(recursive: true);
   });
+
+  test('isValidBackup rejects a backup from a newer schema version', () async {
+    final dir = await Directory.systemTemp.createTemp('bk');
+    final future = p.join(dir.path, 'future.db');
+    final db = await AppDatabase.openAtPath(future);
+    await db.execute('PRAGMA user_version = 99');
+    await db.close();
+
+    expect(await BackupService.isValidBackup(future), isFalse);
+
+    await dir.delete(recursive: true);
+  });
+
+  test('snapshotForShare copies to a temp file named jlpt-backup-<date>.db',
+      () async {
+    final dir = await Directory.systemTemp.createTemp('bk');
+    final source = p.join(dir.path, 'source.db');
+    final db = await AppDatabase.openAtPath(source);
+    await db.close();
+
+    final now = DateTime(2026, 9, 20);
+    final snapshot = await BackupService.snapshotForShare(source, now: now);
+
+    expect(p.basename(snapshot.path), 'jlpt-backup-2026-09-20.db');
+    expect(snapshot.path, isNot(source));
+    expect(
+      await snapshot.readAsBytes(),
+      await File(source).readAsBytes(),
+    );
+
+    await snapshot.parent.delete(recursive: true);
+    await dir.delete(recursive: true);
+  });
 }

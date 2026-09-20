@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:jlpt/application/providers/backup_service_provider.dart';
 import 'package:jlpt/application/providers/settings_provider.dart';
+import 'package:jlpt/application/services/backup_service.dart';
 import 'package:jlpt/domain/models/app_settings.dart';
 import 'package:jlpt/features/settings/settings_screen.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
+
+class _ThrowingBackupService extends BackupService {
+  @override
+  Future<void> export() async => throw Exception('export failed');
+
+  @override
+  Future<bool> pickAndImport() async => throw Exception('import failed');
+}
 
 class _FixedSettingsNotifier extends SettingsNotifier {
   @override
@@ -127,6 +137,44 @@ void main() {
 
     expect(find.text('백업 내보내기'), findsOneWidget);
     expect(find.text('백업 가져오기'), findsOneWidget);
+  });
+
+  testWidgets('tapping 백업 내보내기 shows a failure snackbar instead of throwing',
+      (tester) async {
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          backupServiceProvider.overrideWithValue(_ThrowingBackupService()),
+        ],
+        child: const MaterialApp(home: SettingsScreen()),
+      ),
+    );
+    await tester.pump();
+
+    await tester.tap(find.text('백업 내보내기'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('백업 내보내기에 실패했습니다.'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('tapping 백업 가져오기 shows a failure snackbar instead of throwing',
+      (tester) async {
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          backupServiceProvider.overrideWithValue(_ThrowingBackupService()),
+        ],
+        child: const MaterialApp(home: SettingsScreen()),
+      ),
+    );
+    await tester.pump();
+
+    await tester.tap(find.text('백업 가져오기'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('백업 가져오기에 실패했습니다.'), findsOneWidget);
+    expect(tester.takeException(), isNull);
   });
 
   testWidgets('tapping 데이터 초기화 → 확인 calls resetProgress and closes dialog',

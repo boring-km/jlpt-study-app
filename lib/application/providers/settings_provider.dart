@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../domain/models/app_settings.dart';
 import '../../domain/repositories/progress_repository.dart';
 import '../../domain/repositories/settings_repository.dart';
+import '../../features/explore/explore_provider.dart';
 import 'database_provider.dart';
 import 'miss_tag_counts_provider.dart';
 import 'progress_summary_provider.dart';
@@ -43,5 +44,6 @@ class SettingsNotifier extends AsyncNotifier<AppSettings> {
     ref.invalidate(todayStudySetProvider);
     ref.invalidate(missTagCountsProvider);
     ref.invalidate(reviewSessionProvider);
+    ref.invalidate(exploreProvider);
   }
 }

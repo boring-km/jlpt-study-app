@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../application/providers/backup_service_provider.dart';
 import '../../application/providers/database_provider.dart';
 import '../../application/providers/settings_provider.dart';
-import '../../application/services/backup_service.dart';
 import '../../domain/models/app_settings.dart';
 
 class SettingsScreen extends ConsumerWidget {
@@ -117,24 +117,40 @@ class SettingsScreen extends ConsumerWidget {
           ListTile(
             title: const Text('백업 내보내기'),
             trailing: const Icon(Icons.ios_share),
-            onTap: () => BackupService().export(),
+            onTap: () async {
+              try {
+                await ref.read(backupServiceProvider).export();
+              } catch (_) {
+                if (!context.mounted) return;
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('백업 내보내기에 실패했습니다.')),
+                );
+              }
+            },
           ),
           ListTile(
             title: const Text('백업 가져오기'),
             trailing: const Icon(Icons.file_download_outlined),
             onTap: () async {
-              final ok = await BackupService().pickAndImport();
-              if (!context.mounted) return;
-              if (ok) {
-                ref.invalidate(databaseProvider);
+              try {
+                final ok = await ref.read(backupServiceProvider).pickAndImport();
+                if (!context.mounted) return;
+                if (ok) {
+                  ref.invalidate(databaseProvider);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('백업을 가져왔습니다. 앱을 다시 실행해 주세요.'),
+                    ),
+                  );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('올바른 백업 파일이 아닙니다.')),
+                  );
+                }
+              } catch (_) {
+                if (!context.mounted) return;
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('백업을 가져왔습니다. 앱을 다시 실행해 주세요.'),
-                  ),
-                );
-              } else {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('올바른 백업 파일이 아닙니다.')),
+                  const SnackBar(content: Text('백업 가져오기에 실패했습니다.')),
                 );
               }
             },
