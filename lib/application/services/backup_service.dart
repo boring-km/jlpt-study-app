@@ -33,31 +33,47 @@ class BackupService {
     }
   }
 
-  /// [sourcePath]의 DB를 `jlpt-backup-<yyyy-MM-dd>.db`라는 이름의 임시 파일로
-  /// 복사한다. dart:io `XFile`은 디스크 파일의 `name`을 무시하고 경로의
-  /// basename을 쓰므로(share_plus도 파일명을 바꿔주지 않는다), 공유 시트에
-  /// 원하는 파일명을 강제하려면 그 이름의 파일 자체를 만들어야 한다.
+  /// 내보내기 스냅샷을 보관하는 고정 디렉터리. 공유 시트가 공유 완료를
+  /// 알려주는 시점과, AirDrop/Mail 등 실제로 파일을 다 읽는 시점이 다를 수
+  /// 있어(비동기로 읽는 대상들) 공유 직후 삭제하면 백업이 비어 있거나
+  /// 누락된 채로 전달될 수 있다 — 그래서 공유 후에는 지우지 않고, 매
+  /// 내보내기 시작 시점에 지난 스냅샷을 정리한다.
+  static Future<Directory> _defaultBackupDir() async =>
+      Directory(p.join(Directory.systemTemp.path, 'jlpt-backups'));
+
+  /// [sourcePath]의 DB를 `jlpt-backup-<yyyy-MM-dd>.db`라는 이름의 파일로
+  /// [backupDir](기본값: 고정된 `<systemTemp>/jlpt-backups`)에 복사한다.
+  /// dart:io `XFile`은 디스크 파일의 `name`을 무시하고 경로의 basename을
+  /// 쓰므로(share_plus도 파일명을 바꿔주지 않는다), 공유 시트에 원하는
+  /// 파일명을 강제하려면 그 이름의 파일 자체를 만들어야 한다. 새 스냅샷을
+  /// 쓰기 전에 그 디렉터리에 남아 있던 이전 내보내기 파일을 먼저 지운다.
   /// 테스트에서 검증할 수 있도록 [export]에서 분리했다.
   @visibleForTesting
-  static Future<File> snapshotForShare(String sourcePath, {DateTime? now}) async {
+  static Future<File> snapshotForShare(
+    String sourcePath, {
+    DateTime? now,
+    Directory? backupDir,
+  }) async {
+    final dir = backupDir ?? await _defaultBackupDir();
+    if (await dir.exists()) {
+      await dir.delete(recursive: true);
+    }
+    await dir.create(recursive: true);
+
     final stamp = (now ?? DateTime.now()).toIso8601String().substring(0, 10);
-    final tempDir = await Directory.systemTemp.createTemp('jlpt_export');
-    final snapshotPath = p.join(tempDir.path, 'jlpt-backup-$stamp.db');
+    final snapshotPath = p.join(dir.path, 'jlpt-backup-$stamp.db');
     await File(sourcePath).copy(snapshotPath);
     return File(snapshotPath);
   }
 
-  /// 현재 DB 파일의 스냅샷을 공유 시트로 내보낸다.
+  /// 현재 DB 파일의 스냅샷을 공유 시트로 내보낸다. 스냅샷은 공유 완료 직후가
+  /// 아니라 다음 내보내기 시작 시점에 정리된다 (위 [snapshotForShare] 참고).
   Future<void> export() async {
     final path = await AppDatabase.filePath;
     final snapshot = await snapshotForShare(path);
-    try {
-      await SharePlus.instance.share(
-        ShareParams(files: [XFile(snapshot.path)]),
-      );
-    } finally {
-      await snapshot.parent.delete(recursive: true);
-    }
+    await SharePlus.instance.share(
+      ShareParams(files: [XFile(snapshot.path)]),
+    );
   }
 
   /// 파일 선택 → 검증 → DB 닫고 교체. 성공 시 true.

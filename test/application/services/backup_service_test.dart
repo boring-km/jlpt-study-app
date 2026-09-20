@@ -82,8 +82,13 @@ void main() {
     final db = await AppDatabase.openAtPath(source);
     await db.close();
 
+    final backupDir = Directory(p.join(dir.path, 'jlpt-backups'));
     final now = DateTime(2026, 9, 20);
-    final snapshot = await BackupService.snapshotForShare(source, now: now);
+    final snapshot = await BackupService.snapshotForShare(
+      source,
+      now: now,
+      backupDir: backupDir,
+    );
 
     expect(p.basename(snapshot.path), 'jlpt-backup-2026-09-20.db');
     expect(snapshot.path, isNot(source));
@@ -91,8 +96,38 @@ void main() {
       await snapshot.readAsBytes(),
       await File(source).readAsBytes(),
     );
+    // 공유가 끝나기 전에 스냅샷이 지워지면 안 되므로, 반환 직후에도
+    // 파일이 여전히 존재해야 한다 (export()가 공유 완료 직후 삭제하던
+    // 이전 동작에서 되돌아간 부분).
+    expect(await snapshot.exists(), isTrue);
 
-    await snapshot.parent.delete(recursive: true);
+    await dir.delete(recursive: true);
+  });
+
+  test(
+      'snapshotForShare clears stale files from a previous export before writing the new one',
+      () async {
+    final dir = await Directory.systemTemp.createTemp('bk');
+    final source = p.join(dir.path, 'source.db');
+    final db = await AppDatabase.openAtPath(source);
+    await db.close();
+
+    final backupDir = Directory(p.join(dir.path, 'jlpt-backups'));
+    await backupDir.create(recursive: true);
+    final stale = File(p.join(backupDir.path, 'jlpt-backup-2020-01-01.db'));
+    await stale.writeAsString('stale file left by a previous export');
+
+    final now = DateTime(2026, 9, 20);
+    final snapshot = await BackupService.snapshotForShare(
+      source,
+      now: now,
+      backupDir: backupDir,
+    );
+
+    expect(await stale.exists(), isFalse);
+    expect(await snapshot.exists(), isTrue);
+    expect(p.basename(snapshot.path), 'jlpt-backup-2026-09-20.db');
+
     await dir.delete(recursive: true);
   });
 }
