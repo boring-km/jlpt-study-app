@@ -26,7 +26,7 @@ void main() {
 
     final settings = await container.read(settingsProvider.future);
     expect(settings.examDate, AppSettings.nextJlptDate(DateTime.now()));
-    expect(settings.themeMode, AppThemeMode.light);
+    expect(settings.themeMode, AppThemeMode.system);
   });
 
   test('updateExamDate persists via SettingsNotifier', () async {
@@ -63,32 +63,34 @@ void main() {
     expect(after, isEmpty);
   });
 
-  test('resetProgress invalidates exploreProvider so completedWordIds clears',
-      () async {
-    final db = await AppDatabase.openForTest();
-    await SettingsRepository(db).setDataVersion(AppDatabase.kDataVersion);
-    await WordRepository(db).upsertAll([
-      const Word(
-        id: 'n2_0001',
-        expression: '語',
-        reading: 'ご',
-        meaningKo: '뜻',
-      ),
-    ]);
-    await ProgressRepository(db).markCompleted('n2_0001');
+  test(
+    'resetProgress invalidates exploreProvider so completedWordIds clears',
+    () async {
+      final db = await AppDatabase.openForTest();
+      await SettingsRepository(db).setDataVersion(AppDatabase.kDataVersion);
+      await WordRepository(db).upsertAll([
+        const Word(
+          id: 'n2_0001',
+          expression: '語',
+          reading: 'ご',
+          meaningKo: '뜻',
+        ),
+      ]);
+      await ProgressRepository(db).markCompleted('n2_0001');
 
-    final container = ProviderContainer(
-      overrides: [databaseProvider.overrideWith((ref) async => db)],
-    );
-    addTearDown(container.dispose);
+      final container = ProviderContainer(
+        overrides: [databaseProvider.overrideWith((ref) async => db)],
+      );
+      addTearDown(container.dispose);
 
-    await container.read(settingsProvider.future); // initialize
-    final beforeExplore = await container.read(exploreProvider.future);
-    expect(beforeExplore.completedWordIds, contains('n2_0001'));
+      await container.read(settingsProvider.future); // initialize
+      final beforeExplore = await container.read(exploreProvider.future);
+      expect(beforeExplore.completedWordIds, contains('n2_0001'));
 
-    await container.read(settingsProvider.notifier).resetProgress();
+      await container.read(settingsProvider.notifier).resetProgress();
 
-    final afterExplore = await container.read(exploreProvider.future);
-    expect(afterExplore.completedWordIds, isEmpty);
-  });
+      final afterExplore = await container.read(exploreProvider.future);
+      expect(afterExplore.completedWordIds, isEmpty);
+    },
+  );
 }

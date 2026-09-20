@@ -20,17 +20,59 @@ import 'quiz_test_async.dart';
 /// 보기 4개(정답 1 + 오답 3)를 항상 만들 수 있는 시드.
 /// 카타카나 단어는 뜻 보기 3개가 필요해서 단어가 3개면 보기가 모자란다.
 const _fiveWords = [
-  Word(id: 'n2_0001', expression: '生産', reading: 'せいさん', meaningKo: '생산', type: WordType.on),
-  Word(id: 'n2_0002', expression: '把握', reading: 'はあく', meaningKo: '파악', type: WordType.on),
-  Word(id: 'n2_0003', expression: 'コーヒー', reading: 'コーヒー', meaningKo: '커피', type: WordType.katakana),
-  Word(id: 'n2_0004', expression: '果実', reading: 'かじつ', meaningKo: '과실', type: WordType.on),
-  Word(id: 'n2_0005', expression: '涼しい', reading: 'すずしい', meaningKo: '시원하다', type: WordType.kun),
+  Word(
+    id: 'n2_0001',
+    expression: '生産',
+    reading: 'せいさん',
+    meaningKo: '생산',
+    type: WordType.on,
+  ),
+  Word(
+    id: 'n2_0002',
+    expression: '把握',
+    reading: 'はあく',
+    meaningKo: '파악',
+    type: WordType.on,
+  ),
+  Word(
+    id: 'n2_0003',
+    expression: 'コーヒー',
+    reading: 'コーヒー',
+    meaningKo: '커피',
+    type: WordType.katakana,
+  ),
+  Word(
+    id: 'n2_0004',
+    expression: '果実',
+    reading: 'かじつ',
+    meaningKo: '과실',
+    type: WordType.on,
+  ),
+  Word(
+    id: 'n2_0005',
+    expression: '涼しい',
+    reading: 'すずしい',
+    meaningKo: '시원하다',
+    type: WordType.kun,
+  ),
 ];
 
 /// 카타카나 쪽 뜻 보기가 1개뿐이라 보기가 2개로 줄어드는 시드.
 const _twoWords = [
-  Word(id: 'n2_0002', expression: '把握', reading: 'はあく', meaningKo: '파악', type: WordType.on),
-  Word(id: 'n2_0003', expression: 'コーヒー', reading: 'コーヒー', meaningKo: '커피', type: WordType.katakana),
+  Word(
+    id: 'n2_0002',
+    expression: '把握',
+    reading: 'はあく',
+    meaningKo: '파악',
+    type: WordType.on,
+  ),
+  Word(
+    id: 'n2_0003',
+    expression: 'コーヒー',
+    reading: 'コーヒー',
+    meaningKo: '커피',
+    type: WordType.katakana,
+  ),
 ];
 
 void main() {
@@ -51,16 +93,20 @@ void main() {
       db = await AppDatabase.openForTest();
       await SettingsRepository(db).setDataVersion(AppDatabase.kDataVersion);
       await WordRepository(db).insertAll(words);
-      container = ProviderContainer(overrides: [
-        databaseProvider.overrideWith((ref) async => db),
-        progressSummaryProvider.overrideWith((ref) async => ProgressSummary(
+      container = ProviderContainer(
+        overrides: [
+          databaseProvider.overrideWith((ref) async => db),
+          progressSummaryProvider.overrideWith(
+            (ref) async => ProgressSummary(
               completedCount: 0,
               totalCount: words.length,
               daysUntilExam: 10,
               dailyTarget: dailyTarget,
               weakCount: 0,
-            )),
-      ]);
+            ),
+          ),
+        ],
+      );
       await container.read(todayStudySetProvider.notifier).createTodaySet();
     });
     return (db, container);
@@ -70,27 +116,38 @@ void main() {
       setupWith(tester, words: _fiveWords, dailyTarget: 3);
 
   Widget app(ProviderContainer c) => UncontrolledProviderScope(
-        container: c,
-        child: MaterialApp.router(
-          routerConfig: GoRouter(routes: [
-            GoRoute(path: '/', builder: (context, state) => const QuizScreen(mode: QuizMode.study)),
-            GoRoute(
-                path: '/quiz/complete',
-                builder: (context, state) => const Scaffold(body: Text('COMPLETE'))),
-          ]),
-        ),
-      );
+    container: c,
+    child: MaterialApp.router(
+      routerConfig: GoRouter(
+        routes: [
+          GoRoute(
+            path: '/',
+            builder: (context, state) => const QuizScreen(mode: QuizMode.study),
+          ),
+          GoRoute(
+            path: '/quiz/complete',
+            builder: (context, state) => const Scaffold(body: Text('COMPLETE')),
+          ),
+        ],
+      ),
+    ),
+  );
 
-  /// 현재 문제를 정답으로 맞혀 다음 문제로 넘어간다.
+  /// 현재 문제를 정답으로 맞히고 '다음'을 눌러 다음 문제로 넘어간다.
+  /// (자동 넘김 타이머는 없앴다 — 정답 카드를 읽을 시간을 준다.)
   Future<void> answerCorrectly(WidgetTester tester) async {
     final state = tester.state<QuizScreenState>(find.byType(QuizScreen));
-    await tester.tap(find.byKey(Key('quiz-choice-${state.correctChoiceIndexForTest}')));
+    await tester.tap(
+      find.byKey(Key('quiz-choice-${state.correctChoiceIndexForTest}')),
+    );
     await settleWithDb(tester);
-    await tester.pump(const Duration(milliseconds: 1100)); // 정답 자동 넘김 타이머
+    await tester.tap(find.text('다음'));
     await settleWithDb(tester);
   }
 
-  testWidgets('shows expression, 4 choices and dont-know button', (tester) async {
+  testWidgets('shows expression, 4 choices and dont-know button', (
+    tester,
+  ) async {
     final (db, c) = await setup(tester);
     await tester.pumpWidget(app(c));
     await settleWithDb(tester);
@@ -101,7 +158,9 @@ void main() {
     await tester.runAsync(db.close);
   });
 
-  testWidgets('wrong answer reveals card, requeues, and waits for 다음', (tester) async {
+  testWidgets('wrong answer reveals card, requeues, and waits for 다음', (
+    tester,
+  ) async {
     final (db, c) = await setup(tester);
     await tester.pumpWidget(app(c));
     await settleWithDb(tester);
@@ -111,6 +170,29 @@ void main() {
     await tester.tap(find.text('다음'));
     await settleWithDb(tester);
     expect(find.text('2 / 4'), findsOneWidget); // 큐 길이 +1
+    await tester.runAsync(db.close);
+  });
+
+  testWidgets('a correct answer also waits for 다음 instead of auto-advancing', (
+    tester,
+  ) async {
+    final (db, c) = await setup(tester);
+    await tester.pumpWidget(app(c));
+    await settleWithDb(tester);
+    final state = tester.state<QuizScreenState>(find.byType(QuizScreen));
+    await tester.tap(
+      find.byKey(Key('quiz-choice-${state.correctChoiceIndexForTest}')),
+    );
+    await settleWithDb(tester);
+
+    expect(find.text('다음'), findsOneWidget);
+    // 타이머가 없으므로 시간이 흘러도 1번 문제에 그대로 머문다.
+    await tester.pump(const Duration(seconds: 2));
+    expect(find.text('1 / 3'), findsOneWidget);
+
+    await tester.tap(find.text('다음'));
+    await settleWithDb(tester);
+    expect(find.text('2 / 3'), findsOneWidget);
     await tester.runAsync(db.close);
   });
 
@@ -125,7 +207,9 @@ void main() {
     await tester.runAsync(db.close);
   });
 
-  testWidgets('renders without crashing when fewer than 4 choices exist', (tester) async {
+  testWidgets('renders without crashing when fewer than 4 choices exist', (
+    tester,
+  ) async {
     final (db, c) = await setupWith(tester, words: _twoWords, dailyTarget: 2);
     await tester.pumpWidget(app(c));
     await settleWithDb(tester);
@@ -145,40 +229,51 @@ void main() {
     await tester.runAsync(db.close);
   });
 
-  testWidgets('a DB failure shows an error state with a retry instead of a spinner',
-      (tester) async {
-    // 보기 로딩이 실패하면 예전에는 스피너에 영구히 머물렀다.
-    final container = ProviderContainer(overrides: [
-      databaseProvider.overrideWith((ref) async => throw StateError('db down')),
-      wordCatalogProvider.overrideWith(_StubCatalogNotifier.new),
-      todayStudySetProvider.overrideWith(_StubStudySetNotifier.new),
-    ]);
-    addTearDown(container.dispose);
-    // 화면이 뜨기 전에 세트·카탈로그를 해소해 둔다 (다른 테스트의 setup과 동일).
-    await container.read(wordCatalogProvider.future);
-    await container.read(todayStudySetProvider.future);
+  testWidgets(
+    'a DB failure shows an error state with a retry instead of a spinner',
+    (tester) async {
+      // 보기 로딩이 실패하면 예전에는 스피너에 영구히 머물렀다.
+      final container = ProviderContainer(
+        overrides: [
+          databaseProvider.overrideWith(
+            (ref) async => throw StateError('db down'),
+          ),
+          wordCatalogProvider.overrideWith(_StubCatalogNotifier.new),
+          todayStudySetProvider.overrideWith(_StubStudySetNotifier.new),
+        ],
+      );
+      addTearDown(container.dispose);
+      // 화면이 뜨기 전에 세트·카탈로그를 해소해 둔다 (다른 테스트의 setup과 동일).
+      await container.read(wordCatalogProvider.future);
+      await container.read(todayStudySetProvider.future);
 
-    await tester.pumpWidget(app(container));
-    for (var i = 0; i < 10; i++) {
-      await tester.pump(const Duration(milliseconds: 20));
-    }
+      await tester.pumpWidget(app(container));
+      for (var i = 0; i < 10; i++) {
+        await tester.pump(const Duration(milliseconds: 20));
+      }
 
-    expect(find.byType(CircularProgressIndicator), findsNothing);
-    expect(find.text('보기를 불러오지 못했습니다.'), findsOneWidget);
-    expect(find.text('다시 시도'), findsOneWidget);
-    expect(tester.takeException(), isNull);
+      expect(find.byType(CircularProgressIndicator), findsNothing);
+      expect(find.text('보기를 불러오지 못했습니다.'), findsOneWidget);
+      expect(find.text('다시 시도'), findsOneWidget);
+      expect(tester.takeException(), isNull);
 
-    // 재시도는 다시 시도하고(여전히 실패) 에러 상태를 유지한다.
-    await tester.tap(find.text('다시 시도'));
-    for (var i = 0; i < 10; i++) {
-      await tester.pump(const Duration(milliseconds: 20));
-    }
-    expect(find.text('보기를 불러오지 못했습니다.'), findsOneWidget);
-  });
+      // 재시도는 다시 시도하고(여전히 실패) 에러 상태를 유지한다.
+      await tester.tap(find.text('다시 시도'));
+      for (var i = 0; i < 10; i++) {
+        await tester.pump(const Duration(milliseconds: 20));
+      }
+      expect(find.text('보기를 불러오지 못했습니다.'), findsOneWidget);
+    },
+  );
 
   testWidgets('모르겠다 logs a miss with the other tag', (tester) async {
     final (db, c) = await setup(tester);
-    final firstWordId = c.read(todayStudySetProvider).valueOrNull!.items.first.wordId;
+    final firstWordId = c
+        .read(todayStudySetProvider)
+        .valueOrNull!
+        .items
+        .first
+        .wordId;
     await tester.pumpWidget(app(c));
     await settleWithDb(tester);
     await tester.tap(find.text('모르겠다'));

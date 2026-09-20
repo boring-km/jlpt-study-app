@@ -29,8 +29,8 @@ class SettingsRepository {
     final themeModeStr = await _get('theme_mode');
     final themeMode = switch (themeModeStr) {
       'dark' => AppThemeMode.dark,
-      'light' || 'system' || null => AppThemeMode.light,
-      _ => AppThemeMode.light,
+      'light' => AppThemeMode.light,
+      _ => AppThemeMode.system,
     };
     return AppSettings(
       examDate: examDateStr != null
@@ -51,5 +51,6 @@ class SettingsRepository {
     return v != null ? int.tryParse(v) ?? 0 : 0;
   }
 
-  Future<void> setDataVersion(int version) => _set('data_version', version.toString());
+  Future<void> setDataVersion(int version) =>
+      _set('data_version', version.toString());
 }

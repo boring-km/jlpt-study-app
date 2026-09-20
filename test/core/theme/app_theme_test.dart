@@ -3,93 +3,155 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:jlpt/core/theme/app_theme.dart';
 
 void main() {
-  group('AppColors', () {
-    test('primary color is correct', () {
-      expect(AppColors.primary, const Color(0xFFE50914));
+  group('AppColors — 종이와 먹 팔레트', () {
+    test('primary is the vermilion ink accent', () {
+      expect(AppColors.primary, const Color(0xFFB5371F));
+      expect(AppColors.primaryDark, const Color(0xFFEC7A63));
     });
 
-    test('accent color is correct', () {
-      expect(AppColors.accent, const Color(0xFFFF6B6B));
+    test('accent aliases primary', () {
+      expect(AppColors.accent, AppColors.primary);
     });
 
-    test('success color is correct', () {
-      expect(AppColors.success, const Color(0xFF16A34A));
+    test('success is moss', () {
+      expect(AppColors.success, const Color(0xFF2A6236));
+      expect(AppColors.successDark, const Color(0xFF7CBF8A));
     });
 
-    test('error color is correct', () {
-      expect(AppColors.error, const Color(0xFFB91C1C));
+    test('error is the darker vermilion', () {
+      expect(AppColors.error, const Color(0xFFA83A26));
+      expect(AppColors.errorDark, const Color(0xFFE88A78));
     });
 
-    test('light background color is correct', () {
-      expect(AppColors.backgroundLight, const Color(0xFFFFFFFF));
+    test('light background is paper', () {
+      expect(AppColors.backgroundLight, const Color(0xFFFAF8F3));
     });
 
-    test('dark background color is correct', () {
-      expect(AppColors.backgroundDark, const Color(0xFF0B1220));
+    test('dark background is ink', () {
+      expect(AppColors.backgroundDark, const Color(0xFF151311));
     });
   });
 
   group('AppTheme', () {
     test('light theme uses Material3', () {
-      final theme = AppTheme.light();
-      expect(theme.useMaterial3, isTrue);
+      expect(AppTheme.light().useMaterial3, isTrue);
     });
 
     test('dark theme uses Material3', () {
-      final theme = AppTheme.dark();
-      expect(theme.useMaterial3, isTrue);
+      expect(AppTheme.dark().useMaterial3, isTrue);
     });
 
     test('light theme primary color matches AppColors', () {
-      final theme = AppTheme.light();
-      expect(theme.colorScheme.primary, AppColors.primary);
+      expect(AppTheme.light().colorScheme.primary, AppColors.primary);
     });
 
     test('dark theme primary color matches AppColors', () {
-      final theme = AppTheme.dark();
-      expect(theme.colorScheme.primary, AppColors.primaryDark);
+      expect(AppTheme.dark().colorScheme.primary, AppColors.primaryDark);
     });
 
     test('light theme scaffold background is correct', () {
-      final theme = AppTheme.light();
-      expect(theme.scaffoldBackgroundColor, AppColors.backgroundLight);
+      expect(
+        AppTheme.light().scaffoldBackgroundColor,
+        AppColors.backgroundLight,
+      );
     });
 
     test('dark theme scaffold background is correct', () {
-      final theme = AppTheme.dark();
-      expect(theme.scaffoldBackgroundColor, AppColors.backgroundDark);
+      expect(AppTheme.dark().scaffoldBackgroundColor, AppColors.backgroundDark);
     });
 
     test('light theme appBar has zero elevation', () {
-      final theme = AppTheme.light();
-      expect(theme.appBarTheme.elevation, 0);
+      expect(AppTheme.light().appBarTheme.elevation, 0);
     });
 
     test('dark theme appBar has zero elevation', () {
-      final theme = AppTheme.dark();
-      expect(theme.appBarTheme.elevation, 0);
+      expect(AppTheme.dark().appBarTheme.elevation, 0);
     });
 
-    test('light theme textTheme has displayLarge', () {
+    test('light theme textTheme has displayLarge at 34', () {
       final theme = AppTheme.light();
       expect(theme.textTheme.displayLarge, isNotNull);
-      expect(theme.textTheme.displayLarge?.fontSize, 32);
+      expect(theme.textTheme.displayLarge?.fontSize, 34);
     });
 
-    test('dark theme textTheme has displayLarge', () {
+    test('dark theme textTheme has displayLarge at 34', () {
       final theme = AppTheme.dark();
       expect(theme.textTheme.displayLarge, isNotNull);
-      expect(theme.textTheme.displayLarge?.fontSize, 32);
+      expect(theme.textTheme.displayLarge?.fontSize, 34);
     });
 
     test('light theme uses Pretendard font', () {
-      final theme = AppTheme.light();
-      expect(theme.textTheme.bodyLarge?.fontFamily, 'Pretendard');
+      expect(AppTheme.light().textTheme.bodyLarge?.fontFamily, 'Pretendard');
     });
 
     test('dark theme uses Pretendard font', () {
-      final theme = AppTheme.dark();
-      expect(theme.textTheme.bodyLarge?.fontFamily, 'Pretendard');
+      expect(AppTheme.dark().textTheme.bodyLarge?.fontFamily, 'Pretendard');
+    });
+
+    test('light divider is the hairline border color', () {
+      expect(AppTheme.light().dividerColor, AppColors.borderLight);
+    });
+
+    test('dark divider is the hairline border color', () {
+      expect(AppTheme.dark().dividerColor, AppColors.borderDark);
+    });
+
+    test(
+      'progress track is distinct from the hairline so the bar reads as a bar',
+      () {
+        for (final theme in [AppTheme.light(), AppTheme.dark()]) {
+          expect(
+            theme.progressIndicatorTheme.linearTrackColor,
+            isNot(theme.dividerColor),
+          );
+        }
+      },
+    );
+
+    test('progress fill is the accent', () {
+      expect(AppTheme.light().progressIndicatorTheme.color, AppColors.primary);
+      expect(
+        AppTheme.dark().progressIndicatorTheme.color,
+        AppColors.primaryDark,
+      );
+    });
+
+    test('primary button is filled with ink, not with the accent', () {
+      final light = AppTheme.light();
+      expect(
+        light.elevatedButtonTheme.style?.backgroundColor?.resolve(const {}),
+        AppColors.textPrimaryLight,
+      );
+      expect(
+        light.elevatedButtonTheme.style?.foregroundColor?.resolve(const {}),
+        AppColors.backgroundLight,
+      );
+
+      final dark = AppTheme.dark();
+      expect(
+        dark.elevatedButtonTheme.style?.backgroundColor?.resolve(const {}),
+        AppColors.textPrimaryDark,
+      );
+    });
+
+    test('cards are separated by surface, not by an outline', () {
+      final theme = AppTheme.light();
+      expect(
+        theme.colorScheme.surfaceContainer,
+        AppColors.surfaceContainerLight,
+      );
+      expect(theme.colorScheme.surface, AppColors.backgroundLight);
+      expect(
+        theme.colorScheme.surfaceContainer,
+        isNot(theme.colorScheme.surface),
+      );
+    });
+
+    test('nav bar indicator is transparent', () {
+      expect(
+        AppTheme.light().navigationBarTheme.indicatorColor,
+        Colors.transparent,
+      );
     });
   });
 }

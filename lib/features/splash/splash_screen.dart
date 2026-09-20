@@ -1,8 +1,9 @@
+import 'dart:developer' as developer;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../application/providers/word_catalog_provider.dart';
-import '../../core/theme/app_theme.dart';
 
 class SplashScreen extends ConsumerWidget {
   const SplashScreen({super.key});
@@ -19,7 +20,16 @@ class SplashScreen extends ConsumerWidget {
         return const _SplashBody(message: '준비 완료');
       },
       loading: () => const _SplashBody(message: '단어 데이터 로딩 중...'),
-      error: (e, _) => _SplashBody(message: '로딩 실패: $e'),
+      // raw 예외 대신 사람 말. 사용자에겐 다음에 할 일을 주고, 원인은 로그로 남긴다.
+      error: (e, st) {
+        developer.log(
+          'catalog load failed',
+          error: e,
+          stackTrace: st,
+          name: 'jlpt',
+        );
+        return const _SplashBody(message: '단어 데이터를 불러오지 못했다. 앱을 다시 실행해 주세요.');
+      },
     );
   }
 }
@@ -29,22 +39,24 @@ class _SplashBody extends StatelessWidget {
   const _SplashBody({required this.message});
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        backgroundColor: AppColors.backgroundLight,
-        body: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                'JLPT',
-                style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                      color: AppColors.primary,
-                    ),
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text('JLPT', style: theme.textTheme.displayLarge),
+            const SizedBox(height: 24),
+            Text(
+              message,
+              style: theme.textTheme.bodyMedium?.copyWith(
+                color: theme.colorScheme.onSurfaceVariant,
               ),
-              const SizedBox(height: 24),
-              Text(message, style: Theme.of(context).textTheme.bodyMedium),
-            ],
-          ),
+            ),
+          ],
         ),
-      );
+      ),
+    );
+  }
 }

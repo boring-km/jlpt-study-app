@@ -3,9 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../application/providers/progress_summary_provider.dart';
-import '../../application/providers/settings_provider.dart';
 import '../../application/providers/today_study_set_provider.dart';
-import '../../domain/models/app_settings.dart';
+import '../../core/theme/app_theme.dart';
 import '../../domain/models/enums.dart';
 import '../../domain/models/today_study_set.dart';
 import '../quiz/quiz_mode.dart';
@@ -25,7 +24,23 @@ class HomeScreen extends ConsumerWidget {
         child: summaryAsync.when(
           data: (summary) => _HomeBody(summary: summary, setAsync: setAsync),
           loading: () => const Center(child: CircularProgressIndicator()),
-          error: (e, _) => Center(child: Text('오류: $e')),
+          // raw 예외 대신 사람 말 + 재시도.
+          error: (e, _) => Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  '홈을 불러오지 못했다',
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+                const SizedBox(height: AppSpacing.sm),
+                TextButton(
+                  onPressed: () => ref.invalidate(progressSummaryProvider),
+                  child: const Text('다시 시도'),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
@@ -84,9 +99,9 @@ class _HomeBodyState extends ConsumerState<_HomeBody>
     // 한 번 눌렀으면 칩은 치운다 — 같은 내용으로 계속 권하지 않도록.
     setState(() => _clipboardAvailable = false);
     if (!looksJapanese(text)) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('클립보드에 일본어 단어가 없다')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('클립보드에 일본어 단어가 없다')));
       return;
     }
     await showAddWordSheet(context, initialExpression: text);
@@ -94,138 +109,102 @@ class _HomeBodyState extends ConsumerState<_HomeBody>
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     final summary = widget.summary;
     final set = widget.setAsync.valueOrNull;
     final todayCompleted = set?.completedCount ?? 0;
     final todayTarget = set?.targetCount ?? summary.dailyTarget;
     final isSetCompleted = set?.status == StudyStage.completed;
-    final settings = ref.watch(settingsProvider);
-    final themeMode = settings.valueOrNull?.themeMode ?? AppThemeMode.light;
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+    return SingleChildScrollView(
+      padding: const EdgeInsets.fromLTRB(
+        AppSpacing.lg,
+        AppSpacing.base,
+        AppSpacing.lg,
+        AppSpacing.lg,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                summary.daysUntilExam >= 0
-                    ? 'D-${summary.daysUntilExam}'
-                    : 'D+${summary.daysUntilExam.abs()}',
-                style: Theme.of(context).textTheme.displayLarge,
+              // 큰 글자 설정에서도 かな 알약·설정 아이콘 옆을 넘치지 않게 줄인다.
+              Flexible(
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    summary.daysUntilExam >= 0
+                        ? 'D-${summary.daysUntilExam}'
+                        : 'D+${summary.daysUntilExam.abs()}',
+                    maxLines: 1,
+                    style: theme.textTheme.displayLarge,
+                  ),
+                ),
               ),
               Row(
                 children: [
-                  IconButton(
-                    icon: const Icon(Icons.grid_view_outlined),
-                    tooltip: 'ひらがな·カタカナ 표',
-                    onPressed: () => context.push('/kana'),
-                  ),
+                  const _KanaPillButton(),
+                  const SizedBox(width: AppSpacing.xs),
                   IconButton(
                     icon: const Icon(Icons.settings_outlined),
                     tooltip: '설정',
                     onPressed: () => context.push('/settings'),
                   ),
-                  IconButton(
-                    icon: Icon(switch (themeMode) {
-                      AppThemeMode.light => Icons.light_mode_outlined,
-                      AppThemeMode.dark => Icons.dark_mode_outlined,
-                    }),
-                    tooltip: switch (themeMode) {
-                      AppThemeMode.light => '라이트 모드',
-                      AppThemeMode.dark => '다크 모드',
-                    },
-                    onPressed: () {
-                      final next = switch (themeMode) {
-                        AppThemeMode.light => AppThemeMode.dark,
-                        AppThemeMode.dark => AppThemeMode.light,
-                      };
-                      ref.read(settingsProvider.notifier).updateThemeMode(next);
-                    },
-                  ),
                 ],
               ),
             ],
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: AppSpacing.sm),
           Text(
             '오늘 $todayCompleted / $todayTarget 완료',
-            style: Theme.of(context).textTheme.bodyLarge,
+            style: theme.textTheme.bodyLarge,
           ),
-          const SizedBox(height: 8),
-          Text(
-            'N2 ${summary.completedCount} / ${summary.totalCount}',
-            style: Theme.of(context).textTheme.bodyMedium,
-          ),
-          const SizedBox(height: 8),
+          const SizedBox(height: AppSpacing.md),
           ClipRRect(
-            borderRadius: BorderRadius.circular(4),
+            borderRadius: BorderRadius.circular(2),
             child: LinearProgressIndicator(
+              semanticsLabel: 'N2 진행률',
+              // 시맨틱 값은 숫자 문자열이어야 한다 — 퍼센트로 준다.
+              semanticsValue: summary.totalCount > 0
+                  ? '${(summary.completedCount * 100 / summary.totalCount).round()}%'
+                  : '0%',
               value: summary.totalCount > 0
                   ? summary.completedCount / summary.totalCount
                   : 0,
-              minHeight: 6,
-              backgroundColor: Theme.of(context).dividerColor,
-              valueColor: AlwaysStoppedAnimation<Color>(
-                Theme.of(context).colorScheme.primary,
-              ),
+              minHeight: 4,
             ),
           ),
-          const SizedBox(height: 32),
-          SizedBox(
-            width: double.infinity,
-            height: 56,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Theme.of(context).colorScheme.primary,
-                foregroundColor: Theme.of(context).colorScheme.onPrimary,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(14),
-                ),
-              ),
-              onPressed:
-                  isSetCompleted ? null : () => _startStudy(context, ref, set),
-              child: Text(
-                set == null
-                    ? '학습 시작'
-                    : isSetCompleted
-                    ? '오늘 학습 완료 ✓'
-                    : '이어하기',
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
+          const SizedBox(height: AppSpacing.sm),
+          Align(
+            alignment: Alignment.centerRight,
+            child: Text(
+              'N2 ${summary.completedCount} / ${summary.totalCount}',
+              style: theme.textTheme.bodySmall,
             ),
           ),
-          if (isSetCompleted)
-            Padding(
-              padding: const EdgeInsets.only(top: 12),
-              child: SizedBox(
-                width: double.infinity,
-                height: 56,
-                child: OutlinedButton(
-                  style: OutlinedButton.styleFrom(
-                    foregroundColor: Theme.of(context).colorScheme.primary,
-                    side: BorderSide(
-                      color: Theme.of(context).colorScheme.primary,
-                      width: 2.0,
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(14),
-                    ),
-                  ),
-                  onPressed: () => _startNextStudy(context, ref),
-                  child: const Text(
-                    '다음 학습 시작',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-                  ),
-                ),
-              ),
+          const SizedBox(height: AppSpacing.xl),
+          ElevatedButton(
+            onPressed: isSetCompleted
+                ? null
+                : () => _startStudy(context, ref, set),
+            child: Text(
+              set == null
+                  ? '학습 시작'
+                  : isSetCompleted
+                  ? '오늘 학습 완료 ✓'
+                  : '이어하기',
             ),
-          const SizedBox(height: 16),
+          ),
+          if (isSetCompleted) ...[
+            const SizedBox(height: AppSpacing.md),
+            OutlinedButton(
+              onPressed: () => _startNextStudy(context, ref),
+              child: const Text('다음 학습 시작'),
+            ),
+          ],
+          const SizedBox(height: AppSpacing.lg),
           Row(
             children: [
               Expanded(
@@ -233,13 +212,16 @@ class _HomeBodyState extends ConsumerState<_HomeBody>
                   label: '복습',
                   icon: Icons.replay_outlined,
                   enabled: summary.completedCount > 0,
-                  subtitle: summary.weakCount > 0
+                  // 비활성 타일은 왜 눌리지 않는지 말해 준다.
+                  subtitle: summary.completedCount == 0
+                      ? '학습 후 열림'
+                      : summary.weakCount > 0
                       ? '약점 ${summary.weakCount}개'
                       : null,
                   onTap: () => _openReview(context),
                 ),
               ),
-              const SizedBox(width: 12),
+              const SizedBox(width: AppSpacing.md),
               Expanded(
                 child: _SmallCard(
                   label: '단어 추가',
@@ -251,7 +233,7 @@ class _HomeBodyState extends ConsumerState<_HomeBody>
             ],
           ),
           if (_clipboardAvailable) ...[
-            const SizedBox(height: 12),
+            const SizedBox(height: AppSpacing.md),
             Align(
               alignment: Alignment.centerLeft,
               child: ActionChip(
@@ -277,44 +259,66 @@ class _HomeBodyState extends ConsumerState<_HomeBody>
       await action();
     } catch (_) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(errorMessage)),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(errorMessage)));
     } finally {
       if (mounted) setState(() => _busy = false);
     }
   }
 
   Future<void> _startNextStudy(BuildContext context, WidgetRef ref) =>
-      _guard(
-        () async {
-          await ref.read(todayStudySetProvider.notifier).appendNextSet();
-          if (!context.mounted) return;
-          context.push('/quiz', extra: QuizMode.study);
-        },
-        errorMessage: '학습을 시작하지 못했습니다. 잠시 후 다시 시도해 주세요.',
-      );
+      _guard(() async {
+        await ref.read(todayStudySetProvider.notifier).appendNextSet();
+        if (!context.mounted) return;
+        context.push('/quiz', extra: QuizMode.study);
+      }, errorMessage: '학습을 시작하지 못했습니다. 잠시 후 다시 시도해 주세요.');
 
   Future<void> _startStudy(
     BuildContext context,
     WidgetRef ref,
     TodayStudySet? currentSet,
-  ) =>
-      _guard(
-        () async {
-          if (currentSet == null) {
-            await ref.read(todayStudySetProvider.notifier).createTodaySet();
-          }
-          if (!context.mounted) return;
-          context.push('/quiz', extra: QuizMode.study);
-        },
-        errorMessage: '학습을 시작하지 못했습니다. 잠시 후 다시 시도해 주세요.',
-      );
+  ) => _guard(() async {
+    if (currentSet == null) {
+      await ref.read(todayStudySetProvider.notifier).createTodaySet();
+    }
+    if (!context.mounted) return;
+    context.push('/quiz', extra: QuizMode.study);
+  }, errorMessage: '학습을 시작하지 못했습니다. 잠시 후 다시 시도해 주세요.');
 
   Future<void> _openReview(BuildContext context) => _guard(
-        () => showReviewFilterSheet(context),
-        errorMessage: '복습을 시작하지 못했습니다. 잠시 후 다시 시도해 주세요.',
-      );
+    () => showReviewFilterSheet(context),
+    errorMessage: '복습을 시작하지 못했습니다. 잠시 후 다시 시도해 주세요.',
+  );
+}
+
+/// 가나 표로 가는 작은 알약 버튼. 아이콘보다 글자가 뜻을 더 빨리 전한다.
+class _KanaPillButton extends StatelessWidget {
+  const _KanaPillButton();
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+    return Tooltip(
+      message: '가나 표',
+      child: TextButton(
+        onPressed: () => context.push('/kana'),
+        style: TextButton.styleFrom(
+          backgroundColor: colors.surfaceContainer,
+          foregroundColor: colors.onSurface,
+          minimumSize: const Size(44, 44),
+          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(AppRadius.sm),
+          ),
+        ),
+        child: Text(
+          'かな',
+          style: AppText.jaCaption(context, color: colors.onSurface),
+        ),
+      ),
+    );
+  }
 }
 
 class _SmallCard extends StatelessWidget {
@@ -334,57 +338,62 @@ class _SmallCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: enabled ? onTap : null,
-      child: Container(
-        height: 80,
-        decoration: BoxDecoration(
-          color: Theme.of(context).cardColor,
-          borderRadius: BorderRadius.circular(14),
-          border: Border.all(
-            color: enabled
-                ? Theme.of(context).dividerColor
-                : Theme.of(context).dividerColor.withValues(alpha: 0.4),
-            width: 1.5,
+    final theme = Theme.of(context);
+    // 흐리게(Opacity) 처리하면 보조 문구가 4.5:1을 못 넘는다 — 색으로만 구분한다.
+    final mutedColor = theme.colorScheme.onSurfaceVariant;
+    final card = Material(
+      color: theme.colorScheme.surfaceContainer,
+      borderRadius: BorderRadius.circular(AppRadius.md),
+      clipBehavior: Clip.antiAlias,
+      child: InkWell(
+        onTap: enabled ? onTap : null,
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(minHeight: 88),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppSpacing.md,
+              vertical: AppSpacing.md,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  icon,
+                  color: enabled ? theme.colorScheme.primary : mutedColor,
+                ),
+                const SizedBox(height: AppSpacing.xs),
+                Text(
+                  label,
+                  style: enabled
+                      ? theme.textTheme.labelLarge
+                      : theme.textTheme.labelLarge?.copyWith(color: mutedColor),
+                  textAlign: TextAlign.center,
+                ),
+                if (subtitle != null) ...[
+                  const SizedBox(height: 2),
+                  Text(
+                    subtitle!,
+                    style: theme.textTheme.labelSmall?.copyWith(
+                      color: enabled ? theme.colorScheme.primary : mutedColor,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ],
+            ),
           ),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              icon,
-              color: enabled
-                  ? Theme.of(context).colorScheme.primary
-                  : Theme.of(context).colorScheme.onSurfaceVariant,
-            ),
-            const SizedBox(height: 4),
-            Text(
-              label,
-              style: TextStyle(
-                fontSize: 14,
-                color: enabled
-                    ? Theme.of(context).colorScheme.onSurface
-                    : Theme.of(context).colorScheme.onSurfaceVariant,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            if (subtitle != null) ...[
-              const SizedBox(height: 2),
-              Text(
-                subtitle!,
-                style: TextStyle(
-                  fontSize: 11,
-                  color: enabled
-                      ? Theme.of(context).colorScheme.primary
-                      : Theme.of(context).colorScheme.onSurfaceVariant,
-                  fontWeight: FontWeight.w600,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ],
-          ],
-        ),
       ),
+    );
+
+    return Semantics(
+      button: true,
+      enabled: enabled,
+      label: subtitle == null ? label : '$label, $subtitle',
+      onTap: enabled ? onTap : null,
+      // 안쪽 Text가 라벨을 한 번 더 읽지 않도록 자식 시맨틱스는 감춘다.
+      excludeSemantics: true,
+      child: card,
     );
   }
 }

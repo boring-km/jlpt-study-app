@@ -38,9 +38,9 @@ class _CompleterBackupService extends BackupService {
 class _FixedSettingsNotifier extends SettingsNotifier {
   @override
   Future<AppSettings> build() async => AppSettings(
-        examDate: DateTime(2026, 12, 6),
-        themeMode: AppThemeMode.light,
-      );
+    examDate: DateTime(2026, 12, 6),
+    themeMode: AppThemeMode.light,
+  );
 }
 
 class _RecordingSettingsNotifier extends SettingsNotifier {
@@ -48,15 +48,18 @@ class _RecordingSettingsNotifier extends SettingsNotifier {
 
   @override
   Future<AppSettings> build() async => AppSettings(
-        examDate: DateTime(2026, 12, 6),
-        themeMode: AppThemeMode.light,
-      );
+    examDate: DateTime(2026, 12, 6),
+    themeMode: AppThemeMode.light,
+  );
 
   @override
   Future<void> resetProgress() async {
     resetProgressCallCount++;
   }
 }
+
+String _fmt(DateTime d) =>
+    '${d.year}.${d.month.toString().padLeft(2, '0')}.${d.day.toString().padLeft(2, '0')}';
 
 void main() {
   setUpAll(() {
@@ -66,7 +69,12 @@ void main() {
 
   testWidgets('renders without crash', (tester) async {
     await tester.pumpWidget(
-      const ProviderScope(child: MaterialApp(home: SettingsScreen())),
+      ProviderScope(
+        // 실제 DB를 열러 가지 않도록 설정을 고정한다. 다른 테스트 파일과
+        // 병렬로 돌 때 같은 DB 파일을 두고 다투면 간헐적으로 깨진다.
+        overrides: [settingsProvider.overrideWith(_FixedSettingsNotifier.new)],
+        child: const MaterialApp(home: SettingsScreen()),
+      ),
     );
     await tester.pump();
     expect(find.byType(Scaffold), findsOneWidget);
@@ -74,7 +82,12 @@ void main() {
 
   testWidgets('shows 설정 title', (tester) async {
     await tester.pumpWidget(
-      const ProviderScope(child: MaterialApp(home: SettingsScreen())),
+      ProviderScope(
+        // 실제 DB를 열러 가지 않도록 설정을 고정한다. 다른 테스트 파일과
+        // 병렬로 돌 때 같은 DB 파일을 두고 다투면 간헐적으로 깨진다.
+        overrides: [settingsProvider.overrideWith(_FixedSettingsNotifier.new)],
+        child: const MaterialApp(home: SettingsScreen()),
+      ),
     );
     await tester.pump();
     expect(find.text('설정'), findsOneWidget);
@@ -82,25 +95,40 @@ void main() {
 
   testWidgets('shows 데이터 초기화 button', (tester) async {
     await tester.pumpWidget(
-      const ProviderScope(child: MaterialApp(home: SettingsScreen())),
+      ProviderScope(
+        // 실제 DB를 열러 가지 않도록 설정을 고정한다. 다른 테스트 파일과
+        // 병렬로 돌 때 같은 DB 파일을 두고 다투면 간헐적으로 깨진다.
+        overrides: [settingsProvider.overrideWith(_FixedSettingsNotifier.new)],
+        child: const MaterialApp(home: SettingsScreen()),
+      ),
     );
     await tester.pump();
     expect(find.text('데이터 초기화'), findsOneWidget);
   });
 
-  testWidgets('shows only light and dark theme options', (tester) async {
+  testWidgets('offers system, light and dark theme options', (tester) async {
     await tester.pumpWidget(
-      const ProviderScope(child: MaterialApp(home: SettingsScreen())),
+      ProviderScope(
+        // 실제 DB를 열러 가지 않도록 설정을 고정한다. 다른 테스트 파일과
+        // 병렬로 돌 때 같은 DB 파일을 두고 다투면 간헐적으로 깨진다.
+        overrides: [settingsProvider.overrideWith(_FixedSettingsNotifier.new)],
+        child: const MaterialApp(home: SettingsScreen()),
+      ),
     );
     await tester.pump();
+    expect(find.text('시스템'), findsOneWidget);
     expect(find.text('라이트'), findsOneWidget);
     expect(find.text('다크'), findsOneWidget);
-    expect(find.text('시스템'), findsNothing);
   });
 
   testWidgets('shows confirmation dialog when reset tapped', (tester) async {
     await tester.pumpWidget(
-      const ProviderScope(child: MaterialApp(home: SettingsScreen())),
+      ProviderScope(
+        // 실제 DB를 열러 가지 않도록 설정을 고정한다. 다른 테스트 파일과
+        // 병렬로 돌 때 같은 DB 파일을 두고 다투면 간헐적으로 깨진다.
+        overrides: [settingsProvider.overrideWith(_FixedSettingsNotifier.new)],
+        child: const MaterialApp(home: SettingsScreen()),
+      ),
     );
     await tester.pump();
     await tester.tap(find.text('데이터 초기화'));
@@ -108,49 +136,68 @@ void main() {
     expect(find.byType(AlertDialog), findsOneWidget);
   });
 
-  testWidgets('shows 시험일 and the formatted exam date, opens date picker',
-      (tester) async {
+  testWidgets('shows 시험일 and the formatted exam date, opens date picker', (
+    tester,
+  ) async {
     await tester.pumpWidget(
       ProviderScope(
-        overrides: [
-          settingsProvider.overrideWith(_FixedSettingsNotifier.new),
-        ],
+        overrides: [settingsProvider.overrideWith(_FixedSettingsNotifier.new)],
         child: const MaterialApp(home: SettingsScreen()),
       ),
     );
     await tester.pump();
 
     expect(find.text('시험일'), findsOneWidget);
-    expect(find.text('2026.12.06'), findsOneWidget);
+    // 다음 JLPT 행도 같은 날짜를 보여줄 수 있으므로 시험일 행 안에서 찾는다.
+    expect(
+      find.descendant(
+        of: find.ancestor(
+          of: find.text('시험일'),
+          matching: find.byType(ListTile),
+        ),
+        matching: find.text('2026.12.06'),
+      ),
+      findsOneWidget,
+    );
 
     await tester.tap(find.text('시험일'));
     await tester.pumpAndSettle();
     expect(find.byType(DatePickerDialog), findsOneWidget);
   });
 
-  testWidgets('shows next JLPT shortcut button', (tester) async {
+  testWidgets('shows the next JLPT row with the date it would set', (
+    tester,
+  ) async {
     await tester.pumpWidget(
       ProviderScope(
-        overrides: [
-          settingsProvider.overrideWith(_FixedSettingsNotifier.new),
-        ],
+        overrides: [settingsProvider.overrideWith(_FixedSettingsNotifier.new)],
         child: const MaterialApp(home: SettingsScreen()),
       ),
     );
     await tester.pump();
 
-    final buttonFinder = find.byWidgetPredicate(
-      (widget) =>
-          widget is TextButton &&
-          widget.child is Text &&
-          (widget.child as Text).data?.startsWith('다음 JLPT (') == true,
+    final row = find.ancestor(
+      of: find.text('다음 JLPT로 설정'),
+      matching: find.byType(ListTile),
     );
-    expect(buttonFinder, findsOneWidget);
+    expect(row, findsOneWidget);
+    expect(
+      find.descendant(
+        of: row,
+        matching: find.text(_fmt(AppSettings.nextJlptDate(DateTime.now()))),
+      ),
+      findsOneWidget,
+    );
   });
 
   testWidgets('백업 내보내기 / 백업 가져오기 tiles are shown', (tester) async {
     await tester.pumpWidget(
-      const ProviderScope(child: MaterialApp(home: SettingsScreen())),
+      ProviderScope(
+        // 실제 DB를 열러 가지 않도록 설정을 고정한다. 다른 테스트 파일과
+        // 병렬로 돌 때 같은 DB 파일을 두고 다투면 간헐적으로 깨진다.
+        overrides: [settingsProvider.overrideWith(_FixedSettingsNotifier.new)],
+        child: const MaterialApp(home: SettingsScreen()),
+      ),
     );
     await tester.pump();
 
@@ -158,12 +205,14 @@ void main() {
     expect(find.text('백업 가져오기'), findsOneWidget);
   });
 
-  testWidgets('tapping 백업 내보내기 shows a failure snackbar instead of throwing',
-      (tester) async {
+  testWidgets('tapping 백업 내보내기 shows a failure snackbar instead of throwing', (
+    tester,
+  ) async {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
           backupServiceProvider.overrideWithValue(_ThrowingBackupService()),
+          settingsProvider.overrideWith(_FixedSettingsNotifier.new),
         ],
         child: const MaterialApp(home: SettingsScreen()),
       ),
@@ -177,8 +226,9 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
-  testWidgets('tapping 백업 가져오기 shows a failure snackbar instead of throwing',
-      (tester) async {
+  testWidgets('tapping 백업 가져오기 shows a failure snackbar instead of throwing', (
+    tester,
+  ) async {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
@@ -194,15 +244,18 @@ void main() {
 
     await tester.tap(find.text('백업 가져오기'));
     await tester.pumpAndSettle();
+    // 덮어쓰기 경고를 확인해야 실제 가져오기가 돈다.
+    expect(find.byType(AlertDialog), findsOneWidget);
+    await tester.tap(find.text('가져오기'));
+    await tester.pumpAndSettle();
 
-    expect(
-      find.text('백업 가져오기에 실패했습니다. 앱을 다시 실행해 주세요.'),
-      findsOneWidget,
-    );
+    expect(find.text('백업 가져오기에 실패했습니다. 앱을 다시 실행해 주세요.'), findsOneWidget);
     expect(tester.takeException(), isNull);
   });
 
-  testWidgets('a failed import drops the cached database handle', (tester) async {
+  testWidgets('a failed import drops the cached database handle', (
+    tester,
+  ) async {
     // 실패 경로에서도 databaseProvider를 무효화하지 않으면, 이미 닫힌 DB
     // 핸들을 든 프로바이더들이 재시작 전까지 전부 깨진 채로 남는다.
     var databaseBuilds = 0;
@@ -228,57 +281,60 @@ void main() {
 
     await tester.tap(find.text('백업 가져오기'));
     await tester.pumpAndSettle();
+    await tester.tap(find.text('가져오기'));
+    await tester.pumpAndSettle();
 
     container.read(databaseProvider);
     expect(databaseBuilds, 2);
   });
 
   testWidgets(
-      'rapid double-tap on 백업 내보내기 only triggers export once, and the tile re-enables after it settles',
-      (tester) async {
-    final completer = Completer<void>();
-    final fake = _CompleterBackupService(completer);
-    await tester.pumpWidget(
-      ProviderScope(
-        overrides: [
-          backupServiceProvider.overrideWithValue(fake),
-        ],
-        child: const MaterialApp(home: SettingsScreen()),
-      ),
-    );
-    await tester.pump();
+    'rapid double-tap on 백업 내보내기 only triggers export once, and the tile re-enables after it settles',
+    (tester) async {
+      final completer = Completer<void>();
+      final fake = _CompleterBackupService(completer);
+      await tester.pumpWidget(
+        ProviderScope(
+          overrides: [
+            backupServiceProvider.overrideWithValue(fake),
+            settingsProvider.overrideWith(_FixedSettingsNotifier.new),
+          ],
+          child: const MaterialApp(home: SettingsScreen()),
+        ),
+      );
+      await tester.pump();
 
-    await tester.tap(find.text('백업 내보내기'));
-    await tester.pump();
+      await tester.tap(find.text('백업 내보내기'));
+      await tester.pump();
 
-    ListTile exportTile() => tester.widget<ListTile>(
-          find.ancestor(
-            of: find.text('백업 내보내기'),
-            matching: find.byType(ListTile),
-          ),
-        );
-    expect(exportTile().enabled, isFalse);
+      ListTile exportTile() => tester.widget<ListTile>(
+        find.ancestor(
+          of: find.text('백업 내보내기'),
+          matching: find.byType(ListTile),
+        ),
+      );
+      expect(exportTile().enabled, isFalse);
 
-    // 첫 탭의 export()가 아직 completer를 기다리는 동안 다시 탭해도 no-op.
-    await tester.tap(find.text('백업 내보내기'), warnIfMissed: false);
-    await tester.pump();
+      // 첫 탭의 export()가 아직 completer를 기다리는 동안 다시 탭해도 no-op.
+      await tester.tap(find.text('백업 내보내기'), warnIfMissed: false);
+      await tester.pump();
 
-    expect(fake.exportCallCount, 1);
+      expect(fake.exportCallCount, 1);
 
-    completer.complete();
-    await tester.pumpAndSettle();
+      completer.complete();
+      await tester.pumpAndSettle();
 
-    expect(exportTile().enabled, isTrue);
-  });
+      expect(exportTile().enabled, isTrue);
+    },
+  );
 
-  testWidgets('tapping 데이터 초기화 → 확인 calls resetProgress and closes dialog',
-      (tester) async {
+  testWidgets('tapping 데이터 초기화 → 초기화 calls resetProgress and closes dialog', (
+    tester,
+  ) async {
     final notifier = _RecordingSettingsNotifier();
     await tester.pumpWidget(
       ProviderScope(
-        overrides: [
-          settingsProvider.overrideWith(() => notifier),
-        ],
+        overrides: [settingsProvider.overrideWith(() => notifier)],
         child: const MaterialApp(home: SettingsScreen()),
       ),
     );
@@ -288,7 +344,7 @@ void main() {
     await tester.pump();
     expect(find.byType(AlertDialog), findsOneWidget);
 
-    await tester.tap(find.text('확인'));
+    await tester.tap(find.text('초기화'));
     await tester.pumpAndSettle();
 
     expect(notifier.resetProgressCallCount, 1);

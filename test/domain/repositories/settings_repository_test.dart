@@ -21,7 +21,7 @@ void main() {
   test('load returns defaults when no settings stored', () async {
     final settings = await repo.load();
     expect(settings.examDate, AppSettings.nextJlptDate(DateTime.now()));
-    expect(settings.themeMode, AppThemeMode.light);
+    expect(settings.themeMode, AppThemeMode.system);
   });
 
   test('saveExamDate persists and load returns it', () async {
@@ -37,15 +37,21 @@ void main() {
     expect(settings.themeMode, AppThemeMode.dark);
   });
 
-  test('legacy system theme is loaded as light mode', () async {
+  test('saveThemeMode persists system mode', () async {
+    await repo.saveThemeMode(AppThemeMode.system);
+    final settings = await repo.load();
+    expect(settings.themeMode, AppThemeMode.system);
+  });
+
+  test('an unknown stored theme value falls back to system', () async {
     await db.insert('app_settings', {
       'key': 'theme_mode',
-      'value': 'system',
+      'value': 'sepia',
       'updated_at': DateTime.now().toIso8601String(),
     }, conflictAlgorithm: ConflictAlgorithm.replace);
 
     final settings = await repo.load();
-    expect(settings.themeMode, AppThemeMode.light);
+    expect(settings.themeMode, AppThemeMode.system);
   });
 
   test('dataVersion defaults to 0 and persists', () async {
