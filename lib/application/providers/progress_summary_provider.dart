@@ -1,5 +1,8 @@
+import 'dart:math' as math;
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../domain/repositories/progress_repository.dart';
+import '../../domain/services/study_set_builder.dart' show kMaxDailyTarget;
 import '../../domain/repositories/word_repository.dart';
 import 'database_provider.dart';
 import 'settings_provider.dart';
@@ -44,7 +47,11 @@ final progressSummaryProvider = FutureProvider<ProgressSummary>((ref) async {
     dailyTarget = remaining == 0 ? 0 : kPostExamDailyTarget;
   } else {
     // 시험 당일(days == 0)은 남은 전부가 그날의 목표 — ceil(remaining / 1).
-    dailyTarget = (remaining / (days == 0 ? 1 : days)).ceil();
+    // 단 kMaxDailyTarget으로 자른다. 남은 게 없으면 0 (spec의 max(1, …) 아님).
+    dailyTarget = math.min(
+      kMaxDailyTarget,
+      (remaining / (days == 0 ? 1 : days)).ceil(),
+    );
   }
 
   return ProgressSummary(
