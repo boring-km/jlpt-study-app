@@ -188,19 +188,46 @@ void main() {
       await db.execute('CREATE TABLE app_settings (key TEXT PRIMARY KEY, value TEXT NOT NULL, updated_at TEXT NOT NULL)');
       await db.insert('words', {'id': 'n3_0001', 'jlpt_level': 'N3', 'expression': 'a', 'reading': 'あ', 'meaning_ko': 'x', 'created_at': 't'});
       await db.insert('words', {'id': 'n2_0001', 'jlpt_level': 'N2', 'expression': 'b', 'reading': 'い', 'meaning_ko': 'y', 'created_at': 't'});
+      await db.insert('words', {'id': 'n2_0002', 'jlpt_level': 'N2', 'expression': 'c', 'reading': 'う', 'meaning_ko': 'z', 'created_at': 't'});
       await db.insert('word_progress', {'word_id': 'n3_0001', 'is_completed': 1, 'updated_at': 't'});
       await db.insert('word_progress', {'word_id': 'n2_0001', 'is_completed': 1, 'updated_at': 't'});
+      await db.insert('word_progress', {'word_id': 'n2_0002', 'is_completed': 0, 'updated_at': 't'});
+      // N3 세트(통째로 삭제 대상)와 N2 세트(N3 항목만 빠지고 살아남아야 함).
       await db.insert('daily_study_sets', {'study_date': '2026-01-01', 'jlpt_level': 'N3', 'target_count': 1, 'status': 'flashcard', 'created_at': 't', 'updated_at': 't'});
       await db.insert('daily_study_set_items', {'study_date': '2026-01-01', 'word_id': 'n3_0001', 'display_order': 0, 'updated_at': 't'});
+      await db.insert('daily_study_sets', {'study_date': '2026-01-02', 'jlpt_level': 'N2', 'target_count': 3, 'status': 'quiz', 'created_at': 't', 'updated_at': 't'});
+      await db.insert('daily_study_set_items', {'study_date': '2026-01-02', 'word_id': 'n2_0001', 'display_order': 0, 'updated_at': 't'});
+      await db.insert('daily_study_set_items', {'study_date': '2026-01-02', 'word_id': 'n2_0002', 'display_order': 1, 'updated_at': 't'});
+      await db.insert('daily_study_set_items', {'study_date': '2026-01-02', 'word_id': 'n3_0001', 'display_order': 2, 'updated_at': 't'});
+      // 복습 세션도 N3 항목만 빠져야 한다.
+      await db.insert('review_sessions', {'id': 'review_1', 'review_date': '2026-01-02', 'item_count': 2, 'status': 'quiz', 'started_at': 't'});
+      await db.insert('review_session_items', {'session_id': 'review_1', 'word_id': 'n2_0001', 'display_order': 0});
+      await db.insert('review_session_items', {'session_id': 'review_1', 'word_id': 'n3_0001', 'display_order': 1});
       await db.insert('app_settings', {'key': 'seeded_at', 'value': 't', 'updated_at': 't'});
     });
     await v2.close();
 
     final v3 = await AppDatabase.openAtPath(path);
-    expect((await v3.query('words')).map((r) => r['id']), ['n2_0001']);
-    expect((await v3.query('word_progress')).length, 1);
-    expect((await v3.query('daily_study_sets')).length, 0);
-    expect((await v3.query('daily_study_set_items')).length, 0);
+    expect((await v3.query('words')).map((r) => r['id']), ['n2_0001', 'n2_0002']);
+    expect(
+      (await v3.query('word_progress')).map((r) => r['word_id']),
+      ['n2_0001', 'n2_0002'],
+    );
+    // N3 세트만 사라지고 N2 세트는 남는다.
+    expect(
+      (await v3.query('daily_study_sets')).map((r) => r['study_date']),
+      ['2026-01-02'],
+    );
+    expect(
+      (await v3.query('daily_study_set_items', orderBy: 'display_order'))
+          .map((r) => r['word_id']),
+      ['n2_0001', 'n2_0002'],
+    );
+    expect((await v3.query('review_sessions')).length, 1);
+    expect(
+      (await v3.query('review_session_items')).map((r) => r['word_id']),
+      ['n2_0001'],
+    );
     final cols = (await v3.rawQuery('PRAGMA table_info(words)')).map((r) => r['name']).toList();
     expect(cols, containsAll(['type', 'is_trap', 'source']));
     final tables = (await v3.rawQuery("SELECT name FROM sqlite_master WHERE type='table'")).map((r) => r['name']).toList();
