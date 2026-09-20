@@ -8,6 +8,7 @@ import 'package:jlpt/domain/models/word.dart';
 import 'package:jlpt/domain/repositories/settings_repository.dart';
 import 'package:jlpt/domain/repositories/word_repository.dart';
 import 'package:jlpt/domain/repositories/progress_repository.dart';
+import 'package:jlpt/domain/services/study_set_builder.dart';
 
 void main() {
   setUpAll(() {
@@ -72,6 +73,26 @@ void main() {
     expect(summary.isExamPassed, isFalse);
     expect(summary.remainingCount, 7);
     expect(summary.dailyTarget, 7); // ceil(7 / 1)
+    await db.close();
+  });
+
+  test('caps the daily target when the catch-up formula explodes', () async {
+    // D-1에 1,000개가 남으면 산식은 1,000을 내놓는다 — 하루에 끝낼 수 없는
+    // 세트가 만들어지지 않도록 kMaxDailyTarget으로 자른다.
+    final db = await seedDb(1000);
+    await SettingsRepository(db)
+        .saveExamDate(DateTime.now().add(const Duration(days: 1)));
+
+    final container = ProviderContainer(
+      overrides: [databaseProvider.overrideWith((ref) async => db)],
+    );
+    addTearDown(container.dispose);
+
+    final summary = await container.read(progressSummaryProvider.future);
+    expect(summary.daysUntilExam, 1);
+    expect(summary.remainingCount, 1000);
+    expect(summary.dailyTarget, kMaxDailyTarget);
+    expect(summary.dailyTarget, 40);
     await db.close();
   });
 

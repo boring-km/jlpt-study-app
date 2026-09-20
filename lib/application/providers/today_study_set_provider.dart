@@ -6,6 +6,8 @@ import '../../domain/repositories/miss_log_repository.dart';
 import '../../domain/repositories/progress_repository.dart';
 import '../../domain/repositories/study_set_repository.dart';
 import '../../domain/services/study_set_builder.dart';
+import '../../features/explore/explore_provider.dart';
+import '../../features/stats/stats_provider.dart';
 import 'database_provider.dart';
 import 'miss_tag_counts_provider.dart';
 import 'progress_summary_provider.dart';
@@ -25,9 +27,13 @@ class TodayStudySetNotifier extends AsyncNotifier<TodayStudySet?> {
     return StudySetRepository(db).getByDate(todayDateString());
   }
 
+  /// [studyDate]는 항목이 속할 세트의 날짜다. 여기서 `todayDateString`을 다시
+  /// 계산하면 자정을 넘긴 append에서 부모 세트(어제)와 항목(오늘)의 날짜가
+  /// 어긋나 고아 항목이 생기므로, 호출자가 세트의 날짜를 그대로 넘긴다.
   Future<List<TodayStudyItem>> _buildItems({
     required int startOrder,
     required Set<String> exclude,
+    required String studyDate,
   }) async {
     final db = await ref.read(databaseProvider.future);
     final summary = await ref.read(progressSummaryProvider.future);
@@ -36,11 +42,10 @@ class TodayStudySetNotifier extends AsyncNotifier<TodayStudySet?> {
     final weakIds = await builder.pickWeakWordIds(exclude: {...exclude, ...newIds});
     final ids = [...newIds, ...weakIds]..shuffle();
     final now = DateTime.now();
-    final today = todayDateString(now);
     return [
       for (var i = 0; i < ids.length; i++)
         TodayStudyItem(
-          studyDate: today,
+          studyDate: studyDate,
           wordId: ids[i],
           displayOrder: startOrder + i,
           passed: false,
@@ -54,10 +59,15 @@ class TodayStudySetNotifier extends AsyncNotifier<TodayStudySet?> {
     // 진행 중인 build()가 나중에 state를 덮어쓰지 않도록 먼저 해소한다.
     await future;
     final db = await ref.read(databaseProvider.future);
-    final items = await _buildItems(startOrder: 0, exclude: const {});
     final now = DateTime.now();
+    final studyDate = todayDateString(now);
+    final items = await _buildItems(
+      startOrder: 0,
+      exclude: const {},
+      studyDate: studyDate,
+    );
     final set = TodayStudySet(
-      studyDate: todayDateString(now),
+      studyDate: studyDate,
       targetCount: items.length,
       status: StudyStage.quiz,
       items: items,
@@ -78,6 +88,7 @@ class TodayStudySetNotifier extends AsyncNotifier<TodayStudySet?> {
     final items = await _buildItems(
       startOrder: current.items.length,
       exclude: current.items.map((i) => i.wordId).toSet(),
+      studyDate: current.studyDate,
     );
     await StudySetRepository(db).appendItems(current.studyDate, items);
     final updated = current.copyWith(
@@ -127,6 +138,9 @@ class TodayStudySetNotifier extends AsyncNotifier<TodayStudySet?> {
     final now = DateTime.now();
     await StudySetRepository(db).updateSetStatus(current.studyDate, StudyStage.completed, completedAt: now);
     state = AsyncData(current.copyWith(status: StudyStage.completed, completedAt: now, updatedAt: now));
+    // 완료 표시는 홈(요약)뿐 아니라 탐색 목록의 ✓·필터와 통계 화면도 바꾼다.
     ref.invalidate(progressSummaryProvider);
+    ref.invalidate(exploreProvider);
+    ref.invalidate(statsProvider);
   }
 }

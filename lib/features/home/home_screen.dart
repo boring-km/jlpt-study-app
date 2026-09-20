@@ -46,6 +46,11 @@ class _HomeBodyState extends ConsumerState<_HomeBody>
     with WidgetsBindingObserver {
   bool _clipboardAvailable = false;
 
+  /// 비동기 탭 핸들러가 도는 동안 다른 탭을 무시한다. 빠른 더블탭은 오늘 세트를
+  /// 두 번 만들어 UNIQUE 제약 예외를 던지기 때문. (설정 화면의 `_backupBusy`와
+  /// 같은 패턴.)
+  bool _busy = false;
+
   @override
   void initState() {
     super.initState();
@@ -231,7 +236,7 @@ class _HomeBodyState extends ConsumerState<_HomeBody>
                   subtitle: summary.weakCount > 0
                       ? '약점 ${summary.weakCount}개'
                       : null,
-                  onTap: () => showReviewFilterSheet(context),
+                  onTap: () => _openReview(context),
                 ),
               ),
               const SizedBox(width: 12),
@@ -261,23 +266,55 @@ class _HomeBodyState extends ConsumerState<_HomeBody>
     );
   }
 
-  Future<void> _startNextStudy(BuildContext context, WidgetRef ref) async {
-    await ref.read(todayStudySetProvider.notifier).appendNextSet();
-    if (!context.mounted) return;
-    context.push('/quiz', extra: QuizMode.study);
+  /// 진행 중인 핸들러가 있으면 아무것도 하지 않고, 실패하면 스낵바로 알린다.
+  Future<void> _guard(
+    Future<void> Function() action, {
+    required String errorMessage,
+  }) async {
+    if (_busy) return;
+    setState(() => _busy = true);
+    try {
+      await action();
+    } catch (_) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(errorMessage)),
+      );
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
   }
+
+  Future<void> _startNextStudy(BuildContext context, WidgetRef ref) =>
+      _guard(
+        () async {
+          await ref.read(todayStudySetProvider.notifier).appendNextSet();
+          if (!context.mounted) return;
+          context.push('/quiz', extra: QuizMode.study);
+        },
+        errorMessage: '학습을 시작하지 못했습니다. 잠시 후 다시 시도해 주세요.',
+      );
 
   Future<void> _startStudy(
     BuildContext context,
     WidgetRef ref,
     TodayStudySet? currentSet,
-  ) async {
-    if (currentSet == null) {
-      await ref.read(todayStudySetProvider.notifier).createTodaySet();
-    }
-    if (!context.mounted) return;
-    context.push('/quiz', extra: QuizMode.study);
-  }
+  ) =>
+      _guard(
+        () async {
+          if (currentSet == null) {
+            await ref.read(todayStudySetProvider.notifier).createTodaySet();
+          }
+          if (!context.mounted) return;
+          context.push('/quiz', extra: QuizMode.study);
+        },
+        errorMessage: '학습을 시작하지 못했습니다. 잠시 후 다시 시도해 주세요.',
+      );
+
+  Future<void> _openReview(BuildContext context) => _guard(
+        () => showReviewFilterSheet(context),
+        errorMessage: '복습을 시작하지 못했습니다. 잠시 후 다시 시도해 주세요.',
+      );
 }
 
 class _SmallCard extends StatelessWidget {

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -186,6 +188,54 @@ void main() {
     expect(find.text('QUIZ'), findsOneWidget);
   });
 
+  testWidgets('double-tapping 다음 학습 시작 appends only one set', (tester) async {
+    final notifier = _SlowStudySetNotifier(
+      buildSet(status: StudyStage.completed, itemCount: 3, passedCount: 3),
+    );
+    await tester.pumpWidget(buildHomeScreen(notifier: notifier));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('다음 학습 시작'));
+    await tester.pump();
+    // 첫 호출이 아직 진행 중인 사이의 두 번째 탭은 무시돼야 한다.
+    await tester.tap(find.text('다음 학습 시작'));
+    await tester.pump();
+    notifier.release();
+    await tester.pumpAndSettle();
+
+    expect(notifier.appendNextSetCalls, 1);
+  });
+
+  testWidgets('double-tapping 학습 시작 creates only one set', (tester) async {
+    final notifier = _SlowStudySetNotifier(null);
+    await tester.pumpWidget(buildHomeScreen(notifier: notifier));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('학습 시작'));
+    await tester.pump();
+    await tester.tap(find.text('학습 시작'));
+    await tester.pump();
+    notifier.release();
+    await tester.pumpAndSettle();
+
+    expect(notifier.createTodaySetCalls, 1);
+  });
+
+  testWidgets('a failing 학습 시작 shows a snackbar instead of an uncaught error',
+      (tester) async {
+    final notifier = _ThrowingStudySetNotifier();
+    await tester.pumpWidget(buildHomeScreen(notifier: notifier));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('학습 시작'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('학습을 시작하지 못했습니다. 잠시 후 다시 시도해 주세요.'),
+        findsOneWidget);
+    expect(tester.takeException(), isNull);
+    expect(find.text('QUIZ'), findsNothing);
+  });
+
   /// 클립보드 플랫폼 채널을 가짜로 물린다. [text]가 null이면 빈 클립보드.
   void mockClipboard({required bool hasStrings, String? text}) {
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
@@ -287,4 +337,54 @@ class _StubStudySetNotifier extends TodayStudySetNotifier {
     appendNextSetCalls++;
     return set;
   }
+}
+
+/// [release]를 부를 때까지 세트 생성/추가가 끝나지 않는 stub — 더블탭 가드를
+/// 검증하려고 "아직 DB 작업이 끝나지 않은" 상태를 붙잡아 둔다.
+class _SlowStudySetNotifier extends TodayStudySetNotifier {
+  _SlowStudySetNotifier(this.set);
+
+  final TodayStudySet? set;
+  final Completer<void> _gate = Completer<void>();
+  int appendNextSetCalls = 0;
+  int createTodaySetCalls = 0;
+
+  void release() {
+    if (!_gate.isCompleted) _gate.complete();
+  }
+
+  @override
+  Future<TodayStudySet?> build() async => set;
+
+  @override
+  Future<TodayStudySet> appendNextSet() async {
+    appendNextSetCalls++;
+    await _gate.future;
+    return set!;
+  }
+
+  @override
+  Future<TodayStudySet> createTodaySet() async {
+    createTodaySetCalls++;
+    await _gate.future;
+    return set ??
+        TodayStudySet(
+          studyDate: '2026-09-19',
+          targetCount: 0,
+          status: StudyStage.quiz,
+          items: const [],
+          createdAt: DateTime(2026, 9, 19),
+          updatedAt: DateTime(2026, 9, 19),
+        );
+  }
+}
+
+/// 세트를 만들다 DB가 터지는 상황.
+class _ThrowingStudySetNotifier extends TodayStudySetNotifier {
+  @override
+  Future<TodayStudySet?> build() async => null;
+
+  @override
+  Future<TodayStudySet> createTodaySet() async =>
+      throw StateError('db is down');
 }

@@ -58,6 +58,22 @@ void main() {
     await db.close();
   });
 
+  test('appendItems throws and writes nothing when the parent set is missing',
+      () async {
+    final db = await AppDatabase.openForTest();
+    final repo = await seed(db);
+
+    await expectLater(
+      repo.appendItems('2026-04-08', [item('n2_0003', 0)]),
+      throwsA(isA<StateError>()),
+    );
+    expect(
+      await db.query('daily_study_set_items', where: "study_date = '2026-04-08'"),
+      isEmpty,
+    );
+    await db.close();
+  });
+
   test('deleteAll removes every set and its items', () async {
     final db = await AppDatabase.openForTest();
     final repo = await seed(db);

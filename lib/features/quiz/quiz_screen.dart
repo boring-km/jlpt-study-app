@@ -39,6 +39,9 @@ class QuizScreenState extends ConsumerState<QuizScreen> {
   bool _initialized = false;
   Timer? _autoNext;
 
+  /// 로딩이 실패했을 때 보여줄 메시지. null이면 정상 흐름.
+  String? _error;
+
   @visibleForTesting
   int get correctChoiceIndexForTest => _choices.indexWhere((c) => c.isCorrect);
 
@@ -78,19 +81,36 @@ class QuizScreenState extends ConsumerState<QuizScreen> {
   }
 
   Future<void> _initQueue() async {
-    // wordById가 카탈로그 state에 의존하므로 로딩(및 최초 시딩) 완료를 먼저 보장한다.
-    await ref.read(wordCatalogProvider.future);
-    if (!mounted) return;
-    final ids = _pendingWordIds();
-    if (ids.isEmpty) {
-      _goComplete();
+    try {
+      // wordById가 카탈로그 state에 의존하므로 로딩(및 최초 시딩) 완료를 먼저 보장한다.
+      await ref.read(wordCatalogProvider.future);
+      if (!mounted) return;
+      final ids = _pendingWordIds();
+      if (ids.isEmpty) {
+        _goComplete();
+        return;
+      }
+      setState(() {
+        _queue = ids;
+        _index = 0;
+        _error = null;
+      });
+    } catch (_) {
+      if (!mounted) return;
+      setState(() => _error = '문제를 불러오지 못했습니다.');
       return;
     }
-    setState(() {
-      _queue = ids;
-      _index = 0;
-    });
     await _loadChoices();
+  }
+
+  /// 에러 화면의 '다시 시도'. 큐가 비어 있으면 처음부터 다시 잡는다.
+  void _retry() {
+    setState(() => _error = null);
+    if (_queue.isEmpty) {
+      _initQueue();
+    } else {
+      _loadChoices();
+    }
   }
 
   Word? _currentWord() {
@@ -98,7 +118,17 @@ class QuizScreenState extends ConsumerState<QuizScreen> {
     return ref.read(wordCatalogProvider.notifier).wordById(_queue[_index]);
   }
 
+  /// DB가 터져도 화면이 스피너에 갇히지 않도록 에러 상태로 떨어뜨린다.
   Future<void> _loadChoices() async {
+    try {
+      await _loadChoicesInner();
+    } catch (_) {
+      if (!mounted) return;
+      setState(() => _error = '보기를 불러오지 못했습니다.');
+    }
+  }
+
+  Future<void> _loadChoicesInner() async {
     final word = _currentWord();
     if (word == null) return;
     final db = await ref.read(databaseProvider.future);
@@ -130,6 +160,7 @@ class QuizScreenState extends ConsumerState<QuizScreen> {
       _choices = choices;
       _selected = null;
       _revealed = false;
+      _error = null;
     });
   }
 
@@ -182,6 +213,34 @@ class QuizScreenState extends ConsumerState<QuizScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (_error != null) {
+      return Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          actions: [_closeButton(context)],
+        ),
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(24),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(_error!, textAlign: TextAlign.center),
+                const SizedBox(height: 16),
+                ElevatedButton(
+                  onPressed: _retry,
+                  child: const Text('다시 시도'),
+                ),
+                TextButton(
+                  onPressed: () => context.go('/'),
+                  child: const Text('홈으로'),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
     final word = _currentWord();
     if (word == null || _choices.isEmpty) {
       return Scaffold(
