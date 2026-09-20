@@ -75,6 +75,94 @@ void main() {
     await dir.delete(recursive: true);
   });
 
+  test('isValidBackup rejects a v3-stamped file without the v3 columns',
+      () async {
+    // user_version만 손으로 3으로 맞춘 구 스키마 파일. 받아들이면 onUpgrade가
+    // 돌지 않아 이후 모든 쿼리가 없는 컬럼에서 깨진다.
+    final dir = await Directory.systemTemp.createTemp('bk');
+    final fake = p.join(dir.path, 'fake-v3.db');
+    final db = await openDatabase(fake, version: 1, onCreate: (db, _) async {
+      await db.execute(
+        'CREATE TABLE words (id TEXT PRIMARY KEY, jlpt_level TEXT NOT NULL, '
+        'reading TEXT NOT NULL, meaning_ko TEXT NOT NULL, created_at TEXT NOT NULL)',
+      );
+      await db.execute(
+        'CREATE TABLE word_progress (word_id TEXT PRIMARY KEY, '
+        'is_completed INTEGER NOT NULL DEFAULT 0, updated_at TEXT NOT NULL)',
+      );
+    });
+    await db.execute('PRAGMA user_version = ${AppDatabase.kVersion}');
+    await db.close();
+
+    expect(await BackupService.isValidBackup(fake), isFalse);
+
+    await dir.delete(recursive: true);
+  });
+
+  test('importFrom removes its rollback copy after a successful replace',
+      () async {
+    final dir = await Directory.systemTemp.createTemp('bk');
+    final source = p.join(dir.path, 'source.db');
+    final db = await AppDatabase.openAtPath(source);
+    await db.close();
+
+    final target = p.join(dir.path, 'target.db');
+    await File(target).writeAsString('old target contents');
+
+    expect(await BackupService().importFrom(source, targetPath: target), isTrue);
+
+    expect(await File('$target.pre-import').exists(), isFalse);
+    expect(await File('$target.import-tmp').exists(), isFalse);
+    await dir.delete(recursive: true);
+  });
+
+  test('importFrom restores the original DB when the replace fails', () async {
+    final dir = await Directory.systemTemp.createTemp('bk');
+    final source = p.join(dir.path, 'source.db');
+    final db = await AppDatabase.openAtPath(source);
+    await db.close();
+
+    final target = p.join(dir.path, 'target.db');
+    const originalContents = 'original target contents';
+    await File(target).writeAsString(originalContents);
+    // 임시 파일 경로를 디렉터리로 막아 교체 중 실패를 만든다.
+    await Directory('$target.import-tmp').create();
+
+    await expectLater(
+      BackupService().importFrom(source, targetPath: target),
+      throwsA(isA<FileSystemException>()),
+    );
+
+    expect(await File(target).readAsString(), originalContents);
+    expect(await File('$target.pre-import').exists(), isFalse);
+
+    await dir.delete(recursive: true);
+  });
+
+  test('importFrom puts the original DB back when the replace dies halfway',
+      () async {
+    final dir = await Directory.systemTemp.createTemp('bk');
+    final source = p.join(dir.path, 'source.db');
+    final db = await AppDatabase.openAtPath(source);
+    await db.close();
+
+    final target = p.join(dir.path, 'target.db');
+    const originalContents = 'original target contents';
+    await File(target).writeAsString(originalContents);
+
+    await expectLater(
+      _HalfwayFailingBackupService().importFrom(source, targetPath: target),
+      throwsA(isA<FileSystemException>()),
+    );
+
+    // 교체 도중 대상이 사라졌어도 pre-import 사본으로 되돌아와야 한다.
+    expect(await File(target).readAsString(), originalContents);
+    expect(await File('$target.pre-import').exists(), isFalse);
+    expect(await File('$target.import-tmp').exists(), isFalse);
+
+    await dir.delete(recursive: true);
+  });
+
   test('snapshotForShare copies to a temp file named jlpt-backup-<date>.db',
       () async {
     final dir = await Directory.systemTemp.createTemp('bk');
@@ -130,4 +218,13 @@ void main() {
 
     await dir.delete(recursive: true);
   });
+}
+
+/// 임시 파일을 제자리로 옮기는 도중 대상이 날아간 상태를 재현한다.
+class _HalfwayFailingBackupService extends BackupService {
+  @override
+  Future<void> replaceTarget(String tempTarget, String target) async {
+    await File(target).delete();
+    throw const FileSystemException('rename failed');
+  }
 }

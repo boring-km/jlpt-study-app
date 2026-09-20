@@ -85,8 +85,14 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
       }
     } catch (_) {
       if (!mounted) return;
+      // 가져오기는 실패하기 전에 이미 DB를 닫았을 수 있다. 캐시된 닫힌 핸들을
+      // 계속 쓰면 이후 모든 읽기·쓰기가 깨지므로 프로바이더를 무효화하고,
+      // 재시작을 안내한다.
+      ref.invalidate(databaseProvider);
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('백업 가져오기에 실패했습니다.')),
+        const SnackBar(
+          content: Text('백업 가져오기에 실패했습니다. 앱을 다시 실행해 주세요.'),
+        ),
       );
     } finally {
       if (mounted) setState(() => _backupBusy = false);

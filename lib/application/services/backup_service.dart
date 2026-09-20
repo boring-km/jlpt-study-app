@@ -25,7 +25,25 @@ class BackupService {
 
       final versionRows = await db.rawQuery('PRAGMA user_version');
       final userVersion = versionRows.first.values.first as int? ?? 0;
-      return userVersion <= AppDatabase.kVersion;
+      if (userVersion > AppDatabase.kVersion) return false;
+
+      // 현재 버전을 자처하는 파일은 onUpgrade가 돌지 않으므로, 우리가 실제로
+      // 읽는 스키마를 갖췄는지 직접 확인한다 (user_version만 손으로 올린
+      // 구 스키마 파일을 받아들이면 이후 모든 쿼리가 영구적으로 깨진다).
+      // 더 낮은 버전은 onUpgrade가 채워준다.
+      if (userVersion == AppDatabase.kVersion) {
+        final columns = (await db.rawQuery('PRAGMA table_info(words)'))
+            .map((r) => r['name'] as String)
+            .toSet();
+        if (!columns.containsAll(const ['type', 'is_trap', 'source'])) {
+          return false;
+        }
+        final missLog = await db.rawQuery(
+          "SELECT name FROM sqlite_master WHERE type='table' AND name = 'miss_log'",
+        );
+        if (missLog.isEmpty) return false;
+      }
+      return true;
     } catch (_) {
       return false;
     } finally {
@@ -84,10 +102,19 @@ class BackupService {
     return importFrom(path);
   }
 
+  /// 교체의 마지막 단계. 테스트에서 "교체 도중 실패"를 만들기 위한 이음매다.
+  @visibleForTesting
+  Future<void> replaceTarget(String tempTarget, String target) =>
+      File(tempTarget).rename(target);
+
   /// [sourcePath]가 유효한 백업이면 [targetPath](기본값: 현재 DB 파일 경로)를
   /// 교체한다. 실제 앱 DB를 교체하는 경우([targetPath]를 안 준 경우)에만 먼저
   /// [AppDatabase.close]로 닫는다. 교체는 임시 파일로 복사한 뒤 원자적으로
   /// rename하여, 복사 도중 실패해도 기존 대상 파일이 손상되지 않게 한다.
+  ///
+  /// 사용자 데이터를 되돌릴 수 없게 덮어쓰는 유일한 경로이므로, 교체 전에
+  /// `<target>.pre-import` 사본을 남겨 두고 실패하면 되돌린다. 교체가 끝나면
+  /// 사본과 임시 파일을 모두 지운다.
   Future<bool> importFrom(String sourcePath, {String? targetPath}) async {
     if (!await isValidBackup(sourcePath)) return false;
 
@@ -98,8 +125,38 @@ class BackupService {
 
     final target = targetPath ?? await AppDatabase.filePath;
     final tempTarget = '$target.import-tmp';
-    await File(sourcePath).copy(tempTarget);
-    await File(tempTarget).rename(target);
+    final rollback = '$target.pre-import';
+
+    final hadTarget = await File(target).exists();
+    if (hadTarget) {
+      await File(target).copy(rollback);
+    }
+
+    try {
+      await File(sourcePath).copy(tempTarget);
+      await replaceTarget(tempTarget, target);
+    } catch (_) {
+      // 교체가 중간에 끊겨 대상이 날아갔을 수 있다 — 사본으로 되돌린다.
+      if (hadTarget && await File(rollback).exists()) {
+        await File(rollback).copy(target);
+      }
+      await _deleteIfExists(tempTarget);
+      await _deleteIfExists(rollback);
+      rethrow;
+    }
+
+    await _deleteIfExists(tempTarget);
+    await _deleteIfExists(rollback);
     return true;
+  }
+
+  /// 정리용 삭제 — 없거나 지우지 못해도 본래 작업을 실패시키지 않는다.
+  static Future<void> _deleteIfExists(String path) async {
+    try {
+      final file = File(path);
+      if (await file.exists()) await file.delete();
+    } catch (_) {
+      // 정리 실패는 무시한다.
+    }
   }
 }

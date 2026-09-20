@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:jlpt/application/providers/backup_service_provider.dart';
+import 'package:jlpt/application/providers/database_provider.dart';
 import 'package:jlpt/application/providers/settings_provider.dart';
 import 'package:jlpt/application/services/backup_service.dart';
+import 'package:jlpt/core/db/database.dart';
 import 'package:jlpt/domain/models/app_settings.dart';
 import 'package:jlpt/features/settings/settings_screen.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
@@ -181,6 +183,9 @@ void main() {
       ProviderScope(
         overrides: [
           backupServiceProvider.overrideWithValue(_ThrowingBackupService()),
+          // 실패 시 databaseProvider가 무효화되므로, 실제 DB를 열러 가지
+          // 않도록 설정 프로바이더를 고정한다.
+          settingsProvider.overrideWith(() => _FixedSettingsNotifier()),
         ],
         child: const MaterialApp(home: SettingsScreen()),
       ),
@@ -190,8 +195,42 @@ void main() {
     await tester.tap(find.text('백업 가져오기'));
     await tester.pumpAndSettle();
 
-    expect(find.text('백업 가져오기에 실패했습니다.'), findsOneWidget);
+    expect(
+      find.text('백업 가져오기에 실패했습니다. 앱을 다시 실행해 주세요.'),
+      findsOneWidget,
+    );
     expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('a failed import drops the cached database handle', (tester) async {
+    // 실패 경로에서도 databaseProvider를 무효화하지 않으면, 이미 닫힌 DB
+    // 핸들을 든 프로바이더들이 재시작 전까지 전부 깨진 채로 남는다.
+    var databaseBuilds = 0;
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          backupServiceProvider.overrideWithValue(_ThrowingBackupService()),
+          databaseProvider.overrideWith((ref) async {
+            databaseBuilds++;
+            return AppDatabase.openForTest();
+          }),
+        ],
+        child: const MaterialApp(home: SettingsScreen()),
+      ),
+    );
+    await tester.pump();
+
+    final container = ProviderScope.containerOf(
+      tester.element(find.byType(SettingsScreen)),
+    );
+    container.read(databaseProvider);
+    expect(databaseBuilds, 1);
+
+    await tester.tap(find.text('백업 가져오기'));
+    await tester.pumpAndSettle();
+
+    container.read(databaseProvider);
+    expect(databaseBuilds, 2);
   });
 
   testWidgets(
