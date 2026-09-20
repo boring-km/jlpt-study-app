@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -14,6 +16,21 @@ class _ThrowingBackupService extends BackupService {
 
   @override
   Future<bool> pickAndImport() async => throw Exception('import failed');
+}
+
+/// export()가 [completer]가 완료될 때까지 대기하는 가짜 — 재진입(더블탭)
+/// 가드를 테스트하기 위해 "공유 시트가 아직 안 떴다"는 상태를 흉내낸다.
+class _CompleterBackupService extends BackupService {
+  final Completer<void> completer;
+  int exportCallCount = 0;
+
+  _CompleterBackupService(this.completer);
+
+  @override
+  Future<void> export() async {
+    exportCallCount++;
+    await completer.future;
+  }
 }
 
 class _FixedSettingsNotifier extends SettingsNotifier {
@@ -175,6 +192,44 @@ void main() {
 
     expect(find.text('백업 가져오기에 실패했습니다.'), findsOneWidget);
     expect(tester.takeException(), isNull);
+  });
+
+  testWidgets(
+      'rapid double-tap on 백업 내보내기 only triggers export once, and the tile re-enables after it settles',
+      (tester) async {
+    final completer = Completer<void>();
+    final fake = _CompleterBackupService(completer);
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          backupServiceProvider.overrideWithValue(fake),
+        ],
+        child: const MaterialApp(home: SettingsScreen()),
+      ),
+    );
+    await tester.pump();
+
+    await tester.tap(find.text('백업 내보내기'));
+    await tester.pump();
+
+    ListTile exportTile() => tester.widget<ListTile>(
+          find.ancestor(
+            of: find.text('백업 내보내기'),
+            matching: find.byType(ListTile),
+          ),
+        );
+    expect(exportTile().enabled, isFalse);
+
+    // 첫 탭의 export()가 아직 completer를 기다리는 동안 다시 탭해도 no-op.
+    await tester.tap(find.text('백업 내보내기'), warnIfMissed: false);
+    await tester.pump();
+
+    expect(fake.exportCallCount, 1);
+
+    completer.complete();
+    await tester.pumpAndSettle();
+
+    expect(exportTile().enabled, isTrue);
   });
 
   testWidgets('tapping 데이터 초기화 → 확인 calls resetProgress and closes dialog',

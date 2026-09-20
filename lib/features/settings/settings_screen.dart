@@ -5,13 +5,23 @@ import '../../application/providers/database_provider.dart';
 import '../../application/providers/settings_provider.dart';
 import '../../domain/models/app_settings.dart';
 
-class SettingsScreen extends ConsumerWidget {
+class SettingsScreen extends ConsumerStatefulWidget {
   const SettingsScreen({super.key});
+
+  @override
+  ConsumerState<SettingsScreen> createState() => _SettingsScreenState();
+}
+
+class _SettingsScreenState extends ConsumerState<SettingsScreen> {
+  /// 백업 내보내기/가져오기가 진행 중인 동안 두 타일을 모두 잠근다. 빠르게
+  /// 두 번 탭하면 두 번째 호출이 스냅샷 디렉터리를 먼저 지워버려, 아직
+  /// 공유 시트가 읽고 있는 첫 번째 호출의 파일이 사라질 수 있다.
+  bool _backupBusy = false;
 
   String _fmt(DateTime d) =>
       '${d.year}.${d.month.toString().padLeft(2, '0')}.${d.day.toString().padLeft(2, '0')}';
 
-  Future<void> _showResetDialog(BuildContext context, WidgetRef ref) async {
+  Future<void> _showResetDialog(BuildContext context) async {
     final didReset = await showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
@@ -40,8 +50,51 @@ class SettingsScreen extends ConsumerWidget {
     }
   }
 
+  Future<void> _exportBackup() async {
+    if (_backupBusy) return;
+    setState(() => _backupBusy = true);
+    try {
+      await ref.read(backupServiceProvider).export();
+    } catch (_) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('백업 내보내기에 실패했습니다.')),
+      );
+    } finally {
+      if (mounted) setState(() => _backupBusy = false);
+    }
+  }
+
+  Future<void> _importBackup() async {
+    if (_backupBusy) return;
+    setState(() => _backupBusy = true);
+    try {
+      final ok = await ref.read(backupServiceProvider).pickAndImport();
+      if (!mounted) return;
+      if (ok) {
+        ref.invalidate(databaseProvider);
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('백업을 가져왔습니다. 앱을 다시 실행해 주세요.'),
+          ),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('올바른 백업 파일이 아닙니다.')),
+        );
+      }
+    } catch (_) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('백업 가져오기에 실패했습니다.')),
+      );
+    } finally {
+      if (mounted) setState(() => _backupBusy = false);
+    }
+  }
+
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final settings = ref.watch(settingsProvider);
     final themeMode = settings.valueOrNull?.themeMode ?? AppThemeMode.light;
     final examDate = settings.valueOrNull?.examDate ?? AppSettings.defaults.examDate;
@@ -117,48 +170,19 @@ class SettingsScreen extends ConsumerWidget {
           ListTile(
             title: const Text('백업 내보내기'),
             trailing: const Icon(Icons.ios_share),
-            onTap: () async {
-              try {
-                await ref.read(backupServiceProvider).export();
-              } catch (_) {
-                if (!context.mounted) return;
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('백업 내보내기에 실패했습니다.')),
-                );
-              }
-            },
+            enabled: !_backupBusy,
+            onTap: _backupBusy ? null : _exportBackup,
           ),
           ListTile(
             title: const Text('백업 가져오기'),
             trailing: const Icon(Icons.file_download_outlined),
-            onTap: () async {
-              try {
-                final ok = await ref.read(backupServiceProvider).pickAndImport();
-                if (!context.mounted) return;
-                if (ok) {
-                  ref.invalidate(databaseProvider);
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('백업을 가져왔습니다. 앱을 다시 실행해 주세요.'),
-                    ),
-                  );
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('올바른 백업 파일이 아닙니다.')),
-                  );
-                }
-              } catch (_) {
-                if (!context.mounted) return;
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('백업 가져오기에 실패했습니다.')),
-                );
-              }
-            },
+            enabled: !_backupBusy,
+            onTap: _backupBusy ? null : _importBackup,
           ),
           const Divider(),
           ListTile(
             title: TextButton(
-              onPressed: () => _showResetDialog(context, ref),
+              onPressed: () => _showResetDialog(context),
               child: Text(
                 '데이터 초기화',
                 style: TextStyle(color: Theme.of(context).colorScheme.error),
