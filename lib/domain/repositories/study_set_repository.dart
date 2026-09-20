@@ -63,8 +63,15 @@ class StudySetRepository {
   }
 
   /// 오늘 세트에 단어를 추가하고 다시 풀이 상태로 되돌린다.
+  ///
+  /// [date]의 부모 세트가 없으면 항목만 남는 고아 row가 되므로 아무것도 쓰지
+  /// 않고 [StateError]를 던진다 (null 단언의 불투명한 크래시 대신).
   Future<void> appendItems(String date, List<TodayStudyItem> items) async {
-    final existingCount = (await getByDate(date))!.items.length;
+    final parent = await getByDate(date);
+    if (parent == null) {
+      throw StateError('append 대상 세트가 없습니다: study_date=$date');
+    }
+    final existingCount = parent.items.length;
     final batch = _db.batch();
     for (final item in items) {
       batch.insert('daily_study_set_items', item.toDbMap());

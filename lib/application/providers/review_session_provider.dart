@@ -6,6 +6,8 @@ import '../../domain/models/error_tag.dart';
 import '../../domain/repositories/miss_log_repository.dart';
 import '../../domain/repositories/review_repository.dart';
 import '../../domain/repositories/progress_repository.dart';
+import '../../features/explore/explore_provider.dart';
+import '../../features/stats/stats_provider.dart';
 import 'database_provider.dart';
 import 'miss_tag_counts_provider.dart';
 import 'progress_summary_provider.dart';
@@ -122,8 +124,11 @@ class ReviewSessionNotifier extends AsyncNotifier<ReviewSession?> {
       status: StudyStage.completed,
       completedAt: now,
     ));
+    // 학습 완료와 같은 무효화 집합 — 탐색·통계도 진행 상황을 다시 읽는다.
     ref.invalidate(progressSummaryProvider);
     ref.invalidate(missTagCountsProvider);
+    ref.invalidate(exploreProvider);
+    ref.invalidate(statsProvider);
   }
 
   /// 약점 70% + 비약점 30%로 세션 단어를 고름.
